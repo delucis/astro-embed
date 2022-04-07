@@ -1,0 +1,135 @@
+---
+import './Tweet.css';
+
+export interface Props {
+	id: string;
+}
+
+/*
+Based on...
+- https://github.com/hugomd/blog/blob/6ad96b24117255c2a9912c566ffd081bd9bbd6f1/layouts/shortcodes/statictweet.html
+- https://hugo.md/post/update-rendering-static-tweets/
+- https://github.com/KyleMit/eleventy-plugin-embed-tweet
+- https://github.com/rebelchris/astro-static-tweet/blob/master/StaticTweet.astro
+- https://www.brycewray.com/posts/2022/04/static-tweets-astro/
+*/
+
+const { id } = Astro.props as Props;
+
+const formatError = (...lines) => lines.join('\n         ');
+
+// Thanks to eleventy-plugin-embed-twitter
+// https://github.com/gfscott/eleventy-plugin-embed-twitter/blob/main/lib/extractMatch.js
+const urlPattern = /(?=(\s*))\1(?:<a [^>]*?>)??(?=(\s*))\2(?:https?:)??(?:\/\/)??(?:w{3}\.)??(?:twitter\.com)\/([a-zA-Z0-9_]{1,15})?(?:\/(?:status)\/)(\d+)?(?:[^\s<>]*)(?=(\s*))\5(?:<\/a>)??(?=(\s*))\6/;
+const idRegExp = /^\d+$/;
+
+function extractID(idOrUrl: string) {
+	if (idRegExp.test(idOrUrl)) return idOrUrl;
+	const match = idOrUrl.match(urlPattern);
+	return match?.[4];
+}
+
+/** Fetch a URL and parse it as JSON, but catch errors to stop builds erroring. */
+async function safeGet(url: string) {
+	try {
+		const res = await fetch(url);
+		if (!res.ok) throw new Error(formatError(`Failed to fetch ${url}`, `Error ${res.status}: ${res.statusText}`))
+		return await res.json();
+	} catch (e) {
+		console.error(formatError(`[error]  Tweet.astro`, e?.message ?? e));
+	}
+}
+
+async function fetchTweet(id) {
+	return await safeGet(`https://cdn.syndication.twimg.com/tweet?id=${id}`);
+}
+
+function buildContent(tweet) {
+	if (!tweet) return {};
+	
+	const { name = '', screen_name = '', profile_image_url_https = '' } = tweet.user;
+	let { created_at = '', text = '' } = tweet;
+	let images = [];
+	let video;
+	let imageCount = 0;
+
+	if (tweet.entities.urls) {
+		tweet.entities.urls.forEach(({ url, display_url, expanded_url }) => {
+			text = text.replace(
+				url,
+				`<a href=${expanded_url}>${display_url}</a>`
+			);
+		});
+	}
+
+	if (tweet.entities.user_mentions) {
+		tweet.entities.user_mentions.forEach(({ screen_name }) => {
+			text = text.replace(
+				`@${screen_name}`,
+				`<a target="_blank" rel="noreferrer noopener" href="https://twitter.com/${screen_name}">@${screen_name}</a>`
+			);
+		});
+	}
+
+	if (tweet.entities.hashtags) {
+		tweet.entities.hashtags.forEach((tag) => {
+			text = text.replace(
+				`#${tag.text}`,
+				`<a target="_blank" rel="noreferrer noopener" href="https://twitter.com/hashtag/${tag.text}?src=hash&ref_src=twsrc">#${tag.text}</a>`
+			);
+		});
+	}
+
+	text = text.replace(/(?:\r\n|\r|\n)/g, '<br/>');
+
+	if (tweet.entities.media) {
+		tweet.entities.media.forEach(({ url, expanded_url }) => {			
+			if (url) {
+				text = text.replace(url, expanded_url);
+			}
+		});
+	}
+
+	if (tweet.photos) {
+		imageCount = tweet.photos.length;
+		tweet.photos.forEach(({ expandedUrl, url, width, height, accessibilityLabel = '' }) => {
+			images.push(`<div><img class="tweet-img" src=${url} alt="${accessibilityLabel}" width="${width}" height="${height}" loading="lazy" /></div>`);
+			text = text.replace(expandedUrl, '');
+		});
+	}
+
+	// TODO: Build an actual `<video>` tag using the `video.variants` array.
+	if (tweet.video) {
+		// Remove interim video URL from text content.
+		text = text.replace(/https:\/\/twitter\.com\/[^\/]+\/status\/[^\/]+\/video\/\S+/, '');
+		const aspect = tweet.video.aspectRatio.join(' / ');
+		video = `<img class="tweet-img tweet-video" src=${tweet.video.poster} alt="" style="aspect-ratio: ${aspect};"  loading="lazy" />`
+	}
+
+	return { name, screen_name, profile_image_url_https, created_at, text, images: images.join(''), imageCount, video };
+}
+
+const tweetID = extractID(id);
+const tweet = await fetchTweet(tweetID);
+const { name, screen_name, profile_image_url_https, text, images, imageCount, video } = buildContent(tweet);
+const tweetLink = `https://twitter.com/${screen_name}/status/${tweetID}`;
+---
+{tweet &&
+<blockquote class="tweet-card">
+	<div class="tweet-header">
+		<a class="tweet-profile" href={`https://twitter.com/${screen_name}`}>
+			<img src={profile_image_url_https} alt={`Twitter avatar for ${screen_name}`} />
+		</a>
+		<div class="tweet-author">
+			<a class="tweet-author-name" href={`https://twitter.com/${screen_name}`}>{name}</a>
+			<a class="tweet-author-handle" href={`https://twitter.com/${screen_name}`}>@{screen_name}</a>
+		</div>
+	</div>
+	<p class="tweet-body" set:html={text}></p>
+	{images && <a href={tweetLink} class={`tweet-img-grid-${imageCount}`} set:html={images} />}
+	{video && <a href={tweetLink} class="tweet-video-wrapper" set:html={video} />}
+	<div class="tweet-footer">
+		<a href={tweetLink} class="tweet-link">Twitter</a>
+	</div>
+</blockquote>
+}

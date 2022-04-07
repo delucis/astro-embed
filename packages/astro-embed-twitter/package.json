@@ -1,0 +1,16 @@
+{
+  "name": "@delucis/astro-embed-twitter",
+  "version": "0.0.1",
+  "type": "module",
+  "exports": {
+    ".": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "Tweet.astro",
+    "Tweet.css"
+  ],
+  "keywords": [
+    "astro-component"
+  ]
+}

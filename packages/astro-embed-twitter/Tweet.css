@@ -1,0 +1,90 @@
+.tweet-card {
+	--tc-corner-radius: 1em;
+	--tc-padding: 1em;
+
+	padding: var(--tc-padding);
+	border-radius: var(--tc-corner-radius);
+	border: 1px solid currentColor;
+	box-shadow: 0 0.2px 0.5px hsl(0deg 0% 0% / 0.11), 0 0.75px 1.7px -0.8px hsl(0deg 0% 0% / 0.11), 0 1.85px 4.2px -1.7px hsl(0deg 0% 0% / 0.11),
+		0 4.45px 10px -2.5px hsl(0deg 0% 0% / 0.11);
+}
+
+.tweet-card > * + * {
+	margin-top: 1em;
+}
+
+.tweet-header {
+	display: grid;
+	grid-template-columns: 48px 1fr;
+	gap: 12px;
+	align-items: center;
+	white-space: nowrap;
+}
+
+.tweet-profile img {
+	border-radius: 50%;
+	color: transparent;
+	text-decoration: none;
+}
+
+.tweet-author {
+	display: grid;
+}
+
+.tweet-header a {
+	color: currentColor;
+	text-decoration: none;
+}
+
+.tweet-author-name {
+	font-weight: bold;
+}
+
+.tweet-img {
+	display: block;
+	width: 100%;
+	height: auto;
+	aspect-ratio: 2;
+	object-fit: cover;
+}
+
+[class^='tweet-img-grid'],
+.tweet-video-wrapper {
+	border-radius: var(--tc-corner-radius);
+	overflow: hidden;
+	display: grid;
+	grid-template-columns: repeat(1, 1fr);
+}
+
+.tweet-img-grid-3 {
+	grid-template-columns: repeat(2, 1fr);
+}
+
+.tweet-img-grid-3 .tweet-img {
+	aspect-ratio: 1.8;
+}
+
+.tweet-img-grid-3 :nth-child(1) {
+	grid-row: 1 / span 2;
+}
+
+.tweet-img-grid-3 :nth-child(1) .tweet-img {
+	aspect-ratio: 0.9;
+}
+
+.tweet-img-grid-2,
+.tweet-img-grid-4 {
+	grid-template-columns: repeat(2, 1fr);
+}
+
+.tweet-footer {
+	text-align: center;
+}
+
+.tweet-link {
+	display: block;
+}
+
+.tweet-link::after {
+	content: ' →';
+}
