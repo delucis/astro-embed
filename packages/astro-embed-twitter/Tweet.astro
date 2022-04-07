@@ -93,17 +93,21 @@ function buildContent(tweet) {
 	if (tweet.photos) {
 		imageCount = tweet.photos.length;
 		tweet.photos.forEach(({ expandedUrl, url, width, height, accessibilityLabel = '' }) => {
-			images.push(`<div><img class="tweet-img" src=${url} alt="${accessibilityLabel}" width="${width}" height="${height}" loading="lazy" /></div>`);
+			images.push(`<div><img class="tweet-media-img" src=${url} alt="${accessibilityLabel}" width="${width}" height="${height}" loading="lazy" /></div>`);
 			text = text.replace(expandedUrl, '');
 		});
 	}
 
-	// TODO: Build an actual `<video>` tag using the `video.variants` array.
 	if (tweet.video) {
 		// Remove interim video URL from text content.
 		text = text.replace(/https:\/\/twitter\.com\/[^\/]+\/status\/[^\/]+\/video\/\S+/, '');
 		const aspect = tweet.video.aspectRatio.join(' / ');
-		video = `<img class="tweet-img tweet-video" src=${tweet.video.poster} alt="" style="aspect-ratio: ${aspect};"  loading="lazy" />`
+		video = `<video controls class="tweet-media-video" preload="none" poster="${tweet.video.poster}" style="aspect-ratio: ${aspect};">`;
+		tweet.video.variants.forEach(({ src, type }) => {
+			video += `<source src="${src}" type="${type}">`;
+		});
+		video += '</video>';
+		// video = `<img class="tweet-img tweet-video" src=${tweet.video.poster} alt="" style="aspect-ratio: ${aspect};"  loading="lazy" />`
 	}
 
 	return { name, screen_name, profile_image_url_https, created_at, text, images: images.join(''), imageCount, video };
@@ -127,7 +131,7 @@ const tweetLink = `https://twitter.com/${screen_name}/status/${tweetID}`;
 	</div>
 	<p class="tweet-body" set:html={text}></p>
 	{images && <a href={tweetLink} class={`tweet-img-grid-${imageCount}`} set:html={images} />}
-	{video && <a href={tweetLink} class="tweet-video-wrapper" set:html={video} />}
+	{video && <div class="tweet-video-wrapper" set:html={video} />}
 	<div class="tweet-footer">
 		<a href={tweetLink} class="tweet-link">Twitter</a>
 	</div>

@@ -42,7 +42,7 @@
 	font-weight: bold;
 }
 
-.tweet-img {
+[class^='tweet-media'] {
 	display: block;
 	width: 100%;
 	height: auto;
@@ -51,7 +51,8 @@
 }
 
 [class^='tweet-img-grid'],
-.tweet-video-wrapper {
+.tweet-video-wrapper,
+.tweet-media-video {
 	border-radius: var(--tc-corner-radius);
 	overflow: hidden;
 	display: grid;
@@ -62,7 +63,7 @@
 	grid-template-columns: repeat(2, 1fr);
 }
 
-.tweet-img-grid-3 .tweet-img {
+.tweet-img-grid-3 .tweet-media-img {
 	aspect-ratio: 1.8;
 }
 
@@ -70,7 +71,7 @@
 	grid-row: 1 / span 2;
 }
 
-.tweet-img-grid-3 :nth-child(1) .tweet-img {
+.tweet-img-grid-3 :nth-child(1) .tweet-media-img {
 	aspect-ratio: 0.9;
 }
 
