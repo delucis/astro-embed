@@ -5,7 +5,9 @@
 	padding: var(--tc-padding);
 	border-radius: var(--tc-corner-radius);
 	border: 1px solid currentColor;
-	box-shadow: 0 0.2px 0.5px hsl(0deg 0% 0% / 0.11), 0 0.75px 1.7px -0.8px hsl(0deg 0% 0% / 0.11), 0 1.85px 4.2px -1.7px hsl(0deg 0% 0% / 0.11),
+	box-shadow: 0 0.2px 0.5px hsl(0deg 0% 0% / 0.11),
+		0 0.75px 1.7px -0.8px hsl(0deg 0% 0% / 0.11),
+		0 1.85px 4.2px -1.7px hsl(0deg 0% 0% / 0.11),
 		0 4.45px 10px -2.5px hsl(0deg 0% 0% / 0.11);
 }
 
