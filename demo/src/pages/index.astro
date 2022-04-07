@@ -1,29 +1,9 @@
 ---
-import * as Component from 'astro-embed';
+import * as Components from 'astro-embed';
+import Base from '../layouts/Base.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<title>Welcome to Astro</title>
-		<style>
-			.center {
-				text-align: center;
-			}
-		</style>
-	</head>
-
-	<body>
-		<div style="max-width: 40em; margin: 0 auto;">
-			<h1>AstroBird 🐦</h1>
-			<Component.Tweet id="1511750228428435457" />
-			<Component.Tweet id="1511380091720409095" />
-			<Component.Tweet id="1509917444403601409" />
-			<p class="center">…</p>
-			<Component.Tweet
-				id="https://twitter.com/astrodotbuild/status/1402352777020395521"
-			/>
-		</div>
-	</body>
-</html>
+<Base>
+	<h2><code>&lt;Tweet /&gt;</code></h2>
+	<Components.Tweet id="1511750228428435457" />
+</Base>
