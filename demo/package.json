@@ -9,7 +9,6 @@
     "preview": "astro preview"
   },
   "devDependencies": {
-    "@astro-community/astro-embed-twitter": "@astro-community/astro-embed-twitter",
     "astro": "^1.0.0-beta.4"
   }
 }
