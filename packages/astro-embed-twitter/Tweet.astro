@@ -107,7 +107,6 @@ function buildContent(tweet) {
 			video += `<source src="${src}" type="${type}">`;
 		});
 		video += '</video>';
-		// video = `<img class="tweet-img tweet-video" src=${tweet.video.poster} alt="" style="aspect-ratio: ${aspect};"  loading="lazy" />`
 	}
 
 	return { name, screen_name, profile_image_url_https, created_at, text, images: images.join(''), imageCount, video };
