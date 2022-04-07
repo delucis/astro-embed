@@ -1,11 +1,11 @@
-# `@delucis/astro-embed-twitter`
+# `@astro-community/astro-embed-twitter`
 
 This package contains a component for embedding tweets in Astro projects.
 
 ## Install
 
 ```bash
-npm i @delucis/astro-embed-twitter
+npm i @astro-community/astro-embed-twitter
 ```
 
 ## Usage
@@ -16,7 +16,7 @@ The **Tweet** component generates a static Twitter card for a single Tweet.
 
 ```astro
 ---
-import { Tweet } from '@delucis/astro-embed-twitter';
+import { Tweet } from '@astro-community/astro-embed-twitter';
 ---
 
 <Tweet id="1511750228428435457" />
@@ -26,7 +26,7 @@ It also supports passing a full URL instead of just the ID.
 
 ```astro
 ---
-import { Tweet } from '@delucis/astro-embed-twitter';
+import { Tweet } from '@astro-community/astro-embed-twitter';
 ---
 
 <Tweet id="https://twitter.com/astrodotbuild/status/1511750228428435457" />

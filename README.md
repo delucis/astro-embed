@@ -16,7 +16,7 @@ Inside of your Astro project, you'll see the following folders and files:
         └── package.json
 ```
 
-This project uses **workspaces** to develop a single package, `@delucis/astro-embed-twitter`, from `packages/astro-embed-twitter`. It also includes a `demo` Astro site for testing and demonstrating the component.
+This project uses **workspaces** to develop a single package, `@astro-community/astro-embed-twitter`, from `packages/astro-embed-twitter`. It also includes a `demo` Astro site for testing and demonstrating the component.
 
 ## 🧞 Commands
 
