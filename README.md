@@ -1,34 +1,34 @@
-# Astro Starter Kit: Component
+# Astro Embed
+
+Welcome! This project aims to collect easy-to-use and lightweight ways to embed common media into your [Astro](https://astro.build/) site.
+
+## 📚 Documentation
+
+Want to get started using some embed components?
+
+[Check out the README for the `astro-embed` package ](packages/astro-embed/README.md)
 
 ## 🚀 Project Structure
 
-Inside of your Astro project, you'll see the following folders and files:
+This project uses a monorepo structure with a separate workspace for each embed type. You’ll find a directory for each service in the [`/packages`](packages) directory.
 
-```
-/
-├── demo/
-│   └── src/
-│       └── pages/
-│           └── index.astro
-└── packages/
-    └── astro-embed-twitter/
-        ├── index.js
-        └── package.json
-```
-
-This project uses **workspaces** to develop a single package, `@astro-community/astro-embed-twitter`, from `packages/astro-embed-twitter`. It also includes a `demo` Astro site for testing and demonstrating the component.
+You’ll also find an Astro site in the [`/demo`](demo) directory that we can use to test out the various components.
 
 ## 🧞 Commands
 
 All commands are run from the root of the project, from a terminal:
 
-| Command           | Action                                       |
-| :---------------- | :------------------------------------------- |
-| `npm install`     | Installs dependencies                        |
-| `npm run dev`     | Starts local dev server at `localhost:3000`  |
-| `npm run build`   | Build your production site to `./dist/`      |
-| `npm run preview` | Preview your build locally, before deploying |
+| Command       | Action                                                          |
+| :------------ | :-------------------------------------------------------------- |
+| `npm install` | Installs dependencies                                           |
+| `npm start`   | Starts local dev server for the `demo` site at `localhost:3000` |
 
-## 👀 Want to learn more?
+## ✨ Want to contribute?
 
-Feel free to check [our documentation](https://github.com/withastro/astro) or jump into our [Discord server](https://astro.build/chat).
+This is an Astro Community project. That means YOU!
+
+- 🛠 Want to build a missing component? Do it!
+
+- 🐛 Found a bug? Open a [new issue](https://github.com/astro-community/astro-embed/issues/new/choose) to let us know.
+
+- 💬 Want to chat? Jump into [the Astro Discord server](https://astro.build/chat).
