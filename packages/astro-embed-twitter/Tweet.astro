@@ -82,7 +82,7 @@ function buildContent(tweet) {
 
 	text = text.replace(/(?:\r\n|\r|\n)/g, '<br/>');
 
-	if (tweet.entities.media) {
+	if (tweet.entities.media && !tweet.video) {
 		tweet.entities.media.forEach(({ url, expanded_url }) => {			
 			if (url) {
 				text = text.replace(url, expanded_url);
@@ -99,11 +99,17 @@ function buildContent(tweet) {
 	}
 
 	if (tweet.video) {
+		const { aspectRatio, poster, variants, contentType } = tweet.video;
+		const isGIF = contentType === 'gif';
 		// Remove interim video URL from text content.
-		text = text.replace(/https:\/\/twitter\.com\/[^\/]+\/status\/[^\/]+\/video\/\S+/, '');
-		const aspect = tweet.video.aspectRatio.join(' / ');
-		video = `<video controls class="tweet-media-video" preload="none" poster="${tweet.video.poster}" style="aspect-ratio: ${aspect};">`;
-		tweet.video.variants.forEach(({ src, type }) => {
+    tweet.entities.media.forEach(({ url }) => {
+      if (url) {
+        text = text.replace(url, '');
+      }
+    });
+		const aspect = aspectRatio.join(' / ');
+		video = `<video class="tweet-media-video" poster="${poster}" style="aspect-ratio: ${aspect};" controls loop ${isGIF ? 'autoplay muted playsinline controlslist="nofullscreen"' : 'preload="none"'}>`;
+		variants.forEach(({ src, type }) => {
 			video += `<source src="${src}" type="${type}">`;
 		});
 		video += '</video>';
