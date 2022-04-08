@@ -99,15 +99,17 @@ function buildContent(tweet) {
 	}
 
 	if (tweet.video) {
+		const { aspectRatio, poster, variants, contentType } = tweet.video;
+		const isGIF = contentType === 'gif';
 		// Remove interim video URL from text content.
     tweet.entities.media.forEach(({ url }) => {
       if (url) {
         text = text.replace(url, '');
       }
     });
-		const aspect = tweet.video.aspectRatio.join(' / ');
-		video = `<video autoplay loop controls class="tweet-media-video" preload="none" poster="${tweet.video.poster}" style="aspect-ratio: ${aspect};">`;
-		tweet.video.variants.forEach(({ src, type }) => {
+		const aspect = aspectRatio.join(' / ');
+		video = `<video class="tweet-media-video" poster="${poster}" style="aspect-ratio: ${aspect};" controls loop ${isGIF ? 'autoplay muted playsinline controlslist="nofullscreen"' : 'preload="none"'}>`;
+		variants.forEach(({ src, type }) => {
 			video += `<source src="${src}" type="${type}">`;
 		});
 		video += '</video>';
