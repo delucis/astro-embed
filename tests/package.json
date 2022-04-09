@@ -2,6 +2,7 @@
   "name": "tests",
   "private": true,
   "version": "0.0.1",
+  "license": "MIT",
   "description": "Unit tests for astro-embed components",
   "devDependencies": {
     "@testing-library/dom": "^8.13.0",
@@ -13,15 +14,5 @@
   },
   "scripts": {
     "test": "tsm ../node_modules/uvu/bin.js . -i utils"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/astro-community/astro-embed.git"
-  },
-  "author": "delucis",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/astro-community/astro-embed/issues"
-  },
-  "homepage": "https://github.com/astro-community/astro-embed#readme"
+  }
 }
