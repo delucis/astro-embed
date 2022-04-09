@@ -1,6 +1,6 @@
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
-import { render, renderRaw } from './utils/render';
+import { render } from './utils/render';
 
 test('it should render user information in the header', async () => {
 	const screen = await render('./packages/astro-embed-twitter/Tweet.astro', {
