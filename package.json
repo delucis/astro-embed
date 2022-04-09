@@ -11,6 +11,7 @@
     "lint": "eslint . --ext .ts,.js"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.22.0",
     "@types/eslint": "^8.4.1",
     "@types/node": "^17.0.19",
     "@types/prettier": "^2.4.4",
