@@ -1,8 +1,13 @@
 ---
 export interface Props {
+	content?: any;
 	title?: string;
 }
-const { title = 'Astro Embed Testbed' } = Astro.props as Props;
+
+const { content, title = content?.title || 'Astro Embed Testbed' } =
+	Astro.props as Props;
+const { pathname } = Astro.canonicalURL as URL;
+const isHome = pathname.length <= 1;
 ---
 
 <html lang="en">
@@ -15,6 +20,7 @@ const { title = 'Astro Embed Testbed' } = Astro.props as Props;
 	<body>
 		<div style="max-width: 40em; margin: 0 auto;">
 			<h1>{title}</h1>
+			{!isHome && <a href="/">← Home</a>}
 			<slot />
 		</div>
 	</body>
