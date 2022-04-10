@@ -7,27 +7,31 @@
     "start": "astro --root demo dev",
     "build": "astro --root demo build",
     "serve": "astro --root demo preview",
-    "test": "npm t --workspace=tests",
+    "test": "tsm node_modules/uvu/bin.js tests -i utils",
     "format": "prettier -w .",
     "lint": "eslint . --ext .ts,.js"
   },
   "devDependencies": {
     "@changesets/cli": "^2.22.0",
+    "@testing-library/dom": "^8.13.0",
     "@types/eslint": "^8.4.1",
     "@types/node": "^17.0.19",
     "@types/prettier": "^2.4.4",
     "@typescript-eslint/eslint-plugin": "^5.12.1",
     "@typescript-eslint/parser": "^5.12.1",
+    "astro-component-tester": "^0.4.0",
     "eslint": "^8.9.0",
     "eslint-config-prettier": "^8.4.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "jsdom": "^19.0.0",
     "prettier": "^2.5.1",
     "prettier-plugin-astro": "^0.0.12",
-    "typescript": "^4.5.5"
+    "tsm": "^2.2.1",
+    "typescript": "^4.5.5",
+    "uvu": "^0.5.3"
   },
   "workspaces": [
     "demo",
-    "packages/**/*",
-    "tests"
+    "packages/**/*"
   ]
 }
