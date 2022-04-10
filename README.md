@@ -28,7 +28,7 @@ All commands are run from the root of the project, from a terminal:
 
 This is an Astro Community project. That means YOU!
 
-- 🛠 Want to build a missing component? Do it!
+- 🛠 Want to build a missing component? [We have a guide for that.](CONTRIBUTING.md)
 
 - 🐛 Found a bug? Open a [new issue](https://github.com/astro-community/astro-embed/issues/new/choose) to let us know.
 
