@@ -34,4 +34,4 @@ jobs:
         run: npm ci
 
       - name: Test
-        run: npm t
+        run: cd tests && npm t
