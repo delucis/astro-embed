@@ -39,6 +39,6 @@ Hey look! I can embed a tweet _in Markdown_!
 
 ## Docs
 
-See individual packages for how to use the componet for each service:
+See individual packages for how to use the component for each service:
 
 - [Twitter](https://github.com/astro-community/astro-embed/tree/main/packages/astro-embed-twitter#readme)
