@@ -6,16 +6,28 @@ import lzString from 'lz-string';
 const { compressToEncodedURIComponent } = lzString;
 
 /**
+ * Get a `JSDOM` instance for an Astro component
+ * @param path Path to an Astro component to render (relative to monorepo root)
+ * @param props Any props to pass to the component
+ * @returns A Promise for a `JSDOM` instance
+ */
+export const renderDOM = async (
+	path: string,
+	props: Record<string, unknown>
+) => {
+	const { raw } = await getComponentOutput(path, props);
+	return new JSDOM(raw);
+};
+
+/**
  * Render an Astro component to an interface matching
  * `@testing-library/dom`’s `screen` API.
  * @param path Path to an Astro component to render (relative to monorepo root)
  * @param props Any props to pass to the component
  * @returns A `@testing-library/dom` “screen” containing the rendered component
  */
-export const render = async (path: string, props: Record<string, unknown>) => {
-	const { raw } = await getComponentOutput(path, props);
-	return getScreen(new JSDOM(raw));
-};
+export const render = async (path: string, props: Record<string, unknown>) =>
+	getScreen(await renderDOM(path, props));
 
 /**
  * Create an interface matching `@testing-library/dom`’s `screen`, but without
