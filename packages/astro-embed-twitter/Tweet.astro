@@ -127,7 +127,7 @@ const tweetLink = `https://twitter.com/${screen_name}/status/${tweetID}`;
 <blockquote class="tweet-card">
 	<div class="tweet-header">
 		<a class="tweet-profile" href={`https://twitter.com/${screen_name}`}>
-			<img src={profile_image_url_https} alt={`Twitter avatar for ${screen_name}`} />
+			<img src={profile_image_url_https} alt={`Twitter avatar for ${screen_name}`} loading="lazy" />
 		</a>
 		<div class="tweet-author">
 			<a class="tweet-author-name" href={`https://twitter.com/${screen_name}`}>{name}</a>
