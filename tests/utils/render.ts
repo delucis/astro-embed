@@ -13,7 +13,7 @@ const { compressToEncodedURIComponent } = lzString;
  */
 export const renderDOM = async (
 	path: string,
-	props: Record<string, unknown>
+	props?: Record<string, unknown>
 ) => {
 	const { raw } = await getComponentOutput(path, props);
 	return new JSDOM(raw);
@@ -26,7 +26,7 @@ export const renderDOM = async (
  * @param props Any props to pass to the component
  * @returns A `@testing-library/dom` “screen” containing the rendered component
  */
-export const render = async (path: string, props: Record<string, unknown>) =>
+export const render = async (path: string, props?: Record<string, unknown>) =>
 	getScreen(await renderDOM(path, props));
 
 /**
