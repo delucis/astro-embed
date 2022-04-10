@@ -26,8 +26,10 @@ export const renderDOM = async (
  * @param props Any props to pass to the component
  * @returns A `@testing-library/dom` “screen” containing the rendered component
  */
-export const render = async (path: string, props?: Record<string, unknown>) =>
-	getScreen(await renderDOM(path, props));
+export const renderScreen = async (
+	path: string,
+	props?: Record<string, unknown>
+) => getScreen(await renderDOM(path, props));
 
 /**
  * Create an interface matching `@testing-library/dom`’s `screen`, but without
