@@ -1,4 +1,5 @@
 ---
+import { safeGet } from '@astro-community/astro-embed-utils';
 import './Tweet.css';
 
 export interface Props {
@@ -16,8 +17,6 @@ Based on...
 
 const { id } = Astro.props as Props;
 
-const formatError = (...lines) => lines.join('\n         ');
-
 // Thanks to eleventy-plugin-embed-twitter
 // https://github.com/gfscott/eleventy-plugin-embed-twitter/blob/main/lib/extractMatch.js
 const urlPattern = /(?=(\s*))\1(?:<a [^>]*?>)??(?=(\s*))\2(?:https?:)??(?:\/\/)??(?:w{3}\.)??(?:twitter\.com)\/([a-zA-Z0-9_]{1,15})?(?:\/(?:status)\/)(\d+)?(?:[^\s<>]*)(?=(\s*))\5(?:<\/a>)??(?=(\s*))\6/;
@@ -27,17 +26,6 @@ function extractID(idOrUrl: string) {
 	if (idRegExp.test(idOrUrl)) return idOrUrl;
 	const match = idOrUrl.match(urlPattern);
 	return match?.[4];
-}
-
-/** Fetch a URL and parse it as JSON, but catch errors to stop builds erroring. */
-async function safeGet(url: string) {
-	try {
-		const res = await fetch(url);
-		if (!res.ok) throw new Error(formatError(`Failed to fetch ${url}`, `Error ${res.status}: ${res.statusText}`))
-		return await res.json();
-	} catch (e) {
-		console.error(formatError(`[error]  Tweet.astro`, e?.message ?? e));
-	}
 }
 
 async function fetchTweet(id) {

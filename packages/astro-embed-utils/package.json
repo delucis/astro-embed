@@ -1,0 +1,22 @@
+{
+  "name": "@astro-community/astro-embed-utils",
+  "version": "0.0.1",
+  "description": "Shared utility methods for astro-embed components",
+  "type": "module",
+  "exports": {
+    ".": "./index.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/astro-community/astro-embed.git"
+  },
+  "author": "delucis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/astro-community/astro-embed/issues"
+  },
+  "homepage": "https://github.com/astro-community/astro-embed/tree/main/packages/astro-embed-utils#readme"
+}
