@@ -14,7 +14,7 @@ const { compressToEncodedURIComponent } = lzString;
 export const renderDOM = async (
 	path: string,
 	props?: Record<string, unknown>
-) => {
+): Promise<JSDOM> => {
 	const { raw } = await getComponentOutput(path, props);
 	return new JSDOM(raw);
 };

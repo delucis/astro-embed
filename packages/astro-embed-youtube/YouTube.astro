@@ -1,0 +1,42 @@
+---
+import 'lite-youtube-embed/src/lite-yt-embed.css';
+
+export interface Props {
+	id: string;
+	poster?: string;
+	params?: string;
+	playlabel?: string;
+}
+
+const { id, poster, ...attrs } = Astro.props as Props;
+
+const idRegExp = /^[A-Za-z0-9-_]+$/;
+
+function extractID(idOrUrl: string) {
+	if (idRegExp.test(idOrUrl)) return idOrUrl;
+	const { pathname, searchParams } = new URL(idOrUrl);
+	if (pathname === '/watch') return searchParams.get('v');
+	if (pathname.startsWith('/embed')) return pathname.split('/')[2];
+	return pathname.split('/')[1];
+}
+
+const videoid = extractID(id);
+const posterURL = poster || `https://i.ytimg.com/vi/${videoid}/hqdefault.jpg`;
+
+// TODO: remove span inside lite-youtube once https://github.com/withastro/astro/issues/3070 is fixed
+// TODO: use the progressive enhancement pattern once https://github.com/paulirish/lite-youtube-embed/issues/123 is fixed.
+// TODO: switch to a hoisted local NPM import once https://github.com/withastro/astro/issues/3053 is fixed.
+---
+
+<lite-youtube
+	{videoid}
+	{...attrs}
+	style={`background-image: url('${posterURL}');`}><span></span></lite-youtube
+>
+
+<script is:inline defer>
+	document.addEventListener('DOMContentLoaded', () => {
+		if (!customElements.get('lite-youtube'))
+			import('https://cdn.jsdelivr.net/npm/lite-youtube-embed/+esm');
+	});
+</script>

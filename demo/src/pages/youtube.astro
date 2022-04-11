@@ -1,0 +1,59 @@
+---
+import { YouTube } from '@astro-community/astro-embed-youtube';
+import Base from '../layouts/Base.astro';
+---
+
+<script is:inline>
+	document.addEventListener('DOMContentLoaded', () => console.log('LOADED'));
+</script>
+
+<Base title="YouTube component examples">
+	<h2>With just the ID</h2>
+	<p><code>&lt;YouTube id="Hoe-woAhq_k" /&gt;</code></p>
+	<YouTube id="Hoe-woAhq_k" />
+
+	<h2>With a full youtube.com URL</h2>
+	<p>
+		<code
+			>&lt;YouTube
+			id="https://www.youtube.com/watch?v=-ExcBJrXOd8&ab_channel=Astro" /&gt;</code
+		>
+	</p>
+	<YouTube id="https://www.youtube.com/watch?v=-ExcBJrXOd8&ab_channel=Astro" />
+
+	<h2>With a youtu.be URL</h2>
+	<p>
+		<code>&lt;YouTube id="https://youtu.be/xtTy5nKay_Y" /&gt;</code>
+	</p>
+	<YouTube id="https://youtu.be/xtTy5nKay_Y" />
+
+	<h2>With an embed URL</h2>
+	<p>
+		<code>&lt;YouTube id="https://www.youtube.com/embed/2ZEMb_H-LYE" /&gt;</code
+		>
+	</p>
+	<YouTube id="https://www.youtube.com/embed/2ZEMb_H-LYE" />
+
+	<h2>With a custom poster image</h2>
+	<p>
+		<code
+			>&lt;YouTube id="Hoe-woAhq_k" poster="https://astro.build/social.png"
+			/&gt;</code
+		>
+	</p>
+	<YouTube id="Hoe-woAhq_k" poster="https://astro.build/social.png" />
+
+	<h2>With custom params</h2>
+	<p>
+		<code
+			>&lt;YouTube id="2ZEMb_H-LYE" params="start=2413&modestbranding=1" /&gt;</code
+		>
+	</p>
+	<YouTube id="2ZEMb_H-LYE" params="start=2413&modestbranding=1" />
+
+	<h2>With a custom accessible label</h2>
+	<p>
+		<code>&lt;YouTube id="2ZEMb_H-LYE" playlabel="Play the video" /&gt;</code>
+	</p>
+	<YouTube id="2ZEMb_H-LYE" playlabel="Play the video" />
+</Base>
