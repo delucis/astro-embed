@@ -1,5 +1,6 @@
 ---
 import 'lite-youtube-embed/src/lite-yt-embed.css';
+import urlMatcher from './matcher';
 
 export interface Props {
 	id: string;
@@ -14,10 +15,7 @@ const idRegExp = /^[A-Za-z0-9-_]+$/;
 
 function extractID(idOrUrl: string) {
 	if (idRegExp.test(idOrUrl)) return idOrUrl;
-	const { pathname, searchParams } = new URL(idOrUrl);
-	if (pathname === '/watch') return searchParams.get('v');
-	if (pathname.startsWith('/embed')) return pathname.split('/')[2];
-	return pathname.split('/')[1];
+	return urlMatcher(idOrUrl);
 }
 
 const videoid = extractID(id);
