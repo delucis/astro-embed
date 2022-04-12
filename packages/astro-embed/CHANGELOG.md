@@ -1,5 +1,12 @@
 # astro-embed
 
+## 0.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`2ef6aaf`](https://github.com/astro-community/astro-embed/commit/2ef6aafda66632c4028a409b8f1c3a1e78b20586)]:
+  - @astro-community/astro-embed-youtube@0.0.3
+
 ## 0.0.2
 
 ### Patch Changes
