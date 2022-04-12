@@ -1,6 +1,6 @@
 {
   "name": "astro-embed",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Astro components to easily embed common media formats",
   "type": "module",
   "exports": {
@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/astro-community/astro-embed/tree/main/packages/astro-embed#readme",
   "dependencies": {
-    "@astro-community/astro-embed-twitter": "^0.0.1",
-    "@astro-community/astro-embed-youtube": "^0.0.1"
+    "@astro-community/astro-embed-twitter": "^0.0.4",
+    "@astro-community/astro-embed-youtube": "^0.0.2"
   }
 }
