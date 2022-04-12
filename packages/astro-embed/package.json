@@ -1,6 +1,6 @@
 {
   "name": "astro-embed",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Astro components to easily embed common media formats",
   "type": "module",
   "exports": {
