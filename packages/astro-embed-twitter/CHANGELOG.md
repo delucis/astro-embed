@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-twitter
 
+## 0.0.5
+
+### Patch Changes
+
+- [`4dca30d`](https://github.com/astro-community/astro-embed/commit/4dca30d6752359febaed0f01d2ca4e22a0a3dc34) Thanks [@delucis](https://github.com/delucis)! - Refactor to separate URL matcher from component
+
 ## 0.0.4
 
 ### Patch Changes

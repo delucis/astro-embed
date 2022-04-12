@@ -1,5 +1,16 @@
 # astro-embed
 
+## 0.0.5
+
+### Patch Changes
+
+- [`f654547`](https://github.com/astro-community/astro-embed/commit/f6545478d272802c392a4e8698ebdd328dcbee98) Thanks [@delucis](https://github.com/delucis)! - Re-export integration from astro-embed
+
+- Updated dependencies [[`73cad90`](https://github.com/astro-community/astro-embed/commit/73cad907749a9269b58b915718466eb8a327a9bf), [`8db1515`](https://github.com/astro-community/astro-embed/commit/8db1515c23a160ead790063a54603a359c6ee661), [`4dca30d`](https://github.com/astro-community/astro-embed/commit/4dca30d6752359febaed0f01d2ca4e22a0a3dc34)]:
+  - @astro-community/astro-embed-youtube@0.0.4
+  - @astro-community/astro-embed-integration@0.0.1
+  - @astro-community/astro-embed-twitter@0.0.5
+
 ## 0.0.4
 
 ### Patch Changes
