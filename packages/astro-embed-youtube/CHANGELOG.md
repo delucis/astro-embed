@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-youtube
 
+## 0.0.4
+
+### Patch Changes
+
+- [`73cad90`](https://github.com/astro-community/astro-embed/commit/73cad907749a9269b58b915718466eb8a327a9bf) Thanks [@delucis](https://github.com/delucis)! - Refactor to separate URL matcher from component
+
 ## 0.0.3
 
 ### Patch Changes
