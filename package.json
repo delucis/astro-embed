@@ -4,9 +4,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "astro --root demo dev",
-    "build": "astro --root demo build",
-    "serve": "astro --root demo preview",
+    "start": "astro --root demo dev --experimental-integrations",
+    "build": "astro --root demo build --experimental-integrations",
+    "serve": "astro --root demo preview --experimental-integrations",
     "test": "tsm node_modules/uvu/bin.js tests -i utils",
     "format": "prettier -w .",
     "lint": "eslint . --ext .ts,.js"
