@@ -17,9 +17,7 @@ export default function createPlugin({ importNamespace }) {
 	function getComponent(url) {
 		for (const [matcher, componentName] of matchers) {
 			const id = matcher(url);
-			if (id) {
-				return `<global.${importNamespace}.${componentName} id="${id}" />`;
-			}
+			if (id) return `<${importNamespace}.${componentName} id="${id}" />`;
 		}
 	}
 
