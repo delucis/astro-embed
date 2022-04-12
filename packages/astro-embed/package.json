@@ -4,10 +4,12 @@
   "description": "Astro components to easily embed common media formats",
   "type": "module",
   "exports": {
-    ".": "./index.js"
+    ".": "./index.js",
+    "./integration": "./integration.js"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "integration.js"
   ],
   "repository": {
     "type": "git",
@@ -25,6 +27,7 @@
   },
   "homepage": "https://github.com/astro-community/astro-embed/tree/main/packages/astro-embed#readme",
   "dependencies": {
+    "@astro-community/astro-embed-integration": "^0.0.0",
     "@astro-community/astro-embed-twitter": "^0.0.4",
     "@astro-community/astro-embed-youtube": "^0.0.3"
   }
