@@ -1,5 +1,11 @@
 # astro-embed
 
+## 0.0.4
+
+### Patch Changes
+
+- [`e2b3fd6`](https://github.com/astro-community/astro-embed/commit/e2b3fd68617e3ec86c7fdae45a465f3f0adb01d1) Thanks [@delucis](https://github.com/delucis)! - Document YouTube component in README
+
 ## 0.0.3
 
 ### Patch Changes
