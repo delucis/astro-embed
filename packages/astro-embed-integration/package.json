@@ -1,6 +1,6 @@
 {
   "name": "@astro-community/astro-embed-integration",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Astro integration to automatically convert URLs in Markdown files to embeds",
   "type": "module",
   "exports": {
@@ -21,8 +21,8 @@
   },
   "homepage": "https://github.com/astro-community/astro-embed/tree/main/packages/astro-embed-integration#readme",
   "dependencies": {
-    "@astro-community/astro-embed-twitter": "^0.0.5",
-    "@astro-community/astro-embed-youtube": "^0.0.4",
+    "@astro-community/astro-embed-twitter": "^0.1.0",
+    "@astro-community/astro-embed-youtube": "^0.1.0",
     "unist-util-select": "^4.0.1"
   },
   "peerDependencies": {

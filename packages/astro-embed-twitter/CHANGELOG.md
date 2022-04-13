@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-twitter
 
+## 0.1.0
+
+### Minor Changes
+
+- [`1150c69`](https://github.com/astro-community/astro-embed/commit/1150c69099cca8dc15dc1492b0367e9ec7bf5cf9) Thanks [@delucis](https://github.com/delucis)! - Require peer dependency of astro@^1.0.0-beta.10
+
 ## 0.0.5
 
 ### Patch Changes
