@@ -119,7 +119,7 @@ const tweetLink = `https://twitter.com/${screen_name}/status/${tweetID}`;
 		</div>
 	</div>
 	<p class="tweet-body" set:html={text}></p>
-	{images && <a href={tweetLink} class={`tweet-img-grid-${imageCount}`} set:html={images} />}
+	{images && <div class={`tweet-img-grid-${imageCount}`} set:html={images} />}
 	{video && <div class="tweet-video-wrapper" set:html={video} />}
 	<div class="tweet-footer">
 		<a href={tweetLink} class="tweet-link">Twitter</a>
