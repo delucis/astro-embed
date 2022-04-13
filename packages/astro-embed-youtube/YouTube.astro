@@ -21,7 +21,6 @@ function extractID(idOrUrl: string) {
 const videoid = extractID(id);
 const posterURL = poster || `https://i.ytimg.com/vi/${videoid}/hqdefault.jpg`;
 
-// TODO: remove fragment inside lite-youtube once https://github.com/withastro/astro/issues/3070 is fixed
 // TODO: use the progressive enhancement pattern once https://github.com/paulirish/lite-youtube-embed/issues/123 is fixed.
 // TODO: switch to a hoisted local NPM import once https://github.com/withastro/astro/issues/3053 is fixed.
 ---
@@ -29,8 +28,7 @@ const posterURL = poster || `https://i.ytimg.com/vi/${videoid}/hqdefault.jpg`;
 <lite-youtube
 	{videoid}
 	{...attrs}
-	style={`background-image: url('${posterURL}');`}><></></lite-youtube
->
+	style={`background-image: url('${posterURL}');`}></lite-youtube>
 
 <script is:inline defer>
 	document.addEventListener('DOMContentLoaded', () => {
