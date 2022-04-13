@@ -1,5 +1,18 @@
 # astro-embed
 
+## 0.1.0
+
+### Minor Changes
+
+- [`1150c69`](https://github.com/astro-community/astro-embed/commit/1150c69099cca8dc15dc1492b0367e9ec7bf5cf9) Thanks [@delucis](https://github.com/delucis)! - Require peer dependency of astro@^1.0.0-beta.10
+
+### Patch Changes
+
+- Updated dependencies [[`1de84e5`](https://github.com/astro-community/astro-embed/commit/1de84e541dbb71fdbdf84212f0767bd17a304834), [`1150c69`](https://github.com/astro-community/astro-embed/commit/1150c69099cca8dc15dc1492b0367e9ec7bf5cf9), [`a155844`](https://github.com/astro-community/astro-embed/commit/a155844bbf974c3cffddf6f1bb00d6f6cf09805f)]:
+  - @astro-community/astro-embed-youtube@0.1.0
+  - @astro-community/astro-embed-integration@0.1.0
+  - @astro-community/astro-embed-twitter@0.1.0
+
 ## 0.0.5
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @astro-community/astro-embed-youtube
 
+## 0.1.0
+
+### Minor Changes
+
+- [`1150c69`](https://github.com/astro-community/astro-embed/commit/1150c69099cca8dc15dc1492b0367e9ec7bf5cf9) Thanks [@delucis](https://github.com/delucis)! - Require peer dependency of astro@^1.0.0-beta.10
+
+### Patch Changes
+
+- [`1de84e5`](https://github.com/astro-community/astro-embed/commit/1de84e541dbb71fdbdf84212f0767bd17a304834) Thanks [@delucis](https://github.com/delucis)! - Remove empty fragment hack now that withastro/astro#3070 is fixed
+
 ## 0.0.4
 
 ### Patch Changes
