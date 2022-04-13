@@ -25,5 +25,8 @@
   "homepage": "https://github.com/astro-community/astro-embed/tree/main/packages/astro-embed-twitter#readme",
   "dependencies": {
     "@astro-community/astro-embed-utils": "^0.0.2"
+  },
+  "peerDependencies": {
+    "astro": "^1.0.0-beta.10"
   }
 }

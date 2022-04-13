@@ -24,5 +24,8 @@
     "@astro-community/astro-embed-twitter": "^0.0.5",
     "@astro-community/astro-embed-youtube": "^0.0.4",
     "unist-util-select": "^4.0.1"
+  },
+  "peerDependencies": {
+    "astro": "^1.0.0-beta.10"
   }
 }
