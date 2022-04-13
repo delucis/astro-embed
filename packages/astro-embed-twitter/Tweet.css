@@ -24,6 +24,7 @@
 }
 
 .tweet-profile img {
+	display: block;
 	border-radius: 50%;
 	color: transparent;
 	text-decoration: none;
