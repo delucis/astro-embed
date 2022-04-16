@@ -1,5 +1,28 @@
-import LRU from 'lru-cache';
-const cache = new LRU({ max: 1000 });
+class LRU extends Map {
+	constructor(maxSize) {
+		super();
+		this.maxSize = maxSize;
+	}
+
+	get(key) {
+		const value = super.get(key);
+		if (value) this.#touch(key, value);
+		return value;
+	}
+
+	set(key, value) {
+		this.#touch(key, value);
+		if (this.size > this.maxSize) this.delete(this.keys().next().value);
+		return this;
+	}
+
+	#touch(key, value) {
+		this.delete(key);
+		super.set(key, value);
+	}
+}
+
+const cache = new LRU(1000);
 
 const formatError = (...lines) => lines.join('\n         ');
 
@@ -10,7 +33,8 @@ const formatError = (...lines) => lines.join('\n         ');
  */
 export async function safeGet(url) {
 	try {
-		if (cache.has(url)) return cache.get(url);
+		const cached = cache.get(url);
+		if (cached) return cached;
 		const res = await fetch(url);
 		if (!res.ok)
 			throw new Error(
