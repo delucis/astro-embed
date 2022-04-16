@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/astro-community/astro-embed/issues"
   },
-  "homepage": "https://github.com/astro-community/astro-embed/tree/main/packages/astro-embed-utils#readme"
+  "homepage": "https://github.com/astro-community/astro-embed/tree/main/packages/astro-embed-utils#readme",
+  "dependencies": {
+    "lru-cache": "^7.8.1"
+  }
 }

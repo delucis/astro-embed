@@ -1,3 +1,6 @@
+import LRU from 'lru-cache';
+const cache = new LRU({ max: 1000 });
+
 const formatError = (...lines) => lines.join('\n         ');
 
 /**
@@ -7,6 +10,7 @@ const formatError = (...lines) => lines.join('\n         ');
  */
 export async function safeGet(url) {
 	try {
+		if (cache.has(url)) return cache.get(url);
 		const res = await fetch(url);
 		if (!res.ok)
 			throw new Error(
@@ -15,7 +19,9 @@ export async function safeGet(url) {
 					`Error ${res.status}: ${res.statusText}`
 				)
 			);
-		return await res.json();
+		const json = await res.json();
+		cache.set(url, json);
+		return json;
 	} catch (e) {
 		console.error(formatError(`[error]  astro-embed`, e?.message ?? e));
 	}
