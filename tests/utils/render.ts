@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { prettyDOM, queries, screen } from '@testing-library/dom';
 import { getComponentOutput } from 'astro-component-tester';
-import { JSDOM } from 'jsdom';
+import { parseHTML } from 'linkedom';
 import lzString from 'lz-string';
 const { compressToEncodedURIComponent } = lzString;
 
@@ -14,9 +14,9 @@ const { compressToEncodedURIComponent } = lzString;
 export const renderDOM = async (
 	path: string,
 	props?: Record<string, unknown>
-): Promise<JSDOM> => {
+) => {
 	const { raw } = await getComponentOutput(path, props);
-	return new JSDOM(raw);
+	return parseHTML(raw);
 };
 
 /**
@@ -35,7 +35,7 @@ export const renderScreen = async (
  * Create an interface matching `@testing-library/dom`’s `screen`, but without
  * needing a global DOM environment.
  */
-function getScreen(container: JSDOM): typeof screen {
+function getScreen(container: Window): typeof screen {
 	const { document } = container.window;
 
 	const debug: typeof screen.debug = (

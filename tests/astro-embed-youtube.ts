@@ -13,7 +13,7 @@ test('it should render a lite-youtube element', async () => {
 	assert.ok(embed);
 	assert.is(
 		embed.style['background-image'],
-		`url(https://i.ytimg.com/vi/${videoid}/hqdefault.jpg)`
+		`url('https://i.ytimg.com/vi/${videoid}/hqdefault.jpg')`
 	);
 });
 
@@ -55,7 +55,7 @@ test('it can set a custom poster image', async () => {
 	);
 	const embed = window.document.querySelector('lite-youtube');
 	assert.ok(embed);
-	assert.is(embed.style['background-image'], `url(${poster})`);
+	assert.is(embed.style['background-image'], `url('${poster}')`);
 });
 
 test.run();
