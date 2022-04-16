@@ -1,5 +1,13 @@
 # @astro-community/astro-embed-twitter
 
+## 0.1.1
+
+### Patch Changes
+
+- [`b1286ff`](https://github.com/astro-community/astro-embed/commit/b1286ff5f989f423679a960ba11568af079c7fd5) Thanks [@delucis](https://github.com/delucis)! - Fix slight layout shift in `<Tweet />` header. Gets that Lighthouse performance score right up to 💯!
+
+* [`4578f68`](https://github.com/astro-community/astro-embed/commit/4578f68a468e5b5d14e00e4945ebf69494d7a2ea) Thanks [@delucis](https://github.com/delucis)! - a11y: Don’t link to original Tweet from image grid
+
 ## 0.1.0
 
 ### Minor Changes
