@@ -54,7 +54,7 @@ You can choose from two helpers in `utils/render` to render your component in a 
 
 ### `renderDOM(componentPath[, props])`
 
-This method returns a new [`JSDOM`](https://github.com/jsdom/jsdom#readme) instance containing the HTML for the component at `componentPath`.
+This method returns a new [`linkedom`](https://github.com/WebReflection/linkedom#readme) instance containing the HTML for the component at `componentPath`.
 
 This gives you something similar to a browser environment which you can inspect.
 
