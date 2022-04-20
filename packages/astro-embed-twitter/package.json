@@ -1,6 +1,6 @@
 {
   "name": "@astro-community/astro-embed-twitter",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Component to easily embed Tweets on your Astro site",
   "type": "module",
   "exports": {
@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/astro-community/astro-embed/tree/main/packages/astro-embed-twitter#readme",
   "dependencies": {
-    "@astro-community/astro-embed-utils": "^0.0.2"
+    "@astro-community/astro-embed-utils": "^0.0.3"
   },
   "peerDependencies": {
     "astro": "^1.0.0-beta.10"

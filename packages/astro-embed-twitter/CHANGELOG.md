@@ -1,5 +1,12 @@
 # @astro-community/astro-embed-twitter
 
+## 0.1.2
+
+### Patch Changes
+
+- Updated dependencies [[`a3af6db`](https://github.com/astro-community/astro-embed/commit/a3af6db0b74002b6477ad243acf9078b6b243ce0)]:
+  - @astro-community/astro-embed-utils@0.0.3
+
 ## 0.1.1
 
 ### Patch Changes
