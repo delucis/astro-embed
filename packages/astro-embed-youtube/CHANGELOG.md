@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-youtube
 
+## 0.1.1
+
+### Patch Changes
+
+- [`01ca843`](https://github.com/astro-community/astro-embed/commit/01ca8433c9110a164c45fe1784f48ee4324d8661) Thanks [@delucis](https://github.com/delucis)! - Add astro keywords to packages with .astro file exports (#13) — thanks @scottaw66!
+
 ## 0.1.0
 
 ### Minor Changes
