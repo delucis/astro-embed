@@ -16,6 +16,12 @@
     "type": "git",
     "url": "git+https://github.com/astro-community/astro-embed.git"
   },
+  "keywords": [
+    "astro",
+    "astro-component",
+    "embeds",
+    "youtube"
+  ],
   "author": "delucis",
   "license": "MIT",
   "bugs": {
