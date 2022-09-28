@@ -9,7 +9,7 @@ export interface Props extends astroHTML.JSX.HTMLAttributes {
 	playlabel?: string;
 }
 
-const { videoIdOrUrl, poster, ...attrs } = Astro.props as Props;
+const { id, poster, ...attrs } = Astro.props as Props;
 
 const idRegExp = /^[A-Za-z0-9-_]+$/;
 
