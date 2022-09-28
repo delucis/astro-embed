@@ -2,14 +2,14 @@
 import 'lite-youtube-embed/src/lite-yt-embed.css';
 import urlMatcher from './matcher';
 
-export interface Props {
-	id: string;
+export interface Props extends astroHTML.JSX.HTMLAttributes {
+	videoIdOrUrl: string;
 	poster?: string;
 	params?: string;
 	playlabel?: string;
 }
 
-const { id, poster, ...attrs } = Astro.props as Props;
+const { videoIdOrUrl, poster, ...attrs } = Astro.props as Props;
 
 const idRegExp = /^[A-Za-z0-9-_]+$/;
 
