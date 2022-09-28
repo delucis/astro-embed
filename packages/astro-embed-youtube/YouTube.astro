@@ -18,7 +18,7 @@ function extractID(idOrUrl: string) {
 	return urlMatcher(idOrUrl);
 }
 
-const videoid = extractID(id);
+const videoid = extractID(videoIdOrUrl);
 const posterURL = poster || `https://i.ytimg.com/vi/${videoid}/hqdefault.jpg`;
 
 // TODO: use the progressive enhancement pattern once https://github.com/paulirish/lite-youtube-embed/issues/123 is fixed.
