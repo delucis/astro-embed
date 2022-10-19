@@ -10,7 +10,8 @@
   "files": [
     "index.js",
     "matcher.js",
-    "Vimeo.astro"
+    "Vimeo.astro",
+    "Vimeo.css"
   ],
   "repository": {
     "type": "git",
