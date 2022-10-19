@@ -1,5 +1,15 @@
 # @astro-community/astro-embed-youtube
 
+## 0.2.0
+
+### Minor Changes
+
+- [`719e685`](https://github.com/astro-community/astro-embed/commit/719e6859a1cc49a6a0441942d62882ec683dff5d) Thanks [@delucis](https://github.com/delucis)! - Switch to using a hoisted import for YouTube custom element
+
+### Patch Changes
+
+- [`6694f6a`](https://github.com/astro-community/astro-embed/commit/6694f6abbdc5f36a3a587071727b14207731d725) Thanks [@delucis](https://github.com/delucis)! - Fix type error in YouTube component
+
 ## 0.1.2
 
 ### Patch Changes
