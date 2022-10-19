@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-vimeo
 
+## 0.1.1
+
+### Patch Changes
+
+- [`d2d10b4`](https://github.com/astro-community/astro-embed/commit/d2d10b495baca58bae023780260bf88d5bba6f65) Thanks [@delucis](https://github.com/delucis)! - Include `Vimeo.css` in npm bundle!
+
 ## 0.1.0
 
 ### Minor Changes

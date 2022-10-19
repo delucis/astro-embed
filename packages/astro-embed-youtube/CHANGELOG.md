@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-youtube
 
+## 0.2.1
+
+### Patch Changes
+
+- [`cb43356`](https://github.com/astro-community/astro-embed/commit/cb433565134f2c26565c5024f89e5ab0994c6d2c) Thanks [@delucis](https://github.com/delucis)! - Revert erroneous type fix
+
 ## 0.2.0
 
 ### Minor Changes
