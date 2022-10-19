@@ -20,6 +20,7 @@
     "astro-component",
     "embeds",
     "twitter",
+    "vimeo",
     "youtube"
   ],
   "author": "delucis",
@@ -31,6 +32,7 @@
   "dependencies": {
     "@astro-community/astro-embed-integration": "^0.1.0",
     "@astro-community/astro-embed-twitter": "^0.1.3",
+    "@astro-community/astro-embed-vimeo": "^0.0.1",
     "@astro-community/astro-embed-youtube": "^0.1.1"
   },
   "peerDependencies": {
