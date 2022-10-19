@@ -22,7 +22,6 @@ const videoid = extractID(id);
 const posterURL = poster || `https://i.ytimg.com/vi/${videoid}/hqdefault.jpg`;
 
 // TODO: use the progressive enhancement pattern once https://github.com/paulirish/lite-youtube-embed/issues/123 is fixed.
-// TODO: switch to a hoisted local NPM import once https://github.com/withastro/astro/issues/3053 is fixed.
 ---
 
 <lite-youtube
@@ -31,9 +30,4 @@ const posterURL = poster || `https://i.ytimg.com/vi/${videoid}/hqdefault.jpg`;
 	style={`background-image: url('${posterURL}');`}
 />
 
-<script is:inline defer>
-	document.addEventListener('DOMContentLoaded', () => {
-		if (!customElements.get('lite-youtube'))
-			import('https://cdn.jsdelivr.net/npm/lite-youtube-embed/+esm');
-	});
-</script>
+<script> import 'lite-youtube-embed'; </script>
