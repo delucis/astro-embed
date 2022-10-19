@@ -4,9 +4,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "astro --root demo dev --experimental-integrations",
-    "build": "astro --root demo build --experimental-integrations",
-    "serve": "astro --root demo preview --experimental-integrations",
+    "start": "astro --root demo dev",
+    "build": "astro --root demo build",
+    "serve": "astro --root demo preview",
     "test": "tsm node_modules/uvu/bin.js tests -i utils",
     "format": "prettier -w .",
     "lint": "eslint . --ext .ts,.js"
@@ -20,7 +20,7 @@
     "@types/prettier": "^2.4.4",
     "@typescript-eslint/eslint-plugin": "^5.12.1",
     "@typescript-eslint/parser": "^5.12.1",
-    "astro": "^1.0.0-rc.1",
+    "astro": "^1.5.1",
     "astro-component-tester": "^0.4.0",
     "eslint": "^8.9.0",
     "eslint-config-prettier": "^8.4.0",
