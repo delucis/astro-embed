@@ -1,10 +1,12 @@
 import { selectAll } from 'unist-util-select';
 import twitterMatcher from '@astro-community/astro-embed-twitter/matcher';
+import vimeoMatcher from '@astro-community/astro-embed-vimeo/matcher';
 import youtubeMatcher from '@astro-community/astro-embed-youtube/matcher';
 
 /** @type {[(url: string) => string | undefined, string][]} */
 const matchers = [
 	[twitterMatcher, 'Tweet'],
+	[vimeoMatcher, 'Vimeo'],
 	[youtubeMatcher, 'YouTube'],
 ];
 

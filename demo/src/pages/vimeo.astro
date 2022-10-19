@@ -1,0 +1,40 @@
+---
+import { Vimeo } from '@astro-community/astro-embed-vimeo';
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Vimeo component examples">
+	<h2>With just the ID</h2>
+	<p><code>&lt;Vimeo id="32001208" /&gt;</code></p>
+	<Vimeo id="32001208" />
+
+	<h2>With a full vimeo.com URL</h2>
+	<p>
+		<code>&lt;Vimeo id="https://vimeo.com/32001208" /&gt;</code>
+	</p>
+	<Vimeo id="https://vimeo.com/32001208" />
+
+	<h2>With “www.” in the URL</h2>
+	<p>
+		<code>&lt;Vimeo id="https://www.vimeo.com/32001208" /&gt;</code>
+	</p>
+	<Vimeo id="https://www.vimeo.com/32001208" />
+
+	<h2>With custom parameters</h2>
+	<p>
+		<code
+			>&lt;Vimeo id="https://vimeo.com/32001208" params="color=ff0000&muted=1"
+			/&gt;</code
+		>
+	</p>
+	<Vimeo id="https://vimeo.com/32001208" params="color=ff0000&muted=1" />
+
+	<h2>With custom timestamp</h2>
+	<p>
+		<code
+			>&lt;Vimeo id="https://vimeo.com/32001208" params="color=00ff00#t=2m00s"
+			/&gt;</code
+		>
+	</p>
+	<Vimeo id="https://vimeo.com/32001208" params="color=00ff00#t=2m00s" />
+</Base>
