@@ -35,6 +35,7 @@ export async function safeGet(url) {
 	try {
 		const cached = cache.get(url);
 		if (cached) return cached;
+		// eslint-disable-next-line no-undef -- fetch is bootstrapped by Vite/Astro when not available
 		const res = await fetch(url);
 		if (!res.ok)
 			throw new Error(

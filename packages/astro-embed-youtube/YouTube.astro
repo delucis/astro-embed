@@ -28,7 +28,8 @@ const posterURL = poster || `https://i.ytimg.com/vi/${videoid}/hqdefault.jpg`;
 <lite-youtube
 	{videoid}
 	{...attrs}
-	style={`background-image: url('${posterURL}');`}></lite-youtube>
+	style={`background-image: url('${posterURL}');`}
+/>
 
 <script is:inline defer>
 	document.addEventListener('DOMContentLoaded', () => {

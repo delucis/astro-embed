@@ -30,8 +30,12 @@ async function fetchTweet(id) {
 
 function buildContent(tweet) {
 	if (!tweet) return {};
-	
-	const { name = '', screen_name = '', profile_image_url_https = '' } = tweet.user;
+
+	const {
+		name = '',
+		screen_name = '',
+		profile_image_url_https = '',
+	} = tweet.user;
 	let { created_at = '', text = '' } = tweet;
 	let images = [];
 	let video;
@@ -39,10 +43,7 @@ function buildContent(tweet) {
 
 	if (tweet.entities.urls) {
 		tweet.entities.urls.forEach(({ url, display_url, expanded_url }) => {
-			text = text.replace(
-				url,
-				`<a href=${expanded_url}>${display_url}</a>`
-			);
+			text = text.replace(url, `<a href=${expanded_url}>${display_url}</a>`);
 		});
 	}
 
@@ -67,7 +68,7 @@ function buildContent(tweet) {
 	text = text.replace(/(?:\r\n|\r|\n)/g, '<br/>');
 
 	if (tweet.entities.media && !tweet.video) {
-		tweet.entities.media.forEach(({ url, expanded_url }) => {			
+		tweet.entities.media.forEach(({ url, expanded_url }) => {
 			if (url) {
 				text = text.replace(url, expanded_url);
 			}
@@ -76,53 +77,101 @@ function buildContent(tweet) {
 
 	if (tweet.photos) {
 		imageCount = tweet.photos.length;
-		tweet.photos.forEach(({ expandedUrl, url, width, height, accessibilityLabel = '' }) => {
-			images.push(`<div><img class="tweet-media-img" src=${url} alt="${accessibilityLabel}" width="${width}" height="${height}" loading="lazy" /></div>`);
-			text = text.replace(expandedUrl, '');
-		});
+		tweet.photos.forEach(
+			({ expandedUrl, url, width, height, accessibilityLabel = '' }) => {
+				images.push(
+					`<div><img class="tweet-media-img" src=${url} alt="${accessibilityLabel}" width="${width}" height="${height}" loading="lazy" /></div>`
+				);
+				text = text.replace(expandedUrl, '');
+			}
+		);
 	}
 
 	if (tweet.video) {
 		const { aspectRatio, poster, variants, contentType } = tweet.video;
 		const isGIF = contentType === 'gif';
 		// Remove interim video URL from text content.
-    tweet.entities.media.forEach(({ url }) => {
-      if (url) {
-        text = text.replace(url, '');
-      }
-    });
+		tweet.entities.media.forEach(({ url }) => {
+			if (url) {
+				text = text.replace(url, '');
+			}
+		});
 		const aspect = aspectRatio.join(' / ');
-		video = `<video class="tweet-media-video" poster="${poster}" style="aspect-ratio: ${aspect};" controls loop ${isGIF ? 'autoplay muted playsinline controlslist="nofullscreen"' : 'preload="none"'}>`;
+		video = `<video class="tweet-media-video" poster="${poster}" style="aspect-ratio: ${aspect};" controls loop ${
+			isGIF
+				? 'autoplay muted playsinline controlslist="nofullscreen"'
+				: 'preload="none"'
+		}>`;
 		variants.forEach(({ src, type }) => {
 			video += `<source src="${src}" type="${type}">`;
 		});
 		video += '</video>';
 	}
 
-	return { name, screen_name, profile_image_url_https, created_at, text, images: images.join(''), imageCount, video };
+	return {
+		name,
+		screen_name,
+		profile_image_url_https,
+		created_at,
+		text,
+		images: images.join(''),
+		imageCount,
+		video,
+	};
 }
 
 const tweetID = extractID(id);
 const tweet = await fetchTweet(tweetID);
-const { name, screen_name, profile_image_url_https, text, images, imageCount, video } = buildContent(tweet);
+const {
+	name,
+	screen_name,
+	profile_image_url_https,
+	text,
+	images,
+	imageCount,
+	video,
+} = buildContent(tweet);
 const tweetLink = `https://twitter.com/${screen_name}/status/${tweetID}`;
 ---
-{tweet &&
-<blockquote class="tweet-card" cite={tweetLink}>
-	<div class="tweet-header">
-		<a class="tweet-profile" href={`https://twitter.com/${screen_name}`}>
-			<img src={profile_image_url_https} alt={`Twitter avatar for ${screen_name}`} loading="lazy" width="48" height="48" />
-		</a>
-		<div class="tweet-author">
-			<a class="tweet-author-name" href={`https://twitter.com/${screen_name}`}>{name}</a>
-			<a class="tweet-author-handle" href={`https://twitter.com/${screen_name}`}>@{screen_name}</a>
-		</div>
-	</div>
-	<p class="tweet-body" set:html={text}></p>
-	{images && <div class={`tweet-img-grid-${imageCount}`} set:html={images} />}
-	{video && <div class="tweet-video-wrapper" set:html={video} />}
-	<div class="tweet-footer">
-		<a href={tweetLink} class="tweet-link">Twitter</a>
-	</div>
-</blockquote>
+
+{
+	tweet && (
+		<blockquote class="tweet-card" cite={tweetLink}>
+			<div class="tweet-header">
+				<a class="tweet-profile" href={`https://twitter.com/${screen_name}`}>
+					<img
+						src={profile_image_url_https}
+						alt={`Twitter avatar for ${screen_name}`}
+						loading="lazy"
+						width="48"
+						height="48"
+					/>
+				</a>
+				<div class="tweet-author">
+					<a
+						class="tweet-author-name"
+						href={`https://twitter.com/${screen_name}`}
+					>
+						{name}
+					</a>
+					<a
+						class="tweet-author-handle"
+						href={`https://twitter.com/${screen_name}`}
+					>
+						@{screen_name}
+					</a>
+				</div>
+			</div>
+			<p class="tweet-body" set:html={text} />
+			{images && (
+				<div class={`tweet-img-grid-${imageCount}`} set:html={images} />
+			)}
+			{video && <div class="tweet-video-wrapper" set:html={video} />}
+			<div class="tweet-footer">
+				<a href={tweetLink} class="tweet-link">
+					Twitter
+				</a>
+			</div>
+		</blockquote>
+	)
 }
