@@ -4,4 +4,7 @@ import embed from 'astro-embed/integration';
 // https://astro.build/config
 export default defineConfig({
 	integrations: [embed()],
+	legacy: {
+		astroFlavoredMarkdown: true,
+	},
 });
