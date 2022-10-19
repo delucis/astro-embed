@@ -1,5 +1,18 @@
 # astro-embed
 
+## 0.1.2
+
+### Patch Changes
+
+- [`3da5ac8`](https://github.com/astro-community/astro-embed/commit/3da5ac80860630b5143902c3d46f22e163968428) Thanks [@delucis](https://github.com/delucis)! - Update README to show Vimeo component & document use of legacy flag
+
+* [#19](https://github.com/astro-community/astro-embed/pull/19) [`5b6efd0`](https://github.com/astro-community/astro-embed/commit/5b6efd0d27c4a8b06035c070046c7d73d906f6c0) Thanks [@delucis](https://github.com/delucis)! - Add Vimeo embed support
+
+* Updated dependencies [[`ecf1638`](https://github.com/astro-community/astro-embed/commit/ecf1638e68f7c31ca6a4fcba1f0034bd6f661203), [`3950055`](https://github.com/astro-community/astro-embed/commit/395005508d66555a23a35cc202d41b8081ee8b3d), [`5b6efd0`](https://github.com/astro-community/astro-embed/commit/5b6efd0d27c4a8b06035c070046c7d73d906f6c0)]:
+  - @astro-community/astro-embed-youtube@0.1.2
+  - @astro-community/astro-embed-integration@0.1.1
+  - @astro-community/astro-embed-vimeo@0.1.0
+
 ## 0.1.1
 
 ### Patch Changes

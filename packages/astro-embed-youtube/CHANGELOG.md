@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-youtube
 
+## 0.1.2
+
+### Patch Changes
+
+- [`ecf1638`](https://github.com/astro-community/astro-embed/commit/ecf1638e68f7c31ca6a4fcba1f0034bd6f661203) Thanks [@delucis](https://github.com/delucis)! - Improved type for `<Youtube>` props
+
 ## 0.1.1
 
 ### Patch Changes
