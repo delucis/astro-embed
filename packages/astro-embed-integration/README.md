@@ -10,7 +10,7 @@ npm i @astro-community/astro-embed-integration
 
 ## Usage
 
-To enable the integration, add it to the integrations array in your `astro.config.mjs` file.
+To enable the integration, add it to the `integrations` array in your `astro.config.mjs` file and enable the [`legacy.astroFlavoredMarkdown` flag](https://docs.astro.build/en/reference/configuration-reference/#legacyastroflavoredmarkdown) to support components in Markdown files.
 
 ```js
 import { defineConfig } from 'astro/config';
@@ -18,10 +18,11 @@ import embeds from '@astro-community/astro-embed-integration';
 
 export default defineConfig({
   integrations: [embeds()],
+  legacy: {
+    astroFlavoredMarkdown: true,
+  },
 });
 ```
-
-> ⚠️ Astro integrations are still experimental currently so you will need to add the `--experimental-integrations` flag to your `astro dev/build` commands to enable this unofficial integration.
 
 With the integration enabled any isolated URL in a Markdown file that matches one of the `astro-embed` component types will be converted to the appropriate component.
 
