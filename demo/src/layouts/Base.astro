@@ -1,12 +1,12 @@
 ---
 export interface Props {
-	content?: any;
+	content?: { title?: string };
 	title?: string;
 }
 
 const { content, title = content?.title || 'Astro Embed Testbed' } =
-	Astro.props as Props;
-const { pathname } = Astro.canonicalURL as URL;
+	Astro.props;
+const { pathname } = Astro.url;
 const isHome = pathname.length <= 1;
 ---
 
