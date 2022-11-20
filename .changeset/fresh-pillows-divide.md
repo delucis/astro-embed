@@ -1,4 +1,5 @@
 ---
+"@astro-community/astro-embed-integration": minor
 "@astro-community/astro-embed-twitter": minor
 "astro-embed": minor
 ---
