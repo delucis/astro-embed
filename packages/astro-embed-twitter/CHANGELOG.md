@@ -1,5 +1,13 @@
 # @astro-community/astro-embed-twitter
 
+## 0.2.0
+
+### Minor Changes
+
+- [#25](https://github.com/astro-community/astro-embed/pull/25) [`194657d`](https://github.com/astro-community/astro-embed/commit/194657dabaad0aae7183698ee556d289ceed2da7) Thanks [@delucis](https://github.com/delucis)! - Migrate `<Tweet />` component to use Twitter API v2
+
+  ⚠️ BREAKING CHANGE: The `<Tweet />` component now requires a bearer token to authorize with the Twitter API. Set your token as a `SECRET_TWITTER_TOKEN` environment variable.
+
 ## 0.1.3
 
 ### Patch Changes
