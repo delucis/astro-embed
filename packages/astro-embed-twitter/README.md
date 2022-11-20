@@ -22,7 +22,7 @@ If you’re building or developing your site locally, create a `.env` file in th
 SECRET_TWITTER_TOKEN=bearer-token-for-the-twitter-api
 ```
 
-> **Caution**
+> **Warning**
 > Don’t commit this `.env` file! Your bearer token is top secret.
 
 #### Cloud deployments/CI
