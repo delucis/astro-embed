@@ -1,5 +1,6 @@
 ---
 "@astro-community/astro-embed-twitter": minor
+"astro-embed": minor
 ---
 
 Migrate `<Tweet />` component to use Twitter API v2
