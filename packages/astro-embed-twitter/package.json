@@ -1,6 +1,6 @@
 {
   "name": "@astro-community/astro-embed-twitter",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "Component to easily embed Tweets on your Astro site",
   "type": "module",
   "exports": {
