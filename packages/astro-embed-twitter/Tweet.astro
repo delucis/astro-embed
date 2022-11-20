@@ -1,7 +1,16 @@
 ---
-import { safeGet } from '@astro-community/astro-embed-utils';
+import { Client } from 'twitter-api-sdk';
+import type { components } from 'twitter-api-sdk/dist/types';
 import urlMatcher from './matcher';
 import './Tweet.css';
+
+if (!import.meta.env.SECRET_TWITTER_TOKEN) {
+	throw new Error(
+		`Required environment variable SECRET_TWITTER_TOKEN not found.
+Not sure how to set an environment variable?
+See https://docs.astro.build/en/guides/environment-variables/#setting-environment-variables`
+	);
+}
 
 export interface Props {
 	id: string;
@@ -24,99 +33,124 @@ function extractID(idOrUrl: string) {
 	return urlMatcher(idOrUrl);
 }
 
-async function fetchTweet(id) {
-	return await safeGet(`https://cdn.syndication.twimg.com/tweet?id=${id}`);
+async function fetchTweet(id: string) {
+	try {
+		const client = new Client(import.meta.env.SECRET_TWITTER_TOKEN);
+		return await client.tweets.findTweetById(id, {
+			'tweet.fields': [
+				'attachments',
+				'author_id',
+				'text',
+				'entities',
+				'created_at',
+				'lang',
+			],
+			expansions: [
+				'attachments.media_keys',
+				'author_id',
+				'entities.mentions.username',
+			],
+			'media.fields': [
+				'alt_text',
+				'duration_ms',
+				'height',
+				'media_key',
+				'preview_image_url',
+				'type',
+				'url',
+				'variants',
+				'width',
+			],
+			'user.fields': ['name', 'profile_image_url', 'url', 'username'],
+		});
+	} catch (e) {
+		console.error(
+			`[error]  astro-embed
+         ${e.status} - ${e.statusText}: Failed to fetch tweet ${id}`
+		);
+	}
+	return {};
 }
 
-function buildContent(tweet) {
-	if (!tweet) return {};
+function buildContent(tweet: Awaited<ReturnType<typeof fetchTweet>>) {
+	if (!tweet.data) return {};
 
-	const {
-		name = '',
-		screen_name = '',
-		profile_image_url_https = '',
-	} = tweet.user;
-	let { created_at = '', text = '' } = tweet;
+	const author = tweet.includes.users.find(
+		(user) => user.id === tweet.data.author_id
+	);
+	const { name = '', username = '', profile_image_url = '' } = author;
+	let { created_at = '', text = '' } = tweet.data;
 	let images = [];
-	let video;
+	let video = '';
 	let imageCount = 0;
 
-	if (tweet.entities.urls) {
-		tweet.entities.urls.forEach(({ url, display_url, expanded_url }) => {
-			text = text.replace(url, `<a href=${expanded_url}>${display_url}</a>`);
-		});
+	if (tweet.data.entities.urls) {
+		tweet.data.entities.urls.forEach(
+			({ url, display_url, expanded_url, media_key }) => {
+				text = text.replace(
+					url,
+					media_key ? '' : `<a href=${expanded_url}>${display_url}</a>`
+				);
+			}
+		);
 	}
 
-	if (tweet.entities.user_mentions) {
-		tweet.entities.user_mentions.forEach(({ screen_name }) => {
+	if (tweet.data.entities.mentions) {
+		tweet.data.entities.mentions.forEach(({ username }) => {
 			text = text.replace(
-				`@${screen_name}`,
-				`<a target="_blank" rel="noreferrer noopener" href="https://twitter.com/${screen_name}">@${screen_name}</a>`
+				`@${username}`,
+				`<a target="_blank" rel="noreferrer noopener" href="https://twitter.com/${username}">@${username}</a>`
 			);
 		});
 	}
 
-	if (tweet.entities.hashtags) {
-		tweet.entities.hashtags.forEach((tag) => {
+	if (tweet.data.entities.hashtags) {
+		tweet.data.entities.hashtags.forEach(({ tag }) => {
 			text = text.replace(
-				`#${tag.text}`,
-				`<a target="_blank" rel="noreferrer noopener" href="https://twitter.com/hashtag/${tag.text}?src=hash&ref_src=twsrc">#${tag.text}</a>`
+				`#${tag}`,
+				`<a target="_blank" rel="noreferrer noopener" href="https://twitter.com/hashtag/${tag}?src=hash&ref_src=twsrc">#${tag}</a>`
 			);
 		});
 	}
 
 	text = text.replace(/(?:\r\n|\r|\n)/g, '<br/>');
 
-	if (tweet.entities.media && !tweet.video) {
-		tweet.entities.media.forEach(({ url, expanded_url }) => {
-			if (url) {
-				text = text.replace(url, expanded_url);
-			}
-		});
-	}
+	if (['video', 'animated_gif'].includes(tweet.includes.media?.[0]?.type)) {
+		const { width, height, variants, preview_image_url, type } = tweet.includes
+			.media[0] as components['schemas']['Video'];
+		const isGIF = type === 'animated_gif';
+		const aspect = `${width} / ${height}`;
 
-	if (tweet.photos) {
-		imageCount = tweet.photos.length;
-		tweet.photos.forEach(
-			({ expandedUrl, url, width, height, accessibilityLabel = '' }) => {
-				images.push(
-					`<div><img class="tweet-media-img" src=${url} alt="${accessibilityLabel}" width="${width}" height="${height}" loading="lazy" /></div>`
-				);
-				text = text.replace(expandedUrl, '');
-			}
-		);
-	}
-
-	if (tweet.video) {
-		const { aspectRatio, poster, variants, contentType } = tweet.video;
-		const isGIF = contentType === 'gif';
-		// Remove interim video URL from text content.
-		tweet.entities.media.forEach(({ url }) => {
-			if (url) {
-				text = text.replace(url, '');
-			}
-		});
-		const aspect = aspectRatio.join(' / ');
-		video = `<video class="tweet-media-video" poster="${poster}" style="aspect-ratio: ${aspect};" controls loop ${
+		video = `<video class="tweet-media-video" poster="${preview_image_url}" style="aspect-ratio: ${aspect};" controls loop ${
 			isGIF
 				? 'autoplay muted playsinline controlslist="nofullscreen"'
 				: 'preload="none"'
 		}>`;
-		variants.forEach(({ src, type }) => {
-			video += `<source src="${src}" type="${type}">`;
+		variants.forEach(({ url, content_type }) => {
+			video += `<source src="${url}" type="${content_type}">`;
 		});
 		video += '</video>';
+	} else {
+		imageCount = tweet.includes.media?.length || 0;
+		(tweet.includes.media as components['schemas']['Photo'][])?.forEach(
+			({ url, width, height, alt_text = '' }) => {
+				images.push(
+					`<div><img class="tweet-media-img" src=${url} alt="${alt_text}" width="${width}" height="${height}" loading="lazy" /></div>`
+				);
+			}
+		);
 	}
 
 	return {
 		name,
-		screen_name,
-		profile_image_url_https,
+		username,
+		profile_image_url,
 		created_at,
 		text,
 		images: images.join(''),
 		imageCount,
 		video,
+		lang: tweet.data.lang,
 	};
 }
 
@@ -124,45 +158,43 @@ const tweetID = extractID(id);
 const tweet = await fetchTweet(tweetID);
 const {
 	name,
-	screen_name,
-	profile_image_url_https,
+	username,
+	profile_image_url,
 	text,
 	images,
 	imageCount,
 	video,
+	lang,
 } = buildContent(tweet);
-const tweetLink = `https://twitter.com/${screen_name}/status/${tweetID}`;
+const tweetLink = `https://twitter.com/${username}/status/${tweetID}`;
 ---
 
 {
-	tweet && (
+	tweet.data && (
 		<blockquote class="tweet-card" cite={tweetLink}>
 			<div class="tweet-header">
-				<a class="tweet-profile" href={`https://twitter.com/${screen_name}`}>
+				<a class="tweet-profile" href={`https://twitter.com/${username}`}>
 					<img
-						src={profile_image_url_https}
-						alt={`Twitter avatar for ${screen_name}`}
+						src={profile_image_url}
+						alt={`Twitter avatar for ${username}`}
 						loading="lazy"
 						width="48"
 						height="48"
 					/>
 				</a>
 				<div class="tweet-author">
-					<a
-						class="tweet-author-name"
-						href={`https://twitter.com/${screen_name}`}
-					>
+					<a class="tweet-author-name" href={`https://twitter.com/${username}`}>
 						{name}
 					</a>
 					<a
 						class="tweet-author-handle"
-						href={`https://twitter.com/${screen_name}`}
+						href={`https://twitter.com/${username}`}
 					>
-						@{screen_name}
+						@{username}
 					</a>
 				</div>
 			</div>
-			<p class="tweet-body" set:html={text} />
+			<p class="tweet-body" {lang} set:html={text} />
 			{images && (
 				<div class={`tweet-img-grid-${imageCount}`} set:html={images} />
 			)}
