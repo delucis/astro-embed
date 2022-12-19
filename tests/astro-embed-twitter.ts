@@ -20,7 +20,7 @@ test('it should render if passed a full URL', async () => {
 	assert.is(username.getAttribute('href'), 'https://twitter.com/astrodotbuild');
 });
 
-test('it does not crush when we have undefined entities', async () => {
+test('it does not crash when we have undefined entities', async () => {
 	const screen = await renderScreen(
 		'./packages/astro-embed-twitter/Tweet.astro',
 		{ id: 'https://twitter.com/addyosmani/status/1600553460180869120' }
