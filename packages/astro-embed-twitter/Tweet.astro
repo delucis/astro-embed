@@ -84,7 +84,7 @@ function buildContent(tweet: Awaited<ReturnType<typeof fetchTweet>>) {
 	let video = '';
 	let imageCount = 0;
 
-	if (tweet.data.entities.urls) {
+	if (tweet.data.entities?.urls) {
 		tweet.data.entities.urls.forEach(
 			({ url, display_url, expanded_url, media_key }) => {
 				text = text.replace(
@@ -95,7 +95,7 @@ function buildContent(tweet: Awaited<ReturnType<typeof fetchTweet>>) {
 		);
 	}
 
-	if (tweet.data.entities.mentions) {
+	if (tweet.data.entities?.mentions) {
 		tweet.data.entities.mentions.forEach(({ username }) => {
 			text = text.replace(
 				`@${username}`,
@@ -104,7 +104,7 @@ function buildContent(tweet: Awaited<ReturnType<typeof fetchTweet>>) {
 		});
 	}
 
-	if (tweet.data.entities.hashtags) {
+	if (tweet.data.entities?.hashtags) {
 		tweet.data.entities.hashtags.forEach(({ tag }) => {
 			text = text.replace(
 				`#${tag}`,
