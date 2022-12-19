@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-twitter
 
+## 0.2.1
+
+### Patch Changes
+
+- [#28](https://github.com/astro-community/astro-embed/pull/28) [`d140e1f`](https://github.com/astro-community/astro-embed/commit/d140e1fa3128dca28c533e71cb56c3cee7a61235) Thanks [@nirtamir2](https://github.com/nirtamir2)! - Check `entities` is defined before reading from it
+
 ## 0.2.0
 
 ### Minor Changes
