@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-youtube
 
+## 0.2.2
+
+### Patch Changes
+
+- [#36](https://github.com/astro-community/astro-embed/pull/36) [`afce531`](https://github.com/astro-community/astro-embed/commit/afce531e92efe4c14f48f7c0bfee0cf591dbfef2) Thanks [@ankushg](https://github.com/ankushg)! - Allow use with Astro v2
+
 ## 0.2.1
 
 ### Patch Changes
