@@ -6,7 +6,7 @@ We welcome all kinds of contributions, from one-line bug fixes or updates to doc
 
 ## 🐛 Ew! A bug!
 
-It’s really helpful to know if you encounter a bug with any of the components in this repo. You can let us know by [opening a new issue on GitHub](https://github.com/astro-community/astro-embed/issues/new/choose). (You might want to take a look at any [open issues](https://github.com/astro-community/astro-embed/issues) first to see if anyone else has had the same problem.)
+It’s really helpful to know if you encounter a bug with any of the components in this repo. You can let us know by [opening a new issue on GitHub](https://github.com/delucis/astro-embed/issues/new/choose). (You might want to take a look at any [open issues](https://github.com/delucis/astro-embed/issues) first to see if anyone else has had the same problem.)
 
 If you can see what’s causing the bug, a pull request fixing it would be amazing.
 
@@ -38,13 +38,13 @@ If you think you’re ready to go, let’s get started.
      },
      "repository": {
        "type": "git",
-       "url": "git+https://github.com/astro-community/astro-embed.git"
+       "url": "git+https://github.com/delucis/astro-embed.git"
      },
      "license": "MIT",
      "bugs": {
-       "url": "https://github.com/astro-community/astro-embed/issues"
+       "url": "https://github.com/delucis/astro-embed/issues"
      },
-     "homepage": "https://github.com/astro-community/astro-embed/tree/main/packages/astro-embed-[SERVICE-NAME]#readme"
+     "homepage": "https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-[SERVICE-NAME]#readme"
    }
    ```
 

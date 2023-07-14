@@ -14,7 +14,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/astro-community/astro-embed.git"
+    "url": "git+https://github.com/delucis/astro-embed.git"
   },
   "keywords": [
     "astro",
@@ -25,9 +25,9 @@
   "author": "delucis",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/astro-community/astro-embed/issues"
+    "url": "https://github.com/delucis/astro-embed/issues"
   },
-  "homepage": "https://github.com/astro-community/astro-embed/tree/main/packages/astro-embed-youtube#readme",
+  "homepage": "https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-youtube#readme",
   "dependencies": {
     "lite-youtube-embed": "^0.2.0"
   },

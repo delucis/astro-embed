@@ -44,6 +44,6 @@ This is an Astro Community project. That means YOU!
 
 - 🛠 Want to build a missing component? [We have a guide for that.](CONTRIBUTING.md)
 
-- 🐛 Found a bug? Open a [new issue](https://github.com/astro-community/astro-embed/issues/new/choose) to let us know.
+- 🐛 Found a bug? Open a [new issue](https://github.com/delucis/astro-embed/issues/new/choose) to let us know.
 
 - 💬 Want to chat? Jump into [the Astro Discord server](https://astro.build/chat).

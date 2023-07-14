@@ -9,7 +9,7 @@ npm i astro-embed
 ```
 
 > **Note**
-> Using the `<Tweet />` component? add a `SECRET_TWITTER_TOKEN` environment variable with your Twitter API bearer token. [Learn more in the component docs →](https://github.com/astro-community/astro-embed/tree/main/packages/astro-embed-twitter#readme)
+> Using the `<Tweet />` component? add a `SECRET_TWITTER_TOKEN` environment variable with your Twitter API bearer token. [Learn more in the component docs →](https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-twitter#readme)
 
 ## Using the components
 
@@ -86,6 +86,6 @@ Will render the `Tweet` component in place of the URL.
 
 See individual packages for how to use the component for each service:
 
-- [Twitter](https://github.com/astro-community/astro-embed/tree/main/packages/astro-embed-twitter#readme)
-- [Vimeo](https://github.com/astro-community/astro-embed/tree/main/packages/astro-embed-vimeo#readme)
-- [YouTube](https://github.com/astro-community/astro-embed/tree/main/packages/astro-embed-youtube#readme)
+- [Twitter](https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-twitter#readme)
+- [Vimeo](https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-vimeo#readme)
+- [YouTube](https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-youtube#readme)
