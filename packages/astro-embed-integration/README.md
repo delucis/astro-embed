@@ -27,7 +27,7 @@ With the integration enabled, any isolated URL in an MDX file that matches one o
 For example, MDX like this will render an optimised YouTube player component in place of the URL.
 
 ```mdx
-I saw this cool Tweet the other day:
+I saw this cool video the other day:
 
 http://www.youtube.com/watch?v=Hoe-woAhq_k
 ```
