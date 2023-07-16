@@ -1,11 +1,11 @@
 ---
-title: Components in Markdown
+title: Components in MDX
 layout: ../layouts/Base.astro
-setup: |
-  import { Tweet, YouTube } from 'astro-embed';
 ---
 
-The embeds on this page are imported as components in the Markdown frontmatter’s `setup` block and then used in the document body.
+import { Tweet, YouTube } from 'astro-embed';
+
+The embeds on this page are imported as components in the MDX frontmatter’s `setup` block and then used in the document body.
 
 ```md
 ---

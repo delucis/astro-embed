@@ -9,17 +9,26 @@ const matchers = [
 	[vimeoMatcher, 'Vimeo'],
 	[youtubeMatcher, 'YouTube'],
 ];
+export const componentNames = matchers.map(([, name]) => name);
 
 export default function createPlugin({ importNamespace }) {
 	/**
 	 * Get the name of the embed component for this URL
 	 * @param {string} url URL to test
-	 * @returns {string|undefined} Name of component for this URL or undefined if none matched
+	 * @returns Component node for this URL or undefined if none matched
 	 */
 	function getComponent(url) {
 		for (const [matcher, componentName] of matchers) {
 			const id = matcher(url);
-			if (id) return `<${importNamespace}.${componentName} id="${id}" />`;
+			if (id) {
+				// MDX custom component node.
+				return {
+					type: 'mdxJsxFlowElement',
+					name: `${importNamespace}_${componentName}`,
+					attributes: [{ type: 'mdxJsxAttribute', name: 'id', value: id }],
+					children: [],
+				};
+			}
 		}
 	}
 
@@ -33,11 +42,9 @@ export default function createPlugin({ importNamespace }) {
 			if (!url?.startsWith('http')) return;
 
 			const component = getComponent(url);
-			if (!component) return;
-
-			node.type = 'html';
-			node.value = component;
-			delete node.children;
+			if (component) {
+				for (const key in component) node[key] = component[key];
+			}
 		});
 
 		return tree;

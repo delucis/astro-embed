@@ -19,6 +19,7 @@ To use components in your `.astro` files, first import them in the component scr
 
 ```astro
 ---
+// src/components/Example.astro
 import { Tweet, Vimeo, YouTube } from 'astro-embed';
 ---
 
@@ -29,15 +30,17 @@ import { Tweet, Vimeo, YouTube } from 'astro-embed';
 <YouTube id="https://youtu.be/xtTy5nKay_Y" />
 ```
 
-### Markdown pages
+### MDX pages
 
-You can also import an embed component for use on a Markdown page.
+You can also import an embed component for use in MDX pages when using the [Astro MDX integration](https://docs.astro.build/en/guides/integrations-guide/mdx/).
 
-```md
+```mdx
 ---
-setup: |
-  import { Tweet, Vimeo, YouTube } from 'astro-embed';
+# src/content/examples/page.mdx
+title: My MDX page with embed components
 ---
+
+import { Tweet, Vimeo, YouTube } from 'astro-embed';
 
 Hey look! I can embed a tweet _in Markdown_!
 
@@ -49,38 +52,31 @@ Vimeo and YouTube videos work too :-)
 <YouTube id="https://youtu.be/xtTy5nKay_Y" />
 ```
 
-> **Warning:**
-> This requires the [`legacy.astroFlavoredMarkdown` flag](https://docs.astro.build/en/reference/configuration-reference/#legacyastroflavoredmarkdown) to be turned on in your `astro.config.mjs` file.
-
 ## Using the integration
 
-You can use the provided integration to automatically convert standalone URLs in Markdown files to embed components.
+You can use the provided integration to automatically convert standalone URLs in MDX files to embed components.
 
-To enable the integration, add it to the `integrations` array in your `astro.config.mjs` file and enable the [`legacy.astroFlavoredMarkdown` flag](https://docs.astro.build/en/reference/configuration-reference/#legacyastroflavoredmarkdown) to support components in Markdown files.
+To enable the integration, add it to the `integrations` array in your `astro.config.mjs` file:
 
 ```js
 import { defineConfig } from 'astro/config';
+import mdx from '@astrojs/mdx';
 import embeds from 'astro-embed/integration';
 
 export default defineConfig({
-  integrations: [embeds()],
-  legacy: {
-    astroFlavoredMarkdown: true,
-  },
+  integrations: [embeds(), mdx()],
 });
 ```
 
-With the integration enabled any isolated URL in a Markdown file that matches one of the `astro-embed` component types will be converted to the appropriate component.
+With the integration enabled, any isolated URL in an MDX file that matches one of the `astro-embed` component types will be converted to the appropriate component.
 
-For example, Markdown like this
+For example, MDX like this will render an optimised YouTube player component in place of the URL.
 
-```md
-I saw this cool Tweet the other day:
+```mdx
+I saw this cool video the other day:
 
-https://twitter.com/astrodotbuild/status/1511750228428435457
+http://www.youtube.com/watch?v=Hoe-woAhq_k
 ```
-
-Will render the `Tweet` component in place of the URL.
 
 ## Docs
 

@@ -1,43 +1,40 @@
-import {
-	DEFAULT_REHYPE_PLUGINS,
-	DEFAULT_REMARK_PLUGINS,
-} from '@astrojs/markdown-remark';
-import createEmbedPlugin from './remark-plugin.js';
+import createEmbedPlugin, { componentNames } from './remark-plugin.js';
+import AutoImport from 'astro-auto-import';
+const importNamespace = 'AuToImPoRtEdAstroEmbed';
 
-const importNamespace = 'aUtOiMpOrTastroEmbed';
-
+/**
+ * Astro embed MDX integration.
+ */
 export default function embed() {
 	/** @type {import('astro').AstroIntegration} */
-	const integration = {
+	const AstroEmbed = {
 		name: 'astro-embed',
 		hooks: {
-			'astro:config:setup': ({ config, updateConfig, injectScript }) => {
-				// Make sure we don’t disable Astro’s default plugins if none are specified.
-				const remarkPlugins = [...config.markdown.remarkPlugins];
-				const rehypePlugins = [...config.markdown.rehypePlugins];
-				if (remarkPlugins.length === 0 && rehypePlugins.length === 0) {
-					remarkPlugins.push(...DEFAULT_REMARK_PLUGINS);
-					rehypePlugins.push(...DEFAULT_REHYPE_PLUGINS);
-				}
-
-				remarkPlugins.push(
-					createEmbedPlugin({
-						importNamespace,
+			'astro:config:setup': ({ updateConfig }) => {
+				updateConfig({
+					markdown: {
 						// TODO: make plugin configurable with options passed to integration
 						// - support disabling specific services
 						// - support customising props for each service
-					})
-				);
-
-				updateConfig({ markdown: { rehypePlugins, remarkPlugins } });
-
-				// Auto-import the embed components and attach them to the global scope
-				injectScript(
-					'page-ssr',
-					`import * as ${importNamespace} from "astro-embed"; global.${importNamespace} = ${importNamespace};`
-				);
+						remarkPlugins: [createEmbedPlugin({ importNamespace })],
+					},
+				});
 			},
 		},
 	};
-	return integration;
+
+	return [
+		// Inject component imports.
+		AutoImport({
+			imports: [
+				{
+					'astro-embed': componentNames.map((name) => [
+						name,
+						`${importNamespace}_${name}`,
+					]),
+				},
+			],
+		}),
+		AstroEmbed,
+	];
 }
