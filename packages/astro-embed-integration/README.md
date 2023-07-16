@@ -1,6 +1,6 @@
 # @astro-community/astro-embed-integration
 
-This is an experimental Astro integration that allows you to auto-convert URLs in Markdown file to a corresponding embed component.
+This is an experimental Astro integration that allows you to auto-convert URLs in MDX files to a corresponding embed component.
 
 ## Install
 
@@ -10,28 +10,24 @@ npm i @astro-community/astro-embed-integration
 
 ## Usage
 
-To enable the integration, add it to the `integrations` array in your `astro.config.mjs` file and enable the [`legacy.astroFlavoredMarkdown` flag](https://docs.astro.build/en/reference/configuration-reference/#legacyastroflavoredmarkdown) to support components in Markdown files.
+To enable the integration, add it to the `integrations` array in your `astro.config.mjs` file:
 
 ```js
 import { defineConfig } from 'astro/config';
+import mdx from '@astrojs/mdx';
 import embeds from '@astro-community/astro-embed-integration';
 
 export default defineConfig({
-  integrations: [embeds()],
-  legacy: {
-    astroFlavoredMarkdown: true,
-  },
+  integrations: [embeds(), mdx()],
 });
 ```
 
-With the integration enabled any isolated URL in a Markdown file that matches one of the `astro-embed` component types will be converted to the appropriate component.
+With the integration enabled, any isolated URL in an MDX file that matches one of the `astro-embed` component types will be converted to the appropriate component.
 
-For example, Markdown like this
+For example, MDX like this will render an optimised YouTube player component in place of the URL.
 
-```md
+```mdx
 I saw this cool Tweet the other day:
 
-https://twitter.com/astrodotbuild/status/1511750228428435457
+http://www.youtube.com/watch?v=Hoe-woAhq_k
 ```
-
-Will render a static Tweet component in place of the URL.
