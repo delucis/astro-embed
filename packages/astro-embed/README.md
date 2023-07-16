@@ -8,9 +8,6 @@ Embed components for your Astro sites built by the Astro community 🚀
 npm i astro-embed
 ```
 
-> **Note**
-> Using the `<Tweet />` component? add a `SECRET_TWITTER_TOKEN` environment variable with your Twitter API bearer token. [Learn more in the component docs →](https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-twitter#readme)
-
 ## Using the components
 
 ### `.astro` files

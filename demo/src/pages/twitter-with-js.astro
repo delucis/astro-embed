@@ -4,6 +4,13 @@ import Base from '../layouts/Base.astro';
 ---
 
 <Base title="Twitter component examples">
+	<p>
+		These tweets use the same component code as the <a href="/twitter"
+			>main Twitter example</a
+		>, but also loads Twitter’s widget JavaScript to convert them to interactive
+		iframes:
+	</p>
+	<pre><code set:text={'<script async src="https://platform.twitter.com/widgets.js"></script>'} /></pre>
 	<Component.Tweet
 		id="https://twitter.com/astrodotbuild/status/1511750228428435457"
 	/>
@@ -17,6 +24,8 @@ import Base from '../layouts/Base.astro';
 	<Component.Tweet
 		id="https://twitter.com/astrodotbuild/status/1402352777020395521"
 	/>
+
+	<script async src="https://platform.twitter.com/widgets.js"></script>
 </Base>
 
 <style>

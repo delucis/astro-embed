@@ -28,16 +28,6 @@ All commands are run from the root of the project, from a terminal:
 
 You can run unit tests by running `npm t` in a terminal or run `npm start` to start a dev server for the demo project.
 
-Because the `<Tweet />` component requires a Twitter API token, these tests will fail if you don’t add a bearer token to this repo.
-
-1. Create a new file at `demo/.env`
-
-2. Add your API token:
-
-   ```
-   SECRET_TWITTER_TOKEN=bearer-token-for-the-twitter-api
-   ```
-
 ## ✨ Want to contribute?
 
 This is an Astro Community project. That means YOU!
