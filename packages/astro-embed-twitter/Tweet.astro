@@ -1,209 +1,58 @@
 ---
-import { Client } from 'twitter-api-sdk';
-import type { components } from 'twitter-api-sdk/dist/types';
-import urlMatcher from './matcher';
 import './Tweet.css';
-
-if (!import.meta.env.SECRET_TWITTER_TOKEN) {
-	throw new Error(
-		`Required environment variable SECRET_TWITTER_TOKEN not found.
-Not sure how to set an environment variable?
-See https://docs.astro.build/en/guides/environment-variables/#setting-environment-variables`
-	);
-}
 
 export interface Props {
 	id: string;
 }
-
-/*
-Based on...
-- https://github.com/hugomd/blog/blob/6ad96b24117255c2a9912c566ffd081bd9bbd6f1/layouts/shortcodes/statictweet.html
-- https://hugo.md/post/update-rendering-static-tweets/
-- https://github.com/KyleMit/eleventy-plugin-embed-tweet
-- https://github.com/rebelchris/astro-static-tweet/blob/master/StaticTweet.astro
-- https://www.brycewray.com/posts/2022/04/static-tweets-astro/
-*/
-
-const { id } = Astro.props as Props;
-
-const idRegExp = /^\d+$/;
-function extractID(idOrUrl: string) {
-	if (idRegExp.test(idOrUrl)) return idOrUrl;
-	return urlMatcher(idOrUrl);
-}
+const { id } = Astro.props;
 
 async function fetchTweet(id: string) {
 	try {
-		const client = new Client(import.meta.env.SECRET_TWITTER_TOKEN);
-		return await client.tweets.findTweetById(id, {
-			'tweet.fields': [
-				'attachments',
-				'author_id',
-				'text',
-				'entities',
-				'created_at',
-				'lang',
-			],
-			expansions: [
-				'attachments.media_keys',
-				'author_id',
-				'entities.mentions.username',
-			],
-			'media.fields': [
-				'alt_text',
-				'duration_ms',
-				'height',
-				'media_key',
-				'preview_image_url',
-				'type',
-				'url',
-				'variants',
-				'width',
-			],
-			'user.fields': ['name', 'profile_image_url', 'url', 'username'],
-		});
+		const oembedUrl = new URL('https://publish.twitter.com/oembed');
+		oembedUrl.searchParams.set('url', id);
+		oembedUrl.searchParams.set('omit_script', 'true');
+		oembedUrl.searchParams.set('dnt', 'true');
+		return (await fetch(oembedUrl).then((res) => res.json())) as {
+			url: string;
+			author_name: string;
+			author_url: string;
+			html: string;
+		};
 	} catch (e) {
 		console.error(
 			`[error]  astro-embed
          ${e.status} - ${e.statusText}: Failed to fetch tweet ${id}`
 		);
 	}
-	return {};
 }
 
-function buildContent(tweet: Awaited<ReturnType<typeof fetchTweet>>) {
-	if (!tweet.data) return {};
-
-	const author = tweet.includes.users.find(
-		(user) => user.id === tweet.data.author_id
-	);
-	const { name = '', username = '', profile_image_url = '' } = author;
-	let { created_at = '', text = '' } = tweet.data;
-	let images = [];
-	let video = '';
-	let imageCount = 0;
-
-	if (tweet.data.entities?.urls) {
-		tweet.data.entities.urls.forEach(
-			({ url, display_url, expanded_url, media_key }) => {
-				text = text.replace(
-					url,
-					media_key ? '' : `<a href=${expanded_url}>${display_url}</a>`
-				);
-			}
-		);
-	}
-
-	if (tweet.data.entities?.mentions) {
-		tweet.data.entities.mentions.forEach(({ username }) => {
-			text = text.replace(
-				`@${username}`,
-				`<a target="_blank" rel="noreferrer noopener" href="https://twitter.com/${username}">@${username}</a>`
-			);
-		});
-	}
-
-	if (tweet.data.entities?.hashtags) {
-		tweet.data.entities.hashtags.forEach(({ tag }) => {
-			text = text.replace(
-				`#${tag}`,
-				`<a target="_blank" rel="noreferrer noopener" href="https://twitter.com/hashtag/${tag}?src=hash&ref_src=twsrc">#${tag}</a>`
-			);
-		});
-	}
-
-	text = text.replace(/(?:\r\n|\r|\n)/g, '<br/>');
-
-	if (['video', 'animated_gif'].includes(tweet.includes.media?.[0]?.type)) {
-		const { width, height, variants, preview_image_url, type } = tweet.includes
-			.media[0] as components['schemas']['Video'];
-		const isGIF = type === 'animated_gif';
-		const aspect = `${width} / ${height}`;
-
-		video = `<video class="tweet-media-video" poster="${preview_image_url}" style="aspect-ratio: ${aspect};" controls loop ${
-			isGIF
-				? 'autoplay muted playsinline controlslist="nofullscreen"'
-				: 'preload="none"'
-		}>`;
-		variants.forEach(({ url, content_type }) => {
-			video += `<source src="${url}" type="${content_type}">`;
-		});
-		video += '</video>';
-	} else {
-		imageCount = tweet.includes.media?.length || 0;
-		(tweet.includes.media as components['schemas']['Photo'][])?.forEach(
-			({ url, width, height, alt_text = '' }) => {
-				images.push(
-					`<div><img class="tweet-media-img" src=${url} alt="${alt_text}" width="${width}" height="${height}" loading="lazy" /></div>`
-				);
-			}
-		);
-	}
-
-	return {
-		name,
-		username,
-		profile_image_url,
-		created_at,
-		text,
-		images: images.join(''),
-		imageCount,
-		video,
-		lang: tweet.data.lang,
-	};
-}
-
-const tweetID = extractID(id);
-const tweet = await fetchTweet(tweetID);
-const {
-	name,
-	username,
-	profile_image_url,
-	text,
-	images,
-	imageCount,
-	video,
-	lang,
-} = buildContent(tweet);
-const tweetLink = `https://twitter.com/${username}/status/${tweetID}`;
+const tweet = await fetchTweet(id);
 ---
 
-{
-	tweet.data && (
-		<blockquote class="tweet-card" cite={tweetLink}>
-			<div class="tweet-header">
-				<a class="tweet-profile" href={`https://twitter.com/${username}`}>
-					<img
-						src={profile_image_url}
-						alt={`Twitter avatar for ${username}`}
-						loading="lazy"
-						width="48"
-						height="48"
-					/>
-				</a>
-				<div class="tweet-author">
-					<a class="tweet-author-name" href={`https://twitter.com/${username}`}>
-						{name}
-					</a>
-					<a
-						class="tweet-author-handle"
-						href={`https://twitter.com/${username}`}
-					>
-						@{username}
-					</a>
-				</div>
-			</div>
-			<p class="tweet-body" {lang} set:html={text} />
-			{images && (
-				<div class={`tweet-img-grid-${imageCount}`} set:html={images} />
-			)}
-			{video && <div class="tweet-video-wrapper" set:html={video} />}
-			<div class="tweet-footer">
-				<a href={tweetLink} class="tweet-link">
-					Twitter
-				</a>
-			</div>
-		</blockquote>
-	)
-}
+{tweet && <astro-embed-tweet set:html={tweet.html} />}
+
+<script>
+	type ElementList = ReturnType<typeof document.querySelectorAll>;
+
+	// Based on https://github.com/withastro/astro/blob/main/packages/astro/src/runtime/client/visible.ts
+	const onVisible = <T extends ElementList>(nodes: T, callback: () => void) => {
+		const io = new IntersectionObserver((entries) => {
+			for (const { isIntersecting } of entries) {
+				if (!isIntersecting) continue;
+				// As soon as we hydrate, disconnect this IntersectionObserver.
+				io.disconnect();
+				callback();
+				break; // Break loop on first match.
+			}
+		});
+		for (const node of nodes) io.observe(node);
+	};
+
+	const embeds = document.querySelectorAll('astro-embed-tweet');
+	onVisible(embeds, () => {
+		const script = document.createElement('script');
+		script.setAttribute('defer', '');
+		script.setAttribute('src', 'https://platform.twitter.com/widgets.js');
+		// document.body.append(script);
+	});
+</script>

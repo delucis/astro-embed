@@ -1,14 +1,13 @@
 import { test } from 'uvu';
-import * as assert from 'uvu/assert';
 import { renderScreen } from './utils/render';
 
-test('it should render user information in the header', async () => {
+test('it should render user information in the footer', async () => {
 	const screen = await renderScreen(
 		'./packages/astro-embed-twitter/Tweet.astro',
-		{ id: '1511750228428435457' }
+		{ id: 'https://twitter.com/astrodotbuild/status/1511750228428435457' }
 	);
-	const username = screen.getByText('@astrodotbuild');
-	assert.is(username.getAttribute('href'), 'https://twitter.com/astrodotbuild');
+	screen.getByText(/@astrodotbuild/);
+	screen.getByText('April 6, 2022');
 });
 
 test('it should render if passed a full URL', async () => {
@@ -16,8 +15,8 @@ test('it should render if passed a full URL', async () => {
 		'./packages/astro-embed-twitter/Tweet.astro',
 		{ id: 'https://twitter.com/astrodotbuild/status/1402352777020395521' }
 	);
-	const username = screen.getByText('@astrodotbuild');
-	assert.is(username.getAttribute('href'), 'https://twitter.com/astrodotbuild');
+	screen.getByText(/@astrodotbuild/);
+	screen.getByText('June 8, 2021');
 });
 
 test('it does not crash when we have undefined entities', async () => {
@@ -25,8 +24,8 @@ test('it does not crash when we have undefined entities', async () => {
 		'./packages/astro-embed-twitter/Tweet.astro',
 		{ id: 'https://twitter.com/addyosmani/status/1600553460180869120' }
 	);
-	const username = screen.getByText('@addyosmani');
-	assert.is(username.getAttribute('href'), 'https://twitter.com/addyosmani');
+	screen.getByText(/@addyosmani/);
+	screen.getByText('December 7, 2022');
 });
 
 test.run();

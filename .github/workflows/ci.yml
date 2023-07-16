@@ -35,5 +35,3 @@ jobs:
 
       - name: Test
         run: npm run test:ci
-        env:
-          SECRET_TWITTER_TOKEN: ${{ secrets.SECRET_TWITTER_TOKEN }}
