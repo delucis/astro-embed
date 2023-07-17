@@ -29,9 +29,6 @@
     "url": "https://github.com/delucis/astro-embed/issues"
   },
   "homepage": "https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-vimeo#readme",
-  "dependencies": {
-    "lite-vimeo-embed": "^0.1.0"
-  },
   "peerDependencies": {
     "astro": "^2.0.0"
   }
