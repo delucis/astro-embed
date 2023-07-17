@@ -4,12 +4,12 @@
   "description": "Astro components to easily embed common media formats",
   "type": "module",
   "exports": {
-    ".": "./index.js",
-    "./integration": "./integration.js"
+    ".": "./index.ts",
+    "./integration": "./integration.ts"
   },
   "files": [
-    "index.js",
-    "integration.js"
+    "index.ts",
+    "integration.ts"
   ],
   "repository": {
     "type": "git",

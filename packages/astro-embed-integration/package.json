@@ -4,11 +4,11 @@
   "description": "Astro integration to automatically convert URLs in Markdown files to embeds",
   "type": "module",
   "exports": {
-    ".": "./index.js"
+    ".": "./index.ts"
   },
   "files": [
-    "index.js",
-    "remark-plugin.js"
+    "index.ts",
+    "remark-plugin.ts"
   ],
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
     "@astro-community/astro-embed-twitter": "^0.4.0",
     "@astro-community/astro-embed-vimeo": "^0.2.0",
     "@astro-community/astro-embed-youtube": "^0.3.0",
+    "@types/unist": "^2.0.0",
     "astro-auto-import": "^0.3.0",
     "unist-util-select": "^4.0.1"
   },
