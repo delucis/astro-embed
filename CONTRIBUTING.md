@@ -33,8 +33,8 @@ If you think you’re ready to go, let’s get started.
      "description": "Component to easily embed [SERVICE-NAME] on your Astro site",
      "type": "module",
      "exports": {
-       ".": "./index.js",
-       "./matcher": "./matcher.js"
+       ".": "./index.ts",
+       "./matcher": "./matcher.ts"
      },
      "repository": {
        "type": "git",
@@ -52,13 +52,13 @@ If you think you’re ready to go, let’s get started.
 
 Add an Astro component to your package and call it something understandable like `Tweet.astro` or `YouTube.astro`. This is the tricky bit — this part’s down to you! This is normal Astro component, so you can import styles, node modules etc. just like you would inside an Astro project.
 
-One important thing: to support auto-embeds using the Astro integration, we’ll need access to a method that will extract an ID from a valid URL from the integration. The recommended way to do that is to create a `matcher.js` file and export a function that converts a URL to an ID. You can import and use that in your component, but having it in a separate file helps us hook up the integration functionality more easily.
+One important thing: to support auto-embeds using the Astro integration, we’ll need access to a method that will extract an ID from a valid URL from the integration. The recommended way to do that is to create a `matcher.ts` file and export a function that converts a URL to an ID. You can import and use that in your component, but having it in a separate file helps us hook up the integration functionality more easily.
 
 ### Expose your component
 
 In order for other projects to easily import your Astro component, we need to expose it to them.
 
-To do this, create an `index.js` file. It usually will look something like this:
+To do this, create an `index.ts` file. It usually will look something like this:
 
 ```js
 export { default as Tweet } from './Tweet.astro';
@@ -84,7 +84,7 @@ Add a README file to your component package that shows how to use it. You can ch
 
 ### Add your plugin to the integration
 
-Import your URL matcher function and add it and your component name to the `matchers` array in `astro-embed-integration/remark-plugin.js`.
+Import your URL matcher function and add it and your component name to the `matchers` array in `astro-embed-integration/remark-plugin.ts`.
 
 ### Open a PR!
 
