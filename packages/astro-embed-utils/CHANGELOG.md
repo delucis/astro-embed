@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-utils
 
+## 0.1.0
+
+### Minor Changes
+
+- [#50](https://github.com/delucis/astro-embed/pull/50) [`744ddc8`](https://github.com/delucis/astro-embed/commit/744ddc8c3a5af1201dbee1cf2e042dbb60a74740) Thanks [@delucis](https://github.com/delucis)! - Convert all files to TypeScript to provide full type information to users
+
 ## 0.0.3
 
 ### Patch Changes
