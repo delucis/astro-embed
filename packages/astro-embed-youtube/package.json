@@ -4,12 +4,12 @@
   "description": "Component to easily embed YouTube videos on your Astro site",
   "type": "module",
   "exports": {
-    ".": "./index.js",
-    "./matcher": "./matcher.js"
+    ".": "./index.ts",
+    "./matcher": "./matcher.ts"
   },
   "files": [
-    "index.js",
-    "matcher.js",
+    "index.ts",
+    "matcher.ts",
     "YouTube.astro"
   ],
   "repository": {

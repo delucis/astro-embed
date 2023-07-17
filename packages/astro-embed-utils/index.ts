@@ -1,41 +1,41 @@
-class LRU extends Map {
-	constructor(maxSize) {
+class LRU<K, V> extends Map<K, V> {
+	constructor(private readonly maxSize: number) {
 		super();
-		this.maxSize = maxSize;
 	}
 
-	get(key) {
+	get(key: K): V | undefined {
 		const value = super.get(key);
 		if (value) this.#touch(key, value);
 		return value;
 	}
 
-	set(key, value) {
+	set(key: K, value: V): this {
 		this.#touch(key, value);
 		if (this.size > this.maxSize) this.delete(this.keys().next().value);
 		return this;
 	}
 
-	#touch(key, value) {
+	#touch(key: K, value: V): void {
 		this.delete(key);
 		super.set(key, value);
 	}
 }
 
-const cache = new LRU(1000);
+const cache = new LRU<string, Record<string, any>>(1000);
 
-const formatError = (...lines) => lines.join('\n         ');
+const formatError = (...lines: string[]) => lines.join('\n         ');
 
 /**
  * Fetch a URL and parse it as JSON, but catch errors to stop builds erroring.
- * @param {string} url URL to fetch
+ * @param url URL to fetch
  * @returns {Promise<Record<string, any> | undefined>}
  */
-export async function safeGet(url) {
+export async function safeGet(
+	url: string
+): Promise<Record<string, any> | undefined> {
 	try {
 		const cached = cache.get(url);
 		if (cached) return cached;
-		// eslint-disable-next-line no-undef -- fetch is bootstrapped by Vite/Astro when not available
 		const res = await fetch(url);
 		if (!res.ok)
 			throw new Error(

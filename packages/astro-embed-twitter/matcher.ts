@@ -5,10 +5,10 @@ const urlPattern =
 
 /**
  * Return a Tweet URL from a URL if it matches the pattern.
- * @param {string} url URL to test
- * @returns {string|undefined} A Tweet ID or undefined if none matched
+ * @param url URL to test
+ * @returns A Tweet ID or undefined if none matched
  */
-export default function urlMatcher(url) {
+export default function urlMatcher(url: string): string | undefined {
 	const match = url.match(urlPattern);
 	return match?.[0];
 }

@@ -4,12 +4,12 @@
   "description": "Component to easily embed Vimeo videos on your Astro site",
   "type": "module",
   "exports": {
-    ".": "./index.js",
-    "./matcher": "./matcher.js"
+    ".": "./index.ts",
+    "./matcher": "./matcher.ts"
   },
   "files": [
-    "index.js",
-    "matcher.js",
+    "index.ts",
+    "matcher.ts",
     "Vimeo.astro",
     "Vimeo.css"
   ],
