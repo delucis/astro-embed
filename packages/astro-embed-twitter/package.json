@@ -30,8 +30,7 @@
   },
   "homepage": "https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-twitter#readme",
   "dependencies": {
-    "@astro-community/astro-embed-utils": "^0.0.3",
-    "twitter-api-sdk": "^1.2.1"
+    "@astro-community/astro-embed-utils": "^0.0.3"
   },
   "peerDependencies": {
     "astro": "^2.0.0"
