@@ -1,4 +1,4 @@
-/** @type {import("@types/eslint").Linter.Config */
+/** @type {import("eslint").Linter.Config} */
 module.exports = {
 	env: {
 		node: true,
@@ -13,5 +13,7 @@ module.exports = {
 	rules: {
 		// We don't want to leak logging into our user's console unless it's an error
 		'no-console': ['error', { allow: ['warn', 'error'] }],
+		'@typescript-eslint/no-explicit-any': ['warn'],
 	},
+	ignorePatterns: ['demo/dist/**'],
 };
