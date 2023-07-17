@@ -3,13 +3,13 @@ class LRU<K, V> extends Map<K, V> {
 		super();
 	}
 
-	get(key: K): V | undefined {
+	override get(key: K): V | undefined {
 		const value = super.get(key);
 		if (value) this.#touch(key, value);
 		return value;
 	}
 
-	set(key: K, value: V): this {
+	override set(key: K, value: V): this {
 		this.#touch(key, value);
 		if (this.size > this.maxSize) this.delete(this.keys().next().value);
 		return this;
@@ -47,7 +47,8 @@ export async function safeGet(
 		const json = await res.json();
 		cache.set(url, json);
 		return json;
-	} catch (e) {
+	} catch (e: any) {
 		console.error(formatError(`[error]  astro-embed`, e?.message ?? e));
+		return undefined;
 	}
 }
