@@ -1,5 +1,4 @@
-import { selectAll } from 'unist-util-select';
-import type { Node } from 'unist';
+import { selectAll, Node } from 'unist-util-select';
 import twitterMatcher from '@astro-community/astro-embed-twitter/matcher';
 import vimeoMatcher from '@astro-community/astro-embed-vimeo/matcher';
 import youtubeMatcher from '@astro-community/astro-embed-youtube/matcher';
@@ -34,6 +33,7 @@ export default function createPlugin({
 				};
 			}
 		}
+		return undefined;
 	}
 
 	type Link = Node & {
@@ -52,6 +52,7 @@ export default function createPlugin({
 
 			const component = getComponent(url);
 			if (component) {
+				// @ts-expect-error We’re overriding the initial node type with arbitrary data.
 				for (const key in component) node[key] = component[key];
 			}
 		});
