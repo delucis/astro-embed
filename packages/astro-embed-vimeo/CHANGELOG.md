@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-vimeo
 
+## 0.2.1
+
+### Patch Changes
+
+- [#48](https://github.com/delucis/astro-embed/pull/48) [`b4c0fa6`](https://github.com/delucis/astro-embed/commit/b4c0fa649b6c042a67723b6c1f3c969a4a4686b2) Thanks [@delucis](https://github.com/delucis)! - Remove unused lite-vimeo-embed dependency
+
 ## 0.2.0
 
 ### Minor Changes
