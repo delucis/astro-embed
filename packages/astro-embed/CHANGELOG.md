@@ -1,5 +1,19 @@
 # astro-embed
 
+## 0.5.0
+
+### Minor Changes
+
+- [#50](https://github.com/delucis/astro-embed/pull/50) [`744ddc8`](https://github.com/delucis/astro-embed/commit/744ddc8c3a5af1201dbee1cf2e042dbb60a74740) Thanks [@delucis](https://github.com/delucis)! - Convert all files to TypeScript to provide full type information to users
+
+### Patch Changes
+
+- Updated dependencies [[`744ddc8`](https://github.com/delucis/astro-embed/commit/744ddc8c3a5af1201dbee1cf2e042dbb60a74740)]:
+  - @astro-community/astro-embed-integration@0.5.0
+  - @astro-community/astro-embed-twitter@0.5.0
+  - @astro-community/astro-embed-vimeo@0.3.0
+  - @astro-community/astro-embed-youtube@0.4.0
+
 ## 0.4.0
 
 ### Minor Changes
