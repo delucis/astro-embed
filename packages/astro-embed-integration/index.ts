@@ -1,4 +1,5 @@
-import createEmbedPlugin, { componentNames } from './remark-plugin.js';
+import type { AstroIntegration } from 'astro';
+import createEmbedPlugin, { componentNames } from './remark-plugin';
 import AutoImport from 'astro-auto-import';
 const importNamespace = 'AuToImPoRtEdAstroEmbed';
 
@@ -6,8 +7,7 @@ const importNamespace = 'AuToImPoRtEdAstroEmbed';
  * Astro embed MDX integration.
  */
 export default function embed() {
-	/** @type {import('astro').AstroIntegration} */
-	const AstroEmbed = {
+	const AstroEmbed: AstroIntegration = {
 		name: 'astro-embed',
 		hooks: {
 			'astro:config:setup': ({ updateConfig }) => {

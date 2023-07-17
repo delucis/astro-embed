@@ -1,23 +1,27 @@
 import { selectAll } from 'unist-util-select';
+import type { Node } from 'unist';
 import twitterMatcher from '@astro-community/astro-embed-twitter/matcher';
 import vimeoMatcher from '@astro-community/astro-embed-vimeo/matcher';
 import youtubeMatcher from '@astro-community/astro-embed-youtube/matcher';
 
-/** @type {[(url: string) => string | undefined, string][]} */
 const matchers = [
 	[twitterMatcher, 'Tweet'],
 	[vimeoMatcher, 'Vimeo'],
 	[youtubeMatcher, 'YouTube'],
-];
+] as const;
 export const componentNames = matchers.map(([, name]) => name);
 
-export default function createPlugin({ importNamespace }) {
+export default function createPlugin({
+	importNamespace,
+}: {
+	importNamespace: string;
+}) {
 	/**
 	 * Get the name of the embed component for this URL
 	 * @param {string} url URL to test
 	 * @returns Component node for this URL or undefined if none matched
 	 */
-	function getComponent(url) {
+	function getComponent(url: string) {
 		for (const [matcher, componentName] of matchers) {
 			const id = matcher(url);
 			if (id) {
@@ -32,9 +36,14 @@ export default function createPlugin({ importNamespace }) {
 		}
 	}
 
-	function transformer(tree) {
-		/** @type {(import('unist').Node & { url?: string; value?: string; children?: import('unist').Node[] })[]} */
-		const nodes = selectAll('paragraph > link:only-child', tree);
+	type Link = Node & {
+		url?: string;
+		value?: string;
+		children?: Node[];
+	};
+
+	function transformer(tree: Node) {
+		const nodes: Link[] = selectAll('paragraph > link:only-child', tree);
 
 		nodes.forEach((node) => {
 			const { url } = node;

@@ -5,11 +5,11 @@
   "type": "module",
   "exports": {
     ".": "./index.ts",
-    "./integration": "./integration.js"
+    "./integration": "./integration.ts"
   },
   "files": [
     "index.ts",
-    "integration.js"
+    "integration.ts"
   ],
   "repository": {
     "type": "git",
