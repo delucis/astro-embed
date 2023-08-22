@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-youtube
 
+## 0.4.1
+
+### Patch Changes
+
+- [#55](https://github.com/delucis/astro-embed/pull/55) [`495abf3`](https://github.com/delucis/astro-embed/commit/495abf3dd9ae5bfaf36d9d3b8bb7fe98833c0303) Thanks [@Marocco2](https://github.com/Marocco2)! - Add Astro v3 support
+
 ## 0.4.0
 
 ### Minor Changes
