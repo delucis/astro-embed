@@ -33,6 +33,6 @@
     "@astro-community/astro-embed-utils": "^0.1.0"
   },
   "peerDependencies": {
-    "astro": "^2.0.0"
+    "astro": "^2.0.0 || ^3.0.0-beta"
   }
 }
