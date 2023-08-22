@@ -36,6 +36,6 @@
     "@astro-community/astro-embed-youtube": "^0.4.0"
   },
   "peerDependencies": {
-    "astro": "^2.0.0"
+    "astro": "^2.0.0 || ^3.0.0-beta"
   }
 }
