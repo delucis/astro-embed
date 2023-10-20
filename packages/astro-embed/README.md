@@ -53,7 +53,7 @@ Vimeo and YouTube videos work too :-)
 
 You can use the provided integration to automatically convert standalone URLs in MDX files to embed components.
 
-To enable the integration, add it to the `integrations` array in your `astro.config.mjs` file:
+To enable the integration, add it to the `integrations` array in your `astro.config.mjs` file before the `mdx()` integration:
 
 ```js
 import { defineConfig } from 'astro/config';
