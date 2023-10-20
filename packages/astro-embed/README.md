@@ -65,9 +65,6 @@ export default defineConfig({
 });
 ```
 
-> [!IMPORTANT]
-> The `embeds()` integration must be listed before the `mdx()` integration.
-
 With the integration enabled, any isolated URL in an MDX file that matches one of the `astro-embed` component types will be converted to the appropriate component.
 
 For example, MDX like this will render an optimised YouTube player component in place of the URL.
