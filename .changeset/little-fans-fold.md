@@ -1,5 +1,6 @@
 ---
 "@astro-community/astro-embed-integration": minor
+"astro-embed": minor
 ---
 
 MDX integration embeds replace their parent paragraph instead of their link node
