@@ -30,29 +30,3 @@ const tweet = await fetchTweet(id);
 ---
 
 {tweet && <astro-embed-tweet set:html={tweet.html} />}
-
-<script>
-	type ElementList = ReturnType<typeof document.querySelectorAll>;
-
-	// Based on https://github.com/withastro/astro/blob/main/packages/astro/src/runtime/client/visible.ts
-	const onVisible = <T extends ElementList>(nodes: T, callback: () => void) => {
-		const io = new IntersectionObserver((entries) => {
-			for (const { isIntersecting } of entries) {
-				if (!isIntersecting) continue;
-				// As soon as we hydrate, disconnect this IntersectionObserver.
-				io.disconnect();
-				callback();
-				break; // Break loop on first match.
-			}
-		});
-		for (const node of nodes) io.observe(node);
-	};
-
-	const embeds = document.querySelectorAll('astro-embed-tweet');
-	onVisible(embeds, () => {
-		const script = document.createElement('script');
-		script.setAttribute('defer', '');
-		script.setAttribute('src', 'https://platform.twitter.com/widgets.js');
-		// document.body.append(script);
-	});
-</script>
