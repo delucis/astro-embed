@@ -1,5 +1,21 @@
 # @astro-community/astro-embed-integration
 
+## 0.6.0
+
+### Minor Changes
+
+- [#69](https://github.com/delucis/astro-embed/pull/69) [`58c3d80`](https://github.com/delucis/astro-embed/commit/58c3d8069f37996d4cf79394c56e6fda532e6886) Thanks [@delucis](https://github.com/delucis)! - Error if astro-embed integration is configured after the MDX integration
+
+* [#66](https://github.com/delucis/astro-embed/pull/66) [`9fba8ef`](https://github.com/delucis/astro-embed/commit/9fba8ef667e28edba793a4941163f2f5b48fb1df) Thanks [@delucis](https://github.com/delucis)! - MDX integration embeds replace their parent paragraph instead of their link node
+
+  ⚠️ **Potentially breaking change:** embeds automatically injected in MDX using the Astro integration were previously wrapped in a `<p>` tag.
+  This is no longer the case. This may cause changes in vertical spacing between embeds depending on your site’s CSS.
+
+### Patch Changes
+
+- Updated dependencies [[`18e7921`](https://github.com/delucis/astro-embed/commit/18e792114abd4588f29e2d61c5c6d05c30888335)]:
+  - @astro-community/astro-embed-twitter@0.5.2
+
 ## 0.5.1
 
 ### Patch Changes

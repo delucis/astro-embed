@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-twitter
 
+## 0.5.2
+
+### Patch Changes
+
+- [#67](https://github.com/delucis/astro-embed/pull/67) [`18e7921`](https://github.com/delucis/astro-embed/commit/18e792114abd4588f29e2d61c5c6d05c30888335) Thanks [@delucis](https://github.com/delucis)! - Remove unused JavaScript from Tweet component
+
 ## 0.5.1
 
 ### Patch Changes
