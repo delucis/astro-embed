@@ -1,4 +1,4 @@
-import { selectAll, Node } from 'unist-util-select';
+import { Node, select, selectAll } from 'unist-util-select';
 import twitterMatcher from '@astro-community/astro-embed-twitter/matcher';
 import vimeoMatcher from '@astro-community/astro-embed-vimeo/matcher';
 import youtubeMatcher from '@astro-community/astro-embed-youtube/matcher';
@@ -43,17 +43,19 @@ export default function createPlugin({
 	};
 
 	function transformer(tree: Node) {
-		const nodes: Link[] = selectAll('paragraph > link:only-child', tree);
+		const paragraphs = selectAll('paragraph', tree);
+		paragraphs.forEach((paragraph) => {
+			const link: Link | null = select(':scope > link:only-child', paragraph);
+			if (!link) return;
 
-		nodes.forEach((node) => {
-			const { url } = node;
+			const { url } = link;
 			// We’re only interested in HTTP links
 			if (!url?.startsWith('http')) return;
 
 			const component = getComponent(url);
 			if (component) {
 				// @ts-expect-error We’re overriding the initial node type with arbitrary data.
-				for (const key in component) node[key] = component[key];
+				for (const key in component) paragraph[key] = component[key];
 			}
 		});
 
