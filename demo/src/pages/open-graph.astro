@@ -1,6 +1,5 @@
 ---
-import { OpenGraphEmbed } from '../../../packages/astro-embed-og';
-// import { OpenGraph } from '@astro-community/astro-embed-og';
+import { OpenGraphEmbed } from '@astro-community/astro-embed-og';
 import Base from '../layouts/Base.astro';
 ---
 
@@ -11,14 +10,6 @@ import Base from '../layouts/Base.astro';
       >&lt;OpenGraphEmbed url="https://astro.build/blog/welcome-world/" /&gt;</code
     >
   </p>
-  <OpenGraphEmbed styled url="https://astro.build/blog/welcome-world/" />
+  <OpenGraphEmbed url="https://astro.build/blog/welcome-world/" />
   <!--  -->
-  <h2>Unstyled</h2>
-  <p>
-    <code
-      >&lt;OpenGraphEmbed !styled url="https://astro.build/blog/welcome-world/"
-      /&gt;</code
-    >
-  </p>
-  <OpenGraphEmbed !styled url="https://astro.build/blog/welcome-world/" />
 </Base>

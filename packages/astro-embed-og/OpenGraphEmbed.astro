@@ -4,10 +4,9 @@ import { parseOpenGraph } from './lib';
 export interface Props {
   /** URL to fetch Open Graph data. */
   url: string;
-  styled?: boolean;
 }
 
-const { url, styled } = Astro.props as Props;
+const { url } = Astro.props as Props;
 const meta = await parseOpenGraph(url);
 let domain = new URL(meta?.url || '').hostname.replace('www.', '');
 ---
@@ -37,7 +36,6 @@ let domain = new URL(meta?.url || '').hostname.replace('www.', '');
   </div>
 </div>
 
-{styled && 
 <style>
   :root {
     --image-width: 400px;
@@ -75,4 +73,3 @@ let domain = new URL(meta?.url || '').hostname.replace('www.', '');
     font-weight: bolder;
   }
 </style>
-}
