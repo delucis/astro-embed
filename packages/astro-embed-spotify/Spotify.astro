@@ -1,0 +1,64 @@
+---
+export interface Props {
+  url: string;
+  dark: boolean;
+  compact: boolean;
+  widthPercent?: number;
+}
+const { url, dark = false, compact = false, widthPercent = 100 } = Astro.props;
+
+console.log(url);
+let theme = 1;
+
+let height = 352;
+if (compact) {
+  height = 152;
+}
+if (dark) {
+  theme = 0;
+}
+/*
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2jX5c5RFp0A9E1GDsvGxIa?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2jX5c5RFp0A9E1GDsvGxIa?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+// color
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/2jX5c5RFp0A9E1GDsvGxIa?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
+https://open.spotify.com/embed/track/5cvmu1c58Lh6piCpP0CIOZ?utm_source=e
+*/
+// async function fetchTweet(id: string) {
+//   try {
+//     const oembedUrl = new URL('https://publish.twitter.com/oembed');
+//     oembedUrl.searchParams.set('url', id);
+//     oembedUrl.searchParams.set('omit_script', 'true');
+//     oembedUrl.searchParams.set('dnt', 'true');
+//     return (await fetch(oembedUrl).then((res) => res.json())) as {
+//       url: string;
+//       author_name: string;
+//       author_url: string;
+//       html: string;
+//     };
+//   } catch (e) {
+//     console.error(
+//       `[error]  astro-embed
+//          ${e.status} - ${e.statusText}: Failed to fetch tweet ${id}`
+//     );
+//   }
+// }
+
+// const tweet = await fetchTweet(id);
+---
+
+<!-- {tweet && <astro-embed-tweet set:html={tweet.html} />} -->
+<iframe
+  style="border-radius:12px"
+  src=`${url}?theme=${theme}`
+  width=`${widthPercent}%`
+  height=`${height}`
+  frameBorder="0"
+  allowfullscreen=""
+  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+  loading="lazy"></iframe>
