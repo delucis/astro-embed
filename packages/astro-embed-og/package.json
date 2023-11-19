@@ -1,0 +1,19 @@
+{
+  "name": "@astro-community/astro-embed-og",
+  "version": "0.0.1",
+  "description": "Component to easily embed websites via social metatags on your Astro site",
+  "type": "module",
+  "exports": {
+    ".": "./index.ts",
+    "./lib": "./lib.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/delucis/astro-embed.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/delucis/astro-embed/issues"
+  },
+  "homepage": "https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-og#readme"
+}
