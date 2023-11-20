@@ -4,10 +4,23 @@ import Base from '../layouts/Base.astro';
 ---
 
 <Base title="OpenGraph component example">
+  <h2>Default</h2>
   <p>
     <code
       >&lt;OpenGraph url="https://astro.build/blog/welcome-world/" /&gt;</code
     >
   </p>
   <OpenGraph url="https://astro.build/blog/welcome-world/" />
+  <h2>Custom size</h2>
+  <p>
+    <code
+      >&lt;OpenGraph imageWidth="200px" imageHeight="105px"
+      url="https://astro.build/blog/welcome-world/" /&gt;</code
+    >
+  </p>
+  <OpenGraph
+    imageWidth="200px"
+    imageHeight="105px"
+    url="https://astro.build/blog/welcome-world/"
+  />
 </Base>

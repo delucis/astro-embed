@@ -3,7 +3,7 @@ title: Components in MDX
 layout: ../layouts/Base.astro
 ---
 
-import { Tweet, YouTube } from 'astro-embed';
+import { Tweet, YouTube, OpenGraph } from 'astro-embed';
 
 The embeds on this page are imported as components in the MDX frontmatter’s `setup` block and then used in the document body.
 
@@ -18,8 +18,12 @@ setup: |
 
 ## `<Tweet />`
 
-<Tweet id="https://twitter.com/astrodotbuild/status/1511750228428435457" />
+    <Tweet id="https://twitter.com/astrodotbuild/status/1511750228428435457" />
 
 ## `<YouTube />`
 
-<YouTube id="Hoe-woAhq_k" />
+    <YouTube id="Hoe-woAhq_k" />
+
+## `<OpenGraph />`
+
+    <OpenGraph url="https://astro.build/blog/welcome-world/" />
