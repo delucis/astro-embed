@@ -32,7 +32,9 @@ const formatError = (...lines: string[]) => lines.join('\n         ');
  * @param url URL to fetch
  * @returns {Promise<Record<string, any> | undefined>}
  */
-export async function getHtml(url: string): Promise<Record<string, any> | undefined> {
+export async function getHtml(
+	url: string
+): Promise<Record<string, any> | undefined> {
 	try {
 		const cached = cache.get(url);
 		if (cached) return cached;
@@ -65,11 +67,13 @@ interface OG {
  * @param htmlText html.text() to parse
  * @returns {Promise<OG | undefined>}
  */
-export async function parseOpenGraph(htmlText: string): Promise<OG | undefined> {
+export async function parseOpenGraph(
+	htmlText: string
+): Promise<OG | undefined> {
 	const NONE = 'none';
 	const html = await getHtml(htmlText);
 	if (!html) {
-		return
+		return;
 	}
 	const ogTitle = html.querySelector("meta[property='og:title']");
 	const ogDescription = html.querySelector("meta[property='og:description']");
@@ -82,5 +86,4 @@ export async function parseOpenGraph(htmlText: string): Promise<OG | undefined> 
 		image: ogImage?.getAttribute('content') || NONE,
 		url: ogUrl?.getAttribute('content') || NONE,
 	};
-
 }

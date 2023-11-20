@@ -2,77 +2,77 @@
 import { parseOpenGraph } from './lib';
 
 export interface Props {
-  /** URL to fetch Open Graph data. */
-  url: string;
-  /* CSS size variables. e.g: '300px', '1em' */
-  imageWidth?: string;
-  imageHeight?: string;
-  borderRadius?: string;
+	/** URL to fetch Open Graph data. */
+	url: string;
+	/* CSS size variables. e.g: '300px', '1em' */
+	imageWidth?: string;
+	imageHeight?: string;
+	borderRadius?: string;
 }
 
 const {
-  url,
-  imageWidth = '400px',
-  imageHeight = '210px',
-  borderRadius = '4px',
+	url,
+	imageWidth = '400px',
+	imageHeight = '210px',
+	borderRadius = '4px',
 } = Astro.props as Props;
 const meta = await parseOpenGraph(url);
 let domain = new URL(meta?.url || '').hostname.replace('www.', '');
 ---
 
 <div class="social-embed-wrapper">
-  <!-- Card image -->
-  <div
-    class="social-embed-image"
-    style=`background-image: url("${meta?.image}");`
-  >
-  </div>
-  <!-- Card contents -->
-  <div class="social-embed-contents">
-    <div class="social-embed-hostname">
-      {domain}
-    </div>
-    <div>
-      <!-- Card title -->
-      <div class="social-embed-title">
-        {meta?.title}
-      </div>
-      <!-- Card description -->
-      <div class="social-embed-description">
-        {meta?.description}
-      </div>
-    </div>
-  </div>
+	<!-- Card image -->
+	<div
+		class="social-embed-image"
+		style=`background-image: url("${meta?.image}");`
+	>
+	</div>
+	<!-- Card contents -->
+	<div class="social-embed-contents">
+		<div class="social-embed-hostname">
+			{domain}
+		</div>
+		<div>
+			<!-- Card title -->
+			<div class="social-embed-title">
+				{meta?.title}
+			</div>
+			<!-- Card description -->
+			<div class="social-embed-description">
+				{meta?.description}
+			</div>
+		</div>
+	</div>
 </div>
 <style define:vars={{ imageWidth, imageHeight, borderRadius }}>
-  .social-embed-wrapper {
-    width: var(--imageWidth);
-    cursor: pointer;
-  }
-  .social-embed-image {
-    height: var(--imageHeight);
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    border-radius: var(--borderRadius) var(--borderRadius) 0 0;
-  }
-  .social-embed-contents {
-    padding: 1em;
-    user-select: none;
-    border: 1px solid lightgray;
-    border-radius: 0 0 var(--borderRadius) var(--borderRadius);
-  }
-  .social-embed-hostname {
-    font-size: smaller;
-    text-transform: uppercase;
-    color: gray;
-  }
-  .social-embed-description {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-  .social-embed-title {
-    font-weight: bolder;
-  }
+	.social-embed-wrapper {
+		width: var(--imageWidth);
+		cursor: pointer;
+	}
+	.social-embed-image {
+		height: var(--imageHeight);
+		background-size: contain;
+		background-position: center;
+		background-repeat: no-repeat;
+		border-radius: var(--borderRadius) var(--borderRadius) 0 0;
+	}
+	.social-embed-contents {
+		padding: 1em;
+		user-select: none;
+		border: 1px solid lightgray;
+		border-radius: 0 0 var(--borderRadius) var(--borderRadius);
+	}
+	.social-embed-hostname {
+		font-size: smaller;
+		text-transform: uppercase;
+		color: gray;
+	}
+	.social-embed-description {
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+	.social-embed-title {
+		font-weight: bolder;
+	}
 </style>
