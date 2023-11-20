@@ -24,7 +24,10 @@ import { OpenGraph } from '@astro-community/astro-embed-og';
 
 ### Styling
 
-The card has basic styling. You can customise it by targeting the following classes:
+The card has barebones styling. You can customise it by targeting the following classes:
+`.social-embed-wrapper`, `social-embed-image`, `social-embed-contents`, `social-embed-hostname`, `social-embed-description`.
+
+Below a basic styling suggestion:
 
 ```css
   :root {
