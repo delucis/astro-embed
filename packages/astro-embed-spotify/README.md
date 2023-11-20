@@ -32,15 +32,15 @@ There are a few options you can use:
 
 `widthPercent = 100` - Set iframe width in percent
 
-example: 
+example:
 
 ```html
 <Spotify
-    dark
-    compact
-    widthPercent="80"
-    id="https://open.spotify.com/track/3d1ZZs7GvwSN43muHqgPh1"
-  />
+  dark
+  compact
+  widthPercent="80"
+  id="https://open.spotify.com/track/3d1ZZs7GvwSN43muHqgPh1"
+/>
 ```
 
 ### Remark Plugin
@@ -67,6 +67,4 @@ http://open.spotify.com/episode/4UGL97d1NkhUN2wsd2Dzou
 {/* <!-- URLs with extra parameters: --> */}
 
 https://open.spotify.com/track/3d1ZZs7GvwSN43muHqgPh1?si=3qc9p-sGR3es3e8kkP9VFA
-
 ```
-

@@ -1,9 +1,9 @@
 ---
 export interface Props {
-  id: string;
-  dark?: boolean;
-  compact?: boolean;
-  widthPercent?: number;
+	id: string;
+	dark?: boolean;
+	compact?: boolean;
+	widthPercent?: number;
 }
 const { id, dark = false, compact = false, widthPercent = 100 } = Astro.props;
 
@@ -20,12 +20,12 @@ const embedUrl = `https://open.spotify.com/embed/${type}/${playlistId}?theme=${t
 ---
 
 <iframe
-  title=`Spotify ${type} Embed`
-  style="border-radius:12px"
-  src={embedUrl}
-  width=`${widthPercent}%`
-  height=`${height}`
-  frameBorder="0"
-  allowfullscreen=""
-  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-  loading="lazy"></iframe>
+	title=`Spotify ${type} Embed`
+	style="border-radius:12px"
+	src={embedUrl}
+	width=`${widthPercent}%`
+	height=`${height}`
+	frameBorder="0"
+	allowfullscreen=""
+	allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+	loading="lazy"></iframe>
