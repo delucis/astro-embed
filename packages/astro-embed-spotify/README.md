@@ -34,7 +34,7 @@ There are a few options you can use:
 
 example: 
 
-```ts
+```html
 <Spotify
     dark
     compact
