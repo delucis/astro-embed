@@ -27,8 +27,21 @@ import { Spotify } from '@astro-community/astro-embed-spotify';
 There are a few options you can use:
 
 `dark = false` - Enable dark mode
+
 `compact = false` - Enable compact sizing
+
 `widthPercent = 100` - Set iframe width in percent
+
+example: 
+
+```ts
+<Spotify
+    dark
+    compact
+    widthPercent="80"
+    id="https://open.spotify.com/track/3d1ZZs7GvwSN43muHqgPh1"
+  />
+```
 
 ### Remark Plugin
 
