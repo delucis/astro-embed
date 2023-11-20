@@ -4,15 +4,8 @@ export interface Props {
   dark?: boolean;
   compact?: boolean;
   widthPercent?: number;
-  styles?: string;
 }
-const {
-  id,
-  dark = false,
-  compact = false,
-  widthPercent = 100,
-  styles = 'border-radius:12px',
-} = Astro.props;
+const { id, dark = false, compact = false, widthPercent = 100 } = Astro.props;
 
 // values based on Spotify embed generator
 const height = compact ? 152 : 352;
@@ -27,7 +20,8 @@ const embedUrl = `https://open.spotify.com/embed/${type}/${playlistId}?theme=${t
 ---
 
 <iframe
-  style={styles}
+  title=`Spotify ${type} Embed`
+  style="border-radius:12px"
   src={embedUrl}
   width=`${widthPercent}%`
   height=`${height}`
