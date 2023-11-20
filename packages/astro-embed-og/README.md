@@ -10,16 +10,16 @@ npm i @astro-community/astro-embed-og
 
 ## Usage
 
-### `<OpenGraphEmbed url={pageUrl} />`
+### `<OpenGraph url={pageUrl} />`
 
-The **OpenGraphEmbed** component generates a static card for a given URL.
+The **OpenGraph** component generates a static card for a given URL.
 
 ```astro
 ---
-import { OpenGraphEmbed } from '@astro-community/astro-embed-og';
+import { OpenGraph } from '@astro-community/astro-embed-og';
 ---
 
-<OpenGraphEmbed url="https://astro.build/blog/welcome-world" />
+<OpenGraph url="https://astro.build/blog/welcome-world" />
 ```
 
 ### Styling

@@ -1,1 +1,1 @@
-export { default as OpenGraphEmbed } from './OpenGraphEmbed.astro';
+export { default as OpenGraph } from './OpenGraph.astro';

@@ -17,7 +17,7 @@ To use components in your `.astro` files, first import them in the component scr
 ```astro
 ---
 // src/components/Example.astro
-import { Tweet, Vimeo, YouTube } from 'astro-embed';
+import { Tweet, Vimeo, YouTube, OpenGraph } from 'astro-embed';
 ---
 
 <Tweet id="https://twitter.com/astrodotbuild/status/1512144306898976768" />
@@ -25,6 +25,8 @@ import { Tweet, Vimeo, YouTube } from 'astro-embed';
 <Vimeo id="https://vimeo.com/32001208" />
 
 <YouTube id="https://youtu.be/xtTy5nKay_Y" />
+
+<OpenGraph url="https://astro.build/blog/welcome-world/" />
 ```
 
 ### MDX pages
@@ -37,7 +39,7 @@ You can also import an embed component for use in MDX pages when using the [Astr
 title: My MDX page with embed components
 ---
 
-import { Tweet, Vimeo, YouTube } from 'astro-embed';
+import { Tweet, Vimeo, YouTube, OpenGraph } from 'astro-embed';
 
 Hey look! I can embed a tweet _in Markdown_!
 
@@ -47,6 +49,10 @@ Vimeo and YouTube videos work too :-)
 
 <Vimeo id="https://vimeo.com/32001208" />
 <YouTube id="https://youtu.be/xtTy5nKay_Y" />
+
+So does pages \o/
+
+<OpenGraph url="https://astro.build/blog/welcome-world/" />
 ```
 
 ## Using the integration
@@ -82,3 +88,4 @@ See individual packages for how to use the component for each service:
 - [Twitter](https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-twitter#readme)
 - [Vimeo](https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-vimeo#readme)
 - [YouTube](https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-youtube#readme)
+- [OpenGraph](https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-og#readme)

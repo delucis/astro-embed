@@ -1,15 +1,13 @@
 ---
-import { OpenGraphEmbed } from '@astro-community/astro-embed-og';
+import { OpenGraph } from 'astro-embed';
 import Base from '../layouts/Base.astro';
 ---
 
 <Base title="OpenGraph component example">
-  <h2>Styled</h2>
   <p>
     <code
-      >&lt;OpenGraphEmbed url="https://astro.build/blog/welcome-world/" /&gt;</code
+      >&lt;OpenGraph url="https://astro.build/blog/welcome-world/" /&gt;</code
     >
   </p>
-  <OpenGraphEmbed url="https://astro.build/blog/welcome-world/" />
-  <!--  -->
+  <OpenGraph url="https://astro.build/blog/welcome-world/" />
 </Base>
