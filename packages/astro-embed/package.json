@@ -21,7 +21,8 @@
     "embeds",
     "twitter",
     "vimeo",
-    "youtube"
+    "youtube",
+    "spotify"
   ],
   "author": "delucis",
   "license": "MIT",
@@ -33,7 +34,8 @@
     "@astro-community/astro-embed-integration": "^0.6.0",
     "@astro-community/astro-embed-twitter": "^0.5.2",
     "@astro-community/astro-embed-vimeo": "^0.3.1",
-    "@astro-community/astro-embed-youtube": "^0.4.1"
+    "@astro-community/astro-embed-youtube": "^0.4.1",
+    "@astro-community/astro-embed-spotify": "^0.0.1"
   },
   "peerDependencies": {
     "astro": "^2.0.0 || ^3.0.0-beta"
