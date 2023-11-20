@@ -1,35 +1,33 @@
 ---
 export interface Props {
-  url: string;
-  dark: boolean;
-  compact: boolean;
+  id: string;
+  dark?: boolean;
+  compact?: boolean;
   widthPercent?: number;
-  embedClass: string;
+  styles?: string;
 }
 const {
-  url,
+  id,
   dark = false,
   compact = false,
   widthPercent = 100,
-  embedClass = '',
+  styles = 'border-radius:12px',
 } = Astro.props;
 
 // values based on Spotify embed generator
-let height = compact ? 152 : 352;
-let theme = dark ? 0 : 1;
+const height = compact ? 152 : 352;
+const theme = dark ? 0 : 1;
 
-const { pathname } = new URL(url);
+const { pathname } = new URL(id);
 let [type, ...params] = pathname.split('/').filter(Boolean);
 type = type === 'user' ? 'playlist' : type;
-const id = params.slice(-1);
+const playlistId = params.slice(-1);
 
-const embedUrl = `https://open.spotify.com/embed/${type}/${id}?theme=${theme}`;
-console.log(embedUrl);
+const embedUrl = `https://open.spotify.com/embed/${type}/${playlistId}?theme=${theme}`;
 ---
 
 <iframe
-  class={embedClass}
-  style="border-radius:12px"
+  style={styles}
   src={embedUrl}
   width=`${widthPercent}%`
   height=`${height}`
