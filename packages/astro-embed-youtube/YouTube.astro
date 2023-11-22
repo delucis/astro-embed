@@ -33,3 +33,10 @@ const posterURL = poster || `https://i.ytimg.com/vi/${videoid}/hqdefault.jpg`;
 <script>
 	import 'lite-youtube-embed';
 </script>
+
+<style is:global>
+	lite-youtube > iframe {
+		margin-top: 0 !important;
+		height: 100% !important;
+	}
+</style>
