@@ -36,7 +36,11 @@ const posterURL = poster || `https://i.ytimg.com/vi/${videoid}/hqdefault.jpg`;
 
 <style is:global>
 	lite-youtube > iframe {
-		margin-top: 0 !important;
+		all: unset !important;
+		width: 100% !important;
 		height: 100% !important;
+		position: absolute !important;
+		inset: 0 !important;
+		border: 0 !important;
 	}
 </style>
