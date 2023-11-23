@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-youtube
 
+## 0.4.2
+
+### Patch Changes
+
+- [#74](https://github.com/delucis/astro-embed/pull/74) [`d415ab9`](https://github.com/delucis/astro-embed/commit/d415ab9a420aab67ff3816b58b70442ae961d9f3) Thanks [@vasfvitor](https://github.com/vasfvitor)! - Fix YouTube embed styling in environments that already apply `<iframe>` styles
+
 ## 0.4.1
 
 ### Patch Changes
