@@ -1,5 +1,6 @@
 import { parseHTML } from 'linkedom';
 
+// copied from packages/astro-embed-utils/index.ts
 class LRU<K, V> extends Map<K, V> {
 	constructor(private readonly maxSize: number) {
 		super();
@@ -24,11 +25,11 @@ class LRU<K, V> extends Map<K, V> {
 }
 
 const cache = new LRU<string, Record<string, any>>(1000);
-
 const formatError = (...lines: string[]) => lines.join('\n         ');
 
 /**
- * Fetch a URL and parse it to html.text(), but catch errors to stop builds erroring.
+ * modified version of @function safeGet() from packages/astro-embed-utils/index.ts
+ * Fetch a URL and parse it to documentElement, but catch errors to stop builds erroring.
  * @param url URL to fetch
  * @returns {Promise<Record<string, any> | undefined>}
  */
@@ -64,14 +65,12 @@ interface OG {
 
 /**
  * Parses a html page to return social heads contents based on source.
- * @param htmlText html.text() to parse
+ * @param pageUrl to parse
  * @returns {Promise<OG | undefined>}
  */
-export async function parseOpenGraph(
-	htmlText: string
-): Promise<OG | undefined> {
+export async function parseOpenGraph(pageUrl: string): Promise<OG | undefined> {
 	const NONE = 'none';
-	const html = await getHtml(htmlText);
+	const html = await getHtml(pageUrl);
 	if (!html) {
 		return;
 	}
@@ -79,7 +78,6 @@ export async function parseOpenGraph(
 	const ogDescription = html.querySelector("meta[property='og:description']");
 	const ogImage = html.querySelector("meta[property='og:image']");
 	const ogUrl = html.querySelector("meta[property='og:url']");
-
 	return {
 		title: ogTitle?.getAttribute('content') || NONE,
 		description: ogDescription?.getAttribute('content') || NONE,

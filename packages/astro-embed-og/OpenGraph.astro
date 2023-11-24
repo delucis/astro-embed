@@ -3,76 +3,86 @@ import { parseOpenGraph } from './lib';
 
 export interface Props {
 	/** URL to fetch Open Graph data. */
-	url: string;
-	/* CSS size variables. e.g: '300px', '1em' */
+	id: string;
+	/**
+	 * CSS size variables. e.g: '300px', '1em'
+	 * Defaults to w = 400px, h = 210px - 1.91:1
+	 */
 	imageWidth?: string;
 	imageHeight?: string;
-	borderRadius?: string;
+	/* Whether it is pre-styled or not. Defaults to false. */
+	styled: boolean;
 }
 
 const {
-	url,
+	id,
 	imageWidth = '400px',
 	imageHeight = '210px',
-	borderRadius = '4px',
+	styled = false,
 } = Astro.props as Props;
-const meta = await parseOpenGraph(url);
+
+const meta = await parseOpenGraph(id);
 let domain = new URL(meta?.url || '').hostname.replace('www.', '');
 ---
 
-<div class="social-embed-wrapper">
-	<!-- Card image -->
-	<div
-		class="social-embed-image"
-		style=`background-image: url("${meta?.image}");`
-	>
-	</div>
-	<!-- Card contents -->
+<div class:list={['social-embed-wrapper', { socialEmbedStyled: styled }]}>
+	<!-- image -->
+	<img class="social-embed-image" src=`${meta?.image}` alt="A bird." />
+	<!-- content -->
 	<div class="social-embed-contents">
-		<div class="social-embed-hostname">
+		<!-- domain -->
+		<span class="social-embed-hostname">
 			{domain}
+		</span>
+		<!-- title -->
+		<div class="social-embed-title">
+			{meta?.title}
 		</div>
-		<div>
-			<!-- Card title -->
-			<div class="social-embed-title">
-				{meta?.title}
-			</div>
-			<!-- Card description -->
-			<div class="social-embed-description">
-				{meta?.description}
-			</div>
-		</div>
+		<!-- description -->
+		<p class="social-embed-description">
+			{meta?.description}
+		</p>
 	</div>
 </div>
-<style define:vars={{ imageWidth, imageHeight, borderRadius }}>
+
+<style define:vars={{ imageWidth, imageHeight }}>
+	/* Default styles */
 	.social-embed-wrapper {
-		width: var(--imageWidth);
 		cursor: pointer;
+		user-select: none;
+		width: var(--imageWidth);
 	}
 	.social-embed-image {
+		width: var(--imageWidth);
 		height: var(--imageHeight);
-		background-size: contain;
-		background-position: center;
-		background-repeat: no-repeat;
-		border-radius: var(--borderRadius) var(--borderRadius) 0 0;
 	}
-	.social-embed-contents {
-		padding: 1em;
-		user-select: none;
+	/* If styled */
+	.socialEmbedStyled {
 		border: 1px solid lightgray;
-		border-radius: 0 0 var(--borderRadius) var(--borderRadius);
+		border-radius: 8px;
 	}
-	.social-embed-hostname {
+	.socialEmbedStyled .social-embed-image {
+		border: 1px solid lightgray;
+		border-radius: 8px 8px 0 0;
+	}
+	.socialEmbedStyled .social-embed-contents {
+		padding: 0.75em;
+		user-select: none;
+	}
+	.socialEmbedStyled .social-embed-hostname {
 		font-size: smaller;
 		text-transform: uppercase;
 		color: gray;
 	}
-	.social-embed-description {
+	.socialEmbedStyled .social-embed-description {
+		display: -webkit-box;
 		overflow: hidden;
-		white-space: nowrap;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
 		text-overflow: ellipsis;
+		white-space: normal;
 	}
-	.social-embed-title {
+	.socialEmbedStyled .social-embed-title {
 		font-weight: bolder;
 	}
 </style>

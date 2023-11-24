@@ -26,7 +26,7 @@ import { Tweet, Vimeo, YouTube, OpenGraph } from 'astro-embed';
 
 <YouTube id="https://youtu.be/xtTy5nKay_Y" />
 
-<OpenGraph url="https://astro.build/blog/welcome-world/" />
+<OpenGraph id="https://astro.build/blog/welcome-world/" />
 ```
 
 ### MDX pages
@@ -52,7 +52,7 @@ Vimeo and YouTube videos work too :-)
 
 So does pages \o/
 
-<OpenGraph url="https://astro.build/blog/welcome-world/" />
+<OpenGraph id="https://astro.build/blog/welcome-world/" />
 ```
 
 ## Using the integration
