@@ -1,5 +1,17 @@
 # astro-embed
 
+## 0.6.1
+
+### Patch Changes
+
+- [#77](https://github.com/delucis/astro-embed/pull/77) [`b0f153d`](https://github.com/delucis/astro-embed/commit/b0f153dd414985abb49916cdd8a581580095e863) Thanks [@silent1mezzo](https://github.com/silent1mezzo)! - Adds support for a peer dependency of Astro 4
+
+- Updated dependencies [[`b0f153d`](https://github.com/delucis/astro-embed/commit/b0f153dd414985abb49916cdd8a581580095e863)]:
+  - @astro-community/astro-embed-integration@0.6.1
+  - @astro-community/astro-embed-twitter@0.5.3
+  - @astro-community/astro-embed-vimeo@0.3.2
+  - @astro-community/astro-embed-youtube@0.4.3
+
 ## 0.6.0
 
 ### Minor Changes
