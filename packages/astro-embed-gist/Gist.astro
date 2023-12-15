@@ -57,3 +57,17 @@ const stylesheetUrl = gist?.stylesheet;
   .gist-embed-description {
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const gists = document.querySelectorAll('astro-embed-gist');
+    gists.forEach((e) => {
+      const stylesheetUrl = e.dataset.cssurl;
+      const linkElement = document.createElement('link');
+      linkElement.href = stylesheetUrl;
+      linkElement.rel = 'stylesheet';
+      linkElement.type = 'text/css';
+      document.head.appendChild(linkElement);
+    });
+  });
+</script>
