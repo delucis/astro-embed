@@ -1,45 +1,59 @@
 ---
 export interface Props {
-	id: string;
+  /**
+   * Gist url to fetch
+   */
+  id: string;
+  /**
+   * Optional file name to fetch, case sensitive
+   */
+  fileName?: string;
 }
-const { id } = Astro.props;
+const { id, fileName } = Astro.props;
+let url = id + '.json';
+if (fileName) {
+  url += `?file=${fileName}`;
+}
 
 async function fetchGist(id: string) {
-	try {
-		const gistUrl = new URL(id + '.json');
-		return (await fetch(gistUrl).then((res) => res.json())) as {
-			div: string;
-			description: string;
-			owner: string;
-			stylesheet: string;
-		};
-	} catch (e) {
-		console.error(
-			`[error]  astro-embed
+  try {
+    const gistUrl = new URL(url);
+    return (await fetch(gistUrl).then((res) => res.json())) as {
+      description: string;
+      created_at: Date;
+      files: string[];
+      owner: string;
+      stylesheet: string;
+      div: string;
+    };
+  } catch (e) {
+    console.error(
+      `[error]  astro-embed
          ${e.status} - ${e.statusText}: Failed to fetch gist ${id}`
-		);
-	}
+    );
+  }
 }
 const gist = await fetchGist(id);
-//const stylesheet = gist?.stylesheet;
+
+// TODO use stylesheet
+const stylesheetUrl = gist?.stylesheet;
 ---
 
 {
-	gist && (
-		<astro-embed-gist>
-			<p class="gist-embed-description">{gist.description}</p>
-			<Fragment set:html={gist.div} />
-			<span class="gist-embed-owner">gist by {gist.owner}</span>
-		</astro-embed-gist>
-	)
+  gist && (
+    <astro-embed-gist data-cssurl={stylesheetUrl}>
+      <p class="gist-embed-description">{gist.description}</p>
+      <Fragment set:html={gist.div} />
+      <span class="gist-embed-owner">gist by {gist.owner}</span>
+    </astro-embed-gist>
+  )
 }
-
 <style>
-	astro-embed-gist {
-		display: block;
-	}
-	.gist-embed-owner {
-	}
-	.gist-embed-description {
-	}
+  astro-embed-gist {
+    display: block;
+  }
+  .gist-embed-owner {
+  }
+  .gist-embed-description {
+  }
 </style>
