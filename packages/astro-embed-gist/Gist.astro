@@ -1,45 +1,45 @@
 ---
 export interface Props {
-  id: string;
+	id: string;
 }
 const { id } = Astro.props;
 
 async function fetchGist(id: string) {
-  try {
-    const gistUrl = new URL(id + '.json');
-    return (await fetch(gistUrl).then((res) => res.json())) as {
-      div: string;
-      description: string;
-      owner: string;
-      stylesheet: string;
-    };
-  } catch (e) {
-    console.error(
-      `[error]  astro-embed
+	try {
+		const gistUrl = new URL(id + '.json');
+		return (await fetch(gistUrl).then((res) => res.json())) as {
+			div: string;
+			description: string;
+			owner: string;
+			stylesheet: string;
+		};
+	} catch (e) {
+		console.error(
+			`[error]  astro-embed
          ${e.status} - ${e.statusText}: Failed to fetch gist ${id}`
-    );
-  }
+		);
+	}
 }
 const gist = await fetchGist(id);
 //const stylesheet = gist?.stylesheet;
 ---
 
 {
-  gist && (
-    <astro-embed-gist>
-      <p class="gist-embed-description">{gist.description}</p>
-      <Fragment set:html={gist.div} />
-      <span class="gist-embed-owner">gist by {gist.owner}</span>
-    </astro-embed-gist>
-  )
+	gist && (
+		<astro-embed-gist>
+			<p class="gist-embed-description">{gist.description}</p>
+			<Fragment set:html={gist.div} />
+			<span class="gist-embed-owner">gist by {gist.owner}</span>
+		</astro-embed-gist>
+	)
 }
 
 <style>
-  astro-embed-gist {
-    display: block;
-  }
-  .gist-embed-owner {
-  }
-  .gist-embed-description {
-  }
+	astro-embed-gist {
+		display: block;
+	}
+	.gist-embed-owner {
+	}
+	.gist-embed-description {
+	}
 </style>
