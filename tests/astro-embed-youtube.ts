@@ -47,6 +47,17 @@ test('it parses an embed URL', async () => {
 	assert.is(embed.getAttribute('videoid'), videoid);
 });
 
+test('it parses a YouTube shorts URL', async () => {
+	const videoid = 'zjOWezSzd18';
+	const { window } = await renderDOM(
+		'./packages/astro-embed-youtube/YouTube.astro',
+		{ id: 'https://www.youtube.com/shorts/' + videoid }
+	);
+	const embed = window.document.querySelector('lite-youtube');
+	assert.ok(embed);
+	assert.is(embed.getAttribute('videoid'), videoid);
+});
+
 test('it can set a custom poster image', async () => {
 	const poster = 'https://example.com/i.png';
 	const { window } = await renderDOM(
