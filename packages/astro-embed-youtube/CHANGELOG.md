@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-youtube
 
+## 0.4.4
+
+### Patch Changes
+
+- [#86](https://github.com/delucis/astro-embed/pull/86) [`ee42a36`](https://github.com/delucis/astro-embed/commit/ee42a36f3fb36921a526d9774fc6f95160013b6d) Thanks [@delucis](https://github.com/delucis)! - Add support for `/shorts/` URLs in YouTube URL matcher
+
 ## 0.4.3
 
 ### Patch Changes
