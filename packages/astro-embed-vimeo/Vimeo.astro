@@ -14,7 +14,7 @@ export interface Props {
 	playlabel?: string;
 }
 
-const { id, poster, params = '', playlabel = 'Play' } = Astro.props as Props;
+const { id, poster, params = '', playlabel = 'Play', ...attrs } = Astro.props as Props;
 
 const idRegExp = /^\d+$/;
 
@@ -49,6 +49,7 @@ if (posterURL) styles.push(`background-image: url('${posterURL}')`);
 	data-t={t}
 	data-params={searchParams.toString()}
 	style={styles.join(';')}
+	{...attrs}
 >
 	<button class="ltv-playbtn" type="button" aria-label={playlabel}></button>
 </lite-vimeo>
