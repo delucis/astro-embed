@@ -30,6 +30,7 @@
   },
   "homepage": "https://github.com/delucis/astro-embed/tree/main/packages/astro-embed#readme",
   "dependencies": {
+    "@astro-community/astro-embed-og": "^0.0.1"
     "@astro-community/astro-embed-integration": "^0.6.1",
     "@astro-community/astro-embed-twitter": "^0.5.3",
     "@astro-community/astro-embed-vimeo": "^0.3.2",
