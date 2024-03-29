@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-youtube
 
+## 0.4.5
+
+### Patch Changes
+
+- [#93](https://github.com/delucis/astro-embed/pull/93) [`40ec350`](https://github.com/delucis/astro-embed/commit/40ec350dae316cfa02674eb9a8f24be2e709e2ac) Thanks [@delucis](https://github.com/delucis)! - Updates internal `lite-youtube-embed` dependency from 0.2.0 to 0.3.2
+
 ## 0.4.4
 
 ### Patch Changes
