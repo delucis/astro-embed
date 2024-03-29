@@ -26,6 +26,9 @@ export default defineConfig({
 				},
 			],
 			customCss: ['./src/assets/theme.css'],
+			components: {
+				Head: './src/overrides/Head.astro',
+			},
 		}),
 		embeds(),
 	],
