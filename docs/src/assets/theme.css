@@ -29,3 +29,7 @@
 	--sl-color-gray-7: #f8f4fe;
 	--sl-color-black: #ffffff;
 }
+
+main {
+	font-family: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif;
+}
