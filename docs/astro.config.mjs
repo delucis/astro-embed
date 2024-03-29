@@ -8,6 +8,10 @@ export default defineConfig({
 	integrations: [
 		starlight({
 			title: 'Astro Embed',
+			logo: {
+				light: './src/assets/icon-light.svg',
+				dark: './src/assets/icon-dark.svg',
+			},
 			social: {
 				github: 'https://github.com/delucis/astro-embed',
 			},
