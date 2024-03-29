@@ -1,5 +1,6 @@
+// @ts-check
 /* eslint-disable no-console */
-import { prettyDOM, queries, screen } from '@testing-library/dom';
+import { prettyDOM, queries } from '@testing-library/dom';
 import { getComponentOutput } from 'astro-component-tester';
 import { parseHTML } from 'linkedom';
 import lzString from 'lz-string';
@@ -7,14 +8,11 @@ const { compressToEncodedURIComponent } = lzString;
 
 /**
  * Get a `JSDOM` instance for an Astro component
- * @param path Path to an Astro component to render (relative to monorepo root)
- * @param props Any props to pass to the component
+ * @param path {string} Path to an Astro component to render (relative to monorepo root)
+ * @param [props] {Record<string, unknown>} Any props to pass to the component
  * @returns A Promise for a `JSDOM` instance
  */
-export const renderDOM = async (
-	path: string,
-	props?: Record<string, unknown>
-) => {
+export const renderDOM = async (path, props) => {
 	const { raw } = await getComponentOutput(path, props);
 	return parseHTML(raw);
 };
@@ -22,34 +20,30 @@ export const renderDOM = async (
 /**
  * Render an Astro component to an interface matching
  * `@testing-library/dom`’s `screen` API.
- * @param path Path to an Astro component to render (relative to monorepo root)
- * @param props Any props to pass to the component
+ * @param path {string} Path to an Astro component to render (relative to monorepo root)
+ * @param [props] {Record<string, unknown>} Any props to pass to the component
  * @returns A `@testing-library/dom` “screen” containing the rendered component
  */
-export const renderScreen = async (
-	path: string,
-	props?: Record<string, unknown>
-) => getScreen(await renderDOM(path, props));
+export const renderScreen = async (path, props) =>
+	getScreen(await renderDOM(path, props));
 
 /**
  * Create an interface matching `@testing-library/dom`’s `screen`, but without
  * needing a global DOM environment.
+ * @param container {Window}
+ * @returns {typeof import('@testing-library/dom').screen}
  */
-function getScreen(container: Window): typeof screen {
+function getScreen(container) {
 	const { document } = container.window;
 
-	const debug: typeof screen.debug = (
-		element: Parameters<typeof screen.debug>[0] = document,
-		maxLength?: Parameters<typeof screen.debug>[1],
-		options?: Parameters<typeof screen.debug>[2]
-	) =>
+	/** @type {typeof import('@testing-library/dom').screen.debug} */
+	const debug = (element = document, maxLength, options) =>
 		Array.isArray(element)
 			? element.forEach((el) => logDOM(el, maxLength, options))
 			: logDOM(element, maxLength, options);
 
-	const logTestingPlaygroundURL: typeof screen.logTestingPlaygroundURL = (
-		element = document.body
-	) => {
+	/** @type {typeof import('@testing-library/dom').screen.logTestingPlaygroundURL} */
+	const logTestingPlaygroundURL = (element = document.body) => {
 		if (!element || !('innerHTML' in element)) {
 			console.log(`The element you're providing isn't a valid DOM element.`);
 			return;
@@ -63,10 +57,19 @@ function getScreen(container: Window): typeof screen {
 		);
 	};
 
-	const fakeScreen = { debug, logTestingPlaygroundURL } as typeof screen;
+	const fakeScreen =
+		/** @type {typeof import('@testing-library/dom').screen} */ ({
+			debug,
+			logTestingPlaygroundURL,
+		});
 	for (const [key, query] of Object.entries(queries)) {
 		fakeScreen[key] = (...args) =>
-			query(container.window.document as unknown as HTMLElement, ...args);
+			query(
+				/** @type {HTMLElement} */ (
+					/** @type {unknown} */ (container.window.document)
+				),
+				...args
+			);
 	}
 	return fakeScreen;
 }
@@ -74,18 +77,22 @@ function getScreen(container: Window): typeof screen {
 // Below are utilities borrowed from Testing Library’s screen implementation.
 // See: https://github.com/testing-library/dom-testing-library/blob/main/src/screen.ts
 
-function unindent(string: string) {
+/** @param {string} string */
+function unindent(string) {
 	return string.replace(/[ \t]*[\n][ \t]*/g, '\n');
 }
 
-function encode(value: string) {
+/** @param {string} value */
+function encode(value) {
 	return compressToEncodedURIComponent(unindent(value));
 }
 
-function getPlaygroundUrl(markup: string) {
+/** @param {string} markup */
+function getPlaygroundUrl(markup) {
 	return `https://testing-playground.com/#markup=${encode(markup)}`;
 }
 
+/** @param {Parameters<typeof prettyDOM>} args */
 function logDOM(...args) {
 	console.log(prettyDOM(...args));
 }
