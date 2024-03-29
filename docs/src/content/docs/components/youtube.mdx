@@ -1,0 +1,99 @@
+---
+title: YouTube
+description: Learn how to use the Astro Embed YouTube component to embed YouTube videos in your website.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { YouTube } from '@astro-community/astro-embed-youtube';
+
+The `<YouTube>` component generates an embed using the [`lite-youtube-embed`](https://github.com/paulirish/lite-youtube-embed) custom element that will load YouTube’s `<iframe>` only when a user clicks play.
+
+YouTube embeds will always require some JavaScript, but this is one of the most minimal and performant ways to embed a YouTube video.
+
+## Usage
+
+<Tabs>
+<TabItem label="Astro" icon="astro">
+```astro
+---
+import { YouTube } from 'astro-embed';
+---
+
+<YouTube id="TtRtkTzHVBU" />
+```
+</TabItem>
+<TabItem label="MDX" icon="seti:markdown">
+```astro
+import { YouTube } from 'astro-embed';
+
+<YouTube id="TtRtkTzHVBU" />
+```
+</TabItem>
+</Tabs>
+
+You can also pass in a URL in one of the various YouTube formats:
+
+```astro
+<YouTube id="https://youtu.be/TtRtkTzHVBU" />
+```
+
+The above code produces the following result:
+
+<YouTube id="https://youtu.be/TtRtkTzHVBU" />
+
+## Optional props
+
+In addition to the required `id` prop, the following props are available to customise how the `<YouTube>` component renders:
+
+### `poster`
+
+You can provide an alternative poster image by passing in a URL to the `poster` prop.
+
+For example, this is the same video as above but with a custom poster image:
+
+```astro
+<YouTube
+	id="TtRtkTzHVBU"
+	poster="https://images-assets.nasa.gov/image/0302063/0302063~medium.jpg"
+/>
+```
+
+<YouTube
+	id="TtRtkTzHVBU"
+	poster="https://images-assets.nasa.gov/image/0302063/0302063~medium.jpg"
+/>
+
+### `params`
+
+You can pass in a `params` prop to set the [YouTube player parameters](https://developers.google.com/youtube/player_parameters#Parameters). This looks like a series of URL search params.
+
+For example, the following `params` value sets the start and end times of the video playback:
+
+```astro
+<YouTube id="TtRtkTzHVBU" params="start=57&end=75" />
+```
+
+<YouTube id="TtRtkTzHVBU" params="start=57&end=75" />
+
+### `playlabel`
+
+By default, the play button in the embed has an accessible label set to “Play”.
+If you want to customise this, for example to match the language of your website, you can set the `playlabel` prop:
+
+```astro
+<YouTube id="TtRtkTzHVBU" playlabel="Play the video" />
+```
+
+## Standalone installation
+
+If you only need the `<YouTube>` component, you can install the package directly instead of the main `astro-embed` package:
+
+import { PackageManagers } from 'starlight-package-managers';
+
+<PackageManagers pkg="@astro-community/astro-embed-youtube" />
+
+The `<YouTube>` component can then be imported as:
+
+```js
+import { YouTube } from '@astro-community/astro-embed-youtube';
+```

@@ -1,0 +1,70 @@
+---
+title: Astro Embed
+description: High performance, rich media embed components. For your site, from the Astro community.
+template: splash
+hero:
+  tagline: High performance, rich media embed components.<br>For your site, from the Astro community.
+  actions:
+    - text: Get Started
+      link: /getting-started/
+      icon: right-arrow
+      variant: primary
+    - text: Star on GitHub
+      link: https://github.com/delucis/astro-embed
+      icon: star
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## What can Astro Embed do?
+
+<CardGrid stagger>
+
+    <Card title="YouTube" icon="youtube">
+
+    	Don’t slow your users down. Only load YouTube’s JavaScript when they click.
+
+    	https://www.youtube.com/watch?v=TtRtkTzHVBU
+
+    	[YouTube&nbsp;docs&nbsp;→](/components/youtube/)
+
+    </Card>
+
+    <Card title="Vimeo" icon="seti:video">
+
+    	Load Vimeo embeds on user interaction for faster page loads.
+
+    	https://vimeo.com/877132300
+
+    	[Vimeo&nbsp;docs&nbsp;→](/components/vimeo/)
+
+    </Card>
+
+    <Card title="Tweet" icon="twitter">
+
+    	Embed the contents of a Tweet in your post without client-side JavaScript.
+    	<br/>
+
+    	https://twitter.com/astrodotbuild/status/1732104305673634140
+
+    	[Tweet&nbsp;docs&nbsp;→](/components/twitter/)
+
+    </Card>
+
+    <Card title="Auto-embed URLs" icon="document">
+
+    	Automatically convert matching URLs in your MDX content to a rich media
+    	embed.
+
+    	```mdx title="example.mdx"
+    	This link will turn into a YouTube embed!
+
+    	https://www.youtube.com/watch?v=TtRtkTzHVBU
+
+    	```
+
+    	[Learn how to configure auto-embeds&nbsp;→](/getting-started/#auto-embed-urls-in-mdx)
+
+    </Card>
+
+</CardGrid>

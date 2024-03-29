@@ -33,6 +33,7 @@
   },
   "workspaces": [
     "demo",
+    "docs",
     "packages/**/*"
   ]
 }

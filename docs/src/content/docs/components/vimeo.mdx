@@ -1,0 +1,99 @@
+---
+title: Vimeo
+description: Learn how to use the Astro Embed Vimeo component to embed Vimeo videos in your website.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { Vimeo } from '@astro-community/astro-embed-vimeo';
+
+The `<Vimeo>` component generates an embed using a lightweight custom element that will load Vimeo’s `<iframe>` only when a user clicks play.
+
+Vimeo embeds will always require some JavaScript, but this is one of the most minimal and performant ways to embed a Vimeo video.
+
+## Usage
+
+<Tabs>
+<TabItem label="Astro" icon="astro">
+```astro
+---
+import { Vimeo } from 'astro-embed';
+---
+
+<Vimeo id="32001208" />
+```
+</TabItem>
+<TabItem label="MDX" icon="seti:markdown">
+```astro
+import { Vimeo } from 'astro-embed';
+
+<Vimeo id="32001208" />
+```
+</TabItem>
+</Tabs>
+
+You can also pass in the full URL for the video:
+
+```astro
+<Vimeo id="https://vimeo.com/32001208" />
+```
+
+The above code produces the following result:
+
+<Vimeo id="32001208" />
+
+## Optional props
+
+In addition to the required `id` prop, the following props are available to customise how the `<Vimeo>` component renders:
+
+### `poster`
+
+You can provide an alternative poster image by passing in a URL to the `poster` prop.
+
+For example, this is the same video as above but with a custom poster image:
+
+```astro
+<Vimeo
+	id="32001208"
+	poster="https://images-assets.nasa.gov/image/0302063/0302063~medium.jpg"
+/>
+```
+
+<Vimeo
+	id="32001208"
+	poster="https://images-assets.nasa.gov/image/0302063/0302063~medium.jpg"
+/>
+
+### `params`
+
+You can pass a `params` prop to set the [player parameters supported by Vimeo](https://vimeo.zendesk.com/hc/en-us/articles/360001494447-Player-parameters-overview). This looks like a series of URL search params.
+
+For example, the following `params` value sets the UI color to red and mutes the audio by default:
+
+```astro
+<Vimeo id="32001208" params="color=ff0000&muted=1" />
+```
+
+<Vimeo id="32001208" params="color=ff0000&muted=1" />
+
+### `playlabel`
+
+By default, the play button in the embed has an accessible label set to “Play”.
+If you want to customise this, for example to match the language of your website, you can set the `playlabel` prop:
+
+```astro
+<Vimeo id="32001208" playlabel="Play the video" />
+```
+
+## Standalone installation
+
+If you only need the `<Vimeo>` component, you can install the package directly instead of the main `astro-embed` package:
+
+import { PackageManagers } from 'starlight-package-managers';
+
+<PackageManagers pkg="@astro-community/astro-embed-vimeo" />
+
+The `<Vimeo>` component can then be imported as:
+
+```js
+import { Vimeo } from '@astro-community/astro-embed-vimeo';
+```
