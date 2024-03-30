@@ -1,0 +1,44 @@
+/* Dark mode colors. */
+:root {
+	--sl-color-accent-low: #36113e;
+	--sl-color-accent: #a400c0;
+	--sl-color-accent-high: #e3b6ed;
+	--sl-color-white: #ffffff;
+	--sl-color-gray-1: #efecf2;
+	--sl-color-gray-2: #c3c0c7;
+	--sl-color-gray-3: #8e8996;
+	--sl-color-gray-4: #5b5561;
+	--sl-color-gray-5: #3a3641;
+	--sl-color-gray-6: #29242f;
+	--sl-color-black: #19171c;
+
+	--tc-border-color: var(--sl-color-gray-5);
+}
+/* Light mode colors. */
+:root[data-theme='light'] {
+	--sl-color-accent-low: #ebc9f3;
+	--sl-color-accent: #a700c3;
+	--sl-color-accent-high: #4e0e5b;
+	--sl-color-white: #19171c;
+	--sl-color-gray-1: #29242f;
+	--sl-color-gray-2: #3a3641;
+	--sl-color-gray-3: #5b5561;
+	--sl-color-gray-4: #8e8996;
+	--sl-color-gray-5: #c3c0c7;
+	--sl-color-gray-6: #efecf2;
+	--sl-color-gray-7: #f7f6f8;
+	--sl-color-black: #ffffff;
+}
+
+main {
+	font-family: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif;
+	text-underline-offset: 0.25em;
+}
+
+.hero .tagline {
+	text-wrap: balance;
+}
+
+.hero > img {
+	filter: drop-shadow(0 0 8rem var(--sl-color-accent));
+}
