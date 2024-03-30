@@ -32,6 +32,7 @@
 
 main {
 	font-family: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif;
+	text-underline-offset: 0.25em;
 }
 
 .hero .tagline {
