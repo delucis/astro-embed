@@ -63,6 +63,27 @@ For example, this is the same video as above but with a custom poster image:
 	poster="https://images-assets.nasa.gov/image/0302063/0302063~medium.jpg"
 />
 
+### `posterQuality`
+
+**Type:** `'max' | 'high' | 'default' | 'low'`  
+**Default:** `'default'`
+
+When using the default YouTube poster image, set the `posterQuality` to change the size of the placeholder image.
+This can be useful if displaying the embed at very large or very small sizes.
+
+| `posterQuality` | resolution |
+| --------------- | ---------- |
+| `'low'`         | 120px      |
+| `'default'`     | 480px      |
+| `'high'`        | 640px      |
+| `'max'`         | 1280px     |
+
+```astro
+<YouTube id="TtRtkTzHVBU" posterQuality="low" />
+```
+
+<YouTube id="TtRtkTzHVBU" posterQuality="low" />
+
 ### `params`
 
 You can pass in a `params` prop to set the [YouTube player parameters](https://developers.google.com/youtube/player_parameters#Parameters). This looks like a series of URL search params.

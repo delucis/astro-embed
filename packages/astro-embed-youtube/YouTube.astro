@@ -5,11 +5,17 @@ import urlMatcher from './matcher';
 export interface Props extends astroHTML.JSX.HTMLAttributes {
 	id: string;
 	poster?: string;
+	posterQuality?: 'max' | 'high' | 'default' | 'low';
 	params?: string;
 	playlabel?: string;
 }
 
-const { id, poster, ...attrs } = Astro.props as Props;
+const {
+	id,
+	poster,
+	posterQuality = 'default',
+	...attrs
+} = Astro.props as Props;
 
 const idRegExp = /^[A-Za-z0-9-_]+$/;
 
@@ -19,8 +25,15 @@ function extractID(idOrUrl: string) {
 }
 
 const videoid = extractID(id);
+const posterFile =
+	{
+		max: 'maxresdefault',
+		high: 'sddefault',
+		default: 'hqdefault',
+		low: 'default',
+	}[posterQuality] || 'hqdefault';
 const posterURL =
-	poster || `https://i.ytimg.com/vi_webp/${videoid}/hqdefault.webp`;
+	poster || `https://i.ytimg.com/vi_webp/${videoid}/${posterFile}.webp`;
 const href = `https://youtube.com/watch?v=${videoid}`;
 ---
 
