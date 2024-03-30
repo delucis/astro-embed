@@ -8,13 +8,21 @@ export interface Props {
 	id: string;
 	/** URL to an image to use as the poster instead of the default thumbnail. */
 	poster?: string;
+	/** Resolution to use for the Vimeo poster image. */
+	posterQuality?: 'max' | 'high' | 'default' | 'low';
 	/** See https://vimeo.zendesk.com/hc/en-us/articles/360001494447-Player-parameters-overview */
 	params?: string;
 	/** Label for the button that will play the video. Default label: `'Play'` */
 	playlabel?: string;
 }
 
-const { id, poster, params = '', playlabel = 'Play' } = Astro.props as Props;
+const {
+	id,
+	poster,
+	posterQuality = 'default',
+	params = '',
+	playlabel = 'Play',
+} = Astro.props as Props;
 
 const idRegExp = /^\d+$/;
 
@@ -27,8 +35,14 @@ const videoid = extractID(id);
 let posterURL = poster;
 if (!posterURL) {
 	const data = await safeGet(`https://vimeo.com/api/v2/video/${videoid}.json`);
+	const resolution =
+		{ max: 1280, high: 640, default: 480, low: 120 }[posterQuality] || 480;
 	const { thumbnail_large } = data?.[0] || {};
-	posterURL = thumbnail_large;
+	if (thumbnail_large.endsWith('d_640')) {
+		posterURL = thumbnail_large.slice(0, -3) + resolution;
+	} else {
+		posterURL = thumbnail_large;
+	}
 }
 
 let [searchString, t] = params.split('#t=');

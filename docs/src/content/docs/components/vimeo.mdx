@@ -47,6 +47,8 @@ In addition to the required `id` prop, the following props are available to cust
 
 ### `poster`
 
+**Type:** `string`
+
 You can provide an alternative poster image by passing in a URL to the `poster` prop.
 
 For example, this is the same video as above but with a custom poster image:
@@ -63,6 +65,27 @@ For example, this is the same video as above but with a custom poster image:
 	poster="https://images-assets.nasa.gov/image/0302063/0302063~medium.jpg"
 />
 
+### `posterQuality`
+
+**Type:** `'max' | 'high' | 'default' | 'low'`  
+**Default:** `'default'`
+
+When using the default Vimeo poster image, set the `posterQuality` to change the size of the placeholder image.
+This can be useful if displaying the embed at very large or very small sizes.
+
+| `posterQuality` | resolution |
+| --------------- | ---------- |
+| `'low'`         | 120px      |
+| `'default'`     | 480px      |
+| `'high'`        | 640px      |
+| `'max'`         | 1280px     |
+
+```astro
+<Vimeo id="32001208" posterQuality="low" />
+```
+
+<Vimeo id="32001208" posterQuality="low" />
+
 ### `params`
 
 You can pass a `params` prop to set the [player parameters supported by Vimeo](https://vimeo.zendesk.com/hc/en-us/articles/360001494447-Player-parameters-overview). This looks like a series of URL search params.
@@ -76,6 +99,9 @@ For example, the following `params` value sets the UI color to red and mutes the
 <Vimeo id="32001208" params="color=ff0000&muted=1" />
 
 ### `playlabel`
+
+**Type:** `string`  
+**Default:** `'Play'`
 
 By default, the play button in the embed has an accessible label set to “Play”.
 If you want to customise this, for example to match the language of your website, you can set the `playlabel` prop:
