@@ -64,18 +64,19 @@ if (posterURL) styles.push(`background-image: url('${posterURL}')`);
 	data-params={searchParams.toString()}
 	style={styles.join(';')}
 >
-	<button class="ltv-playbtn" type="button" aria-label={playlabel}></button>
+	<a
+		class="ltv-playbtn"
+		href={`https://vimeo.com/${videoid}`}
+		aria-label={playlabel}></a>
 </lite-vimeo>
 
 <script>
 	class LiteVimeo extends HTMLElement {
-		videoId: string;
+		// Gotta encode the untrusted value to prevent XSS.
+		videoId = encodeURIComponent(this.dataset.id!);
 		static preconnected = false;
 
 		connectedCallback() {
-			// Gotta encode the untrusted value to prevent XSS.
-			this.videoId = encodeURIComponent(this.dataset.id);
-
 			// On hover (or tap), warm up the TCP connections we're (likely) about to use.
 			this.addEventListener('pointerover', LiteVimeo.warmConnections, {
 				once: true,
@@ -83,6 +84,18 @@ if (posterURL) styles.push(`background-image: url('${posterURL}')`);
 
 			// Once the user clicks, add the real iframe and drop our play button
 			this.addEventListener('click', (e) => this.addIframe(e));
+
+			// Progressively enhance the link to the Vimeo as a play button.
+			const playLink = this.querySelector('a');
+			if (playLink) {
+				const playBtn = document.createElement('button');
+				playBtn.classList.add(...playLink.classList.values());
+				playBtn.setAttribute(
+					'aria-label',
+					playLink.getAttribute('aria-label')!
+				);
+				playLink.replaceWith(playBtn);
+			}
 		}
 
 		/**
