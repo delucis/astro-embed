@@ -75,4 +75,17 @@ test('it can set a custom poster image', async () => {
 	assert.is(embed.style['background-image'], `url('${poster}')`);
 });
 
+test('it can render a lower resolution poster image', async () => {
+	const { window } = await renderDOM(
+		'./packages/astro-embed-youtube/YouTube.astro',
+		{ id: videoid, posterQuality: 'low' }
+	);
+	const embed = window.document.querySelector('lite-youtube');
+	assert.ok(embed);
+	assert.is(
+		embed.style['background-image'],
+		`url('https://i.ytimg.com/vi_webp/${videoid}/default.webp')`
+	);
+});
+
 test.run();
