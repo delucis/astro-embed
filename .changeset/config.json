@@ -10,5 +10,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": []
+  "ignore": ["@astro-community/astro-embed-demo", "@astro-community/astro-embed-docs"]
 }
