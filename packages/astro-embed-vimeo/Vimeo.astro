@@ -3,7 +3,7 @@ import { safeGet } from '@astro-community/astro-embed-utils';
 import urlMatcher from './matcher';
 import './Vimeo.css';
 
-export interface Props {
+export interface Props extends astroHTML.JSX.HTMLAttributes {
 	/** Vimeo video ID or URL. */
 	id: string;
 	/** URL to an image to use as the poster instead of the default thumbnail. */
@@ -22,7 +22,8 @@ const {
 	posterQuality = 'default',
 	params = '',
 	playlabel = 'Play',
-  ...attrs,
+	style,
+	...attrs
 } = Astro.props as Props;
 
 const idRegExp = /^\d+$/;
@@ -55,6 +56,7 @@ if (!searchParams.has('dnt')) searchParams.append('dnt', '1');
 const color = searchParams.get('color');
 
 const styles = [];
+if (style) styles.push(style);
 if (color) styles.push(`--ltv-color: #${color}`);
 if (posterURL) styles.push(`background-image: url('${posterURL}')`);
 ---
