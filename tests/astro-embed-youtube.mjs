@@ -14,7 +14,7 @@ test('it should render a lite-youtube element', async () => {
 	assert.ok(embed);
 	assert.is(
 		embed.style['background-image'],
-		`url('https://i.ytimg.com/vi/${videoid}/hqdefault.jpg')`
+		`url('https://i.ytimg.com/vi_webp/${videoid}/hqdefault.webp')`
 	);
 });
 
