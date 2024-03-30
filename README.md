@@ -6,7 +6,7 @@ Welcome! This project aims to collect easy-to-use and lightweight ways to embed 
 
 Want to get started using some embed components?
 
-[Check out the README for the `astro-embed` package ](packages/astro-embed/README.md)
+Check out the [`astro-embed` documentation](https://astro-embed.netlify.app/)
 
 ## 🚀 Project Structure
 
