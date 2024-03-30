@@ -88,4 +88,14 @@ test('it can render a lower resolution poster image', async () => {
 	);
 });
 
+test('title attribute also sets `data-title`', async () => {
+	const { window } = await renderDOM(
+		'./packages/astro-embed-youtube/YouTube.astro',
+		{ id: videoid, title: 'Example title' }
+	);
+	const embed = window.document.querySelector('lite-youtube');
+	assert.ok(embed);
+	assert.is(embed.dataset.title, 'Example title');
+});
+
 test.run();
