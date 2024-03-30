@@ -1,6 +1,6 @@
 {
   "name": "@astro-community/astro-embed-vimeo",
-  "version": "0.3.2",
+  "version": "0.3.4",
   "description": "Component to easily embed Vimeo videos on your Astro site",
   "type": "module",
   "exports": {
@@ -15,7 +15,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/delucis/astro-embed.git"
+    "url": "https://github.com/delucis/astro-embed",
+    "directory": "packages/astro-embed-vimeo"
   },
   "keywords": [
     "astro",
@@ -28,7 +29,7 @@
   "bugs": {
     "url": "https://github.com/delucis/astro-embed/issues"
   },
-  "homepage": "https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-vimeo#readme",
+  "homepage": "https://astro-embed.netlify.app/components/vimeo/",
   "peerDependencies": {
     "astro": "^2.0.0 || ^3.0.0-beta || ^4.0.0-beta"
   }

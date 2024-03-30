@@ -1,5 +1,33 @@
 # @astro-community/astro-embed-youtube
 
+## 0.5.0
+
+### Minor Changes
+
+- [#102](https://github.com/delucis/astro-embed/pull/102) [`4d7c9f334b61d3e7f73d230b149645da6e7a4b37`](https://github.com/delucis/astro-embed/commit/4d7c9f334b61d3e7f73d230b149645da6e7a4b37) Thanks [@delucis](https://github.com/delucis)! - Uses the WebP version of YouTube poster images by default for smaller file size.
+
+- [#102](https://github.com/delucis/astro-embed/pull/102) [`4d7c9f334b61d3e7f73d230b149645da6e7a4b37`](https://github.com/delucis/astro-embed/commit/4d7c9f334b61d3e7f73d230b149645da6e7a4b37) Thanks [@delucis](https://github.com/delucis)! - Uses a progressive enhancement pattern to improve YouTube component experience for users with JavaScript disabled
+
+  `<YouTube>` now renders its play button as a link to the video. This means if JavaScript is disabled or fails to load, users can still click through to the original video.
+
+### Patch Changes
+
+- [#100](https://github.com/delucis/astro-embed/pull/100) [`39e3d162b1e380c85e451b37001d82c7813794e7`](https://github.com/delucis/astro-embed/commit/39e3d162b1e380c85e451b37001d82c7813794e7) Thanks [@delucis](https://github.com/delucis)! - Simplifies README.md to link to docs site
+
+- [#100](https://github.com/delucis/astro-embed/pull/100) [`39e3d162b1e380c85e451b37001d82c7813794e7`](https://github.com/delucis/astro-embed/commit/39e3d162b1e380c85e451b37001d82c7813794e7) Thanks [@delucis](https://github.com/delucis)! - Updates documentation links in `package.json`
+
+## 0.4.5
+
+### Patch Changes
+
+- [#93](https://github.com/delucis/astro-embed/pull/93) [`40ec350`](https://github.com/delucis/astro-embed/commit/40ec350dae316cfa02674eb9a8f24be2e709e2ac) Thanks [@delucis](https://github.com/delucis)! - Updates internal `lite-youtube-embed` dependency from 0.2.0 to 0.3.2
+
+## 0.4.4
+
+### Patch Changes
+
+- [#86](https://github.com/delucis/astro-embed/pull/86) [`ee42a36`](https://github.com/delucis/astro-embed/commit/ee42a36f3fb36921a526d9774fc6f95160013b6d) Thanks [@delucis](https://github.com/delucis)! - Add support for `/shorts/` URLs in YouTube URL matcher
+
 ## 0.4.3
 
 ### Patch Changes

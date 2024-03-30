@@ -1,6 +1,6 @@
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
-import { renderDOM } from './utils/render';
+import { renderDOM } from './utils/render.mjs';
 
 const videoid = 'xtTy5nKay_Y';
 
@@ -13,8 +13,14 @@ test('it should render a lite-youtube element', async () => {
 	assert.ok(embed);
 	assert.is(
 		embed.style['background-image'],
-		`url('https://i.ytimg.com/vi/${videoid}/hqdefault.jpg')`
+		`url('https://i.ytimg.com/vi_webp/${videoid}/hqdefault.webp')`
 	);
+	// It renders a static link to the video.
+	const playButton = /** @type {HTMLAnchorElement} */ (
+		embed.querySelector('a.lty-playbtn')
+	);
+	assert.ok(playButton);
+	assert.is(playButton.href, `https://youtube.com/watch?v=${videoid}`);
 });
 
 test('it parses a youtube.com URL', async () => {
@@ -47,6 +53,17 @@ test('it parses an embed URL', async () => {
 	assert.is(embed.getAttribute('videoid'), videoid);
 });
 
+test('it parses a YouTube shorts URL', async () => {
+	const videoid = 'zjOWezSzd18';
+	const { window } = await renderDOM(
+		'./packages/astro-embed-youtube/YouTube.astro',
+		{ id: 'https://www.youtube.com/shorts/' + videoid }
+	);
+	const embed = window.document.querySelector('lite-youtube');
+	assert.ok(embed);
+	assert.is(embed.getAttribute('videoid'), videoid);
+});
+
 test('it can set a custom poster image', async () => {
 	const poster = 'https://example.com/i.png';
 	const { window } = await renderDOM(
@@ -56,6 +73,29 @@ test('it can set a custom poster image', async () => {
 	const embed = window.document.querySelector('lite-youtube');
 	assert.ok(embed);
 	assert.is(embed.style['background-image'], `url('${poster}')`);
+});
+
+test('it can render a lower resolution poster image', async () => {
+	const { window } = await renderDOM(
+		'./packages/astro-embed-youtube/YouTube.astro',
+		{ id: videoid, posterQuality: 'low' }
+	);
+	const embed = window.document.querySelector('lite-youtube');
+	assert.ok(embed);
+	assert.is(
+		embed.style['background-image'],
+		`url('https://i.ytimg.com/vi_webp/${videoid}/default.webp')`
+	);
+});
+
+test('title attribute also sets `data-title`', async () => {
+	const { window } = await renderDOM(
+		'./packages/astro-embed-youtube/YouTube.astro',
+		{ id: videoid, title: 'Example title' }
+	);
+	const embed = window.document.querySelector('lite-youtube');
+	assert.ok(embed);
+	assert.is(embed.dataset.title, 'Example title');
 });
 
 test.run();

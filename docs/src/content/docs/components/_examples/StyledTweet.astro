@@ -1,0 +1,22 @@
+---
+import { Tweet } from '@astro-community/astro-embed-twitter';
+---
+
+<div class="styled-tweet">
+	<Tweet id="https://twitter.com/astrodotbuild/status/1767605560671969619" />
+</div>
+
+<style>
+	.styled-tweet :global(.twitter-tweet) {
+		background: floralwhite;
+		color: darkblue;
+		font-family: cursive;
+		font-size: 1.25rem;
+		border: 0;
+	}
+
+	.styled-tweet :global(.twitter-tweet a) {
+		color: purple;
+		font-weight: bold;
+	}
+</style>

@@ -1,0 +1,100 @@
+---
+title: Getting started
+description: Set up Astro Embed to add high performance, rich media embeds to your website
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+import { PackageManagers } from 'starlight-package-managers';
+
+The Astro Embed package provides components for adding rich media from third-party services to your [Astro](https://astro.build/) website.
+
+## Installation
+
+<PackageManagers pkg="astro-embed" />
+
+## Using the components
+
+Astro Embed components can be used in Astro and MDX files.
+Each component expects an `id` prop identifying the resource to be embedded.
+
+### In Astro files
+
+To use components in `.astro` files, import them in the component script and then use them in your template:
+
+```astro
+---
+// src/components/Example.astro
+import { Tweet, Vimeo, YouTube } from 'astro-embed';
+---
+
+<Tweet id="https://twitter.com/astrodotbuild/status/1512144306898976768" />
+
+<Vimeo id="https://vimeo.com/32001208" />
+
+<YouTube id="https://youtu.be/xtTy5nKay_Y" />
+```
+
+### In MDX files
+
+When using the [Astro MDX integration](https://docs.astro.build/en/guides/integrations-guide/mdx/), you can also import and use the embed components in MDX files:
+
+```mdx
+---
+# src/content/examples/page.mdx
+title: My MDX page with embed components
+---
+
+import { Tweet, Vimeo, YouTube } from 'astro-embed';
+
+Hey look! I can embed a tweet _in Markdown_!
+
+<Tweet id="https://twitter.com/astrodotbuild/status/1512144306898976768" />
+
+Vimeo and YouTube videos work too :-)
+
+<Vimeo id="https://vimeo.com/32001208" />
+<YouTube id="https://youtu.be/xtTy5nKay_Y" />
+```
+
+### Auto-embed URLs in MDX
+
+Use the Astro Embed integration to automatically convert URLs in MDX files to embed components.
+
+To enable the integration, add it to the `integrations` array in your `astro.config.mjs` file before the `mdx()` integration:
+
+```js ins={3} ins="embeds()"
+import { defineConfig } from 'astro/config';
+import mdx from '@astrojs/mdx';
+import embeds from 'astro-embed/integration';
+
+export default defineConfig({
+	integrations: [embeds(), mdx()],
+});
+```
+
+With the integration enabled, any isolated URL in an MDX file that matches one of the `astro-embed` component types will be converted to the appropriate component.
+
+For example, MDX like this will render an optimised YouTube player component in place of the URL.
+
+```mdx
+---
+# src/content/examples/auto-embed.mdx
+---
+
+I saw this cool video the other day:
+
+http://www.youtube.com/watch?v=Hoe-woAhq_k
+```
+
+Only URLs on their own line will be converted.
+URLs within a paragraph will not be processed.
+
+## Supported services
+
+Astro Embed currently supports the following services:
+
+<CardGrid>
+	<LinkCard title="Twitter" href="/components/twitter/" />
+	<LinkCard title="Vimeo" href="/components/vimeo/" />
+	<LinkCard title="YouTube" href="/components/youtube/" />
+</CardGrid>

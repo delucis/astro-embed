@@ -1,6 +1,6 @@
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
-import { renderDOM } from './utils/render';
+import { renderDOM } from './utils/render.mjs';
 
 const videoid = '32001208';
 
