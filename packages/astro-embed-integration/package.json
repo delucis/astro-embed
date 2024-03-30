@@ -1,6 +1,6 @@
 {
   "name": "@astro-community/astro-embed-integration",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Astro integration to automatically convert URLs in Markdown files to embeds",
   "type": "module",
   "exports": {
@@ -22,9 +22,9 @@
   },
   "homepage": "https://astro-embed.netlify.app/getting-started/#auto-embed-urls-in-mdx",
   "dependencies": {
-    "@astro-community/astro-embed-twitter": "^0.5.3",
-    "@astro-community/astro-embed-vimeo": "^0.3.2",
-    "@astro-community/astro-embed-youtube": "^0.4.3",
+    "@astro-community/astro-embed-twitter": "^0.5.4",
+    "@astro-community/astro-embed-vimeo": "^0.3.4",
+    "@astro-community/astro-embed-youtube": "^0.5.0",
     "@types/unist": "^2.0.0",
     "astro-auto-import": "^0.4.2",
     "unist-util-select": "^4.0.1"

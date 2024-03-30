@@ -1,5 +1,18 @@
 # @astro-community/astro-embed-integration
 
+## 0.6.2
+
+### Patch Changes
+
+- [#100](https://github.com/delucis/astro-embed/pull/100) [`39e3d162b1e380c85e451b37001d82c7813794e7`](https://github.com/delucis/astro-embed/commit/39e3d162b1e380c85e451b37001d82c7813794e7) Thanks [@delucis](https://github.com/delucis)! - Simplifies README.md to link to docs site
+
+- [#100](https://github.com/delucis/astro-embed/pull/100) [`39e3d162b1e380c85e451b37001d82c7813794e7`](https://github.com/delucis/astro-embed/commit/39e3d162b1e380c85e451b37001d82c7813794e7) Thanks [@delucis](https://github.com/delucis)! - Updates documentation links in `package.json`
+
+- Updated dependencies [[`4d7c9f334b61d3e7f73d230b149645da6e7a4b37`](https://github.com/delucis/astro-embed/commit/4d7c9f334b61d3e7f73d230b149645da6e7a4b37), [`c6939bc60dff6c30c9389a4f220a15b4aefe3ece`](https://github.com/delucis/astro-embed/commit/c6939bc60dff6c30c9389a4f220a15b4aefe3ece), [`39e3d162b1e380c85e451b37001d82c7813794e7`](https://github.com/delucis/astro-embed/commit/39e3d162b1e380c85e451b37001d82c7813794e7), [`4d7c9f334b61d3e7f73d230b149645da6e7a4b37`](https://github.com/delucis/astro-embed/commit/4d7c9f334b61d3e7f73d230b149645da6e7a4b37), [`39e3d162b1e380c85e451b37001d82c7813794e7`](https://github.com/delucis/astro-embed/commit/39e3d162b1e380c85e451b37001d82c7813794e7)]:
+  - @astro-community/astro-embed-youtube@0.5.0
+  - @astro-community/astro-embed-vimeo@0.3.4
+  - @astro-community/astro-embed-twitter@0.5.4
+
 ## 0.6.1
 
 ### Patch Changes
