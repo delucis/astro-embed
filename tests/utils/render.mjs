@@ -1,4 +1,3 @@
-// @ts-check
 /* eslint-disable no-console */
 import { prettyDOM, queries } from '@testing-library/dom';
 import { getComponentOutput } from 'astro-component-tester';

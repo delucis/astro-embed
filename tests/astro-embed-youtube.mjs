@@ -1,4 +1,3 @@
-// @ts-check
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
 import { renderDOM } from './utils/render.mjs';
@@ -16,6 +15,12 @@ test('it should render a lite-youtube element', async () => {
 		embed.style['background-image'],
 		`url('https://i.ytimg.com/vi_webp/${videoid}/hqdefault.webp')`
 	);
+	// It renders a static link to the video.
+	const playButton = /** @type {HTMLAnchorElement} */ (
+		embed.querySelector('a.lty-playbtn')
+	);
+	assert.ok(playButton);
+	assert.is(playButton.href, `https://youtube.com/watch?v=${videoid}`);
 });
 
 test('it parses a youtube.com URL', async () => {
