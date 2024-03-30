@@ -1,6 +1,6 @@
 {
   "name": "@astro-community/astro-embed-vimeo",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "Component to easily embed Vimeo videos on your Astro site",
   "type": "module",
   "exports": {

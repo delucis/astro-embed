@@ -1,5 +1,21 @@
 # @astro-community/astro-embed-youtube
 
+## 0.5.0
+
+### Minor Changes
+
+- [#102](https://github.com/delucis/astro-embed/pull/102) [`4d7c9f334b61d3e7f73d230b149645da6e7a4b37`](https://github.com/delucis/astro-embed/commit/4d7c9f334b61d3e7f73d230b149645da6e7a4b37) Thanks [@delucis](https://github.com/delucis)! - Uses the WebP version of YouTube poster images by default for smaller file size.
+
+- [#102](https://github.com/delucis/astro-embed/pull/102) [`4d7c9f334b61d3e7f73d230b149645da6e7a4b37`](https://github.com/delucis/astro-embed/commit/4d7c9f334b61d3e7f73d230b149645da6e7a4b37) Thanks [@delucis](https://github.com/delucis)! - Uses a progressive enhancement pattern to improve YouTube component experience for users with JavaScript disabled
+
+  `<YouTube>` now renders its play button as a link to the video. This means if JavaScript is disabled or fails to load, users can still click through to the original video.
+
+### Patch Changes
+
+- [#100](https://github.com/delucis/astro-embed/pull/100) [`39e3d162b1e380c85e451b37001d82c7813794e7`](https://github.com/delucis/astro-embed/commit/39e3d162b1e380c85e451b37001d82c7813794e7) Thanks [@delucis](https://github.com/delucis)! - Simplifies README.md to link to docs site
+
+- [#100](https://github.com/delucis/astro-embed/pull/100) [`39e3d162b1e380c85e451b37001d82c7813794e7`](https://github.com/delucis/astro-embed/commit/39e3d162b1e380c85e451b37001d82c7813794e7) Thanks [@delucis](https://github.com/delucis)! - Updates documentation links in `package.json`
+
 ## 0.4.5
 
 ### Patch Changes

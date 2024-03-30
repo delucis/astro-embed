@@ -1,5 +1,15 @@
 # @astro-community/astro-embed-vimeo
 
+## 0.3.4
+
+### Patch Changes
+
+- [#103](https://github.com/delucis/astro-embed/pull/103) [`c6939bc60dff6c30c9389a4f220a15b4aefe3ece`](https://github.com/delucis/astro-embed/commit/c6939bc60dff6c30c9389a4f220a15b4aefe3ece) Thanks [@delucis](https://github.com/delucis)! - Fixes risk of Vimeo custom element trying to redefine itself
+
+- [#100](https://github.com/delucis/astro-embed/pull/100) [`39e3d162b1e380c85e451b37001d82c7813794e7`](https://github.com/delucis/astro-embed/commit/39e3d162b1e380c85e451b37001d82c7813794e7) Thanks [@delucis](https://github.com/delucis)! - Simplifies README.md to link to docs site
+
+- [#100](https://github.com/delucis/astro-embed/pull/100) [`39e3d162b1e380c85e451b37001d82c7813794e7`](https://github.com/delucis/astro-embed/commit/39e3d162b1e380c85e451b37001d82c7813794e7) Thanks [@delucis](https://github.com/delucis)! - Updates documentation links in `package.json`
+
 ## 0.3.3
 
 ### Patch Changes
