@@ -14,6 +14,7 @@ const {
 	id,
 	poster,
 	posterQuality = 'default',
+	title,
 	...attrs
 } = Astro.props as Props;
 
@@ -39,6 +40,8 @@ const href = `https://youtube.com/watch?v=${videoid}`;
 
 <lite-youtube
 	{videoid}
+	{title}
+	data-title={title}
 	{...attrs}
 	style={`background-image: url('${posterURL}');`}
 >
