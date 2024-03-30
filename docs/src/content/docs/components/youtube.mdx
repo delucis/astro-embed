@@ -47,6 +47,8 @@ In addition to the required `id` prop, the following props are available to cust
 
 ### `poster`
 
+**Type:** `string`
+
 You can provide an alternative poster image by passing in a URL to the `poster` prop.
 
 For example, this is the same video as above but with a custom poster image:
@@ -98,12 +100,33 @@ For example, the following `params` value sets the start and end times of the vi
 
 ### `playlabel`
 
+**Type:** `string`  
+**Default:** `'Play'`
+
 By default, the play button in the embed has an accessible label set to “Play”.
 If you want to customise this, for example to match the language of your website, you can set the `playlabel` prop:
 
 ```astro
 <YouTube id="TtRtkTzHVBU" playlabel="Play the video" />
 ```
+
+### `title`
+
+**Type:** `string`
+
+Set a visible title to overlay on the video.
+
+```astro
+<YouTube
+	id="TtRtkTzHVBU"
+	title="The Astro Community: where contributors find a home"
+/>
+```
+
+<YouTube
+	id="TtRtkTzHVBU"
+	title="The Astro Community: where contributors find a home"
+/>
 
 ## Standalone installation
 
