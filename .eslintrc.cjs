@@ -15,5 +15,13 @@ module.exports = {
 		'no-console': ['error', { allow: ['warn', 'error'] }],
 		'@typescript-eslint/no-explicit-any': ['warn'],
 	},
-	ignorePatterns: ['demo/dist/**'],
+	ignorePatterns: ['demo/dist/**', 'docs/dist/**'],
+	overrides: [
+		{
+			files: ['**/*.d.ts'],
+			rules: {
+				'@typescript-eslint/triple-slash-reference': 0,
+			},
+		},
+	],
 };
