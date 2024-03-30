@@ -33,3 +33,11 @@
 main {
 	font-family: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, serif;
 }
+
+.hero .tagline {
+	text-wrap: balance;
+}
+
+.hero > img {
+	filter: drop-shadow(0 0 8rem var(--sl-color-accent));
+}
