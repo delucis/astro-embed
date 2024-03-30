@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-vimeo
 
+## 0.3.3
+
+### Patch Changes
+
+- [#97](https://github.com/delucis/astro-embed/pull/97) [`77a1228b9a2057b59194b649b6d203a3e8d15e13`](https://github.com/delucis/astro-embed/commit/77a1228b9a2057b59194b649b6d203a3e8d15e13) Thanks [@delucis](https://github.com/delucis)! - Fixes styling for the Vimeo `<iframe>` so user styles don’t override it
+
 ## 0.3.2
 
 ### Patch Changes
