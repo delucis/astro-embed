@@ -1,4 +1,3 @@
-// @ts-check
 import { test } from 'uvu';
 import { renderScreen } from './utils/render.mjs';
 

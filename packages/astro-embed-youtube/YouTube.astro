@@ -19,20 +19,22 @@ function extractID(idOrUrl: string) {
 }
 
 const videoid = extractID(id);
-const posterURL = poster || `https://i.ytimg.com/vi/${videoid}/hqdefault.jpg`;
-
-// TODO: use the progressive enhancement pattern once https://github.com/paulirish/lite-youtube-embed/issues/124 is released.
+const posterURL =
+	poster || `https://i.ytimg.com/vi_webp/${videoid}/hqdefault.webp`;
+const href = `https://youtube.com/watch?v=${videoid}`;
 ---
 
 <lite-youtube
 	{videoid}
 	{...attrs}
 	style={`background-image: url('${posterURL}');`}
-/>
+>
+	<a {href} class="lty-playbtn">
+		<span class="lyt-visually-hidden">{attrs.playlabel}</span>
+	</a>
+</lite-youtube>
 
-<script>
-	import 'lite-youtube-embed';
-</script>
+<script src="lite-youtube-embed"></script>
 
 <style is:global>
 	lite-youtube > iframe {
