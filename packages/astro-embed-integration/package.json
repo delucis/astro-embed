@@ -12,14 +12,15 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/delucis/astro-embed.git"
+    "url": "https://github.com/delucis/astro-embed",
+    "directory": "packages/astro-embed-integration"
   },
   "author": "delucis",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/delucis/astro-embed/issues"
   },
-  "homepage": "https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-integration#readme",
+  "homepage": "https://astro-embed.netlify.app/getting-started/#auto-embed-urls-in-mdx",
   "dependencies": {
     "@astro-community/astro-embed-twitter": "^0.5.3",
     "@astro-community/astro-embed-vimeo": "^0.3.2",
