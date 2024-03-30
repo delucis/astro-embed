@@ -1,5 +1,19 @@
 # @astro-community/astro-embed-vimeo
 
+## 0.3.5
+
+### Patch Changes
+
+- [#107](https://github.com/delucis/astro-embed/pull/107) [`2bf675cc53fa2a8559182c33f646a412a94016ec`](https://github.com/delucis/astro-embed/commit/2bf675cc53fa2a8559182c33f646a412a94016ec) Thanks [@delucis](https://github.com/delucis)! - Tweaks the play button styles to match Vimeo style more closely
+
+- [#107](https://github.com/delucis/astro-embed/pull/107) [`2bf675cc53fa2a8559182c33f646a412a94016ec`](https://github.com/delucis/astro-embed/commit/2bf675cc53fa2a8559182c33f646a412a94016ec) Thanks [@delucis](https://github.com/delucis)! - Uses progressive enhancement pattern to display a link to the Vimeo video until the `<lite-vimeo>` JavaScript loads
+
+- [#107](https://github.com/delucis/astro-embed/pull/107) [`2bf675cc53fa2a8559182c33f646a412a94016ec`](https://github.com/delucis/astro-embed/commit/2bf675cc53fa2a8559182c33f646a412a94016ec) Thanks [@delucis](https://github.com/delucis)! - Adds a `posterQuality` prop to `<Vimeo>`
+
+  The new default resolution is 480px instead of 640px. Set `posterQuality="high"` to use the previous 640px resolution.
+
+- [#83](https://github.com/delucis/astro-embed/pull/83) [`3b4ecfacb83cb4bc07aeb3742ceee8bbe809ba6b`](https://github.com/delucis/astro-embed/commit/3b4ecfacb83cb4bc07aeb3742ceee8bbe809ba6b) Thanks [@hesselberg](https://github.com/hesselberg)! - Adds support for passing arbitrary props to the `<lite-vimeo>` element
+
 ## 0.3.4
 
 ### Patch Changes
