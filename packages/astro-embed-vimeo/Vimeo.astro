@@ -127,5 +127,7 @@ if (posterURL) styles.push(`background-image: url('${posterURL}')`);
 	}
 
 	// Register custom element
-	customElements.define('lite-vimeo', LiteVimeo);
+	if (!customElements.get('lite-vimeo')) {
+		customElements.define('lite-vimeo', LiteVimeo);
+	}
 </script>
