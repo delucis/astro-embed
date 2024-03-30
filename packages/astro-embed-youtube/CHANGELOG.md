@@ -1,5 +1,13 @@
 # @astro-community/astro-embed-youtube
 
+## 0.5.1
+
+### Patch Changes
+
+- [#104](https://github.com/delucis/astro-embed/pull/104) [`7e4fa54f6d75df3d87d14857306b26bf9036913a`](https://github.com/delucis/astro-embed/commit/7e4fa54f6d75df3d87d14857306b26bf9036913a) Thanks [@delucis](https://github.com/delucis)! - Adds a new `posterQuality` prop to the `<YouTube>` component to control the resolution of the poster image.
+
+- [#106](https://github.com/delucis/astro-embed/pull/106) [`add2a1e6afd3f1c9fdb6608037d1e0e7698e6c41`](https://github.com/delucis/astro-embed/commit/add2a1e6afd3f1c9fdb6608037d1e0e7698e6c41) Thanks [@delucis](https://github.com/delucis)! - Improves support for the `title` attribute in the YouTube component
+
 ## 0.5.0
 
 ### Minor Changes

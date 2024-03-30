@@ -1,6 +1,6 @@
 {
   "name": "@astro-community/astro-embed-youtube",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Component to easily embed YouTube videos on your Astro site",
   "type": "module",
   "exports": {
