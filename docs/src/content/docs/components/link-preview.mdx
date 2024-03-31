@@ -6,7 +6,7 @@ description: Learn how to use the Astro Embed link preview component to embed Op
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 import { LinkPreview } from '@astro-community/astro-embed-link-preview';
 
-The `<LinkPreview>` component embeds the Open Graph image and metadata for a URL in your page.
+The `<LinkPreview>` component embeds the Open Graph media and metadata for a URL in your page.
 
 ## Usage
 
@@ -33,6 +33,23 @@ import { LinkPreview } from 'astro-embed';
 The above code produces the following result:
 
 <LinkPreview id="https://astro.build/blog/welcome-world/" />
+
+### Video metadata
+
+If a URL’s tags include `og:video` metadata, `<LinkPreview>` will render a video player instead of an image.
+
+```astro
+<LinkPreview id="https://fosstodon.org/@mikeneu/112123823339364565" />
+```
+
+https://fosstodon.org/@mikeneu/112123823339364565
+
+### Limitations
+
+The available Open Graph metadata varies from site to site.
+If a site doesn’t provide `og:image` metadata, no image will be displayed, only the page title and description.
+
+If no title is detected or the metadata collection step fails, `<LinkPreview>` will display only the original link URL.
 
 ## Styling the preview
 
