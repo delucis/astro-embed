@@ -38,11 +38,33 @@ The above code produces the following result:
 
 By default the `<LinkPreview>` card has some minimal layout styling, which should adapt to your site’s font settings etc.
 
-You can customise it with CSS by targeting the `.link-preview` class.
+You can customise it with CSS by targeting the `.link-preview` class, for example:
+
+```css
+.link-preview {
+	--link-preview-corners: 0.5em;
+	--link-preview-padding-inline: 0.75rem;
+	background-color: floralwhite;
+	color: darkblue;
+	font-family: sans-serif;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+.link-preview a {
+	color: purple;
+	font-weight: bold;
+	text-decoration: none;
+}
+```
+
+The above styles would render `<LinkPreview>` like this:
+
+import StyledPreview from './_examples/StyledLinkPreview.astro';
+
+<StyledPreview />
 
 ### Custom properties API
 
-The `<LinkPreview>` component also supports a minimal API for controlling its styles by setting some CSS custom properties.
+The `<LinkPreview>` component supports the following API for controlling its styles with CSS custom properties.
 
 ```css
 :root {

@@ -1,0 +1,23 @@
+---
+import { LinkPreview } from '@astro-community/astro-embed-link-preview';
+---
+
+<div class="styled-preview">
+	<LinkPreview id="https://astro-embed.netlify.app/" />
+</div>
+
+<style>
+	.styled-preview :global(.link-preview) {
+		--link-preview-corners: 0.5em;
+		--link-preview-padding-inline: 0.75rem;
+		background-color: floralwhite;
+		color: darkblue;
+		font-family: sans-serif;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+	}
+	.styled-preview :global(.link-preview a) {
+		color: purple;
+		font-weight: bold;
+		text-decoration: none;
+	}
+</style>
