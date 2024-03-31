@@ -17,32 +17,38 @@ const domain = meta?.url ? new URL(meta.url).hostname.replace('www.', '') : '';
 		<article
 			class:list={[
 				'link-preview',
-				{ 'link-preview--has-video': meta.video && meta.videoType },
+				{
+					'link-preview--has-video': meta.video && meta.videoType,
+					'link-preview--no-media': !(
+						(meta.video && meta.videoType) ||
+						meta.image
+					),
+				},
 			]}
 		>
-			<header>
-				<div class="link-preview__title-wrapper">
+			<div class="link-preview__content">
+				<header>
 					<a class="link-preview__title" href={id}>
 						{meta.title}
 					</a>{' '}
 					{domain && <small class="link-preview__domain">{domain}</small>}
-				</div>
-				{meta.video && meta.videoType ? (
-					<video controls preload="metadata" width="1200" height="630">
-						<source src={meta.video} type={meta.videoType} />
-					</video>
-				) : (
-					meta.image && (
-						<img
-							src={meta.image}
-							alt={meta.imageAlt || ''}
-							width="1200"
-							height="630"
-						/>
-					)
-				)}
-			</header>
-			<small class="link-preview__description">{meta.description}</small>
+				</header>
+				<small class="link-preview__description">{meta.description}</small>
+			</div>
+			{meta.video && meta.videoType ? (
+				<video controls preload="metadata" width="1200" height="630">
+					<source src={meta.video} type={meta.videoType} />
+				</video>
+			) : (
+				meta.image && (
+					<img
+						src={meta.image}
+						alt={meta.imageAlt || ''}
+						width="1200"
+						height="630"
+					/>
+				)
+			)}
 		</article>
 	) : (
 		<div class="link-preview link-preview--no-metadata">
@@ -59,24 +65,30 @@ const domain = meta?.url ? new URL(meta.url).hostname.replace('www.', '') : '';
 		--lp-pad-y: var(--link-preview-padding-block, 0.5em);
 		--lp-corners: var(--link-preview-corners, 0);
 
+		position: relative;
 		width: var(--lp-width);
 		max-width: 100%;
 		display: flex;
-		flex-direction: column;
+		flex-direction: column-reverse;
 		border-radius: var(--lp-corners);
-		padding-bottom: var(--lp-pad-y);
 	}
 	.link-preview * {
 		margin: 0 !important;
 	}
-	.link-preview header,
-	.link-preview__title-wrapper {
+	.link-preview__content {
+		display: flex;
+		flex-direction: column;
+		padding: var(--lp-pad-y) var(--lp-pad-x);
+	}
+	.link-preview header {
 		display: flex;
 		flex-direction: column-reverse;
 	}
-	.link-preview header {
-		position: relative;
-		gap: var(--lp-pad-y);
+
+	.link-preview__description {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 	.link-preview:not(.link-preview--has-video) a::after {
 		content: '';
@@ -91,15 +103,5 @@ const domain = meta?.url ? new URL(meta.url).hostname.replace('www.', '') : '';
 		object-fit: cover;
 		border-top-left-radius: var(--lp-corners);
 		border-top-right-radius: var(--lp-corners);
-	}
-	.link-preview__title-wrapper,
-	.link-preview__description {
-		padding-inline: var(--lp-pad-x);
-	}
-	.link-preview__description {
-		margin: 0;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
 	}
 </style>
