@@ -4,85 +4,82 @@ import { parseOpenGraph } from './lib';
 export interface Props {
 	/** URL to fetch Open Graph data. */
 	id: string;
-	/**
-	 * CSS size variables. e.g: '300px', '1em'
-	 * Defaults to w = 400px, h = 210px - 1.91:1
-	 */
-	imageWidth?: string;
-	imageHeight?: string;
-	/* Whether it is pre-styled or not. Defaults to false. */
-	styled: boolean;
 }
 
-const {
-	id,
-	imageWidth = '400px',
-	imageHeight = '210px',
-	styled = false,
-} = Astro.props as Props;
+const { id } = Astro.props;
 
 const meta = await parseOpenGraph(id);
-let domain = new URL(meta?.url || '').hostname.replace('www.', '');
+const domain = meta?.url ? new URL(meta.url).hostname.replace('www.', '') : '';
 ---
 
-<div class:list={['social-embed-wrapper', { socialEmbedStyled: styled }]}>
-	<!-- image -->
-	<img class="social-embed-image" src=`${meta?.image}` alt="A bird." />
-	<!-- content -->
-	<div class="social-embed-contents">
-		<!-- domain -->
-		<span class="social-embed-hostname">
-			{domain}
-		</span>
-		<!-- title -->
-		<div class="social-embed-title">
-			{meta?.title}
-		</div>
-		<!-- description -->
-		<p class="social-embed-description">
-			{meta?.description}
-		</p>
-	</div>
-</div>
+{
+	meta ? (
+		<article class="link-preview">
+			<header>
+				<div class="link-preview__title-wrapper">
+					<a class="link-preview__title" href={id}>
+						{meta.title}
+					</a>{' '}
+					{domain && <small class="link-preview__domain">{domain}</small>}
+				</div>
+				{meta.image && <img src={meta.image} alt={meta.imageAlt || ''} />}
+			</header>
+			<small class="link-preview__description">{meta.description}</small>
+		</article>
+	) : (
+		<a href={id}>{id}</a>
+	)
+}
 
-<style define:vars={{ imageWidth, imageHeight }}>
+<style>
 	/* Default styles */
-	.social-embed-wrapper {
-		cursor: pointer;
-		user-select: none;
-		width: var(--imageWidth);
+	.link-preview {
+		--lp-width: var(--link-preview-width, 30em);
+		--lp-pad-x: var(--link-preview-padding-inline, 0);
+		--lp-pad-y: var(--link-preview-padding-block, 0.5em);
+		--lp-corners: var(--link-preview-corners, 0);
+
+		width: var(--lp-width);
+		max-width: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: var(--lp-pad-y);
+		border-radius: var(--lp-corners);
+		padding-bottom: var(--lp-pad-y);
 	}
-	.social-embed-image {
-		width: var(--imageWidth);
-		height: var(--imageHeight);
+	.link-preview * {
+		margin: 0 !important;
 	}
-	/* If styled */
-	.socialEmbedStyled {
-		border: 1px solid lightgray;
-		border-radius: 8px;
+	.link-preview header,
+	.link-preview__title-wrapper {
+		display: flex;
+		flex-direction: column-reverse;
 	}
-	.socialEmbedStyled .social-embed-image {
-		border: 1px solid lightgray;
-		border-radius: 8px 8px 0 0;
+	.link-preview header {
+		position: relative;
+		gap: var(--lp-pad-y);
 	}
-	.socialEmbedStyled .social-embed-contents {
-		padding: 0.75em;
-		user-select: none;
+	.link-preview a::after {
+		content: '';
+		position: absolute;
+		inset: 0;
 	}
-	.socialEmbedStyled .social-embed-hostname {
-		font-size: smaller;
-		text-transform: uppercase;
-		color: gray;
+	.link-preview img {
+		aspect-ratio: 1200 / 630;
+		width: 100%;
+		height: auto;
+		object-fit: cover;
+		border-top-left-radius: var(--lp-corners);
+		border-top-right-radius: var(--lp-corners);
 	}
-	.socialEmbedStyled .social-embed-description {
-		display: -webkit-box;
+	.link-preview__title-wrapper,
+	.link-preview__description {
+		padding-inline: var(--lp-pad-x);
+	}
+	.link-preview__description {
+		margin: 0;
+		white-space: nowrap;
 		overflow: hidden;
-		-webkit-line-clamp: 2;
-		-webkit-box-orient: vertical;
 		text-overflow: ellipsis;
-		white-space: normal;
-	}
-	.socialEmbedStyled .social-embed-title {
-		font-weight: bolder;
 	}
 </style>
