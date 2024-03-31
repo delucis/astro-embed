@@ -8,6 +8,7 @@ const matchers = [
 	[twitterMatcher, 'Tweet'],
 	[vimeoMatcher, 'Vimeo'],
 	[youtubeMatcher, 'YouTube'],
+	/** The generic link matcher must be last otherwise it will override other URLs. */
 	[linkPreviewMatcher, 'LinkPreview'],
 ] as const;
 export const componentNames = matchers.map(([, name]) => name);
