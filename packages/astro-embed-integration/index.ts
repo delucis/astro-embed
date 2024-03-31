@@ -6,7 +6,20 @@ const importNamespace = 'AuToImPoRtEdAstroEmbed';
 /**
  * Astro embed MDX integration.
  */
-export default function embed() {
+export default function embed({
+	services = {},
+}: {
+	services?: Partial<Record<(typeof componentNames)[number], boolean>>;
+} = {}) {
+	const disabledServices = new Set(
+		Object.entries(services)
+			.filter(([, val]) => val === false)
+			.map(([key]) => key)
+	);
+	const enabledComponents = componentNames.filter(
+		(name) => !disabledServices.has(name)
+	);
+
 	const AstroEmbed: AstroIntegration = {
 		name: 'astro-embed',
 		hooks: {
@@ -14,10 +27,10 @@ export default function embed() {
 				checkIntegrationsOrder(config);
 				updateConfig({
 					markdown: {
-						// TODO: make plugin configurable with options passed to integration
-						// - support disabling specific services
-						// - support customising props for each service
-						remarkPlugins: [createEmbedPlugin({ importNamespace })],
+						// TODO: support customising props for each service
+						remarkPlugins: [
+							createEmbedPlugin({ importNamespace, enabledComponents }),
+						],
 					},
 				});
 			},
@@ -29,7 +42,7 @@ export default function embed() {
 		AutoImport({
 			imports: [
 				{
-					'astro-embed': componentNames.map((name) => [
+					'astro-embed': enabledComponents.map((name) => [
 						name,
 						`${importNamespace}_${name}`,
 					]),

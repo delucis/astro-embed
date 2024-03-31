@@ -13,18 +13,25 @@ const matchers = [
 ] as const;
 export const componentNames = matchers.map(([, name]) => name);
 
+interface CreatePluginOptions {
+	importNamespace: string;
+	enabledComponents: typeof componentNames;
+}
+
 export default function createPlugin({
 	importNamespace,
-}: {
-	importNamespace: string;
-}) {
+	enabledComponents,
+}: CreatePluginOptions) {
+	const enabledMatchers = matchers.filter(([, name]) =>
+		enabledComponents.includes(name)
+	);
 	/**
 	 * Get the name of the embed component for this URL
 	 * @param {string} url URL to test
 	 * @returns Component node for this URL or undefined if none matched
 	 */
 	function getComponent(url: string) {
-		for (const [matcher, componentName] of matchers) {
+		for (const [matcher, componentName] of enabledMatchers) {
 			const id = matcher(url);
 			if (id) {
 				// MDX custom component node.

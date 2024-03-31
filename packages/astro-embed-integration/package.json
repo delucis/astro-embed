@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/delucis/astro-embed/issues"
   },
-  "homepage": "https://astro-embed.netlify.app/getting-started/#auto-embed-urls-in-mdx",
+  "homepage": "https://astro-embed.netlify.app/integration",
   "dependencies": {
     "@astro-community/astro-embed-link-preview": "^0.0.1",
     "@astro-community/astro-embed-twitter": "^0.5.4",
