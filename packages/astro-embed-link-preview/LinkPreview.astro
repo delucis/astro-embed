@@ -14,7 +14,12 @@ const domain = meta?.url ? new URL(meta.url).hostname.replace('www.', '') : '';
 
 {
 	meta ? (
-		<article class="link-preview">
+		<article
+			class:list={[
+				'link-preview',
+				{ 'link-preview--has-video': meta.video && meta.videoType },
+			]}
+		>
 			<header>
 				<div class="link-preview__title-wrapper">
 					<a class="link-preview__title" href={id}>
@@ -22,7 +27,20 @@ const domain = meta?.url ? new URL(meta.url).hostname.replace('www.', '') : '';
 					</a>{' '}
 					{domain && <small class="link-preview__domain">{domain}</small>}
 				</div>
-				{meta.image && <img src={meta.image} alt={meta.imageAlt || ''} />}
+				{meta.video && meta.videoType ? (
+					<video controls preload="metadata" width="1200" height="630">
+						<source src={meta.video} type={meta.videoType} />
+					</video>
+				) : (
+					meta.image && (
+						<img
+							src={meta.image}
+							alt={meta.imageAlt || ''}
+							width="1200"
+							height="630"
+						/>
+					)
+				)}
 			</header>
 			<small class="link-preview__description">{meta.description}</small>
 		</article>
@@ -58,12 +76,13 @@ const domain = meta?.url ? new URL(meta.url).hostname.replace('www.', '') : '';
 		position: relative;
 		gap: var(--lp-pad-y);
 	}
-	.link-preview a::after {
+	.link-preview:not(.link-preview--has-video) a::after {
 		content: '';
 		position: absolute;
 		inset: 0;
 	}
-	.link-preview img {
+	.link-preview img,
+	.link-preview video {
 		aspect-ratio: 1200 / 630;
 		width: 100%;
 		height: auto;
