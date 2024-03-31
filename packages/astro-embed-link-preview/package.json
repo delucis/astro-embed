@@ -1,6 +1,6 @@
 {
   "name": "@astro-community/astro-embed-link-preview",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Component to embed a website’s OpenGraph image and metadata on your Astro site",
   "type": "module",
   "exports": {
@@ -30,6 +30,6 @@
   },
   "homepage": "https://astro-embed.netlify.app/components/link-preview/",
   "dependencies": {
-    "@astro-community/astro-embed-utils": "^0.1.0"
+    "@astro-community/astro-embed-utils": "^0.1.1"
   }
 }

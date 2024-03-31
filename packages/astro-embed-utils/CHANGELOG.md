@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-utils
 
+## 0.1.1
+
+### Patch Changes
+
+- [#73](https://github.com/delucis/astro-embed/pull/73) [`495cf6fb66e4fd7ca6b25ae8c95078d268b1c078`](https://github.com/delucis/astro-embed/commit/495cf6fb66e4fd7ca6b25ae8c95078d268b1c078) Thanks [@vasfvitor](https://github.com/vasfvitor)! - Adds a utility to fetch a URL and parse it as an HTML document
+
 ## 0.1.0
 
 ### Minor Changes

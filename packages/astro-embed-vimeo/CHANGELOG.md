@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-vimeo
 
+## 0.3.6
+
+### Patch Changes
+
+- [`929b1eeef166dfbd21c9dcaf64d2427f549548da`](https://github.com/delucis/astro-embed/commit/929b1eeef166dfbd21c9dcaf64d2427f549548da) Thanks [@delucis](https://github.com/delucis)! - Fix play button layout bug on Firefox
+
 ## 0.3.5
 
 ### Patch Changes
