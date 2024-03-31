@@ -7,7 +7,7 @@ test('it should render user meta data on card', async () => {
 		{ id: 'https://astro.build/blog/welcome-world/' }
 	);
 	screen.getByText('Welcome, World | Astro');
-	screen.getByText("Astro's new look is live!");
+	screen.getByText(/^Astro's new look is live!/);
 });
 
 test.run();
