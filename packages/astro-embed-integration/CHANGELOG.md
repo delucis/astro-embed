@@ -1,5 +1,19 @@
 # @astro-community/astro-embed-integration
 
+## 0.7.0
+
+### Minor Changes
+
+- [#73](https://github.com/delucis/astro-embed/pull/73) [`495cf6fb66e4fd7ca6b25ae8c95078d268b1c078`](https://github.com/delucis/astro-embed/commit/495cf6fb66e4fd7ca6b25ae8c95078d268b1c078) Thanks [@vasfvitor](https://github.com/vasfvitor)! - Adds a new `<LinkPreview>` component for rendering Open Graph media and metadata
+
+### Patch Changes
+
+- [#73](https://github.com/delucis/astro-embed/pull/73) [`495cf6fb66e4fd7ca6b25ae8c95078d268b1c078`](https://github.com/delucis/astro-embed/commit/495cf6fb66e4fd7ca6b25ae8c95078d268b1c078) Thanks [@vasfvitor](https://github.com/vasfvitor)! - Adds a `services` option to the Astro Embed integration to support disabling specific services.
+
+- Updated dependencies [[`495cf6fb66e4fd7ca6b25ae8c95078d268b1c078`](https://github.com/delucis/astro-embed/commit/495cf6fb66e4fd7ca6b25ae8c95078d268b1c078), [`929b1eeef166dfbd21c9dcaf64d2427f549548da`](https://github.com/delucis/astro-embed/commit/929b1eeef166dfbd21c9dcaf64d2427f549548da)]:
+  - @astro-community/astro-embed-link-preview@0.1.0
+  - @astro-community/astro-embed-vimeo@0.3.6
+
 ## 0.6.2
 
 ### Patch Changes
