@@ -3,7 +3,7 @@ import { renderScreen } from './utils/render.mjs';
 
 test('it should render user meta data on card', async () => {
 	const screen = await renderScreen(
-		'./packages/astro-embed-og/OpenGraph.astro',
+		'./packages/astro-embed-link-preview/LinkPreview.astro',
 		{ id: 'https://astro.build/blog/welcome-world/' }
 	);
 	screen.getByText('Welcome, World | Astro');

@@ -1,32 +1,33 @@
 ---
-import { OpenGraph } from '@astro-community/astro-embed-og';
+import { LinkPreview } from '@astro-community/astro-embed-link-preview';
 import Base from '../layouts/Base.astro';
 ---
 
-<Base title="OpenGraph component example">
+<Base title="LinkPreview component example">
 	<h2>Default</h2>
 	<p>
-		<code>&lt;OpenGraph id="https://astro.build/blog/welcome-world/" /&gt;</code
+		<code
+			>&lt;LinkPreview id="https://astro.build/blog/welcome-world/" /&gt;</code
 		>
 	</p>
-	<OpenGraph id="https://astro.build/blog/welcome-world/" />
+	<LinkPreview id="https://astro.build/blog/welcome-world/" />
 
 	<h2>(very) Basic Styles</h2>
 	<p>
 		<code
-			>&lt;OpenGraph styled id="https://astro.build/blog/welcome-world/" /&gt;</code
+			>&lt;LinkPreview styled id="https://astro.build/blog/welcome-world/" /&gt;</code
 		>
 	</p>
-	<OpenGraph styled id="https://astro.build/blog/welcome-world/" />
+	<LinkPreview styled id="https://astro.build/blog/welcome-world/" />
 
 	<h2>Custom size</h2>
 	<p>
 		<code
-			>&lt;OpenGraph imageWidth="200px" imageHeight="105px"
+			>&lt;LinkPreview imageWidth="200px" imageHeight="105px"
 			id="https://astro.build/blog/welcome-world/" /&gt;</code
 		>
 	</p>
-	<OpenGraph
+	<LinkPreview
 		imageWidth="200px"
 		imageHeight="105px"
 		id="https://astro.build/blog/welcome-world/"

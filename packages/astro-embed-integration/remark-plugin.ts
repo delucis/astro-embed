@@ -2,13 +2,13 @@ import { Node, select, selectAll } from 'unist-util-select';
 import twitterMatcher from '@astro-community/astro-embed-twitter/matcher';
 import vimeoMatcher from '@astro-community/astro-embed-vimeo/matcher';
 import youtubeMatcher from '@astro-community/astro-embed-youtube/matcher';
-import OpenGraphMatcher from '@astro-community/astro-embed-og/matcher';
+import linkPreviewMatcher from '@astro-community/astro-embed-link-preview/matcher';
 
 const matchers = [
 	[twitterMatcher, 'Tweet'],
 	[vimeoMatcher, 'Vimeo'],
 	[youtubeMatcher, 'YouTube'],
-	[OpenGraphMatcher, 'OpenGraph'],
+	[linkPreviewMatcher, 'LinkPreview'],
 ] as const;
 export const componentNames = matchers.map(([, name]) => name);
 
