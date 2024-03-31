@@ -96,6 +96,13 @@ The `<LinkPreview>` component supports the following API for controlling its sty
 }
 ```
 
+### CSS class names API
+
+- `.link-preview`: The root element of the `<LinkPreview>` card.
+- `.link-preview--has-video`: Class applied to the card when it includes video instead of an image.
+- `.link-preview--no-media`: Class applied to the card when it includes no image or video.
+- `.link-preview--no-metadata`: Class applied when metadata scraping failed, or no valid title was found. In this case the only contents of the card is the original URL link.
+
 ## Standalone installation
 
 If you only need the `<LinkPreview>` component, you can install the package directly instead of the main `astro-embed` package:
