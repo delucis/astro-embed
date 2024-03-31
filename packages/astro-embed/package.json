@@ -31,7 +31,7 @@
   },
   "homepage": "https://astro-embed.netlify.app/",
   "dependencies": {
-    "@astro-community/astro-embed-og": "^0.0.1"
+    "@astro-community/astro-embed-og": "^0.0.1",
     "@astro-community/astro-embed-integration": "^0.6.2",
     "@astro-community/astro-embed-twitter": "^0.5.4",
     "@astro-community/astro-embed-vimeo": "^0.3.4",
