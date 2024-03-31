@@ -5,11 +5,18 @@ import urlMatcher from './matcher';
 export interface Props extends astroHTML.JSX.HTMLAttributes {
 	id: string;
 	poster?: string;
+	posterQuality?: 'max' | 'high' | 'default' | 'low';
 	params?: string;
 	playlabel?: string;
 }
 
-const { id, poster, ...attrs } = Astro.props as Props;
+const {
+	id,
+	poster,
+	posterQuality = 'default',
+	title,
+	...attrs
+} = Astro.props as Props;
 
 const idRegExp = /^[A-Za-z0-9-_]+$/;
 
@@ -19,20 +26,31 @@ function extractID(idOrUrl: string) {
 }
 
 const videoid = extractID(id);
-const posterURL = poster || `https://i.ytimg.com/vi/${videoid}/hqdefault.jpg`;
-
-// TODO: use the progressive enhancement pattern once https://github.com/paulirish/lite-youtube-embed/issues/124 is released.
+const posterFile =
+	{
+		max: 'maxresdefault',
+		high: 'sddefault',
+		default: 'hqdefault',
+		low: 'default',
+	}[posterQuality] || 'hqdefault';
+const posterURL =
+	poster || `https://i.ytimg.com/vi_webp/${videoid}/${posterFile}.webp`;
+const href = `https://youtube.com/watch?v=${videoid}`;
 ---
 
 <lite-youtube
 	{videoid}
+	{title}
+	data-title={title}
 	{...attrs}
 	style={`background-image: url('${posterURL}');`}
-/>
+>
+	<a {href} class="lty-playbtn">
+		<span class="lyt-visually-hidden">{attrs.playlabel}</span>
+	</a>
+</lite-youtube>
 
-<script>
-	import 'lite-youtube-embed';
-</script>
+<script src="lite-youtube-embed"></script>
 
 <style is:global>
 	lite-youtube > iframe {

@@ -1,5 +1,5 @@
 import { test } from 'uvu';
-import { renderScreen } from './utils/render';
+import { renderScreen } from './utils/render.mjs';
 
 test('it should render user information in the footer', async () => {
 	const screen = await renderScreen(

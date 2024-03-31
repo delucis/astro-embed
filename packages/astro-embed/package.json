@@ -1,6 +1,6 @@
 {
   "name": "astro-embed",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Astro components to easily embed common media formats",
   "type": "module",
   "exports": {
@@ -13,7 +13,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/delucis/astro-embed.git"
+    "url": "https://github.com/delucis/astro-embed",
+    "directory": "packages/astro-embed"
   },
   "keywords": [
     "astro",
@@ -28,13 +29,13 @@
   "bugs": {
     "url": "https://github.com/delucis/astro-embed/issues"
   },
-  "homepage": "https://github.com/delucis/astro-embed/tree/main/packages/astro-embed#readme",
+  "homepage": "https://astro-embed.netlify.app/",
   "dependencies": {
     "@astro-community/astro-embed-og": "^0.0.1"
-    "@astro-community/astro-embed-integration": "^0.6.1",
-    "@astro-community/astro-embed-twitter": "^0.5.3",
-    "@astro-community/astro-embed-vimeo": "^0.3.2",
-    "@astro-community/astro-embed-youtube": "^0.4.3"
+    "@astro-community/astro-embed-integration": "^0.6.2",
+    "@astro-community/astro-embed-twitter": "^0.5.4",
+    "@astro-community/astro-embed-vimeo": "^0.3.4",
+    "@astro-community/astro-embed-youtube": "^0.5.0"
   },
   "peerDependencies": {
     "astro": "^2.0.0 || ^3.0.0-beta || ^4.0.0-beta"
