@@ -1,0 +1,79 @@
+---
+title: Auto-embed URLs in MDX
+description: Learn how to set up and use the Astro Embed integration to automatically convert URLs to rich media embeds in your MDX content.
+---
+
+The Astro Embed integration automatically converts URLs in MDX files to embed components.
+
+## Set up
+
+To enable the integration, add it to the `integrations` array in your `astro.config.mjs` file before the `mdx()` integration:
+
+```js ins={3} ins="embeds()"
+// astro.config.mjs
+import { defineConfig } from 'astro/config';
+import mdx from '@astrojs/mdx';
+import embeds from 'astro-embed/integration';
+
+export default defineConfig({
+	integrations: [embeds(), mdx()],
+});
+```
+
+## Usage
+
+With the integration enabled, any isolated URL in an MDX file that matches one of the `astro-embed` component types will be converted to the appropriate component.
+
+For example, MDX like this will render an optimised YouTube player component in place of the URL.
+
+```mdx
+---
+# src/content/examples/auto-embed.mdx
+---
+
+I saw this cool video the other day:
+
+http://www.youtube.com/watch?v=Hoe-woAhq_k
+```
+
+Only URLs on their own line will be converted.
+URLs within a paragraph will not be processed.
+
+## Configuration options
+
+The auto-embed integration can be configured by passing an options object in `astro.config.mjs`:
+
+```js {8-10}
+// astro.config.mjs
+import { defineConfig } from 'astro/config';
+import mdx from '@astrojs/mdx';
+import embeds from 'astro-embed/integration';
+
+export default defineConfig({
+	integrations: [
+		embeds({
+			// options
+		}),
+		mdx(),
+	],
+});
+```
+
+### `services`
+
+import { componentNames } from '../../../../packages/astro-embed-integration/remark-plugin';
+
+**Type:** <code>Record&lt;{componentNames.map(JSON.stringify).join(' | ')}, boolean&gt;</code>
+
+By default, the integration enables matching all supported URL types and components.
+This includes the `<LinkPreview>` component which will match any `https://` URL.
+
+To disable one or more services, set them as `false` in the `services` option:
+
+```js {2-4}
+embeds({
+	services: {
+		LinkPreview: false,
+	},
+}),
+```

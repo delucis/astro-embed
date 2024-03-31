@@ -2,26 +2,36 @@ import { Node, select, selectAll } from 'unist-util-select';
 import twitterMatcher from '@astro-community/astro-embed-twitter/matcher';
 import vimeoMatcher from '@astro-community/astro-embed-vimeo/matcher';
 import youtubeMatcher from '@astro-community/astro-embed-youtube/matcher';
+import linkPreviewMatcher from '@astro-community/astro-embed-link-preview/matcher';
 
 const matchers = [
 	[twitterMatcher, 'Tweet'],
 	[vimeoMatcher, 'Vimeo'],
 	[youtubeMatcher, 'YouTube'],
+	/** The generic link matcher must be last otherwise it will override other URLs. */
+	[linkPreviewMatcher, 'LinkPreview'],
 ] as const;
 export const componentNames = matchers.map(([, name]) => name);
 
+interface CreatePluginOptions {
+	importNamespace: string;
+	enabledComponents: typeof componentNames;
+}
+
 export default function createPlugin({
 	importNamespace,
-}: {
-	importNamespace: string;
-}) {
+	enabledComponents,
+}: CreatePluginOptions) {
+	const enabledMatchers = matchers.filter(([, name]) =>
+		enabledComponents.includes(name)
+	);
 	/**
 	 * Get the name of the embed component for this URL
 	 * @param {string} url URL to test
 	 * @returns Component node for this URL or undefined if none matched
 	 */
 	function getComponent(url: string) {
-		for (const [matcher, componentName] of matchers) {
+		for (const [matcher, componentName] of enabledMatchers) {
 			const id = matcher(url);
 			if (id) {
 				// MDX custom component node.
