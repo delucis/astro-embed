@@ -13,7 +13,7 @@ const domain = meta?.url ? new URL(meta.url).hostname.replace('www.', '') : '';
 ---
 
 {
-	meta ? (
+	meta && meta.title ? (
 		<article
 			class:list={[
 				'link-preview',
@@ -45,7 +45,9 @@ const domain = meta?.url ? new URL(meta.url).hostname.replace('www.', '') : '';
 			<small class="link-preview__description">{meta.description}</small>
 		</article>
 	) : (
-		<a href={id}>{id}</a>
+		<div class="link-preview link-preview--no-metadata">
+			<a href={id}>{id}</a>
+		</div>
 	)
 }
 
