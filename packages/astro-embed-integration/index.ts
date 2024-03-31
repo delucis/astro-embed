@@ -11,13 +11,8 @@ export default function embed({
 }: {
 	services?: Partial<Record<(typeof componentNames)[number], boolean>>;
 } = {}) {
-	const disabledServices = new Set(
-		Object.entries(services)
-			.filter(([, val]) => val === false)
-			.map(([key]) => key)
-	);
 	const enabledComponents = componentNames.filter(
-		(name) => !disabledServices.has(name)
+		(name) => services[name] !== false
 	);
 
 	const AstroEmbed: AstroIntegration = {
