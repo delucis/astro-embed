@@ -17,14 +17,12 @@ export default defineConfig({
 				github: 'https://github.com/delucis/astro-embed',
 			},
 			sidebar: [
-				{
-					label: 'Getting started',
-					link: '/getting-started/',
-				},
+				{ label: 'Getting started', link: '/getting-started/' },
 				{
 					label: 'Components',
 					autogenerate: { directory: 'components' },
 				},
+				{ label: 'Auto-embed URLs', link: '/integration/' },
 			],
 			customCss: ['./src/assets/theme.css'],
 			components: {

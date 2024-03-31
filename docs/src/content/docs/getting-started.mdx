@@ -60,34 +60,7 @@ Vimeo and YouTube videos work too :-)
 
 Use the Astro Embed integration to automatically convert URLs in MDX files to embed components.
 
-To enable the integration, add it to the `integrations` array in your `astro.config.mjs` file before the `mdx()` integration:
-
-```js ins={3} ins="embeds()"
-import { defineConfig } from 'astro/config';
-import mdx from '@astrojs/mdx';
-import embeds from 'astro-embed/integration';
-
-export default defineConfig({
-	integrations: [embeds(), mdx()],
-});
-```
-
-With the integration enabled, any isolated URL in an MDX file that matches one of the `astro-embed` component types will be converted to the appropriate component.
-
-For example, MDX like this will render an optimised YouTube player component in place of the URL.
-
-```mdx
----
-# src/content/examples/auto-embed.mdx
----
-
-I saw this cool video the other day:
-
-http://www.youtube.com/watch?v=Hoe-woAhq_k
-```
-
-Only URLs on their own line will be converted.
-URLs within a paragraph will not be processed.
+Learn how to set up the integration in the [“Auto-embed URLs”](/integration/) guide.
 
 ## Supported services
 
