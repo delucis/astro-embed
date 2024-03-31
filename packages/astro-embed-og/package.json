@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/delucis/astro-embed/issues"
   },
-  "homepage": "https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-og#readme"
+  "homepage": "https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-og#readme",
+  "dependencies": {
+    "@astro-community/astro-embed-utils": "^0.1.0"
+  }
 }

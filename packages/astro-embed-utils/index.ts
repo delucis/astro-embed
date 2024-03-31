@@ -1,3 +1,5 @@
+import { parseHTML } from 'linkedom';
+
 class LRU<K, V> extends Map<K, V> {
 	constructor(private readonly maxSize: number) {
 		super();
@@ -21,8 +23,6 @@ class LRU<K, V> extends Map<K, V> {
 	}
 }
 
-const cache = new LRU<string, Record<string, any>>(1000);
-
 const formatError = (...lines: string[]) => lines.join('\n         ');
 
 /**
@@ -30,25 +30,41 @@ const formatError = (...lines: string[]) => lines.join('\n         ');
  * @param url URL to fetch
  * @returns {Promise<Record<string, any> | undefined>}
  */
-export async function safeGet(
-	url: string
-): Promise<Record<string, any> | undefined> {
-	try {
-		const cached = cache.get(url);
-		if (cached) return cached;
-		const res = await fetch(url);
-		if (!res.ok)
-			throw new Error(
-				formatError(
-					`Failed to fetch ${url}`,
-					`Error ${res.status}: ${res.statusText}`
-				)
-			);
-		const json = await res.json();
-		cache.set(url, json);
-		return json;
-	} catch (e: any) {
-		console.error(formatError(`[error]  astro-embed`, e?.message ?? e));
-		return undefined;
-	}
+export const safeGet = makeSafeGetter<Record<string, any>>((res) => res.json());
+
+/**
+ * Fetch a URL and parse it as HTML, but catch errors to stop builds erroring.
+ * @param url URL to fetch
+ * @returns {Promise<Document | undefined>}
+ */
+export const safeGetDOM = makeSafeGetter(
+	async (res) => parseHTML(await res.text()).document
+);
+
+/** Factory to create safe, caching fetch functions. */
+function makeSafeGetter<T>(
+	handleResponse: (res: Response) => T | Promise<T>,
+	{ cacheSize = 1000 }: { cacheSize?: number } = {}
+) {
+	const cache = new LRU<string, T>(cacheSize);
+	return async function safeGet(url: string): Promise<T | undefined> {
+		try {
+			const cached = cache.get(url);
+			if (cached) return cached;
+			const response = await fetch(url);
+			if (!response.ok)
+				throw new Error(
+					formatError(
+						`Failed to fetch ${url}`,
+						`Error ${response.status}: ${response.statusText}`
+					)
+				);
+			const result = await handleResponse(response);
+			cache.set(url, result);
+			return result;
+		} catch (e: any) {
+			console.error(formatError(`[error]  astro-embed`, e?.message ?? e));
+			return undefined;
+		}
+	};
 }
