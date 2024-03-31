@@ -1,0 +1,72 @@
+---
+title: Link Preview
+description: Learn how to use the Astro Embed link preview component to embed Open Graph images and metadata in your website
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { LinkPreview } from '@astro-community/astro-embed-link-preview';
+
+The `<LinkPreview>` component embeds the Open Graph image and metadata for a URL in your page.
+
+## Usage
+
+<Tabs>
+<TabItem label="Astro" icon="astro">
+```astro
+---
+import { LinkPreview } from 'astro-embed';
+---
+
+<LinkPreview id="https://astro.build/blog/welcome-world/" />
+````
+</TabItem>
+<TabItem label="MDX" icon="seti:markdown">
+```mdx
+import { LinkPreview } from 'astro-embed';
+
+<LinkPreview id="https://astro.build/blog/welcome-world/" />
+````
+
+</TabItem>
+</Tabs>
+
+The above code produces the following result:
+
+<LinkPreview id="https://astro.build/blog/welcome-world/" />
+
+## Styling the preview
+
+By default the `<LinkPreview>` card has some minimal layout styling, which should adapt to your site’s font settings etc.
+
+You can customise it with CSS by targeting the `.link-preview` class.
+
+### Custom properties API
+
+The `<LinkPreview>` component also supports a minimal API for controlling its styles by setting some CSS custom properties.
+
+```css
+:root {
+	/** Set the maximum width of the link preview. */
+	--link-preview-width: 30em;
+	/** Set the inline padding of the card text. */
+	--link-preview-padding-inline: 1em;
+	/** Set the vertical padding around the card text. */
+	--link-preview-padding-block: 0.5em;
+	/** Round the corners of the link preview card. */
+	--link-preview-corners: 0.5em;
+}
+```
+
+## Standalone installation
+
+If you only need the `<LinkPreview>` component, you can install the package directly instead of the main `astro-embed` package:
+
+import { PackageManagers } from 'starlight-package-managers';
+
+<PackageManagers pkg="@astro-community/astro-embed-link-preview" />
+
+The `<LinkPreview>` component can then be imported as:
+
+```js
+import { LinkPreview } from '@astro-community/astro-embed-link-preview';
+```
