@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/delucis/astro-embed/issues"
   },
-  "homepage": "https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-utils#readme"
+  "homepage": "https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-utils#readme",
+  "dependencies": {
+    "linkedom": "^0.14.26"
+  }
 }
