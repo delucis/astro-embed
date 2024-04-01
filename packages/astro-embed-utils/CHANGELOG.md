@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-utils
 
+## 0.1.2
+
+### Patch Changes
+
+- [`e4b7ddc0e17bfe2735f502b6dff40b27d4eb6f31`](https://github.com/delucis/astro-embed/commit/e4b7ddc0e17bfe2735f502b6dff40b27d4eb6f31) Thanks [@delucis](https://github.com/delucis)! - Fixes missing dependency on `linkedom`
+
 ## 0.1.1
 
 ### Patch Changes
