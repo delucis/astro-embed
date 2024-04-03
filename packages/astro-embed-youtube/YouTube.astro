@@ -1,6 +1,7 @@
 ---
 import 'lite-youtube-embed/src/lite-yt-embed.css';
 import urlMatcher from './matcher';
+import { getImage } from 'astro:assets';
 
 export interface Props extends astroHTML.JSX.HTMLAttributes {
 	id: string;
@@ -8,6 +9,7 @@ export interface Props extends astroHTML.JSX.HTMLAttributes {
 	posterQuality?: 'max' | 'high' | 'default' | 'low';
 	params?: string;
 	playlabel?: string;
+	downloadPoster?: boolean;
 }
 
 const {
@@ -15,6 +17,7 @@ const {
 	poster,
 	posterQuality = 'default',
 	title,
+	downloadPoster,
 	...attrs
 } = Astro.props as Props;
 
@@ -35,6 +38,9 @@ const posterFile =
 	}[posterQuality] || 'hqdefault';
 const posterURL =
 	poster || `https://i.ytimg.com/vi_webp/${videoid}/${posterFile}.webp`;
+const posterSource = downloadPoster
+	? (await getImage({ src: posterURL, inferSize: true, format: 'webp' })).src
+	: posterURL;
 const href = `https://youtube.com/watch?v=${videoid}`;
 ---
 
@@ -43,7 +49,7 @@ const href = `https://youtube.com/watch?v=${videoid}`;
 	{title}
 	data-title={title}
 	{...attrs}
-	style={`background-image: url('${posterURL}');`}
+	style={`background-image: url('${posterSource}');`}
 >
 	<a {href} class="lty-playbtn">
 		<span class="lyt-visually-hidden">{attrs.playlabel}</span>
