@@ -128,6 +128,27 @@ Set a visible title to overlay on the video.
 	title="The Astro Community: where contributors find a home"
 />
 
+### `downloadPoster`
+
+**Type:** `boolean`
+
+Download the poster image and host it on the same server as your website.
+
+```astro
+<YouTube id="TtRtkTzHVBU" downloadPoster />
+```
+
+To use the `downloadPoster` attribute, need to add the address of the image server to astro.config.mjs as follows:
+
+
+```js
+export default defineConfig({
+	image: {
+		domains: ['i.ytimg.com'],
+	},
+});
+```
+
 ## Standalone installation
 
 If you only need the `<YouTube>` component, you can install the package directly instead of the main `astro-embed` package:
