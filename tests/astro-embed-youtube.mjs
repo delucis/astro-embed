@@ -13,7 +13,7 @@ test('it should render a lite-youtube element', async () => {
 	assert.ok(embed);
 	assert.is(
 		embed.style['background-image'],
-		`url('https://i.ytimg.com/vi_webp/${videoid}/hqdefault.webp')`
+		`url('https://i.ytimg.com/vi/${videoid}/hqdefault.jpg')`
 	);
 	// It renders a static link to the video.
 	const playButton = /** @type {HTMLAnchorElement} */ (
@@ -84,7 +84,7 @@ test('it can render a lower resolution poster image', async () => {
 	assert.ok(embed);
 	assert.is(
 		embed.style['background-image'],
-		`url('https://i.ytimg.com/vi_webp/${videoid}/default.webp')`
+		`url('https://i.ytimg.com/vi/${videoid}/default.jpg')`
 	);
 });
 
