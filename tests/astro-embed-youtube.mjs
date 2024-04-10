@@ -13,7 +13,7 @@ test('it should render a lite-youtube element', async () => {
 	assert.ok(embed);
 	assert.is(
 		embed.style['background-image'],
-		`url('https://i.ytimg.com/vi_webp/${videoid}/hqdefault.webp')`
+		`url('https://i.ytimg.com/vi/${videoid}/hqdefault.jpg')`
 	);
 	// It renders a static link to the video.
 	const playButton = /** @type {HTMLAnchorElement} */ (
@@ -84,33 +84,33 @@ test('it can render a lower resolution poster image', async () => {
 	assert.ok(embed);
 	assert.is(
 		embed.style['background-image'],
-		`url('https://i.ytimg.com/vi_webp/${videoid}/default.webp')`
-	);
-});
-
-test('it can render a jpg poster image', async () => {
-	const { window } = await renderDOM(
-		'./packages/astro-embed-youtube/YouTube.astro',
-		{ id: videoid, posterFormat: 'jpg' }
-	);
-	const embed = window.document.querySelector('lite-youtube');
-	assert.ok(embed);
-	assert.is(
-		embed.style['background-image'],
-		`url('https://i.ytimg.com/vi/${videoid}/hqdefault.jpg')`
-	);
-});
-
-test('it can render a lower resolution jpg poster image', async () => {
-	const { window } = await renderDOM(
-		'./packages/astro-embed-youtube/YouTube.astro',
-		{ id: videoid, posterFormat: 'jpg', posterQuality: 'low' }
-	);
-	const embed = window.document.querySelector('lite-youtube');
-	assert.ok(embed);
-	assert.is(
-		embed.style['background-image'],
 		`url('https://i.ytimg.com/vi/${videoid}/default.jpg')`
+	);
+});
+
+test('it can render a webp poster image', async () => {
+	const { window } = await renderDOM(
+		'./packages/astro-embed-youtube/YouTube.astro',
+		{ id: videoid, posterFormat: 'webp' }
+	);
+	const embed = window.document.querySelector('lite-youtube');
+	assert.ok(embed);
+	assert.is(
+		embed.style['background-image'],
+		`url('https://i.ytimg.com/vi_webp/${videoid}/hqdefault.webp')`
+	);
+});
+
+test('it can render a lower resolution webp poster image', async () => {
+	const { window } = await renderDOM(
+		'./packages/astro-embed-youtube/YouTube.astro',
+		{ id: videoid, posterFormat: 'webp', posterQuality: 'low' }
+	);
+	const embed = window.document.querySelector('lite-youtube');
+	assert.ok(embed);
+	assert.is(
+		embed.style['background-image'],
+		`url('https://i.ytimg.com/vi_webp/${videoid}/default.webp')`
 	);
 });
 

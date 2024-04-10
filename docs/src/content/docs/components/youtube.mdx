@@ -68,16 +68,16 @@ For example, this is the same video as above but with a custom poster image:
 ### `posterFormat`
 
 **Type:** `'jpg' | 'webp'`
-**Default:** `'webp'`
+**Default:** `'jpg'`
 
 When using the default YouTube poster image, set the `posterFormat` to change the format of the placeholder image.
-This can be useful if displaying older videos that do not have `webp` posters.
+This can be used to select the newer `webp` format which typically has a lower file size and removes the black bars.
 
 ```astro
-<YouTube id="TtRtkTzHVBU" posterFormat="jpg" />
+<YouTube id="TtRtkTzHVBU" posterFormat="webp" />
 ```
 
-<YouTube id="TtRtkTzHVBU" posterFormat="jpg" />
+<YouTube id="TtRtkTzHVBU" posterFormat="webp" />
 
 ### `posterQuality`
 
