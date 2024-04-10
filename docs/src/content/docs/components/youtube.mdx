@@ -65,6 +65,20 @@ For example, this is the same video as above but with a custom poster image:
 	poster="https://images-assets.nasa.gov/image/0302063/0302063~medium.jpg"
 />
 
+### `posterFormat`
+
+**Type:** `'jpg' | 'webp'`
+**Default:** `'webp'`
+
+When using the default YouTube poster image, set the `posterFormat` to change the format of the placeholder image.
+This can be useful if displaying older videos that do not have `webp` posters.
+
+```astro
+<YouTube id="TtRtkTzHVBU" posterFormat="jpg" />
+```
+
+<YouTube id="TtRtkTzHVBU" posterFormat="jpg" />
+
 ### `posterQuality`
 
 **Type:** `'max' | 'high' | 'default' | 'low'`  

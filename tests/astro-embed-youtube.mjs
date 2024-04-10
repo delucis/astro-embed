@@ -88,6 +88,32 @@ test('it can render a lower resolution poster image', async () => {
 	);
 });
 
+test('it can render a jpg poster image', async () => {
+	const { window } = await renderDOM(
+		'./packages/astro-embed-youtube/YouTube.astro',
+		{ id: videoid, posterFormat: 'jpg' }
+	);
+	const embed = window.document.querySelector('lite-youtube');
+	assert.ok(embed);
+	assert.is(
+		embed.style['background-image'],
+		`url('https://i.ytimg.com/vi/${videoid}/hqdefault.jpg')`
+	);
+});
+
+test('it can render a lower resolution jpg poster image', async () => {
+	const { window } = await renderDOM(
+		'./packages/astro-embed-youtube/YouTube.astro',
+		{ id: videoid, posterFormat: 'jpg', posterQuality: 'low' }
+	);
+	const embed = window.document.querySelector('lite-youtube');
+	assert.ok(embed);
+	assert.is(
+		embed.style['background-image'],
+		`url('https://i.ytimg.com/vi/${videoid}/default.jpg')`
+	);
+});
+
 test('title attribute also sets `data-title`', async () => {
 	const { window } = await renderDOM(
 		'./packages/astro-embed-youtube/YouTube.astro',

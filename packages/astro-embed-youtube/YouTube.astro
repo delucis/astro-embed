@@ -5,6 +5,7 @@ import urlMatcher from './matcher';
 export interface Props extends astroHTML.JSX.HTMLAttributes {
 	id: string;
 	poster?: string;
+	posterFormat?: 'jpg' | 'webp';
 	posterQuality?: 'max' | 'high' | 'default' | 'low';
 	params?: string;
 	playlabel?: string;
@@ -13,6 +14,7 @@ export interface Props extends astroHTML.JSX.HTMLAttributes {
 const {
 	id,
 	poster,
+	posterFormat = 'webp',
 	posterQuality = 'default',
 	title,
 	...attrs
@@ -34,7 +36,11 @@ const posterFile =
 		low: 'default',
 	}[posterQuality] || 'hqdefault';
 const posterURL =
-	poster || `https://i.ytimg.com/vi_webp/${videoid}/${posterFile}.webp`;
+	poster ||
+	{
+		jpg: `https://i.ytimg.com/vi/${videoid}/${posterFile}.jpg`,
+		webp: `https://i.ytimg.com/vi_webp/${videoid}/${posterFile}.webp`,
+	}[posterFormat];
 const href = `https://youtube.com/watch?v=${videoid}`;
 ---
 
