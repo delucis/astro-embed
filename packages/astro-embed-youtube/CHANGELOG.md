@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-youtube
 
+## 0.5.2
+
+### Patch Changes
+
+- [#117](https://github.com/delucis/astro-embed/pull/117) [`c16d622eca47cd08d9455cc8be3a2a688f07c145`](https://github.com/delucis/astro-embed/commit/c16d622eca47cd08d9455cc8be3a2a688f07c145) Thanks [@jrouleau](https://github.com/jrouleau)! - Revert to `jpg` for `<YouTube>` poster
+
 ## 0.5.1
 
 ### Patch Changes
