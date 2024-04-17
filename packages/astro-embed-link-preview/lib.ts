@@ -11,10 +11,7 @@ const urlOrNull = (url: string | null | undefined) =>
  * Loads and parses an HTML page to return Open Graph metadata.
  * @param pageUrl URL to parse
  */
-export async function parseOpenGraph(
-	pageUrl: string,
-	downloadPoster: boolean = false
-) {
+export async function parseOpenGraph(pageUrl: string) {
 	const html = await safeGetDOM(pageUrl);
 	if (!html) return;
 
@@ -33,10 +30,9 @@ export async function parseOpenGraph(
 			getMetaProperty('og:image')
 	);
 
-	const image =
-		downloadPoster && imageURL
-			? (await getImage({ src: imageURL, inferSize: true, format: 'webp' })).src
-			: imageURL;
+	const image = (
+		await getImage({ src: imageURL, inferSize: true, format: 'webp' })
+	).src;
 	const imageAlt = getMetaProperty('og:image:alt');
 	const video = urlOrNull(
 		getMetaProperty('og:video:secure_url') ||
