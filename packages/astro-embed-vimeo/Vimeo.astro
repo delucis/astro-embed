@@ -15,8 +15,6 @@ export interface Props extends astroHTML.JSX.HTMLAttributes {
 	params?: string;
 	/** Label for the button that will play the video. Default label: `'Play'` */
 	playlabel?: string;
-	/** Download the poster image. */
-	downloadPoster?: boolean;
 }
 
 const {
@@ -25,7 +23,6 @@ const {
 	posterQuality = 'default',
 	params = '',
 	playlabel = 'Play',
-	downloadPoster,
 	style,
 	...attrs
 } = Astro.props as Props;

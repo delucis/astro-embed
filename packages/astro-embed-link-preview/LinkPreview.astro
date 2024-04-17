@@ -4,12 +4,11 @@ import { parseOpenGraph } from './lib';
 export interface Props {
 	/** URL to fetch Open Graph data. */
 	id: string;
-	downloadPoster?: boolean;
 }
 
-const { id, downloadPoster } = Astro.props;
+const { id } = Astro.props;
 
-const meta = await parseOpenGraph(id, downloadPoster);
+const meta = await parseOpenGraph(id);
 const domain = meta?.url ? new URL(meta.url).hostname.replace('www.', '') : '';
 ---
 

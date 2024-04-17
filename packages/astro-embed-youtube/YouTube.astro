@@ -9,7 +9,6 @@ export interface Props extends astroHTML.JSX.HTMLAttributes {
 	posterQuality?: 'max' | 'high' | 'default' | 'low';
 	params?: string;
 	playlabel?: string;
-	downloadPoster?: boolean;
 }
 
 const {
@@ -17,7 +16,6 @@ const {
 	poster,
 	posterQuality = 'default',
 	title,
-	downloadPoster,
 	...attrs
 } = Astro.props as Props;
 
