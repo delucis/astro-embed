@@ -45,15 +45,23 @@ if (!posterURL) {
 		{ max: 1280, high: 640, default: 480, low: 120 }[posterQuality] || 480;
 	const { thumbnail_large } = data?.[0] || {};
 	if (thumbnail_large.endsWith('d_640')) {
-		posterURL = thumbnail_large.slice(0, -3) + resolution;
+		posterURL = (
+			await getImage({
+				src: thumbnail_large.slice(0, -3) + resolution,
+				inferSize: true,
+				format: 'webp',
+			})
+		).src;
 	} else {
-		posterURL = thumbnail_large;
+		posterURL = (
+			await getImage({
+				src: thumbnail_large,
+				inferSize: true,
+				format: 'webp'
+			})
+		).src;
 	}
 }
-const posterSource =
-	downloadPoster && posterURL
-		? (await getImage({ src: posterURL, inferSize: true, format: 'webp' })).src
-		: posterURL;
 
 let [searchString, t] = params.split('#t=');
 const searchParams = new URLSearchParams(searchString);
@@ -66,7 +74,7 @@ const color = searchParams.get('color');
 const styles = [];
 if (style) styles.push(style);
 if (color) styles.push(`--ltv-color: #${color}`);
-if (posterURL) styles.push(`background-image: url('${posterSource}')`);
+if (posterURL) styles.push(`background-image: url('${posterURL}')`);
 ---
 
 <lite-vimeo

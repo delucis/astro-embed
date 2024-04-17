@@ -37,8 +37,14 @@ const posterFile =
 		low: 'default',
 	}[posterQuality] || 'hqdefault';
 const posterURL =
-	poster || `https://i.ytimg.com/vi/${videoid}/${posterFile}.jpg`;
-const posterSource = (await getImage({ src: posterURL, inferSize: true, format: 'webp' })).src
+	poster ||
+	(
+		await getImage({
+			src: `https://i.ytimg.com/vi/${videoid}/${posterFile}.jpg`,
+			inferSize: true,
+			format: 'webp',
+		})
+	).src;
 const href = `https://youtube.com/watch?v=${videoid}`;
 ---
 
@@ -47,7 +53,7 @@ const href = `https://youtube.com/watch?v=${videoid}`;
 	{title}
 	data-title={title}
 	{...attrs}
-	style={`background-image: url('${posterSource}');`}
+	style={`background-image: url('${posterURL}');`}
 >
 	<a {href} class="lty-playbtn">
 		<span class="lyt-visually-hidden">{attrs.playlabel}</span>
