@@ -37,7 +37,7 @@ const posterFile =
 		low: 'default',
 	}[posterQuality] || 'hqdefault';
 const posterURL =
-	poster || `https://i.ytimg.com/vi_webp/${videoid}/${posterFile}.webp`;
+	poster || `https://i.ytimg.com/vi/${videoid}/${posterFile}.jpg`;
 const posterSource = (await getImage({ src: posterURL, inferSize: true, format: 'webp' })).src
 const href = `https://youtube.com/watch?v=${videoid}`;
 ---

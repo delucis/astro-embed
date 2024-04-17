@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-vimeo
 
+## 0.3.7
+
+### Patch Changes
+
+- [#113](https://github.com/delucis/astro-embed/pull/113) [`17d556e9acb33635a75a5e3c75a84c2ba7849f12`](https://github.com/delucis/astro-embed/commit/17d556e9acb33635a75a5e3c75a84c2ba7849f12) Thanks [@KristianH](https://github.com/KristianH)! - Add `astro-embed-utils` as dependency to package `astro-embed-vimeo`
+
 ## 0.3.6
 
 ### Patch Changes
