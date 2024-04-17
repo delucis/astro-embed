@@ -34,15 +34,23 @@ const posterFile =
 		default: 'hqdefault',
 		low: 'default',
 	}[posterQuality] || 'hqdefault';
-const posterURL =
-	poster ||
-	(
-		await getImage({
-			src: `https://i.ytimg.com/vi/${videoid}/${posterFile}.jpg`,
-			inferSize: true,
-			format: 'webp',
-		})
-	).src;
+const posterURL = poster
+	? poster.startsWith('http')
+		? (
+				await getImage({
+					src: poster,
+					inferSize: true,
+					format: 'webp',
+				})
+		  ).src
+		: poster
+	: (
+			await getImage({
+				src: `https://i.ytimg.com/vi/${videoid}/${posterFile}.jpg`,
+				inferSize: true,
+				format: 'webp',
+			})
+	  ).src;
 const href = `https://youtube.com/watch?v=${videoid}`;
 ---
 

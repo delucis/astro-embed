@@ -35,7 +35,17 @@ function extractID(idOrUrl: string) {
 }
 
 const videoid = extractID(id);
-let posterURL = poster;
+let posterURL = poster
+	? poster.startsWith('http')
+		? (
+				await getImage({
+					src: poster,
+					inferSize: true,
+					format: 'webp',
+				})
+		  ).src
+		: poster
+	: null;
 if (!posterURL) {
 	const data = await safeGet(`https://vimeo.com/api/v2/video/${videoid}.json`);
 	const resolution =
@@ -54,7 +64,7 @@ if (!posterURL) {
 			await getImage({
 				src: thumbnail_large,
 				inferSize: true,
-				format: 'webp'
+				format: 'webp',
 			})
 		).src;
 	}
