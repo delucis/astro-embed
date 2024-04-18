@@ -1,5 +1,6 @@
 ---
 import { parseOpenGraph } from './lib';
+import { Image } from 'astro:assets';
 
 export interface Props {
 	/** URL to fetch Open Graph data. */
@@ -41,7 +42,7 @@ const domain = meta?.url ? new URL(meta.url).hostname.replace('www.', '') : '';
 				</video>
 			) : (
 				meta.image && (
-					<img
+					<Image
 						src={meta.image}
 						alt={meta.imageAlt || ''}
 						width="1200"

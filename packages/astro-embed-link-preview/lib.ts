@@ -1,5 +1,4 @@
 import { safeGetDOM } from '@astro-community/astro-embed-utils';
-import { getImage } from 'astro:assets';
 
 /** Helper to get the `content` attribute of an element. */
 const getContent = (el: Element | null) => el?.getAttribute('content');
@@ -24,15 +23,12 @@ export async function parseOpenGraph(pageUrl: string) {
 		getMetaProperty('og:title') || html.querySelector('title')?.textContent;
 	const description =
 		getMetaProperty('og:description') || getMetaName('description');
-	const imageURL = urlOrNull(
+	const image = urlOrNull(
 		getMetaProperty('og:image:secure_url') ||
 			getMetaProperty('og:image:url') ||
 			getMetaProperty('og:image')
 	);
 
-	const image = (
-		await getImage({ src: imageURL, inferSize: true, format: 'webp' })
-	).src;
 	const imageAlt = getMetaProperty('og:image:alt');
 	const video = urlOrNull(
 		getMetaProperty('og:video:secure_url') ||
