@@ -110,18 +110,9 @@ If you want to customise this, for example to match the language of your website
 <Vimeo id="32001208" playlabel="Play the video" />
 ```
 
-### `downloadPoster`
+## Poster Image Optimization
 
-**Type:** `boolean`
-
-Download the poster image and host it on the same server as your website.
-
-```astro
-<Vimeo id="32001208" downloadPoster />
-```
-
-To use the `downloadPoster` attribute, need to add the address of the image server to astro.config.mjs as follows:
-
+To optimize the poster image, you can add the following configuration to your `astro.config.mjs` file to allow remote images:
 
 ```js
 export default defineConfig({
@@ -130,6 +121,21 @@ export default defineConfig({
 	},
 });
 ```
+
+If you are using a remote image with the `poster` prop, you will need to adjust the `domains` URL in the `astro.config.mjs` file to match the URL of the remote image.
+
+You can also allow all HTTPS URLs by setting the `remotePatterns` option in the `astro.config.mjs` file.
+
+```js
+export default defineConfig({
+  image: {
+    remotePatterns: [{ protocol: "https" }],
+  }
+});
+```
+
+If you are using a local image with the `poster` prop, the image will not be optimized.
+
 
 ## Standalone installation
 

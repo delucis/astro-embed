@@ -131,6 +131,30 @@ export default defineConfig({
 });
 ```
 
+## Poster Image Optimization
+
+To optimize the poster image, you can add the following configuration to your `astro.config.mjs` file to allow remote images:
+
+```js
+export default defineConfig({
+	image: {
+		domains: ['astro.build'],
+	},
+});
+```
+
+If you are using a remote image with the `poster` prop, you will need to adjust the `domains` URL in the `astro.config.mjs` file to match the URL of the remote image.
+
+You can also allow all HTTPS URLs by setting the `remotePatterns` option in the `astro.config.mjs` file.
+
+```js
+export default defineConfig({
+  image: {
+    remotePatterns: [{ protocol: "https" }],
+  }
+});
+```
+
 ## Standalone installation
 
 If you only need the `<LinkPreview>` component, you can install the package directly instead of the main `astro-embed` package:
