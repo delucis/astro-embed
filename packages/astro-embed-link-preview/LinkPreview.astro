@@ -64,6 +64,7 @@ const domain = meta?.url ? new URL(meta.url).hostname.replace('www.', '') : '';
 		--lp-pad-x: var(--link-preview-padding-inline, 0);
 		--lp-pad-y: var(--link-preview-padding-block, 0.5em);
 		--lp-corners: var(--link-preview-corners, 0);
+		--lp-desc-lines: var(--link-preview-description-lines, 1);
 
 		position: relative;
 		width: var(--lp-width);
@@ -86,7 +87,9 @@ const domain = meta?.url ? new URL(meta.url).hostname.replace('www.', '') : '';
 	}
 
 	.link-preview__description {
-		white-space: nowrap;
+		display: -webkit-box;
+		-webkit-line-clamp: var(--lp-desc-lines);
+		-webkit-box-orient: vertical;
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
