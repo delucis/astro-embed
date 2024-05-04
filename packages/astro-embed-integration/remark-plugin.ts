@@ -1,4 +1,4 @@
-import { Node, select, selectAll } from 'unist-util-select';
+import { type Node, select, selectAll } from 'unist-util-select';
 import twitterMatcher from '@astro-community/astro-embed-twitter/matcher';
 import vimeoMatcher from '@astro-community/astro-embed-vimeo/matcher';
 import youtubeMatcher from '@astro-community/astro-embed-youtube/matcher';
