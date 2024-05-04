@@ -1,4 +1,4 @@
-import { Node, select, selectAll } from 'unist-util-select';
+import { type Node, select, selectAll } from 'unist-util-select';
 import twitterMatcher from '@astro-community/astro-embed-twitter/matcher';
 import vimeoMatcher from '@astro-community/astro-embed-vimeo/matcher';
 import youtubeMatcher from '@astro-community/astro-embed-youtube/matcher';
@@ -58,9 +58,22 @@ export default function createPlugin({
 			const link: Link | null = select(':scope > link:only-child', paragraph);
 			if (!link) return;
 
-			const { url } = link;
+			const { url, children } = link;
 			// We’re only interested in HTTP links
-			if (!url?.startsWith('http')) return;
+			if (!url || !url.startsWith('http')) return;
+			// URLs should have a single child
+			if (!children || children.length !== 1) return;
+
+			// The child should be a text node with a value matching the URL
+			const child = children[0];
+			if (
+				!child ||
+				child.type !== 'text' ||
+				!('value' in child) ||
+				child.value !== url
+			) {
+				return;
+			}
 
 			const component = getComponent(url);
 			if (component) {
