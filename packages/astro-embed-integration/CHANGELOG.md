@@ -1,5 +1,16 @@
 # @astro-community/astro-embed-integration
 
+## 0.7.1
+
+### Patch Changes
+
+- [#121](https://github.com/delucis/astro-embed/pull/121) [`93a5ca7aeefab7514bcde86fbe080d404a3169f8`](https://github.com/delucis/astro-embed/commit/93a5ca7aeefab7514bcde86fbe080d404a3169f8) Thanks [@delucis](https://github.com/delucis)! - Fixes an issue where the integration would match links that take up an entire paragraph even if they included a custom link.
+
+  For example, `[Check it out!](https://example.com)` would be converted to a `<LinkPreview>` component instead of rendering an `<a>` tag. This is now fixed and only plain URLs like `https://example.com` will match.
+
+- Updated dependencies [[`732a6cfac5038f82ccdd4df7c2dacf036deceae5`](https://github.com/delucis/astro-embed/commit/732a6cfac5038f82ccdd4df7c2dacf036deceae5)]:
+  - @astro-community/astro-embed-link-preview@0.2.0
+
 ## 0.7.0
 
 ### Minor Changes
