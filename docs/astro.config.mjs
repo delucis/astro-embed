@@ -6,8 +6,10 @@ import embeds from 'astro-embed/integration';
 export default defineConfig({
 	site: 'https://astro-embed.netlify.app/',
 	integrations: [
+		embeds(),
 		starlight({
 			title: 'Astro Embed',
+			credits: true,
 			logo: {
 				light: './src/assets/logo-light.svg',
 				dark: './src/assets/logo-dark.svg',
@@ -29,6 +31,5 @@ export default defineConfig({
 				Head: './src/overrides/Head.astro',
 			},
 		}),
-		embeds(),
 	],
 });
