@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-utils
 
+## 0.1.3
+
+### Patch Changes
+
+- [#130](https://github.com/delucis/astro-embed/pull/130) [`826ec796fddc337421eb5477661bc0f76e87a811`](https://github.com/delucis/astro-embed/commit/826ec796fddc337421eb5477661bc0f76e87a811) Thanks [@IshanKBG](https://github.com/IshanKBG)! - Fixes support for serverless usage, for example with the Cloudflare adapter.
+
 ## 0.1.2
 
 ### Patch Changes
