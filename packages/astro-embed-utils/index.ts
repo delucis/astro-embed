@@ -1,4 +1,4 @@
-import { parseHTML } from 'linkedom';
+import { parseHTML } from 'linkedom/worker';
 
 class LRU<K, V> extends Map<K, V> {
 	constructor(private readonly maxSize: number) {
