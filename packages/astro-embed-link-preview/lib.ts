@@ -28,6 +28,7 @@ export async function parseOpenGraph(pageUrl: string) {
 			getMetaProperty('og:image:url') ||
 			getMetaProperty('og:image')
 	);
+
 	const imageAlt = getMetaProperty('og:image:alt');
 	const video = urlOrNull(
 		getMetaProperty('og:video:secure_url') ||

@@ -107,6 +107,56 @@ The `<LinkPreview>` component supports the following API for controlling its sty
 - `.link-preview--no-media`: Class applied to the card when it includes no image or video.
 - `.link-preview--no-metadata`: Class applied when metadata scraping failed, or no valid title was found. In this case the only contents of the card is the original URL link.
 
+## Optional props
+
+In addition to the required `id` prop, the following props are available to customise how the `<LinkPreview>` component renders:
+
+### `downloadPoster`
+
+**Type:** `boolean`
+
+Download the poster image and host it on the same server as your website.
+
+This attribute can only be used if the `og:image` metadata exists.
+
+```astro
+<LinkPreview id="https://astro.build/blog/welcome-world/" downloadPoster />
+```
+
+To use the `downloadPoster` attribute, need to add the address of the image server to astro.config.mjs as follows:
+
+```js
+export default defineConfig({
+	image: {
+		domains: ['astro.build'],
+	},
+});
+```
+
+## Poster Image Optimization
+
+To optimize the poster image, you can add the following configuration to your `astro.config.mjs` file to allow remote images:
+
+```js
+export default defineConfig({
+	image: {
+		domains: ['astro.build'],
+	},
+});
+```
+
+If you are using a remote image with the `poster` prop, you will need to adjust the `domains` URL in the `astro.config.mjs` file to match the URL of the remote image.
+
+You can also allow all HTTPS URLs by setting the `remotePatterns` option in the `astro.config.mjs` file.
+
+```js
+export default defineConfig({
+	image: {
+		remotePatterns: [{ protocol: 'https' }],
+	},
+});
+```
+
 ## Standalone installation
 
 If you only need the `<LinkPreview>` component, you can install the package directly instead of the main `astro-embed` package:

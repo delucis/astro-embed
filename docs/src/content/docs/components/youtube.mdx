@@ -128,6 +128,32 @@ Set a visible title to overlay on the video.
 	title="The Astro Community: where contributors find a home"
 />
 
+## Poster Image Optimization
+
+To optimize the poster image, you can add the following configuration to your `astro.config.mjs` file to allow remote images:
+
+```js
+export default defineConfig({
+	image: {
+		domains: ['i.ytimg.com'],
+	},
+});
+```
+
+If you are using a remote image with the `poster` prop, you will need to adjust the `domains` URL in the `astro.config.mjs` file to match the URL of the remote image.
+
+You can also allow all HTTPS URLs by setting the `remotePatterns` option in the `astro.config.mjs` file.
+
+```js
+export default defineConfig({
+	image: {
+		remotePatterns: [{ protocol: 'https' }],
+	},
+});
+```
+
+If you are using a local image with the `poster` prop, the image will not be optimized.
+
 ## Standalone installation
 
 If you only need the `<YouTube>` component, you can install the package directly instead of the main `astro-embed` package:

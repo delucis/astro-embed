@@ -1,6 +1,7 @@
 ---
 import 'lite-youtube-embed/src/lite-yt-embed.css';
 import urlMatcher from './matcher';
+import { getImage } from 'astro:assets';
 
 export interface Props extends astroHTML.JSX.HTMLAttributes {
 	id: string;
@@ -33,8 +34,23 @@ const posterFile =
 		default: 'hqdefault',
 		low: 'default',
 	}[posterQuality] || 'hqdefault';
-const posterURL =
-	poster || `https://i.ytimg.com/vi/${videoid}/${posterFile}.jpg`;
+const posterURL = poster
+	? poster.startsWith('http')
+		? (
+				await getImage({
+					src: poster,
+					inferSize: true,
+					format: 'webp',
+				})
+		  ).src
+		: poster
+	: (
+			await getImage({
+				src: `https://i.ytimg.com/vi/${videoid}/${posterFile}.jpg`,
+				inferSize: true,
+				format: 'webp',
+			})
+	  ).src;
 const href = `https://youtube.com/watch?v=${videoid}`;
 ---
 
