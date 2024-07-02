@@ -4,9 +4,11 @@ import { parseOpenGraph } from './lib';
 export interface Props {
 	/** URL to fetch Open Graph data. */
 	id: string;
+	/** Hide any image or video even if set in the OpenGraph data. */
+	hideMedia?: boolean;
 }
 
-const { id } = Astro.props;
+const { id, hideMedia = false } = Astro.props;
 
 const meta = await parseOpenGraph(id);
 const domain = meta?.url ? new URL(meta.url).hostname.replace('www.', '') : '';
@@ -18,11 +20,9 @@ const domain = meta?.url ? new URL(meta.url).hostname.replace('www.', '') : '';
 			class:list={[
 				'link-preview',
 				{
-					'link-preview--has-video': meta.video && meta.videoType,
-					'link-preview--no-media': !(
-						(meta.video && meta.videoType) ||
-						meta.image
-					),
+					'link-preview--has-video': !hideMedia && meta.video && meta.videoType,
+					'link-preview--no-media':
+						hideMedia || !((meta.video && meta.videoType) || meta.image),
 				},
 			]}
 		>
@@ -35,20 +35,18 @@ const domain = meta?.url ? new URL(meta.url).hostname.replace('www.', '') : '';
 				</header>
 				<small class="link-preview__description">{meta.description}</small>
 			</div>
-			{meta.video && meta.videoType ? (
+			{hideMedia ? null : meta.video && meta.videoType ? (
 				<video controls preload="metadata" width="1200" height="630">
 					<source src={meta.video} type={meta.videoType} />
 				</video>
-			) : (
-				meta.image && (
-					<img
-						src={meta.image}
-						alt={meta.imageAlt || ''}
-						width="1200"
-						height="630"
-					/>
-				)
-			)}
+			) : meta.image ? (
+				<img
+					src={meta.image}
+					alt={meta.imageAlt || ''}
+					width="1200"
+					height="630"
+				/>
+			) : null}
 		</article>
 	) : (
 		<div class="link-preview link-preview--no-metadata">
