@@ -5,12 +5,10 @@ export interface Props {
 	/** URL to fetch Open Graph data. */
 	id: string;
 	/** Whether to show the video if supplied in OpenGraph */
-	showVideo?: boolean;
-	/** Whether to show the image if supplied in OpenGraph */
-	showImage?: boolean;
+	hideMedia?: boolean;
 }
 
-const { id, showVideo = true, showImage = true } = Astro.props as Props;
+const { id, hideMedia = false } = Astro.props as Props;
 
 const meta = await parseOpenGraph(id);
 const domain = meta?.url ? new URL(meta.url).hostname.replace('www.', '') : '';
@@ -22,11 +20,9 @@ const domain = meta?.url ? new URL(meta.url).hostname.replace('www.', '') : '';
 			class:list={[
 				'link-preview',
 				{
-					'link-preview--has-video': showVideo && meta.video && meta.videoType,
-					'link-preview--no-media': !(
-						(showVideo && meta.video && meta.videoType) ||
-						(showImage && meta.image)
-					),
+					'link-preview--has-video': !hideMedia && meta.video && meta.videoType,
+					'link-preview--no-media':
+						hideMedia || !((meta.video && meta.videoType) || meta.image),
 				},
 			]}
 		>
@@ -39,11 +35,11 @@ const domain = meta?.url ? new URL(meta.url).hostname.replace('www.', '') : '';
 				</header>
 				<small class="link-preview__description">{meta.description}</small>
 			</div>
-			{showVideo && meta.video && meta.videoType ? (
+			{!hideMedia && meta.video && meta.videoType ? (
 				<video controls preload="metadata" width="1200" height="630">
 					<source src={meta.video} type={meta.videoType} />
 				</video>
-			) : showImage && meta.image ? (
+			) : !hideMedia && meta.image ? (
 				<img
 					src={meta.image}
 					alt={meta.imageAlt || ''}
