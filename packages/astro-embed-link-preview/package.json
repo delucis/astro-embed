@@ -1,6 +1,6 @@
 {
   "name": "@astro-community/astro-embed-link-preview",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Component to embed a website’s OpenGraph image and metadata on your Astro site",
   "type": "module",
   "exports": {

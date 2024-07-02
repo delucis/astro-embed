@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-link-preview
 
+## 0.2.1
+
+### Patch Changes
+
+- [#132](https://github.com/delucis/astro-embed/pull/132) [`6d159a22af9d662af9afa09aeb8bd75f2d7b5fc0`](https://github.com/delucis/astro-embed/commit/6d159a22af9d662af9afa09aeb8bd75f2d7b5fc0) Thanks [@jasikpark](https://github.com/jasikpark)! - Add `hideMedia` prop to `LinkPreview`
+
 ## 0.2.0
 
 ### Minor Changes
