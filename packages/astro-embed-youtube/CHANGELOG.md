@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-youtube
 
+## 0.5.3
+
+### Patch Changes
+
+- [#138](https://github.com/delucis/astro-embed/pull/138) [`e74c4233c5e2bb088e6bca642b09a5a6ef5f9df7`](https://github.com/delucis/astro-embed/commit/e74c4233c5e2bb088e6bca642b09a5a6ef5f9df7) Thanks [@delucis](https://github.com/delucis)! - Fixes accessibility of play button in YouTube embed by upgrading `lite-youtube-embed`
+
 ## 0.5.2
 
 ### Patch Changes
