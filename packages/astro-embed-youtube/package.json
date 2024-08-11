@@ -30,7 +30,7 @@
   },
   "homepage": "https://astro-embed.netlify.app/components/youtube/",
   "dependencies": {
-    "lite-youtube-embed": "^0.3.2"
+    "lite-youtube-embed": "^0.3.3"
   },
   "peerDependencies": {
     "astro": "^2.0.0 || ^3.0.0-beta || ^4.0.0-beta"
