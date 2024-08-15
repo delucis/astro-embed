@@ -1,0 +1,117 @@
+---
+import PreviewCard, { type MastodonPreviewCard } from './PreviewCard.astro';
+import MediaAttachment, {
+	type MastodonMediaAttachment,
+} from './MediaAttachment.astro';
+import urlMatcher from './matcher';
+import './Toot.css';
+
+export interface Props {
+	id: string;
+}
+const { id } = Astro.props;
+
+// TODO(HiDeoo) emojis
+// TODO(HiDeoo) account → emojis
+
+// TODO(HiDeoo) test: only text
+// TODO(HiDeoo) test: direction
+// TODO(HiDeoo) test: card with image
+// TODO(HiDeoo) test: card with no image
+// TODO(HiDeoo) test: media_attachments image
+// TODO(HiDeoo) test: media_attachments video
+// TODO(HiDeoo) test: media_attachments gifv
+// TODO(HiDeoo) test: media_attachments audio
+// TODO(HiDeoo) test: emojis
+// TODO(HiDeoo) test: account → emojis
+
+/**
+ * Thanks to @astrojs/starlight
+ * https://github.com/withastro/starlight/blob/8a861d16b586b019f61f30d93c61bdcd58e1503f/packages/starlight/utils/i18n.ts#L12
+ *
+ * A list of well-known right-to-left languages used as a fallback when determining the text
+ * direction of a locale is not supported by the `Intl.Locale` API in the current environment.
+ *
+ * @see getLocaleDir()
+ * @see https://en.wikipedia.org/wiki/IETF_language_tag#List_of_common_primary_language_subtags
+ */
+const wellKnownRTL = ['ar', 'fa', 'he', 'prs', 'ps', 'syc', 'ug', 'ur'];
+
+// Thanks to @astrojs/starlight
+// https://github.com/withastro/starlight/blob/8a861d16b586b019f61f30d93c61bdcd58e1503f/packages/starlight/utils/i18n.ts#L177-L188
+function getLocaleDir(locale: Intl.Locale): 'ltr' | 'rtl' {
+	if ('textInfo' in locale) {
+		// @ts-expect-error - `textInfo` is not typed but is available in v8 based environments.
+		return locale.textInfo.direction;
+	} else if ('getTextInfo' in locale) {
+		// @ts-expect-error - `getTextInfo` is not typed but is available in some non-v8 based environments.
+		return locale.getTextInfo().direction;
+	}
+	// Firefox does not support `textInfo` or `getTextInfo` yet so we fallback to a well-known list
+	// of right-to-left languages.
+	return wellKnownRTL.includes(locale.language) ? 'rtl' : 'ltr';
+}
+
+async function fetchToot(id: string) {
+	try {
+		const tootId = urlMatcher(id);
+		if (!tootId) throw new Error('Invalid toot URL');
+		const apiUrl = new URL(`${new URL(id).origin}/api/v1/statuses/${tootId}`);
+		const response = await fetch(apiUrl);
+		if (!response.ok)
+			throw new Error(`${response.status} - ${response.statusText}`);
+		const json = (await response.json()) as MastodonStatus;
+		return { ...json, dir: getLocaleDir(new Intl.Locale(json.language)) };
+	} catch (e) {
+		console.error(
+			`[error]  astro-embed
+         Failed to fetch toot ${id}: ${
+				e instanceof Error ? e.message : String(e)
+			}`
+		);
+		return;
+	}
+}
+
+// https://docs.joinmastodon.org/entities/Status/
+interface MastodonStatus {
+	account: {
+		acct: string;
+		display_name: string;
+		username: string;
+	};
+	card: MastodonPreviewCard | null;
+	content: string;
+	created_at: string;
+	language: string;
+	media_attachments: MastodonMediaAttachment[];
+	url: string;
+}
+
+const toot = await fetchToot(id);
+---
+
+{
+	toot && (
+		<astro-embed-toot>
+			<blockquote class="mastodon-toot">
+				<div lang={toot.language} dir={toot.dir} set:html={toot.content} />
+				{toot.card && <PreviewCard card={toot.card} />}
+				{toot.media_attachments.map((media) => (
+					<MediaAttachment media={media} />
+				))}
+				<div>
+					— {toot.account.display_name || toot.account.username}
+					<> (@{toot.account.acct}) </>
+					<a href={toot.url}>
+						{new Date(toot.created_at).toLocaleDateString(undefined, {
+							year: 'numeric',
+							month: 'long',
+							day: 'numeric',
+						})}
+					</a>
+				</div>
+			</blockquote>
+		</astro-embed-toot>
+	)
+}

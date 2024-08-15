@@ -1,0 +1,37 @@
+---
+interface Props {
+	card: MastodonPreviewCard;
+}
+
+// https://docs.joinmastodon.org/entities/PreviewCard/
+export interface MastodonPreviewCard {
+	description: string;
+	height: number;
+	image: string | null;
+	provider_name: string;
+	title: string;
+	url: string;
+	width: number;
+}
+
+const { card } = Astro.props;
+---
+
+<a href={card.url} class="mastodon-toot-card">
+	{
+		card.image && (
+			<img
+				alt=""
+				class="mastodon-toot-img"
+				height={card.height}
+				src={card.image}
+				width={card.width}
+			/>
+		)
+	}
+	<div>
+		<span>{card.provider_name}</span>
+		<strong>{card.title}</strong>
+		{card.description && <span>{card.description}</span>}
+	</div>
+</a>

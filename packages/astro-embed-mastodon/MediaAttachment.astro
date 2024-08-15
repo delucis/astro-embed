@@ -1,0 +1,66 @@
+---
+interface Props {
+	media: MastodonMediaAttachment;
+}
+
+// https://docs.joinmastodon.org/entities/MediaAttachment/
+export interface MastodonMediaAttachment {
+	description: string | null;
+	meta: {
+		original?: {
+			height: number;
+			width: number;
+		};
+		small?: {
+			height: number;
+			width: number;
+		};
+	};
+	preview_url: string | null;
+	type: 'image' | 'gifv' | 'video' | 'audio' | 'unknown';
+	url: string;
+}
+
+const { media } = Astro.props;
+
+if (media.type === 'unknown') {
+	return;
+}
+---
+
+{
+	media.type === 'image' && media.preview_url && (
+		<a href={media.url}>
+			<img
+				alt={media.description}
+				class="mastodon-toot-img"
+				height={media.meta.small?.height}
+				src={media.preview_url}
+				width={media.meta.small?.width}
+			/>
+		</a>
+	)
+}
+{
+	(media.type === 'video' || media.type === 'gifv') && (
+		<video
+			aria-label={media.description}
+			class="mastodon-toot-video"
+			controls
+			height={media.meta.original?.height}
+			poster={media.preview_url}
+			src={media.url}
+			width={media.meta.original?.width}
+		/>
+	)
+}
+{
+	media.type === 'audio' && (
+		<audio
+			aria-label={media.description}
+			class="mastodon-toot-audio"
+			controls
+			src={media.url}
+		/>
+	)
+}

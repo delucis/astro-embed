@@ -1,0 +1,29 @@
+---
+import * as Component from 'astro-embed';
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Mastodon component examples">
+	<p>Text-only toot</p>
+	<Component.Toot id="https://mastodon.social/@sarah11918/112937553683639459" />
+	<p>Toot with a preview card with an image</p>
+	<Component.Toot id="https://mastodon.social/@sarah11918/112954791910873136" />
+	<p>Toot with a preview card with no image</p>
+	<Component.Toot id="https://fosstodon.org/@yabellini/112905997660025406" />
+	<p>Toot with an image media attachment</p>
+	<Component.Toot id="https://mastodon.social/@sarah11918/112938341053568673" />
+	<p>Toot with a video media attachment</p>
+	<Component.Toot
+		id="https://fosstodon.org/@astro@webtoo.ls/112956966389849669"
+	/>
+	<p>Toot with a gifv media attachment</p>
+	<Component.Toot id="https://m.webtoo.ls/@astro/112914830775250637" />
+	<p>Toot with an audio media attachment</p>
+	<Component.Toot id="https://nahe.social/@yuliyan/112948405749089071" />
+</Base>
+
+<style>
+	p {
+		text-align: center;
+	}
+</style>
