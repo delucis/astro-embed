@@ -11,9 +11,6 @@ export interface Props {
 }
 const { id } = Astro.props;
 
-// TODO(HiDeoo) emojis
-// TODO(HiDeoo) account → emojis
-
 // TODO(HiDeoo) test: only text
 // TODO(HiDeoo) test: direction
 // TODO(HiDeoo) test: card with image
@@ -73,18 +70,36 @@ async function fetchToot(id: string) {
 	}
 }
 
+function replaceEmojis(text: string, emojis: MastodonCustomEmoji[]): string {
+	for (const emoji of emojis) {
+		text = text.replace(
+			new RegExp(`:${emoji.shortcode}:`, 'g'),
+			`<img alt=":${emoji.shortcode}:" class="mastodon-toot-emoji" src="${emoji.url}" />`
+		);
+	}
+	return text;
+}
+
 // https://docs.joinmastodon.org/entities/Status/
 interface MastodonStatus {
 	account: {
 		acct: string;
 		display_name: string;
+		emojis: MastodonCustomEmoji[];
 		username: string;
 	};
 	card: MastodonPreviewCard | null;
 	content: string;
 	created_at: string;
+	emojis: MastodonCustomEmoji[];
 	language: string;
 	media_attachments: MastodonMediaAttachment[];
+	url: string;
+}
+
+// https://docs.joinmastodon.org/entities/Status/
+export interface MastodonCustomEmoji {
+	shortcode: string;
 	url: string;
 }
 
@@ -95,13 +110,23 @@ const toot = await fetchToot(id);
 	toot && (
 		<astro-embed-toot>
 			<blockquote class="mastodon-toot">
-				<div lang={toot.language} dir={toot.dir} set:html={toot.content} />
+				<div
+					dir={toot.dir}
+					lang={toot.language}
+					set:html={replaceEmojis(toot.content, toot.emojis)}
+				/>
 				{toot.card && <PreviewCard card={toot.card} />}
 				{toot.media_attachments.map((media) => (
 					<MediaAttachment media={media} />
 				))}
 				<div>
-					— {toot.account.display_name || toot.account.username}
+					—
+					<Fragment
+						set:html={replaceEmojis(
+							toot.account.display_name || toot.account.username,
+							toot.account.emojis
+						)}
+					/>
 					<> (@{toot.account.acct}) </>
 					<a href={toot.url}>
 						{new Date(toot.created_at).toLocaleDateString(undefined, {

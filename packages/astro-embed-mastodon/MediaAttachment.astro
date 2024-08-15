@@ -49,6 +49,7 @@ if (media.type === 'unknown') {
 			controls
 			height={media.meta.original?.height}
 			poster={media.preview_url}
+			preload="metadata"
 			src={media.url}
 			width={media.meta.original?.width}
 		/>
@@ -60,6 +61,7 @@ if (media.type === 'unknown') {
 			aria-label={media.description}
 			class="mastodon-toot-audio"
 			controls
+			preload="metadata"
 			src={media.url}
 		/>
 	)
