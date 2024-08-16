@@ -30,7 +30,7 @@ const { card } = Astro.props;
 		)
 	}
 	<div>
-		<span>{card.provider_name}</span>
+		{card.provider_name && <span>{card.provider_name}</span>}
 		<strong>{card.title}</strong>
 		{card.description && <span>{card.description}</span>}
 	</div>
