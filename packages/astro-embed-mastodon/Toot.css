@@ -1,10 +1,10 @@
 .mastodon-toot {
-	border: 1px solid var(--tc-border-color, #cfd9de);
+	border: 1px solid var(--mc-border-color, #cfd9de);
 	display: flex;
 	flex-direction: column;
 	gap: 1em;
 	overflow-wrap: anywhere;
-	padding: var(--tc-padding, 1em);
+	padding: var(--mc-padding, 1em);
 }
 .mastodon-toot > div > :first-child {
 	margin-top: 0;
@@ -14,18 +14,22 @@
 }
 
 .mastodon-toot-card {
-	border: 1px solid var(--tc-border-color, #cfd9de);
+	border: 1px solid var(--mc-border-color, #cfd9de);
 	display: flex;
 	flex-direction: column;
 }
+.mastodon-toot-card img {
+	width: 100%;
+}
 .mastodon-toot-card img + div {
-	border-top: 1px solid var(--tc-border-color, #cfd9de);
+	border-top: 1px solid var(--mc-border-color, #cfd9de);
+	margin-top: 0;
 }
 .mastodon-toot-card div {
 	display: flex;
 	flex-direction: column;
 	gap: 0.75em;
-	padding: 1em;
+	padding: var(--mc-padding, 1em);
 }
 .mastodon-toot-card div span {
 	font-size: 0.875em;
@@ -51,17 +55,4 @@
 	object-fit: contain;
 	vertical-align: middle;
 	width: 1em;
-}
-
-/* // FIXME(HiDeoo)  */
-
-.twitter-tweet:not(.twitter-tweet-rendered) {
-	padding: var(--tc-padding, 1em);
-	border: 1px solid var(--tc-border-color, #cfd9de);
-}
-.twitter-tweet:not(.twitter-tweet-rendered) > :first-child {
-	margin-top: 0;
-}
-.twitter-tweet:not(.twitter-tweet-rendered) > :last-child {
-	margin-bottom: 0;
 }
