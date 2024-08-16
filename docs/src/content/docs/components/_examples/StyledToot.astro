@@ -1,0 +1,22 @@
+---
+import { Toot } from '@astro-community/astro-embed-mastodon';
+---
+
+<div class="styled-toot">
+	<Toot id="https://m.webtoo.ls/@astro/112616562969236130" />
+</div>
+
+<style>
+	.styled-toot :global(.mastodon-toot) {
+		background: floralwhite;
+		color: darkblue;
+		font-family: cursive;
+		font-size: 1.25rem;
+		border: 0;
+	}
+
+	.styled-toot :global(.mastodon-toot a) {
+		color: purple;
+		font-weight: bold;
+	}
+</style>
