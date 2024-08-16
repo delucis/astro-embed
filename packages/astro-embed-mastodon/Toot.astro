@@ -3,7 +3,6 @@ import PreviewCard, { type MastodonPreviewCard } from './PreviewCard.astro';
 import MediaAttachment, {
 	type MastodonMediaAttachment,
 } from './MediaAttachment.astro';
-import urlMatcher from './matcher';
 import './Toot.css';
 
 export interface Props {
@@ -23,6 +22,9 @@ const { id } = Astro.props;
  */
 const wellKnownRTL = ['ar', 'fa', 'he', 'prs', 'ps', 'syc', 'ug', 'ur'];
 
+// Regex to extract a toot ID from a Mastodon status URL
+const idRegExp = /(\d+)$/;
+
 // Thanks to @astrojs/starlight
 // https://github.com/withastro/starlight/blob/8a861d16b586b019f61f30d93c61bdcd58e1503f/packages/starlight/utils/i18n.ts#L177-L188
 function getLocaleDir(locale: Intl.Locale): 'ltr' | 'rtl' {
@@ -38,9 +40,14 @@ function getLocaleDir(locale: Intl.Locale): 'ltr' | 'rtl' {
 	return wellKnownRTL.includes(locale.language) ? 'rtl' : 'ltr';
 }
 
+function extractID(url: string) {
+	const match = url.match(idRegExp);
+	return match?.[0];
+}
+
 async function fetchToot(id: string) {
 	try {
-		const tootId = urlMatcher(id);
+		const tootId = extractID(id);
 		if (!tootId) throw new Error('Invalid toot URL');
 		const apiUrl = new URL(`${new URL(id).origin}/api/v1/statuses/${tootId}`);
 		const response = await fetch(apiUrl);
