@@ -1,4 +1,5 @@
 ---
+import { safeGet } from '@astro-community/astro-embed-utils';
 import PreviewCard, { type MastodonPreviewCard } from './PreviewCard.astro';
 import MediaAttachment, {
 	type MastodonMediaAttachment,
@@ -46,24 +47,14 @@ function extractID(url: string) {
 }
 
 async function fetchToot(id: string) {
-	try {
-		const tootId = extractID(id);
-		if (!tootId) throw new Error('Invalid toot URL');
-		const apiUrl = new URL(`${new URL(id).origin}/api/v1/statuses/${tootId}`);
-		const response = await fetch(apiUrl);
-		if (!response.ok)
-			throw new Error(`${response.status} - ${response.statusText}`);
-		const json = (await response.json()) as MastodonStatus;
-		return { ...json, dir: getLocaleDir(new Intl.Locale(json.language)) };
-	} catch (e) {
-		console.error(
-			`[error]  astro-embed
-         Failed to fetch toot ${id}: ${
-				e instanceof Error ? e.message : String(e)
-			}`
-		);
-		return;
-	}
+	const tootId = extractID(id);
+	if (!tootId) throw new Error('Invalid toot URL');
+	const data = (await safeGet(
+		`${new URL(id).origin}/api/v1/statuses/${tootId}`
+	)) as MastodonStatus | undefined;
+	return data
+		? { ...data, dir: getLocaleDir(new Intl.Locale(data.language)) }
+		: undefined;
 }
 
 function replaceEmojis(text: string, emojis: MastodonCustomEmoji[]): string {
