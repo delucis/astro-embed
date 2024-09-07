@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-vimeo
 
+## 0.3.8
+
+### Patch Changes
+
+- [#142](https://github.com/delucis/astro-embed/pull/142) [`5227cf6fa58ab372d08e5efba707caad8db254a5`](https://github.com/delucis/astro-embed/commit/5227cf6fa58ab372d08e5efba707caad8db254a5) Thanks [@BryceRussell](https://github.com/BryceRussell)! - Fix issue with invalid Vimeo links causing build errors
+
 ## 0.3.7
 
 ### Patch Changes
