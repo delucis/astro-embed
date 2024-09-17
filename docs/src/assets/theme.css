@@ -13,6 +13,7 @@
 	--sl-color-black: #19171c;
 
 	--tc-border-color: var(--sl-color-gray-5);
+	--mc-border-color: var(--sl-color-gray-5);
 }
 /* Light mode colors. */
 :root[data-theme='light'] {
