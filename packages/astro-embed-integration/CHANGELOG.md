@@ -1,5 +1,16 @@
 # @astro-community/astro-embed-integration
 
+## 0.7.2
+
+### Patch Changes
+
+- [#148](https://github.com/delucis/astro-embed/pull/148) [`78346ae846925fa3ce90378d2f03c437620adcec`](https://github.com/delucis/astro-embed/commit/78346ae846925fa3ce90378d2f03c437620adcec) Thanks [@prototypa](https://github.com/prototypa)! - Adds support for Astro v5
+
+- Updated dependencies [[`78346ae846925fa3ce90378d2f03c437620adcec`](https://github.com/delucis/astro-embed/commit/78346ae846925fa3ce90378d2f03c437620adcec)]:
+  - @astro-community/astro-embed-twitter@0.5.5
+  - @astro-community/astro-embed-vimeo@0.3.9
+  - @astro-community/astro-embed-youtube@0.5.4
+
 ## 0.7.1
 
 ### Patch Changes
