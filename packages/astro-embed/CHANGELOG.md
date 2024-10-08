@@ -1,5 +1,17 @@
 # astro-embed
 
+## 0.7.4
+
+### Patch Changes
+
+- [`91e70e72e1f3efe2db37e9de1e721eaabfd292bc`](https://github.com/delucis/astro-embed/commit/91e70e72e1f3efe2db37e9de1e721eaabfd292bc) Thanks [@delucis](https://github.com/delucis)! - Add additional `ui` keyword for better categorization in Astro’s integrations library
+
+- Updated dependencies [[`91e70e72e1f3efe2db37e9de1e721eaabfd292bc`](https://github.com/delucis/astro-embed/commit/91e70e72e1f3efe2db37e9de1e721eaabfd292bc)]:
+  - @astro-community/astro-embed-link-preview@0.2.2
+  - @astro-community/astro-embed-twitter@0.5.6
+  - @astro-community/astro-embed-youtube@0.5.5
+  - @astro-community/astro-embed-vimeo@0.3.10
+
 ## 0.7.3
 
 ### Patch Changes
