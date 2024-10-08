@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-vimeo
 
+## 0.3.10
+
+### Patch Changes
+
+- [`91e70e72e1f3efe2db37e9de1e721eaabfd292bc`](https://github.com/delucis/astro-embed/commit/91e70e72e1f3efe2db37e9de1e721eaabfd292bc) Thanks [@delucis](https://github.com/delucis)! - Add additional `ui` keyword for better categorization in Astro’s integrations library
+
 ## 0.3.9
 
 ### Patch Changes
