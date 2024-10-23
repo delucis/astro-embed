@@ -56,21 +56,20 @@ You can do this by including the following `<script>` tag in your Astro layout f
 
 [See an example of `<Tweet>` with Twitter‘s JavaScript](/examples/tweet-with-js/)
 
-### Using with dark theme
+### Use Twitter’s dark theme
 
-By default the `<Tweet>` component will use the `light` theme. You can change it to official `dark` theme by setting the `theme` prop:
+When loading Twitter’s JavaScript, the `<Tweet>` card will render with their light theme by default.
+You can use their dark theme by setting the `theme` prop:
 
-
-```astro
+```astro 'theme="dark"'
 ---
 import { Tweet } from 'astro-embed';
 ---
 
-<Tweet id="..." theme="dark" />
+<Tweet theme="dark" id="..." />
 ```
 
 [See an example of `<Tweet>` with Twitter‘s JavaScript and dark theme](/examples/tweet-with-js-dark/)
-
 
 ## Styling the Tweet component
 
