@@ -1,0 +1,318 @@
+---
+import { safeGet } from '@astro-community/astro-embed-utils';
+import BaselineIcon from './BaselineIcon.astro';
+import BrowserIcon from './BrowserIcon.astro';
+import SupportIcon from './SupportIcon.astro';
+import type { Feature } from './types';
+
+interface Props {
+	/**
+	 * ID of the feature from https://github.com/web-platform-dx/web-features/
+	 * e.g. `"anchor-positioning"`
+	 */
+	id: string;
+}
+
+type StatusLevel = 'widely' | 'newly' | 'limited' | 'no_data';
+
+const API_ENDPOINT = 'https://api.webstatus.dev/v1/features/';
+
+const BASELINE_DEFS = {
+	limited: {
+		title: 'Limited availability',
+		defaultDescription:
+			'This feature is not Baseline because it does not work in some of the most widely-used browsers.',
+	},
+	newly: {
+		title: '',
+		defaultDescription:
+			'This feature works across the latest devices and browser versions. This feature might not work in older devices or browsers.',
+	},
+	widely: {
+		title: 'Widely available',
+		defaultDescription:
+			'This feature is well established and works across many devices and browser versions.',
+	},
+	loading: {
+		title: 'Loading',
+		defaultDescription: '',
+	},
+	no_data: {
+		title: 'Unknown availability',
+		defaultDescription:
+			'We currently don’t have browser support information about this feature.',
+	},
+};
+
+/**
+ * Returns feature's `low_date` as mm-yyyy string or empty string if `low_date` is not present.
+ */
+function getBaselineDate(feature: { baseline: { low_date?: string } }): string {
+	return feature.baseline.low_date
+		? new Intl.DateTimeFormat('en-US', {
+				year: 'numeric',
+				month: 'long',
+		  }).format(new Date(feature.baseline.low_date))
+		: '';
+}
+
+/**
+ * Returns Baseline's description.
+ */
+function getDescriptionDate(baseline: StatusLevel, date: string): string {
+	if (baseline === 'newly' && date) {
+		return `Since ${date} this feature works across the latest
+			devices and browser versions. This feature might not work in older
+			devices or browsers.`;
+	} else if (baseline === 'widely' && date) {
+		return `This feature is well established and works across many
+			devices and browser versions. It’s been available across browsers
+			since ${date}`;
+	}
+	return BASELINE_DEFS[baseline].defaultDescription;
+}
+
+const featureData = await safeGet(API_ENDPOINT + Astro.props.id);
+const feature: Feature = featureData?.baseline
+	? (featureData as Feature)
+	: {
+			baseline: {
+				status: 'no_data',
+			},
+			name: Astro.props.id || 'Unknown feature',
+	  };
+
+const baseline = feature.baseline.status || 'no_data';
+
+const preTitle =
+	baseline === 'limited' || baseline === 'no_data'
+		? ''
+		: `<strong>Baseline</strong> `;
+const title = BASELINE_DEFS[baseline].title;
+const badge =
+	baseline === 'newly'
+		? `<span class="baseline-badge">newly available</span>`
+		: '';
+const baselineDate = getBaselineDate(feature);
+const description = getDescriptionDate(baseline, baselineDate);
+const year =
+	baseline === 'newly' && baselineDate ? baselineDate.split(' ')[1]! : '';
+
+const { chrome, edge, firefox, safari } = feature.browser_implementations || {};
+
+const getAriaLabel = (
+	title: string,
+	year: string,
+	badge: string,
+	chrome = 'no',
+	edge = 'no',
+	firefox = 'no',
+	safari = 'no'
+) => {
+	if (title === 'Unknown availability') {
+		chrome = edge = firefox = safari = 'unknown';
+	}
+	return `Baseline: ${title}${year ? ` ${year}` : ''}${
+		badge ? ` (newly available)` : ''
+	}. Supported in Chrome: ${
+		chrome === 'available' ? 'yes' : chrome
+	}. Supported in Edge: ${
+		edge === 'available' ? 'yes' : edge
+	}. Supported in Firefox: ${
+		firefox === 'available' ? 'yes' : firefox
+	}. Supported in Safari: ${safari === 'available' ? 'yes' : safari}.`;
+};
+---
+
+<baseline-status>
+	<h1>{feature.name}</h1>
+	<details>
+		<summary
+			aria-label={getAriaLabel(
+				title,
+				year,
+				badge,
+				chrome?.status,
+				edge?.status,
+				firefox?.status,
+				safari?.status
+			)}
+		>
+			<BaselineIcon support={baseline} />
+			<div class="baseline-status-title" aria-hidden="true">
+				<div>{preTitle} {title} {year} {badge}</div>
+				<div class="baseline-status-browsers">
+					<span
+						><BrowserIcon browser="chrome" />
+						<SupportIcon {baseline} browserImplementation={chrome} /></span
+					>
+					<span
+						><BrowserIcon browser="edge" />
+						<SupportIcon {baseline} browserImplementation={edge} /></span
+					>
+					<span
+						><BrowserIcon browser="firefox" />
+						<SupportIcon {baseline} browserImplementation={firefox} /></span
+					>
+					<span
+						><BrowserIcon browser="safari" />
+						<SupportIcon {baseline} browserImplementation={safari} /></span
+					>
+				</div>
+			</div>
+			<span class="open-icon" aria-hidden="true">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="11"
+					height="7"
+					viewBox="0 0 11 7"
+					fill="none"
+				>
+					<path
+						d="M5.5 6.45356L0.25 1.20356L1.19063 0.262939L5.5 4.59419L9.80937 0.284814L10.75 1.22544L5.5 6.45356Z"
+						fill="currentColor"></path>
+				</svg>
+			</span>
+		</summary>
+		<p set:html={description} />
+		<p
+			set:html={baseline === 'no_data'
+				? ''
+				: `<a href="https://github.com/web-platform-dx/web-features/blob/main/features/${feature.feature_id}.yml" target="_top">Learn more</a>`}
+		/>
+	</details>
+</baseline-status>
+
+<style>
+	baseline-status {
+		--baseline-status-color-limited: light-dark(#ea8600, #f09418);
+		--baseline-status-color-newly: light-dark(#1a73e8, #4185ff);
+		--baseline-status-color-widely: light-dark(#1e8e3e, #24a446);
+		--baseline-status-color-no_data: light-dark(#707070, #868686);
+		--baseline-status-color-outline: light-dark(#d9d9d9, #d9d9d9);
+		--baseline-status-color-text: light-dark(#000, #fff);
+		--baseline-status-color-link: light-dark(#1a73e8, #5aa1ff);
+
+		color: var(--baseline-status-color-text);
+		display: block;
+		border: solid 1px var(--baseline-status-color-outline);
+		border-radius: 8px;
+		padding: 16px 24px 0 24px;
+		max-width: 800px;
+		font-family: Roboto, sans-serif;
+		font-size: 14px;
+		font-style: normal;
+	}
+
+	h1 {
+		font-weight: normal;
+		font-size: 20px;
+		margin: 0;
+	}
+
+	a,
+	a:active,
+	a:visited {
+		color: var(--baseline-status-color-link);
+	}
+
+	baseline-status * {
+		color: grey;
+		font-style: italic;
+		font-size: 80%;
+	}
+
+	.baseline-status-title {
+		gap: 1rem;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		flex: 1;
+	}
+
+	.baseline-status-title {
+		flex: 1;
+	}
+
+	.baseline-status-title div:first-child {
+		display: flex;
+		align-items: center;
+		gap: 0.2rem;
+	}
+
+	.baseline-badge {
+		background: #3367d6;
+		color: #fff;
+		font-size: 11px;
+		padding: 0 4px;
+		border-radius: 2px;
+		text-transform: uppercase;
+		line-height: 20px;
+		margin-inline: 0.5rem;
+		white-space: nowrap;
+	}
+
+	.baseline-status-browsers {
+		font-size: 0;
+		max-width: 200px;
+		display: flex;
+		gap: 16px;
+	}
+
+	.baseline-status-browsers span {
+		white-space: nowrap;
+	}
+
+	.support-no_data {
+		color: var(--baseline-status-color-no_data);
+	}
+
+	.support-unavailable {
+		color: var(--baseline-status-color-limited);
+	}
+
+	.support-newly {
+		color: var(--baseline-status-color-newly);
+	}
+
+	.support-widely,
+	.support-available {
+		color: var(--baseline-status-color-widely);
+	}
+
+	details > summary .open-icon {
+		width: 10px;
+		height: 20px;
+		margin-left: auto;
+		color: var(--text-color);
+	}
+
+	@media (min-width: 420px) {
+		details > summary .open-icon {
+			margin-left: 48px;
+		}
+	}
+
+	details > summary .open-icon svg {
+		transition: all 0.3s;
+	}
+
+	details[open] summary .open-icon svg {
+		transform: rotate(180deg);
+	}
+
+	summary {
+		display: flex;
+		cursor: pointer;
+		font-size: 16px;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 16px;
+		justify-content: space-between;
+		padding: 16px 0;
+	}
+
+	summary::-webkit-details-marker {
+		display: none;
+	}
+</style>
