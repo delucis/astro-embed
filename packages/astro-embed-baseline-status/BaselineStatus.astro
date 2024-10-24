@@ -31,10 +31,6 @@ const BASELINE_DEFS = {
 		defaultDescription:
 			'This feature is well established and works across many devices and browser versions.',
 	},
-	loading: {
-		title: 'Loading',
-		defaultDescription: '',
-	},
 	no_data: {
 		title: 'Unknown availability',
 		defaultDescription:
@@ -82,36 +78,27 @@ const feature: Feature = featureData?.baseline
 
 const baseline = feature.baseline.status || 'no_data';
 
-const preTitle =
-	baseline === 'limited' || baseline === 'no_data'
-		? ''
-		: `<strong>Baseline</strong> `;
 const title = BASELINE_DEFS[baseline].title;
-const badge =
-	baseline === 'newly'
-		? `<span class="baseline-badge">newly available</span>`
-		: '';
 const baselineDate = getBaselineDate(feature);
 const description = getDescriptionDate(baseline, baselineDate);
 const year =
 	baseline === 'newly' && baselineDate ? baselineDate.split(' ')[1]! : '';
-
 const { chrome, edge, firefox, safari } = feature.browser_implementations || {};
 
-const getAriaLabel = (
+function getAriaLabel(
 	title: string,
 	year: string,
-	badge: string,
+	newlyAvailable: boolean,
 	chrome = 'no',
 	edge = 'no',
 	firefox = 'no',
 	safari = 'no'
-) => {
+) {
 	if (title === 'Unknown availability') {
 		chrome = edge = firefox = safari = 'unknown';
 	}
 	return `Baseline: ${title}${year ? ` ${year}` : ''}${
-		badge ? ` (newly available)` : ''
+		newlyAvailable ? ` (newly available)` : ''
 	}. Supported in Chrome: ${
 		chrome === 'available' ? 'yes' : chrome
 	}. Supported in Edge: ${
@@ -119,7 +106,7 @@ const getAriaLabel = (
 	}. Supported in Firefox: ${
 		firefox === 'available' ? 'yes' : firefox
 	}. Supported in Safari: ${safari === 'available' ? 'yes' : safari}.`;
-};
+}
 ---
 
 <baseline-status>
@@ -129,7 +116,7 @@ const getAriaLabel = (
 			aria-label={getAriaLabel(
 				title,
 				year,
-				badge,
+				baseline === 'newly',
 				chrome?.status,
 				edge?.status,
 				firefox?.status,
@@ -138,24 +125,37 @@ const getAriaLabel = (
 		>
 			<BaselineIcon support={baseline} />
 			<div class="baseline-status-title" aria-hidden="true">
-				<div>{preTitle} {title} {year} {badge}</div>
+				<div>
+					{
+						!(baseline === 'limited' || baseline === 'no_data') && (
+							<strong>Baseline</strong>
+						)
+					}
+					{title}
+					{year}
+					{
+						baseline === 'newly' && (
+							<span class="baseline-badge">newly available</span>
+						)
+					}
+				</div>
 				<div class="baseline-status-browsers">
-					<span
-						><BrowserIcon browser="chrome" />
-						<SupportIcon {baseline} browserImplementation={chrome} /></span
-					>
-					<span
-						><BrowserIcon browser="edge" />
-						<SupportIcon {baseline} browserImplementation={edge} /></span
-					>
-					<span
-						><BrowserIcon browser="firefox" />
-						<SupportIcon {baseline} browserImplementation={firefox} /></span
-					>
-					<span
-						><BrowserIcon browser="safari" />
-						<SupportIcon {baseline} browserImplementation={safari} /></span
-					>
+					<span>
+						<BrowserIcon browser="chrome" />
+						<SupportIcon {baseline} browserImplementation={chrome} />
+					</span>
+					<span>
+						<BrowserIcon browser="edge" />
+						<SupportIcon {baseline} browserImplementation={edge} />
+					</span>
+					<span>
+						<BrowserIcon browser="firefox" />
+						<SupportIcon {baseline} browserImplementation={firefox} />
+					</span>
+					<span>
+						<BrowserIcon browser="safari" />
+						<SupportIcon {baseline} browserImplementation={safari} />
+					</span>
 				</div>
 			</div>
 			<span class="open-icon" aria-hidden="true">
