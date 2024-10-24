@@ -3,7 +3,7 @@ import { safeGet } from '@astro-community/astro-embed-utils';
 import BaselineIcon from './BaselineIcon.astro';
 import BrowserIcon from './BrowserIcon.astro';
 import SupportIcon from './SupportIcon.astro';
-import type { Feature } from './types';
+import type { Feature, StatusLevel } from './types';
 
 interface Props {
 	/**
@@ -12,8 +12,6 @@ interface Props {
 	 */
 	id: string;
 }
-
-type StatusLevel = 'widely' | 'newly' | 'limited' | 'no_data';
 
 const API_ENDPOINT = 'https://api.webstatus.dev/v1/features/';
 
