@@ -26,3 +26,22 @@ const icon =
 	class={`support-${support}`}
 	set:html={SUPPORT_ICONS[icon]}
 />
+
+<style>
+	.support-no_data {
+		color: var(--baseline-status-color-no_data);
+	}
+
+	.support-unavailable {
+		color: var(--baseline-status-color-limited);
+	}
+
+	.support-newly {
+		color: var(--baseline-status-color-newly);
+	}
+
+	.support-widely,
+	.support-available {
+		color: var(--baseline-status-color-widely);
+	}
+</style>
