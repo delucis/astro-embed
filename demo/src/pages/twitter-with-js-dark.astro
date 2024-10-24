@@ -1,0 +1,43 @@
+---
+import * as Component from 'astro-embed';
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Twitter component examples with dark theme">
+	<p>
+		These tweets use the same component code as the <a href="/twitter"
+			>main Twitter example</a
+		>, but also loads Twitter’s widget JavaScript to convert them to interactive
+		iframes and use dark theme:
+	</p>
+	<pre><code set:text={'<script async src="https://platform.twitter.com/widgets.js"></script>'} /></pre>
+	<Component.Tweet
+		theme="dark"
+		id="https://twitter.com/astrodotbuild/status/1511750228428435457"
+	/>
+	<Component.Tweet
+		theme="dark"
+		id="https://twitter.com/astrodotbuild/status/1511380091720409095"
+	/>
+	<Component.Tweet
+		theme="dark"
+		id="https://twitter.com/astrodotbuild/status/1509917444403601409"
+	/>
+	<p class="center">…</p>
+	<Component.Tweet
+		theme="dark"
+		id="https://twitter.com/astrodotbuild/status/1402352777020395521"
+	/>
+
+	<script async src="https://platform.twitter.com/widgets.js"></script>
+</Base>
+
+<style>
+	body {
+		background-color: #101010;
+		color: #fff;
+	}
+	.center {
+		text-align: center;
+	}
+</style>
