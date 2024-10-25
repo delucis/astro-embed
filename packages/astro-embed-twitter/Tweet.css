@@ -8,6 +8,6 @@
 .twitter-tweet:not(.twitter-tweet-rendered) > :last-child {
 	margin-bottom: 0;
 }
-astro-embed-tweet {
+.twitter-tweet.twitter-tweet-rendered {
 	color-scheme: normal;
 }
