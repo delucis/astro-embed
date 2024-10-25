@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-twitter
 
+## 0.5.7
+
+### Patch Changes
+
+- [#155](https://github.com/delucis/astro-embed/pull/155) [`11f10861177beb06fc80137e1ca918b08f317bd0`](https://github.com/delucis/astro-embed/commit/11f10861177beb06fc80137e1ca918b08f317bd0) Thanks [@anotheri](https://github.com/anotheri)! - Adds `theme` prop support to `Tweet` component
+
 ## 0.5.6
 
 ### Patch Changes
