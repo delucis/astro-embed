@@ -136,13 +136,36 @@ const year =
 
 <style>
 	baseline-status {
-		--baseline-status-color-limited: light-dark(#ea8600, #f09418);
-		--baseline-status-color-newly: light-dark(#1a73e8, #4185ff);
-		--baseline-status-color-widely: light-dark(#1e8e3e, #24a446);
-		--baseline-status-color-no_data: light-dark(#707070, #868686);
-		--baseline-status-color-outline: light-dark(#d9d9d9, #d9d9d9);
-		--baseline-status-color-text: light-dark(#000, #fff);
-		--baseline-status-color-link: light-dark(#1a73e8, #5aa1ff);
+		/* Light palette */
+		--baseline-status-color-limited--light: #ea8600;
+		--baseline-status-color-newly--light: #1a73e8;
+		--baseline-status-color-widely--light: #1e8e3e;
+		--baseline-status-color-no_data--light: #707070;
+		--baseline-status-color-outline--light: #d9d9d9;
+		--baseline-status-color-text--light: inherit;
+		--baseline-status-color-link--light: #1a73e8;
+		/* Dark palette */
+		--baseline-status-color-limited--dark: #f09418;
+		--baseline-status-color-newly--dark: #4185ff;
+		--baseline-status-color-widely--dark: #24a446;
+		--baseline-status-color-no_data--dark: #868686;
+		--baseline-status-color-outline--dark: #d9d9d9;
+		--baseline-status-color-text--dark: inherit;
+		--baseline-status-color-link--dark: #5aa1ff;
+
+		--baseline-status-color-limited: var(
+			--baseline-status-color-limited--light
+		);
+		--baseline-status-color-newly: var(--baseline-status-color-newly--light);
+		--baseline-status-color-widely: var(--baseline-status-color-widely--light);
+		--baseline-status-color-no_data: var(
+			--baseline-status-color-no_data--light
+		);
+		--baseline-status-color-outline: var(
+			--baseline-status-color-outline--light
+		);
+		--baseline-status-color-text: var(--baseline-status-color-text--light);
+		--baseline-status-color-link: var(--baseline-status-color-link--light);
 
 		color: var(--baseline-status-color-text);
 		display: block;
@@ -154,6 +177,57 @@ const year =
 		font-family: Roboto, sans-serif;
 		font-size: 0.875rem;
 		font-style: normal;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		.baseline-status {
+			--baseline-status-color-limited: var(
+				--baseline-status-color-limited--dark
+			);
+			--baseline-status-color-newly: var(--baseline-status-color-newly--dark);
+			--baseline-status-color-widely: var(--baseline-status-color-widely--dark);
+			--baseline-status-color-no_data: var(
+				--baseline-status-color-no_data--dark
+			);
+			--baseline-status-color-outline: var(
+				--baseline-status-color-outline--dark
+			);
+			--baseline-status-color-text: var(--baseline-status-color-text--dark);
+			--baseline-status-color-link: var(--baseline-status-color-link--dark);
+		}
+	}
+
+	@supports (--color: light-dark(var(--a), var(--b))) {
+		.baseline-status {
+			--baseline-status-color-limited: light-dark(
+				var(--baseline-status-color-limited--light),
+				var(--baseline-status-color-limited--dark)
+			);
+			--baseline-status-color-newly: light-dark(
+				var(--baseline-status-color-newly--light),
+				var(--baseline-status-color-newly--dark)
+			);
+			--baseline-status-color-widely: light-dark(
+				var(--baseline-status-color-widely--light),
+				var(--baseline-status-color-widely--dark)
+			);
+			--baseline-status-color-no_data: light-dark(
+				var(--baseline-status-color-no_data--light),
+				var(--baseline-status-color-no_data--dark)
+			);
+			--baseline-status-color-outline: light-dark(
+				var(--baseline-status-color-outline--light),
+				var(--baseline-status-color-outline--dark)
+			);
+			--baseline-status-color-text: light-dark(
+				var(--baseline-status-color-text--light),
+				var(--baseline-status-color-text--dark)
+			);
+			--baseline-status-color-link: light-dark(
+				var(--baseline-status-color-link--light),
+				var(--baseline-status-color-link--dark)
+			);
+		}
 	}
 
 	.feature-name {
