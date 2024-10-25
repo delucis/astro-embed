@@ -119,11 +119,18 @@ const year =
 			</span>
 		</summary>
 		<p set:html={description} />
-		<p
-			set:html={baseline === 'no_data'
-				? ''
-				: `<a href="https://github.com/web-platform-dx/web-features/blob/main/features/${feature.feature_id}.yml" target="_top">Learn more</a>`}
-		/>
+		{
+			baseline !== 'no_data' && (
+				<p>
+					<a
+						href="https://github.com/web-platform-dx/web-features/blob/main/features/${feature.feature_id}.yml"
+						target="_top"
+					>
+						Learn more
+					</a>
+				</p>
+			)
+		}
 	</details>
 </baseline-status>
 
