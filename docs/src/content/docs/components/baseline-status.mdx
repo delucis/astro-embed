@@ -18,9 +18,6 @@ import { BaselineStatus } from 'astro-embed';
 ---
 
 <BaselineStatus id="scroll-snap" />
-<BaselineStatus id="has" />
-<BaselineStatus id="anchor-positioning" />
-<BaselineStatus id="rainbow-unicorns" />
 ````
 </TabItem>
 <TabItem label="MDX" icon="seti:markdown">
@@ -28,9 +25,6 @@ import { BaselineStatus } from 'astro-embed';
 import { BaselineStatus } from 'astro-embed';
 
 <BaselineStatus id="scroll-snap" />
-<BaselineStatus id="has" />
-<BaselineStatus id="anchor-positioning" />
-<BaselineStatus id="rainbow-unicorns" />
 ````
 
 </TabItem>
@@ -39,9 +33,170 @@ import { BaselineStatus } from 'astro-embed';
 The above code produces the following result:
 
 <BaselineStatus id="scroll-snap" />
+
+### The `id` attribute
+
+The `<BaselineStatus>` component requires an `id` attribute which sets the web feature to display browser support data for.
+This ID is the slug of the feature as stored in the [`web-platform-dx/web-features`](https://github.com/web-platform-dx/web-features) repository.
+The [Web Platform Status](https://webstatus.dev/) site is also a helpful place to search for feature IDs.
+
+For example, the ID for the CSS `:has()` selector is `has`:
+
+```astro
 <BaselineStatus id="has" />
-<BaselineStatus id="anchor-positioning" />
-<BaselineStatus id="rainbow-unicorns" />
+```
+
+<BaselineStatus id="has" />
+
+## Styling the component
+
+Due to its relatively complex layout and content, the `<BaselineStatus>` component uses [Declarative Shadow DOM](https://web.dev/articles/declarative-shadow-dom) to isolate its markup from your site’s styles.
+You can override the default styles using the [`::part()` pseudo-element](https://developer.mozilla.org/en-US/docs/Web/CSS/::part).
+
+```css
+.baseline-status::part(root) {
+	color-scheme: light;
+	background: floralwhite;
+	color: darkblue;
+	font-family: fantasy;
+	border: 1px dashed;
+}
+
+.baseline-status::part(feature-name) {
+	color: purple;
+	font-weight: bold;
+}
+```
+
+The above styles would render `<BaselineStatus>` like this:
+
+import StyledBaseline from './_examples/StyledBaseline.astro';
+
+<StyledBaseline />
+
+### Light/dark theming support
+
+The default styles make a best effort to adapt automatically to a site’s color theme.
+
+By default, text color is inherited from the document styles and the component has a transparent background. Colors used in iconography adapt to the user’s color scheme preference using a `prefers-color-scheme` media query.
+
+In browsers that support the [`light-dark()` CSS function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark), if your site sets the correct `color-scheme` values, `<BaselineStatus>` will adapt to match the current theme even if it does not match system-level color scheme preferences.
+
+<BaselineStatus id="light-dark" />
+
+#### Supporting a custom theme picker
+
+If your site uses a theme picker to set the current theme and you need to support older browsers, you can add custom styles to control the color variables `<BaselineStatus>` uses.
+
+For example, if you use a `data-theme="dark"` attribute to enable dark mode on your site, configure colors when that is set:
+
+```css
+[data-theme="dark"] .baseline-status::part(root) {
+	--baseline-status-color-limited: var(--baseline-status-color-limited--dark);
+	--baseline-status-color-newly: var(--baseline-status-color-newly--dark);
+	--baseline-status-color-widely: var(--baseline-status-color-widely--dark);
+	/* ... */
+}
+```
+
+See [“Custom properties API”](#custom-properties-api) below for a full list of available variables.
+
+### Component parts API
+
+The following component parts are exposed to set custom styles in your CSS.
+
+#### `::part(root)`
+
+Selects the wrapper at the base of the component.
+Particularly useful for setting CSS variables that impact component styles.
+
+
+#### `::part(feature-name)`
+
+The name of the feature support information is being displayed for.
+
+#### `::part(details)`
+
+The `<details>` element.
+
+#### `::part(summary)`
+
+The `<summary>` element.
+
+#### `::part(summary-content)`
+
+The main content of the `<summary>` element. This includes the visible text (`summary-label`) and browser icons (`browsers`), but excludes the Baseline icon and disclosure caret (`caret`).
+
+#### `::part(summary-label)`
+
+Element specifying the global support level in the `<summary>`, e.g. text reading “Baseline: Widely available” or “Limited availability”.
+
+#### `::part(badge)`
+
+Badge element added to highlight newly available Baseline features.
+
+#### `::part(browsers)`
+
+Wrapper element around the browser support icons.
+
+#### `::part(browser-support)`
+
+A browser support lockup, including browser logo, support level icon, and accessible text label.
+
+#### `::part(browser-support-label)`
+
+Accessible text label for browser support, visually hidden by default.
+
+#### `::part(caret)`
+
+The disclosure caret displayed instead of the default `<details>` marker.
+
+#### `::part(description)`
+
+The detailed description of the support level visible when the component is expanded.
+
+#### `::part(link)`
+
+The link element visible when the component is expanded.
+
+### Custom properties API
+
+The `<BaselineStatus>` component supports the following API for controlling its styles with CSS custom properties.
+
+```css
+.baseline-status::part(root) {
+	/* Light color scheme */
+	--baseline-status-color-limited--light: #ea8600;
+	--baseline-status-color-newly--light: #1a73e8;
+	--baseline-status-color-widely--light: #1e8e3e;
+	--baseline-status-color-no_data--light: #707070;
+	--baseline-status-color-outline--light: #d9d9d9;
+	--baseline-status-color-text--light: inherit;
+	--baseline-status-color-link--light: #1a73e8;
+	--baseline-icon-limited-front--light: #f09409;
+	--baseline-icon-limited-back--light: #c6c6c6;
+	--baseline-icon-widely-front--light: #1ea446;
+	--baseline-icon-widely-back--light: #c4eed0;
+	--baseline-icon-newly-front--light: #1b6ef3;
+	--baseline-icon-newly-back--light: #a8c7fa;
+	--baseline-icon-no_data--light: #909090;
+	/* Dark color scheme */
+	--baseline-status-color-limited--dark: #f09418;
+	--baseline-status-color-newly--dark: #4185ff;
+	--baseline-status-color-widely--dark: #24a446;
+	--baseline-status-color-no_data--dark: #868686;
+	--baseline-status-color-outline--dark: #d9d9d9;
+	--baseline-status-color-text--dark: inherit;
+	--baseline-status-color-link--dark: #5aa1ff;
+	--baseline-icon-limited-front--dark: #f09409;
+	--baseline-icon-limited-back--dark: #565656;
+	--baseline-icon-widely-front--dark: #1ea446;
+	--baseline-icon-widely-back--dark: #125225;
+	--baseline-icon-newly-front--dark: #4185ff;
+	--baseline-icon-newly-back--dark: #2d509e;
+	--baseline-icon-no_data--dark: #666666;
+}
+```
 
 ## Standalone installation
 
