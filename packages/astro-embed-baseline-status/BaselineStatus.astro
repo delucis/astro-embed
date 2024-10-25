@@ -82,21 +82,14 @@ const baselineDate = getBaselineDate(feature);
 const description = getDescriptionDate(baseline, baselineDate);
 const year =
 	baseline === 'newly' && baselineDate ? baselineDate.split(' ')[1]! : '';
-
-function getAriaLabel(title: string, year: string, newlyAvailable: boolean) {
-	return `Baseline: ${title}${year ? ` ${year}` : ''}${
-		newlyAvailable ? ` (newly available)` : ''
-	}.`;
-}
 ---
 
 <baseline-status>
 	<h1>{feature.name}</h1>
 	<details>
 		<summary>
-			{getAriaLabel(title, year, baseline === 'newly')}
 			<BaselineIcon support={baseline} />
-			<div class="baseline-status-title" aria-hidden="true">
+			<div class="baseline-status-title">
 				<div>
 					{
 						!(baseline === 'limited' || baseline === 'no_data') && (
