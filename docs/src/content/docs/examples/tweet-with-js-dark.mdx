@@ -1,0 +1,25 @@
+---
+title: Dark theme Tweet with JavaScript
+description: Example of loading Twitter’s widget JavaScript to hydrate the Astro Embed Tweet component using a dark color theme
+template: splash
+toc: false
+---
+
+import { LinkCard } from '@astrojs/starlight/components';
+import { Tweet } from '@astro-community/astro-embed-twitter';
+
+Adding Twitter’s widget script will hydrate the HTML markup of `<Tweet>`.
+
+```astro
+<script src="https://platform.twitter.com/widgets.js"></script>
+
+<Tweet theme="dark" id="https://twitter.com/astrodotbuild/status/1632809919291457537" />
+```
+
+The above code produces the following result:
+
+<script src="https://platform.twitter.com/widgets.js"></script>
+
+<Tweet theme="dark" id="https://twitter.com/astrodotbuild/status/1632809919291457537" />
+
+<LinkCard title="See full Tweet docs" href="/components/twitter/" />
