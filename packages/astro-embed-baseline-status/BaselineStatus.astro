@@ -3,6 +3,7 @@ import { safeGet } from '@astro-community/astro-embed-utils';
 import BaselineIcon from './BaselineIcon.astro';
 import BrowserSupport from './BrowserSupport.astro';
 import type { Feature, StatusLevel } from './types';
+import shadowStyles from './BaselineStatus.css?url';
 
 interface Props {
 	/**
@@ -148,7 +149,8 @@ const year =
 		display: block;
 		border: solid 1px var(--baseline-status-color-outline);
 		border-radius: 8px;
-		padding: 16px 24px 0 24px;
+		padding-top: 16px;
+		padding-inline: 24px;
 		max-width: 800px;
 		font-family: Roboto, sans-serif;
 		font-size: 14px;
@@ -189,7 +191,7 @@ const year =
 		background: #3367d6;
 		color: #fff;
 		font-size: 11px;
-		padding: 0 4px;
+		padding-inline: 4px;
 		border-radius: 2px;
 		text-transform: uppercase;
 		line-height: 20px;
@@ -211,13 +213,13 @@ const year =
 	details > summary .open-icon {
 		width: 10px;
 		height: 20px;
-		margin-left: auto;
+		margin-inline-start: auto;
 		color: var(--text-color);
 	}
 
 	@media (min-width: 420px) {
 		details > summary .open-icon {
-			margin-left: 48px;
+			margin-inline-start: 48px;
 		}
 	}
 
@@ -237,7 +239,7 @@ const year =
 		flex-wrap: wrap;
 		gap: 16px;
 		justify-content: space-between;
-		padding: 16px 0;
+		padding-block: 16px;
 	}
 
 	summary::-webkit-details-marker {
