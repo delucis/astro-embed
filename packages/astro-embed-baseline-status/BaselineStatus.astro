@@ -1,8 +1,7 @@
 ---
 import { safeGet } from '@astro-community/astro-embed-utils';
 import BaselineIcon from './BaselineIcon.astro';
-import BrowserIcon from './BrowserIcon.astro';
-import SupportIcon from './SupportIcon.astro';
+import BrowserSupport from './BrowserSupport.astro';
 import type { Feature, StatusLevel } from './types';
 
 interface Props {
@@ -83,46 +82,19 @@ const baselineDate = getBaselineDate(feature);
 const description = getDescriptionDate(baseline, baselineDate);
 const year =
 	baseline === 'newly' && baselineDate ? baselineDate.split(' ')[1]! : '';
-const { chrome, edge, firefox, safari } = feature.browser_implementations || {};
 
-function getAriaLabel(
-	title: string,
-	year: string,
-	newlyAvailable: boolean,
-	chrome = 'no',
-	edge = 'no',
-	firefox = 'no',
-	safari = 'no'
-) {
-	if (title === 'Unknown availability') {
-		chrome = edge = firefox = safari = 'unknown';
-	}
+function getAriaLabel(title: string, year: string, newlyAvailable: boolean) {
 	return `Baseline: ${title}${year ? ` ${year}` : ''}${
 		newlyAvailable ? ` (newly available)` : ''
-	}. Supported in Chrome: ${
-		chrome === 'available' ? 'yes' : chrome
-	}. Supported in Edge: ${
-		edge === 'available' ? 'yes' : edge
-	}. Supported in Firefox: ${
-		firefox === 'available' ? 'yes' : firefox
-	}. Supported in Safari: ${safari === 'available' ? 'yes' : safari}.`;
+	}.`;
 }
 ---
 
 <baseline-status>
 	<h1>{feature.name}</h1>
 	<details>
-		<summary
-			aria-label={getAriaLabel(
-				title,
-				year,
-				baseline === 'newly',
-				chrome?.status,
-				edge?.status,
-				firefox?.status,
-				safari?.status
-			)}
-		>
+		<summary>
+			{getAriaLabel(title, year, baseline === 'newly')}
 			<BaselineIcon support={baseline} />
 			<div class="baseline-status-title" aria-hidden="true">
 				<div>
@@ -140,22 +112,10 @@ function getAriaLabel(
 					}
 				</div>
 				<div class="baseline-status-browsers">
-					<span>
-						<BrowserIcon browser="chrome" />
-						<SupportIcon {baseline} browserImplementation={chrome} />
-					</span>
-					<span>
-						<BrowserIcon browser="edge" />
-						<SupportIcon {baseline} browserImplementation={edge} />
-					</span>
-					<span>
-						<BrowserIcon browser="firefox" />
-						<SupportIcon {baseline} browserImplementation={firefox} />
-					</span>
-					<span>
-						<BrowserIcon browser="safari" />
-						<SupportIcon {baseline} browserImplementation={safari} />
-					</span>
+					<BrowserSupport browser="chrome" {feature} />
+					<BrowserSupport browser="edge" {feature} />
+					<BrowserSupport browser="firefox" {feature} />
+					<BrowserSupport browser="safari" {feature} />
 				</div>
 			</div>
 			<span class="open-icon" aria-hidden="true">

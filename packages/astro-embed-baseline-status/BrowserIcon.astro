@@ -12,15 +12,7 @@ interface Props {
 const { browser } = Astro.props;
 
 const icons = { chrome, edge, firefox, safari };
-const labels = {
-	chrome: 'Chrome',
-	edge: 'Edge',
-	firefox: 'Firefox',
-	safari: 'Safari',
-};
-
 const { src, width, height } = icons[browser];
-const alt = labels[browser];
 ---
 
-<img {src} {alt} {width} {height} />
+<img {src} alt="" {width} {height} />
