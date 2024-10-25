@@ -84,58 +84,71 @@ const year =
 	baseline === 'newly' && baselineDate ? baselineDate.split(' ')[1]! : '';
 ---
 
-<baseline-status>
-	<p class="feature-name">{feature.name}</p>
-	<details>
-		<summary>
-			<BaselineIcon support={baseline} />
-			<div class="baseline-status-title">
-				<div>
-					{
-						!(baseline === 'limited' || baseline === 'no_data') && (
-							<strong>Baseline</strong>
-						)
-					}
-					{title}
-					{year}
-					{
-						baseline === 'newly' && (
-							<span class="baseline-badge">newly available</span>
-						)
-					}
-				</div>
-				<div class="baseline-status-browsers">
-					<BrowserSupport browser="chrome" {feature} />
-					<BrowserSupport browser="edge" {feature} />
-					<BrowserSupport browser="firefox" {feature} />
-					<BrowserSupport browser="safari" {feature} />
-				</div>
-			</div>
-			<span class="open-icon" aria-hidden="true">
-				<svg width="11" height="7" fill="currentColor">
-					<path d="M5.5 6.45.25 1.2l.94-.94L5.5 4.6 9.8.3l.95.94L5.5 6.45Z"
-					></path>
-				</svg>
-			</span>
-		</summary>
-		<p set:html={description} />
-		{
-			baseline !== 'no_data' && (
-				<p>
-					<a
-						href={`https://webstatus.dev/features/${feature.feature_id}`}
-						target="_top"
-					>
-						{feature.name} on Web Platform Status
-					</a>
-				</p>
-			)
-		}
-	</details>
-</baseline-status>
+<div class="baseline-status">
+	<template shadowrootmode="open">
+		<div part="root">
+			<p part="feature-name">{feature.name}</p>
+			<details part="details">
+				<summary part="summary">
+					<BaselineIcon support={baseline} />
+					<div part="summary-content">
+						<div part="summary-label">
+							{
+								!(baseline === 'limited' || baseline === 'no_data') && (
+									<strong>Baseline</strong>
+								)
+							}
+							{title}
+							{year}
+							{
+								baseline === 'newly' && (
+									<span part="badge">newly available</span>
+								)
+							}
+						</div>
+						<div part="browsers">
+							<BrowserSupport browser="chrome" {feature} />
+							<BrowserSupport browser="edge" {feature} />
+							<BrowserSupport browser="firefox" {feature} />
+							<BrowserSupport browser="safari" {feature} />
+						</div>
+					</div>
+					<style>
+						[part='caret'] svg {
+							transition: transform 0.3s;
+						}
+						details[open] [part='caret'] svg {
+							transform: rotate(180deg);
+						}
+					</style>
+					<span part="caret" aria-hidden="true">
+						<svg width="11" height="7" fill="currentColor">
+							<path d="M5.5 6.45.25 1.2l.94-.94L5.5 4.6 9.8.3l.95.94L5.5 6.45Z"
+							></path>
+						</svg>
+					</span>
+				</summary>
+				<p part="description" set:html={description} />
+				{
+					baseline !== 'no_data' && (
+						<p>
+							<a
+								href={`https://webstatus.dev/features/${feature.feature_id}`}
+								target="_top"
+								part="link"
+							>
+								{feature.name} on Web Platform Status
+							</a>
+						</p>
+					)
+				}
+			</details>
+		</div>
+	</template>
+</div>
 
 <style>
-	baseline-status {
+	.baseline-status::part(root) {
 		/* Light palette */
 		--baseline-status-color-limited--light: #ea8600;
 		--baseline-status-color-newly--light: #1a73e8;
@@ -144,6 +157,13 @@ const year =
 		--baseline-status-color-outline--light: #d9d9d9;
 		--baseline-status-color-text--light: inherit;
 		--baseline-status-color-link--light: #1a73e8;
+		--baseline-icon-limited-front--light: #f09409;
+		--baseline-icon-limited-back--light: #c6c6c6;
+		--baseline-icon-widely-front--light: #1ea446;
+		--baseline-icon-widely-back--light: #c4eed0;
+		--baseline-icon-newly-front--light: #1b6ef3;
+		--baseline-icon-newly-back--light: #a8c7fa;
+		--baseline-icon-no_data--light: #909090;
 		/* Dark palette */
 		--baseline-status-color-limited--dark: #f09418;
 		--baseline-status-color-newly--dark: #4185ff;
@@ -152,7 +172,15 @@ const year =
 		--baseline-status-color-outline--dark: #d9d9d9;
 		--baseline-status-color-text--dark: inherit;
 		--baseline-status-color-link--dark: #5aa1ff;
+		--baseline-icon-limited-front--dark: #f09409;
+		--baseline-icon-limited-back--dark: #565656;
+		--baseline-icon-widely-front--dark: #1ea446;
+		--baseline-icon-widely-back--dark: #125225;
+		--baseline-icon-newly-front--dark: #4185ff;
+		--baseline-icon-newly-back--dark: #2d509e;
+		--baseline-icon-no_data--dark: #666666;
 
+		/* Set up colors for light mode */
 		--baseline-status-color-limited: var(
 			--baseline-status-color-limited--light
 		);
@@ -166,6 +194,13 @@ const year =
 		);
 		--baseline-status-color-text: var(--baseline-status-color-text--light);
 		--baseline-status-color-link: var(--baseline-status-color-link--light);
+		--baseline-icon-limited-front: var(--baseline-icon-limited-front--light);
+		--baseline-icon-limited-back: var(--baseline-icon-limited-back--light);
+		--baseline-icon-widely-front: var(--baseline-icon-widely-front--light);
+		--baseline-icon-widely-back: var(--baseline-icon-widely-back--light);
+		--baseline-icon-newly-front: var(--baseline-icon-newly-front--light);
+		--baseline-icon-newly-back: var(--baseline-icon-newly-back--light);
+		--baseline-icon-no_data: var(--baseline-icon-no_data--light);
 
 		color: var(--baseline-status-color-text);
 		display: block;
@@ -180,7 +215,8 @@ const year =
 	}
 
 	@media (prefers-color-scheme: dark) {
-		.baseline-status {
+		.baseline-status::part(root) {
+			/* Set up colors for dark mode */
 			--baseline-status-color-limited: var(
 				--baseline-status-color-limited--dark
 			);
@@ -194,11 +230,19 @@ const year =
 			);
 			--baseline-status-color-text: var(--baseline-status-color-text--dark);
 			--baseline-status-color-link: var(--baseline-status-color-link--dark);
+			--baseline-icon-limited-front: var(--baseline-icon-limited-front--dark);
+			--baseline-icon-limited-back: var(--baseline-icon-limited-back--dark);
+			--baseline-icon-widely-front: var(--baseline-icon-widely-front--dark);
+			--baseline-icon-widely-back: var(--baseline-icon-widely-back--dark);
+			--baseline-icon-newly-front: var(--baseline-icon-newly-front--dark);
+			--baseline-icon-newly-back: var(--baseline-icon-newly-back--dark);
+			--baseline-icon-no_data: var(--baseline-icon-no_data--dark);
 		}
 	}
 
 	@supports (--color: light-dark(var(--a), var(--b))) {
-		.baseline-status {
+		.baseline-status::part(root) {
+			/* Set up dynamic light/dark colors in supporting browsers. */
 			--baseline-status-color-limited: light-dark(
 				var(--baseline-status-color-limited--light),
 				var(--baseline-status-color-limited--dark)
@@ -227,84 +271,49 @@ const year =
 				var(--baseline-status-color-link--light),
 				var(--baseline-status-color-link--dark)
 			);
+			--baseline-icon-limited-front: light-dark(
+				var(--baseline-icon-limited-front--light),
+				var(--baseline-icon-limited-front--dark)
+			);
+			--baseline-icon-limited-back: light-dark(
+				var(--baseline-icon-limited-back--light),
+				var(--baseline-icon-limited-back--dark)
+			);
+			--baseline-icon-widely-front: light-dark(
+				var(--baseline-icon-widely-front--light),
+				var(--baseline-icon-widely-front--dark)
+			);
+			--baseline-icon-widely-back: light-dark(
+				var(--baseline-icon-widely-back--light),
+				var(--baseline-icon-widely-back--dark)
+			);
+			--baseline-icon-newly-front: light-dark(
+				var(--baseline-icon-newly-front--light),
+				var(--baseline-icon-newly-front--dark)
+			);
+			--baseline-icon-newly-back: light-dark(
+				var(--baseline-icon-newly-back--light),
+				var(--baseline-icon-newly-back--dark)
+			);
+			--baseline-icon-no_data: light-dark(
+				var(--baseline-icon-no_data--light),
+				var(--baseline-icon-no_data--dark)
+			);
 		}
 	}
 
-	.feature-name {
-		font-weight: normal;
+	.baseline-status::part(feature-name) {
 		font-size: 1.25rem;
 		margin: 0;
 	}
 
-	a,
-	a:active,
-	a:visited {
+	.baseline-status::part(link),
+	.baseline-status::part(link):active,
+	.baseline-status::part(link):visited {
 		color: var(--baseline-status-color-link);
 	}
 
-	.baseline-status-title {
-		gap: 1rem;
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		flex: 1;
-	}
-
-	.baseline-status-title {
-		flex: 1;
-	}
-
-	.baseline-status-title div:first-child {
-		display: flex;
-		align-items: center;
-		gap: 0.2rem;
-	}
-
-	.baseline-badge {
-		background: #3367d6;
-		color: #fff;
-		font-size: 0.6875rem;
-		padding-inline: 4px;
-		border-radius: 2px;
-		text-transform: uppercase;
-		line-height: 20px;
-		margin-inline: 0.5rem;
-		white-space: nowrap;
-	}
-
-	.baseline-status-browsers {
-		font-size: 0;
-		max-width: 200px;
-		display: flex;
-		gap: 16px;
-	}
-
-	.baseline-status-browsers span {
-		white-space: nowrap;
-	}
-
-	details > summary .open-icon {
-		width: 10px;
-		height: 20px;
-		margin-inline-start: auto;
-		color: var(--text-color);
-	}
-
-	@media (min-width: 420px) {
-		details > summary .open-icon {
-			margin-inline-start: 48px;
-		}
-	}
-
-	details > summary .open-icon svg {
-		transition: all 0.3s;
-	}
-
-	details[open] summary .open-icon svg {
-		transform: rotate(180deg);
-	}
-
-	summary {
+	.baseline-status::part(summary) {
 		display: flex;
 		cursor: pointer;
 		font-size: 1rem;
@@ -315,7 +324,63 @@ const year =
 		padding-block: 16px;
 	}
 
-	summary::-webkit-details-marker {
+	.baseline-status::part(summary)::-webkit-details-marker {
 		display: none;
+	}
+
+	.baseline-status::part(summary-content) {
+		gap: 1rem;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		flex: 1;
+	}
+
+	.baseline-status::part(summary-label) {
+		display: flex;
+		align-items: center;
+		gap: 0.2rem;
+	}
+
+	.baseline-status::part(badge) {
+		background: #3367d6;
+		color: #fff;
+		font-size: 0.6875rem;
+		padding-inline: 4px;
+		border-radius: 2px;
+		text-transform: uppercase;
+		line-height: 1.8;
+		margin-inline: 0.5rem;
+		white-space: nowrap;
+	}
+
+	.baseline-status::part(browsers) {
+		font-size: 0;
+		max-width: 200px;
+		display: flex;
+		gap: 16px;
+	}
+
+	.baseline-status::part(browser-support) {
+		white-space: nowrap;
+	}
+	.baseline-status::part(browser-support-label) {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		margin: -1px;
+	}
+
+	.baseline-status::part(caret) {
+		width: 10px;
+		height: 20px;
+		margin-inline-start: auto;
+		color: var(--text-color);
+	}
+
+	@media (min-width: 420px) {
+		.baseline-status::part(caret) {
+			margin-inline-start: 48px;
+		}
 	}
 </style>

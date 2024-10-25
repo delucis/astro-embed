@@ -24,8 +24,10 @@ if (baseline === 'no_data') supportLabel = 'unknown';
 if (supportLabel === 'available') supportLabel = 'yes';
 ---
 
-<span>
-	Supported in {browserName}: {supportLabel}.
+<span part="browser-support">
+	<span part="browser-support-label">
+		Supported in {browserName}: {supportLabel}.
+	</span>
 	<BrowserIcon {browser} />
 	<SupportIcon {baseline} {browserImplementation} />
 </span>
