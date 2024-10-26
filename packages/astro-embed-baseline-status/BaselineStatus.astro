@@ -194,10 +194,10 @@ const year =
 
 		color: var(--color-text);
 		border: solid 1px var(--color-outline);
-		border-radius: 8px;
-		padding-top: 16px;
-		padding-inline: 24px;
-		max-width: 800px;
+		border-radius: 0.5rem;
+		padding-top: 1rem;
+		padding-inline: 1.5rem;
+		max-width: 50rem;
 		font-family: Roboto, sans-serif;
 		font-size: 0.875rem;
 		font-style: normal;
@@ -297,9 +297,9 @@ const year =
 		font-size: 1rem;
 		display: flex;
 		flex-wrap: wrap;
-		gap: 16px;
+		gap: 1rem;
 		justify-content: space-between;
-		padding-block: 16px;
+		padding-block: 1rem;
 	}
 
 	.baseline-status::part(summary)::-webkit-details-marker {
@@ -324,8 +324,8 @@ const year =
 		background: var(--color-badge-background);
 		color: var(--color-badge-text);
 		font-size: 0.6875rem;
-		padding-inline: 4px;
-		border-radius: 2px;
+		padding-inline: 0.25rem;
+		border-radius: 0.125rem;
 		text-transform: uppercase;
 		line-height: 1.8;
 		margin-inline: 0.5rem;
@@ -334,9 +334,9 @@ const year =
 
 	.baseline-status::part(browsers) {
 		font-size: 0;
-		max-width: 200px;
+		max-width: 12.5rem;
 		display: flex;
-		gap: 16px;
+		gap: 1rem;
 	}
 
 	.baseline-status::part(browser-support) {
@@ -356,9 +356,9 @@ const year =
 		color: var(--text-color);
 	}
 
-	@media (min-width: 420px) {
+	@media (min-width: 28rem) {
 		.baseline-status::part(caret) {
-			margin-inline-start: 48px;
+			margin-inline-start: 3rem;
 		}
 	}
 </style>
