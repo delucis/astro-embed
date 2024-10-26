@@ -156,14 +156,20 @@ In addition, the following variant class names are applied and can be used to cu
 - `.baseline-status--widely`: applied if the feature is widely available
 - `.baseline-status--no_data`: applied if there is no data available for the feature
 
-For example, you could use these to set a custom outline color for widely available features:
+For example, you could use these to display custom colors only for widely available features:
 
 ```css
 .baseline-status--widely::part(root) {
-	--color-outline--light: green;
-	--color-outline--dark: lime;
+	--color-outline--light: hsl(120, 100%, 80%);
+	--color-background--light: hsl(120, 100%, 95%);
+	--color-outline--dark: hsl(120, 100%, 20%);
+	--color-background--dark: hsl(120, 100%, 5%);
 }
 ```
+
+import BaselineVariants from './_examples/StyledBaselineVariants.astro';
+
+<BaselineVariants id="cascade-layers" />
 
 ### Component parts API
 

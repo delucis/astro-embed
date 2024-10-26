@@ -1,0 +1,19 @@
+---
+import { BaselineStatus } from '@astro-community/astro-embed-baseline-status';
+import type { ComponentProps } from 'astro/types';
+
+export type Props = ComponentProps<typeof BaselineStatus>;
+---
+
+<div class="styled-baseline">
+	<BaselineStatus {...Astro.props} />
+</div>
+
+<style>
+	.styled-baseline :global(.baseline-status--widely::part(root)) {
+		--color-outline--light: hsl(120, 100%, 80%);
+		--color-background--light: hsl(120, 100%, 95%);
+		--color-outline--dark: hsl(120, 100%, 20%);
+		--color-background--dark: hsl(120, 100%, 5%);
+	}
+</style>
