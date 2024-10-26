@@ -150,6 +150,7 @@ const year =
 	.baseline-status::part(root) {
 		/* Light palette */
 		--color-outline--light: #d9d9d9;
+		--color-background--light: transparent;
 		--color-text--light: inherit;
 		--color-link--light: #1a73e8;
 		--color-badge-background--light: #3367d6;
@@ -164,6 +165,7 @@ const year =
 		--color-no_data-secondary--light: #909090;
 		/* Dark palette */
 		--color-outline--dark: #666666;
+		--color-background--dark: transparent;
 		--color-text--dark: inherit;
 		--color-link--dark: #5aa1ff;
 		--color-badge-background--dark: #3367d6;
@@ -183,6 +185,7 @@ const year =
 		--color-widely: var(--color-widely--light);
 		--color-no_data: var(--color-no_data--light);
 		--color-outline: var(--color-outline--light);
+		--color-background: var(--color-background--light);
 		--color-text: var(--color-text--light);
 		--color-link: var(--color-link--light);
 		--color-badge-background: var(--color-badge-background--light);
@@ -195,6 +198,7 @@ const year =
 		color: var(--color-text);
 		border: solid 1px var(--color-outline);
 		border-radius: 0.5rem;
+		background: var(--color-background);
 		padding-top: 1rem;
 		padding-inline: 1.5rem;
 		max-width: 50rem;
@@ -212,6 +216,7 @@ const year =
 			--color-widely: var(--color-widely--dark);
 			--color-no_data: var(--color-no_data--dark);
 			--color-outline: var(--color-outline--dark);
+			--color-background: var(--color-background--dark);
 			--color-text: var(--color-text--dark);
 			--color-link: var(--color-link--dark);
 			--color-badge-background: var(--color-badge-background--dark);
@@ -245,6 +250,10 @@ const year =
 			--color-outline: light-dark(
 				var(--color-outline--light),
 				var(--color-outline--dark)
+			);
+			--color-background: light-dark(
+				var(--color-background--light),
+				var(--color-background--dark)
 			);
 			--color-text: light-dark(
 				var(--color-text--light),
