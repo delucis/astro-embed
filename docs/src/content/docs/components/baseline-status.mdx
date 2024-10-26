@@ -92,7 +92,7 @@ If your site uses a theme picker to set the current theme and you need to suppor
 For example, if you use a `data-theme="dark"` attribute to enable dark mode on your site, configure colors when that is set:
 
 ```css
-[data-theme="dark"] .baseline-status::part(root) {
+[data-theme='dark'] .baseline-status::part(root) {
 	--baseline-status-color-limited: var(--baseline-status-color-limited--dark);
 	--baseline-status-color-newly: var(--baseline-status-color-newly--dark);
 	--baseline-status-color-widely: var(--baseline-status-color-widely--dark);
@@ -110,7 +110,6 @@ The following component parts are exposed to set custom styles in your CSS.
 
 Selects the wrapper at the base of the component.
 Particularly useful for setting CSS variables that impact component styles.
-
 
 #### `::part(feature-name)`
 
@@ -174,6 +173,8 @@ The `<BaselineStatus>` component supports the following API for controlling its 
 	--baseline-status-color-outline--light: #d9d9d9;
 	--baseline-status-color-text--light: inherit;
 	--baseline-status-color-link--light: #1a73e8;
+	--baseline-badge-background--light: #3367d6;
+	--baseline-badge-text--light: #fff;
 	--baseline-icon-limited-front--light: #f09409;
 	--baseline-icon-limited-back--light: #c6c6c6;
 	--baseline-icon-widely-front--light: #1ea446;
@@ -189,6 +190,8 @@ The `<BaselineStatus>` component supports the following API for controlling its 
 	--baseline-status-color-outline--dark: #d9d9d9;
 	--baseline-status-color-text--dark: inherit;
 	--baseline-status-color-link--dark: #5aa1ff;
+	--baseline-badge-background--dark: #3367d6;
+	--baseline-badge-text--dark: #fff;
 	--baseline-icon-limited-front--dark: #f09409;
 	--baseline-icon-limited-back--dark: #565656;
 	--baseline-icon-widely-front--dark: #1ea446;

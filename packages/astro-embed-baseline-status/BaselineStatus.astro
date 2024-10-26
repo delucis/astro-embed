@@ -157,6 +157,8 @@ const year =
 		--baseline-status-color-outline--light: #d9d9d9;
 		--baseline-status-color-text--light: inherit;
 		--baseline-status-color-link--light: #1a73e8;
+		--baseline-badge-background--light: #3367d6;
+		--baseline-badge-text--light: #fff;
 		--baseline-icon-limited-front--light: #f09409;
 		--baseline-icon-limited-back--light: #c6c6c6;
 		--baseline-icon-widely-front--light: #1ea446;
@@ -172,6 +174,8 @@ const year =
 		--baseline-status-color-outline--dark: #d9d9d9;
 		--baseline-status-color-text--dark: inherit;
 		--baseline-status-color-link--dark: #5aa1ff;
+		--baseline-badge-background--dark: #3367d6;
+		--baseline-badge-text--dark: #fff;
 		--baseline-icon-limited-front--dark: #f09409;
 		--baseline-icon-limited-back--dark: #565656;
 		--baseline-icon-widely-front--dark: #1ea446;
@@ -194,6 +198,8 @@ const year =
 		);
 		--baseline-status-color-text: var(--baseline-status-color-text--light);
 		--baseline-status-color-link: var(--baseline-status-color-link--light);
+		--baseline-badge-background: var(--baseline-badge-background--light);
+		--baseline-badge-text: var(--baseline-badge-text--light);
 		--baseline-icon-limited-front: var(--baseline-icon-limited-front--light);
 		--baseline-icon-limited-back: var(--baseline-icon-limited-back--light);
 		--baseline-icon-widely-front: var(--baseline-icon-widely-front--light);
@@ -230,6 +236,8 @@ const year =
 			);
 			--baseline-status-color-text: var(--baseline-status-color-text--dark);
 			--baseline-status-color-link: var(--baseline-status-color-link--dark);
+			--baseline-badge-background: var(--baseline-badge-background--dark);
+			--baseline-badge-text: var(--baseline-badge-text--dark);
 			--baseline-icon-limited-front: var(--baseline-icon-limited-front--dark);
 			--baseline-icon-limited-back: var(--baseline-icon-limited-back--dark);
 			--baseline-icon-widely-front: var(--baseline-icon-widely-front--dark);
@@ -270,6 +278,14 @@ const year =
 			--baseline-status-color-link: light-dark(
 				var(--baseline-status-color-link--light),
 				var(--baseline-status-color-link--dark)
+			);
+			--baseline-badge-background: light-dark(
+				var(--baseline-badge-background--light),
+				var(--baseline-badge-background--dark)
+			);
+			--baseline-badge-text: light-dark(
+				var(--baseline-badge-text--light),
+				var(--baseline-badge-text--dark)
 			);
 			--baseline-icon-limited-front: light-dark(
 				var(--baseline-icon-limited-front--light),
@@ -343,8 +359,8 @@ const year =
 	}
 
 	.baseline-status::part(badge) {
-		background: #3367d6;
-		color: #fff;
+		background: var(--baseline-badge-background);
+		color: var(--baseline-badge-text);
 		font-size: 0.6875rem;
 		padding-inline: 4px;
 		border-radius: 2px;
