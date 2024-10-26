@@ -84,7 +84,7 @@ const year =
 	baseline === 'newly' && baselineDate ? baselineDate.split(' ')[1]! : '';
 ---
 
-<div class="baseline-status">
+<div class={`baseline-status baseline-status--${baseline}`}>
 	<template shadowrootmode="open">
 		<div part="root">
 			<p part="feature-name">{feature.name}</p>

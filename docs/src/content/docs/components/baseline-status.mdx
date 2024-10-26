@@ -143,6 +143,26 @@ The `<BaselineStatus>` component supports the following API for controlling its 
 }
 ```
 
+### CSS class names API
+
+The root element of the `<BaselineStatus>` component can be targeted using the `.baseline-status` selector.
+
+In addition, the following variant class names are applied and can be used to customise appearance for the different Baseline status levels:
+
+- `.baseline-status--limited`: applied if the feature has limited availability
+- `.baseline-status--newly`: applied if the feature is newly available
+- `.baseline-status--widely`: applied if the feature is widely available
+- `.baseline-status--no_data`: applied if there is no data available for the feature
+
+For example, you could use these to set a custom outline color for widely available features:
+
+```css
+.baseline-status--widely::part(root) {
+	--color-outline--light: green;
+	--color-outline--dark: lime;
+}
+```
+
 ### Component parts API
 
 The following component parts are exposed to set custom styles in your CSS.
