@@ -136,9 +136,8 @@ const year =
 								href={`https://webstatus.dev/features/${feature.feature_id}`}
 								target="_top"
 								part="link"
-							>
-								{feature.name} on Web Platform Status
-							</a>
+								set:text={`${feature.name} on Web Platform Status`}
+							/>
 						</p>
 					)
 				}
