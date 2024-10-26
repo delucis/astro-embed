@@ -149,39 +149,33 @@ const year =
 <style>
 	.baseline-status::part(root) {
 		/* Light palette */
-		--color-limited--light: #ea8600;
-		--color-newly--light: #1a73e8;
-		--color-widely--light: #1e8e3e;
-		--color-no_data--light: #707070;
 		--color-outline--light: #d9d9d9;
 		--color-text--light: inherit;
 		--color-link--light: #1a73e8;
 		--color-badge-background--light: #3367d6;
 		--color-badge-text--light: #fff;
-		--color-icon-limited-front--light: #f09409;
-		--color-icon-limited-back--light: #c6c6c6;
-		--color-icon-widely-front--light: #1ea446;
-		--color-icon-widely-back--light: #c4eed0;
-		--color-icon-newly-front--light: #1b6ef3;
-		--color-icon-newly-back--light: #a8c7fa;
-		--color-icon-no_data--light: #909090;
+		--color-limited--light: #ea8600;
+		--color-limited-secondary--light: #c6c6c6;
+		--color-newly--light: #1a73e8;
+		--color-newly-secondary--light: #a8c7fa;
+		--color-widely--light: #1e8e3e;
+		--color-widely-secondary--light: #c4eed0;
+		--color-no_data--light: #707070;
+		--color-no_data-secondary--light: #909090;
 		/* Dark palette */
-		--color-limited--dark: #f09418;
-		--color-newly--dark: #4185ff;
-		--color-widely--dark: #24a446;
-		--color-no_data--dark: #868686;
 		--color-outline--dark: #d9d9d9;
 		--color-text--dark: inherit;
 		--color-link--dark: #5aa1ff;
 		--color-badge-background--dark: #3367d6;
 		--color-badge-text--dark: #fff;
-		--color-icon-limited-front--dark: #f09409;
-		--color-icon-limited-back--dark: #565656;
-		--color-icon-widely-front--dark: #1ea446;
-		--color-icon-widely-back--dark: #125225;
-		--color-icon-newly-front--dark: #4185ff;
-		--color-icon-newly-back--dark: #2d509e;
-		--color-icon-no_data--dark: #666666;
+		--color-limited--dark: #f09418;
+		--color-limited-secondary--dark: #565656;
+		--color-newly--dark: #4185ff;
+		--color-newly-secondary--dark: #2d509e;
+		--color-widely--dark: #24a446;
+		--color-widely-secondary--dark: #125225;
+		--color-no_data--dark: #868686;
+		--color-no_data-secondary--dark: #666666;
 
 		/* Set up colors for light mode */
 		--color-limited: var(--color-limited--light);
@@ -193,13 +187,10 @@ const year =
 		--color-link: var(--color-link--light);
 		--color-badge-background: var(--color-badge-background--light);
 		--color-badge-text: var(--color-badge-text--light);
-		--color-icon-limited-front: var(--color-icon-limited-front--light);
-		--color-icon-limited-back: var(--color-icon-limited-back--light);
-		--color-icon-widely-front: var(--color-icon-widely-front--light);
-		--color-icon-widely-back: var(--color-icon-widely-back--light);
-		--color-icon-newly-front: var(--color-icon-newly-front--light);
-		--color-icon-newly-back: var(--color-icon-newly-back--light);
-		--color-icon-no_data: var(--color-icon-no_data--light);
+		--color-limited-secondary: var(--color-limited-secondary--light);
+		--color-widely-secondary: var(--color-widely-secondary--light);
+		--color-newly-secondary: var(--color-newly-secondary--light);
+		--color-no_data-secondary: var(--color-no_data-secondary--light);
 
 		color: var(--color-text);
 		display: block;
@@ -225,13 +216,10 @@ const year =
 			--color-link: var(--color-link--dark);
 			--color-badge-background: var(--color-badge-background--dark);
 			--color-badge-text: var(--color-badge-text--dark);
-			--color-icon-limited-front: var(--color-icon-limited-front--dark);
-			--color-icon-limited-back: var(--color-icon-limited-back--dark);
-			--color-icon-widely-front: var(--color-icon-widely-front--dark);
-			--color-icon-widely-back: var(--color-icon-widely-back--dark);
-			--color-icon-newly-front: var(--color-icon-newly-front--dark);
-			--color-icon-newly-back: var(--color-icon-newly-back--dark);
-			--color-icon-no_data: var(--color-icon-no_data--dark);
+			--color-limited-secondary: var(--color-limited-secondary--dark);
+			--color-widely-secondary: var(--color-widely-secondary--dark);
+			--color-newly-secondary: var(--color-newly-secondary--dark);
+			--color-no_data-secondary: var(--color-no_data-secondary--dark);
 		}
 	}
 
@@ -274,33 +262,21 @@ const year =
 				var(--color-badge-text--light),
 				var(--color-badge-text--dark)
 			);
-			--color-icon-limited-front: light-dark(
-				var(--color-icon-limited-front--light),
-				var(--color-icon-limited-front--dark)
+			--color-limited-secondary: light-dark(
+				var(--color-limited-secondary--light),
+				var(--color-limited-secondary--dark)
 			);
-			--color-icon-limited-back: light-dark(
-				var(--color-icon-limited-back--light),
-				var(--color-icon-limited-back--dark)
+			--color-widely-secondary: light-dark(
+				var(--color-widely-secondary--light),
+				var(--color-widely-secondary--dark)
 			);
-			--color-icon-widely-front: light-dark(
-				var(--color-icon-widely-front--light),
-				var(--color-icon-widely-front--dark)
+			--color-newly-secondary: light-dark(
+				var(--color-newly-secondary--light),
+				var(--color-newly-secondary--dark)
 			);
-			--color-icon-widely-back: light-dark(
-				var(--color-icon-widely-back--light),
-				var(--color-icon-widely-back--dark)
-			);
-			--color-icon-newly-front: light-dark(
-				var(--color-icon-newly-front--light),
-				var(--color-icon-newly-front--dark)
-			);
-			--color-icon-newly-back: light-dark(
-				var(--color-icon-newly-back--light),
-				var(--color-icon-newly-back--dark)
-			);
-			--color-icon-no_data: light-dark(
-				var(--color-icon-no_data--light),
-				var(--color-icon-no_data--dark)
+			--color-no_data-secondary: light-dark(
+				var(--color-no_data-secondary--light),
+				var(--color-no_data-secondary--dark)
 			);
 		}
 	}
