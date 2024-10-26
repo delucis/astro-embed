@@ -26,4 +26,34 @@ import Base from '../layouts/Base.astro';
 		<code>&lt;BaselineStatus id="rainbow-unicorns" /&gt;</code>
 	</p>
 	<BaselineStatus id="rainbow-unicorns" />
+	<h2>With custom styles</h2>
+	<div class="styled">
+		<p>
+			<code>&lt;BaselineStatus id="anchor-positioning" /&gt;</code>
+		</p>
+		<BaselineStatus id="anchor-positioning" />
+		<p>
+			<code>&lt;BaselineStatus id="has" /&gt;</code>
+		</p>
+		<BaselineStatus id="has" />
+		<p>
+			<code>&lt;BaselineStatus id="scroll-snap" /&gt;</code>
+		</p>
+		<BaselineStatus id="scroll-snap" />
+	</div>
 </Base>
+
+<style>
+	.styled :global(.baseline-status--limited::part(root)) {
+		--color-outline--light: hsl(40, 100%, 80%);
+		--color-background--light: hsl(40, 100%, 95%);
+	}
+	.styled :global(.baseline-status--newly::part(root)) {
+		--color-outline--light: hsl(200, 100%, 80%);
+		--color-background--light: hsl(200, 100%, 95%);
+	}
+	.styled :global(.baseline-status--widely::part(root)) {
+		--color-outline--light: hsl(120, 100%, 80%);
+		--color-background--light: hsl(120, 100%, 95%);
+	}
+</style>
