@@ -41,13 +41,17 @@ The `<BaselineStatus>` component requires an `id` attribute which sets the web f
 This ID is the slug of the feature as stored in the [`web-platform-dx/web-features`](https://github.com/web-platform-dx/web-features) repository.
 The [Web Platform Status](https://webstatus.dev/) site is also a helpful place to search for feature IDs.
 
-For example, the ID for the CSS `:has()` selector is `has`:
+For example, the ID for the CSS `:has()` selector is `"has"`:
 
-```astro
+```astro 'id="has"'
 <BaselineStatus id="has" />
 ```
 
 <BaselineStatus id="has" />
+
+If the ID does not match a known web feature, the component will still render, but display an unknown availability. For example, with an ID of `"rainbow-unicorns"`:
+
+<BaselineStatus id="rainbow-unicorns" />
 
 ## Styling the component
 
