@@ -150,67 +150,61 @@ const year =
 <style>
 	.baseline-status::part(root) {
 		/* Light palette */
-		--baseline-status-color-limited--light: #ea8600;
-		--baseline-status-color-newly--light: #1a73e8;
-		--baseline-status-color-widely--light: #1e8e3e;
-		--baseline-status-color-no_data--light: #707070;
-		--baseline-status-color-outline--light: #d9d9d9;
-		--baseline-status-color-text--light: inherit;
-		--baseline-status-color-link--light: #1a73e8;
-		--baseline-badge-background--light: #3367d6;
-		--baseline-badge-text--light: #fff;
-		--baseline-icon-limited-front--light: #f09409;
-		--baseline-icon-limited-back--light: #c6c6c6;
-		--baseline-icon-widely-front--light: #1ea446;
-		--baseline-icon-widely-back--light: #c4eed0;
-		--baseline-icon-newly-front--light: #1b6ef3;
-		--baseline-icon-newly-back--light: #a8c7fa;
-		--baseline-icon-no_data--light: #909090;
+		--color-limited--light: #ea8600;
+		--color-newly--light: #1a73e8;
+		--color-widely--light: #1e8e3e;
+		--color-no_data--light: #707070;
+		--color-outline--light: #d9d9d9;
+		--color-text--light: inherit;
+		--color-link--light: #1a73e8;
+		--color-badge-background--light: #3367d6;
+		--color-badge-text--light: #fff;
+		--color-icon-limited-front--light: #f09409;
+		--color-icon-limited-back--light: #c6c6c6;
+		--color-icon-widely-front--light: #1ea446;
+		--color-icon-widely-back--light: #c4eed0;
+		--color-icon-newly-front--light: #1b6ef3;
+		--color-icon-newly-back--light: #a8c7fa;
+		--color-icon-no_data--light: #909090;
 		/* Dark palette */
-		--baseline-status-color-limited--dark: #f09418;
-		--baseline-status-color-newly--dark: #4185ff;
-		--baseline-status-color-widely--dark: #24a446;
-		--baseline-status-color-no_data--dark: #868686;
-		--baseline-status-color-outline--dark: #d9d9d9;
-		--baseline-status-color-text--dark: inherit;
-		--baseline-status-color-link--dark: #5aa1ff;
-		--baseline-badge-background--dark: #3367d6;
-		--baseline-badge-text--dark: #fff;
-		--baseline-icon-limited-front--dark: #f09409;
-		--baseline-icon-limited-back--dark: #565656;
-		--baseline-icon-widely-front--dark: #1ea446;
-		--baseline-icon-widely-back--dark: #125225;
-		--baseline-icon-newly-front--dark: #4185ff;
-		--baseline-icon-newly-back--dark: #2d509e;
-		--baseline-icon-no_data--dark: #666666;
+		--color-limited--dark: #f09418;
+		--color-newly--dark: #4185ff;
+		--color-widely--dark: #24a446;
+		--color-no_data--dark: #868686;
+		--color-outline--dark: #d9d9d9;
+		--color-text--dark: inherit;
+		--color-link--dark: #5aa1ff;
+		--color-badge-background--dark: #3367d6;
+		--color-badge-text--dark: #fff;
+		--color-icon-limited-front--dark: #f09409;
+		--color-icon-limited-back--dark: #565656;
+		--color-icon-widely-front--dark: #1ea446;
+		--color-icon-widely-back--dark: #125225;
+		--color-icon-newly-front--dark: #4185ff;
+		--color-icon-newly-back--dark: #2d509e;
+		--color-icon-no_data--dark: #666666;
 
 		/* Set up colors for light mode */
-		--baseline-status-color-limited: var(
-			--baseline-status-color-limited--light
-		);
-		--baseline-status-color-newly: var(--baseline-status-color-newly--light);
-		--baseline-status-color-widely: var(--baseline-status-color-widely--light);
-		--baseline-status-color-no_data: var(
-			--baseline-status-color-no_data--light
-		);
-		--baseline-status-color-outline: var(
-			--baseline-status-color-outline--light
-		);
-		--baseline-status-color-text: var(--baseline-status-color-text--light);
-		--baseline-status-color-link: var(--baseline-status-color-link--light);
-		--baseline-badge-background: var(--baseline-badge-background--light);
-		--baseline-badge-text: var(--baseline-badge-text--light);
-		--baseline-icon-limited-front: var(--baseline-icon-limited-front--light);
-		--baseline-icon-limited-back: var(--baseline-icon-limited-back--light);
-		--baseline-icon-widely-front: var(--baseline-icon-widely-front--light);
-		--baseline-icon-widely-back: var(--baseline-icon-widely-back--light);
-		--baseline-icon-newly-front: var(--baseline-icon-newly-front--light);
-		--baseline-icon-newly-back: var(--baseline-icon-newly-back--light);
-		--baseline-icon-no_data: var(--baseline-icon-no_data--light);
+		--color-limited: var(--color-limited--light);
+		--color-newly: var(--color-newly--light);
+		--color-widely: var(--color-widely--light);
+		--color-no_data: var(--color-no_data--light);
+		--color-outline: var(--color-outline--light);
+		--color-text: var(--color-text--light);
+		--color-link: var(--color-link--light);
+		--color-badge-background: var(--color-badge-background--light);
+		--color-badge-text: var(--color-badge-text--light);
+		--color-icon-limited-front: var(--color-icon-limited-front--light);
+		--color-icon-limited-back: var(--color-icon-limited-back--light);
+		--color-icon-widely-front: var(--color-icon-widely-front--light);
+		--color-icon-widely-back: var(--color-icon-widely-back--light);
+		--color-icon-newly-front: var(--color-icon-newly-front--light);
+		--color-icon-newly-back: var(--color-icon-newly-back--light);
+		--color-icon-no_data: var(--color-icon-no_data--light);
 
-		color: var(--baseline-status-color-text);
+		color: var(--color-text);
 		display: block;
-		border: solid 1px var(--baseline-status-color-outline);
+		border: solid 1px var(--color-outline);
 		border-radius: 8px;
 		padding-top: 16px;
 		padding-inline: 24px;
@@ -223,97 +217,91 @@ const year =
 	@media (prefers-color-scheme: dark) {
 		.baseline-status::part(root) {
 			/* Set up colors for dark mode */
-			--baseline-status-color-limited: var(
-				--baseline-status-color-limited--dark
-			);
-			--baseline-status-color-newly: var(--baseline-status-color-newly--dark);
-			--baseline-status-color-widely: var(--baseline-status-color-widely--dark);
-			--baseline-status-color-no_data: var(
-				--baseline-status-color-no_data--dark
-			);
-			--baseline-status-color-outline: var(
-				--baseline-status-color-outline--dark
-			);
-			--baseline-status-color-text: var(--baseline-status-color-text--dark);
-			--baseline-status-color-link: var(--baseline-status-color-link--dark);
-			--baseline-badge-background: var(--baseline-badge-background--dark);
-			--baseline-badge-text: var(--baseline-badge-text--dark);
-			--baseline-icon-limited-front: var(--baseline-icon-limited-front--dark);
-			--baseline-icon-limited-back: var(--baseline-icon-limited-back--dark);
-			--baseline-icon-widely-front: var(--baseline-icon-widely-front--dark);
-			--baseline-icon-widely-back: var(--baseline-icon-widely-back--dark);
-			--baseline-icon-newly-front: var(--baseline-icon-newly-front--dark);
-			--baseline-icon-newly-back: var(--baseline-icon-newly-back--dark);
-			--baseline-icon-no_data: var(--baseline-icon-no_data--dark);
+			--color-limited: var(--color-limited--dark);
+			--color-newly: var(--color-newly--dark);
+			--color-widely: var(--color-widely--dark);
+			--color-no_data: var(--color-no_data--dark);
+			--color-outline: var(--color-outline--dark);
+			--color-text: var(--color-text--dark);
+			--color-link: var(--color-link--dark);
+			--color-badge-background: var(--color-badge-background--dark);
+			--color-badge-text: var(--color-badge-text--dark);
+			--color-icon-limited-front: var(--color-icon-limited-front--dark);
+			--color-icon-limited-back: var(--color-icon-limited-back--dark);
+			--color-icon-widely-front: var(--color-icon-widely-front--dark);
+			--color-icon-widely-back: var(--color-icon-widely-back--dark);
+			--color-icon-newly-front: var(--color-icon-newly-front--dark);
+			--color-icon-newly-back: var(--color-icon-newly-back--dark);
+			--color-icon-no_data: var(--color-icon-no_data--dark);
 		}
 	}
 
 	@supports (--color: light-dark(var(--a), var(--b))) {
 		.baseline-status::part(root) {
 			/* Set up dynamic light/dark colors in supporting browsers. */
-			--baseline-status-color-limited: light-dark(
-				var(--baseline-status-color-limited--light),
-				var(--baseline-status-color-limited--dark)
+			--color-limited: light-dark(
+				var(--color-limited--light),
+				var(--color-limited--dark)
 			);
-			--baseline-status-color-newly: light-dark(
-				var(--baseline-status-color-newly--light),
-				var(--baseline-status-color-newly--dark)
+			--color-newly: light-dark(
+				var(--color-newly--light),
+				var(--color-newly--dark)
 			);
-			--baseline-status-color-widely: light-dark(
-				var(--baseline-status-color-widely--light),
-				var(--baseline-status-color-widely--dark)
+			--color-widely: light-dark(
+				var(--color-widely--light),
+				var(--color-widely--dark)
 			);
-			--baseline-status-color-no_data: light-dark(
-				var(--baseline-status-color-no_data--light),
-				var(--baseline-status-color-no_data--dark)
+			--color-no_data: light-dark(
+				var(--color-no_data--light),
+				var(--color-no_data--dark)
 			);
-			--baseline-status-color-outline: light-dark(
-				var(--baseline-status-color-outline--light),
-				var(--baseline-status-color-outline--dark)
+			--color-outline: light-dark(
+				var(--color-outline--light),
+				var(--color-outline--dark)
 			);
-			--baseline-status-color-text: light-dark(
-				var(--baseline-status-color-text--light),
-				var(--baseline-status-color-text--dark)
+			--color-text: light-dark(
+				var(--color-text--light),
+				var(--color-text--dark)
 			);
-			--baseline-status-color-link: light-dark(
-				var(--baseline-status-color-link--light),
-				var(--baseline-status-color-link--dark)
+			--color-link: light-dark(
+				var(--color-link--light),
+				var(--color-link--dark)
 			);
-			--baseline-badge-background: light-dark(
-				var(--baseline-badge-background--light),
-				var(--baseline-badge-background--dark)
+			--color-badge-background: light-dark(
+				var(--color-badge-background--light),
+				var(--color-badge-background--dark)
 			);
-			--baseline-badge-text: light-dark(
-				var(--baseline-badge-text--light),
-				var(--baseline-badge-text--dark)
+			--color-badge-text: light-dark(
+				var(--color-badge-text--light),
+				var(--color-badge-text--dark)
 			);
-			--baseline-icon-limited-front: light-dark(
-				var(--baseline-icon-limited-front--light),
-				var(--baseline-icon-limited-front--dark)
+			--color-icon-limited-front: light-dark(
+				var(--color-icon-limited-front--light),
+				var(--color-icon-limited-front--dark)
 			);
-			--baseline-icon-limited-back: light-dark(
-				var(--baseline-icon-limited-back--light),
-				var(--baseline-icon-limited-back--dark)
+			--color-icon-limited-back: light-dark(
+				var(--color-icon-limited-back--light),
+				var(--color-icon-limited-back--dark)
 			);
-			--baseline-icon-widely-front: light-dark(
-				var(--baseline-icon-widely-front--light),
-				var(--baseline-icon-widely-front--dark)
+			--color-icon-widely-front: light-dark(
+				var(--color-icon-widely-front--light),
+				var(--color-icon-widely-front--dark)
 			);
-			--baseline-icon-widely-back: light-dark(
-				var(--baseline-icon-widely-back--light),
-				var(--baseline-icon-widely-back--dark)
+			--color-icon-widely-back: light-dark(
+				var(--color-icon-widely-back--light),
+				var(--color-icon-widely-back--dark)
 			);
-			--baseline-icon-newly-front: light-dark(
-				var(--baseline-icon-newly-front--light),
-				var(--baseline-icon-newly-front--dark)
+			--color-icon-newly-front: light-dark(
+				var(--color-icon-newly-front--light),
+				var(--color-icon-newly-front--dark)
 			);
-			--baseline-icon-newly-back: light-dark(
-				var(--baseline-icon-newly-back--light),
-				var(--baseline-icon-newly-back--dark)
+			--color-icon-newly-back: light-dark(
+				var(--color-icon-newly-back--light),
+				var(--color-icon-newly-back--dark)
 			);
-			--baseline-icon-no_data: light-dark(
-				var(--baseline-icon-no_data--light),
-				var(--baseline-icon-no_data--dark)
+			--color-icon-no_data: light-dark(
+				var(--color-icon-no_data--light),
+				var(--color-icon-no_data--dark)
 			);
 		}
 	}
@@ -326,7 +314,7 @@ const year =
 	.baseline-status::part(link),
 	.baseline-status::part(link):active,
 	.baseline-status::part(link):visited {
-		color: var(--baseline-status-color-link);
+		color: var(--color-link);
 	}
 
 	.baseline-status::part(summary) {
@@ -359,8 +347,8 @@ const year =
 	}
 
 	.baseline-status::part(badge) {
-		background: var(--baseline-badge-background);
-		color: var(--baseline-badge-text);
+		background: var(--color-badge-background);
+		color: var(--color-badge-text);
 		font-size: 0.6875rem;
 		padding-inline: 4px;
 		border-radius: 2px;
