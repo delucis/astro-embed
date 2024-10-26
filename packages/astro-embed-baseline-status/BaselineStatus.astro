@@ -200,6 +200,7 @@ const year =
 		max-width: 50rem;
 		font-family: Roboto, sans-serif;
 		font-size: 0.875rem;
+		line-height: calc(1.5 / 0.875);
 		font-style: normal;
 	}
 
@@ -282,6 +283,7 @@ const year =
 
 	.baseline-status::part(feature-name) {
 		font-size: 1.25rem;
+		line-height: calc(1.5 / 1.25);
 		margin: 0;
 	}
 
@@ -295,6 +297,7 @@ const year =
 		display: flex;
 		cursor: pointer;
 		font-size: 1rem;
+		line-height: calc(1.5 / 1);
 		display: flex;
 		flex-wrap: wrap;
 		gap: 1rem;
@@ -311,6 +314,7 @@ const year =
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: space-between;
+		align-items: center;
 		flex: 1;
 	}
 
@@ -325,10 +329,10 @@ const year =
 		background: var(--color-badge-background);
 		color: var(--color-badge-text);
 		font-size: 0.6875rem;
+		line-height: calc(1.25 / 0.6875);
 		padding-inline: 0.25rem;
 		border-radius: 0.125rem;
 		text-transform: uppercase;
-		line-height: 1.8;
 		margin-inline: 0.5rem;
 		white-space: nowrap;
 	}
