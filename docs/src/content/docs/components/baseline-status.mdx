@@ -1,0 +1,243 @@
+---
+title: Baseline Status
+description: Learn how to display the Baseline status of a web feature in your website
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { BaselineStatus } from '@astro-community/astro-embed-baseline-status';
+
+The `<BaselineStatus>` component displays browser support for a given web feature according to the [Baseline](https://web.dev/baseline/) project.
+This component is based on the [official `<baseline-status>` custom element](https://github.com/web-platform-dx/baseline-status), but avoids using any client-side JavaScript.
+
+## Usage
+
+<Tabs>
+<TabItem label="Astro" icon="astro">
+```astro
+---
+import { BaselineStatus } from 'astro-embed';
+---
+
+<BaselineStatus id="scroll-snap" />
+````
+</TabItem>
+<TabItem label="MDX" icon="seti:markdown">
+```mdx
+import { BaselineStatus } from 'astro-embed';
+
+<BaselineStatus id="scroll-snap" />
+````
+
+</TabItem>
+</Tabs>
+
+The above code produces the following result:
+
+<BaselineStatus id="scroll-snap" />
+
+### The `id` attribute
+
+The `<BaselineStatus>` component requires an `id` attribute which sets the web feature to display browser support data for.
+This ID is the slug of the feature as stored in the [`web-platform-dx/web-features`](https://github.com/web-platform-dx/web-features) repository.
+The [Web Platform Status](https://webstatus.dev/) site is also a helpful place to search for feature IDs.
+
+For example, the ID for the CSS `:has()` selector is `"has"`:
+
+```astro 'id="has"'
+<BaselineStatus id="has" />
+```
+
+<BaselineStatus id="has" />
+
+If the ID does not match a known web feature, the component will still render, but display an unknown availability. For example, with an ID of `"rainbow-unicorns"`:
+
+<BaselineStatus id="rainbow-unicorns" />
+
+## Styling the component
+
+Due to its relatively complex layout and content, the `<BaselineStatus>` component uses [Declarative Shadow DOM](https://web.dev/articles/declarative-shadow-dom) to isolate its markup from your site’s styles.
+You can override the default styles using the [`::part()` pseudo-element](https://developer.mozilla.org/en-US/docs/Web/CSS/::part).
+
+```css
+.baseline-status::part(root) {
+	color-scheme: light;
+	background: floralwhite;
+	color: darkblue;
+	font-family: fantasy;
+	border: 1px dashed;
+}
+
+.baseline-status::part(feature-name) {
+	color: purple;
+	font-weight: bold;
+}
+```
+
+The above styles would render `<BaselineStatus>` like this:
+
+import StyledBaseline from './_examples/StyledBaseline.astro';
+
+<StyledBaseline />
+
+### Light/dark theming support
+
+The default styles make a best effort to adapt automatically to a site’s color theme.
+
+By default, text color is inherited from the document styles and the component has a transparent background. Colors used in iconography adapt to the user’s color scheme preference using a `prefers-color-scheme` media query.
+
+In browsers that support the [`light-dark()` CSS function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark), if your site sets the correct `color-scheme` values, `<BaselineStatus>` will adapt to match the current theme even if it does not match system-level color scheme preferences.
+
+<BaselineStatus id="light-dark" />
+
+#### Supporting a custom theme picker
+
+If your site uses a theme picker to set the current theme and you need to support older browsers, you can add custom styles to control the color variables `<BaselineStatus>` uses.
+
+For example, if you use a `data-theme="dark"` attribute to enable dark mode on your site, configure colors when that is set:
+
+```css
+[data-theme='dark'] .baseline-status::part(root) {
+	--color-limited: var(--color-limited--dark);
+	--color-newly: var(--color-newly--dark);
+	--color-widely: var(--color-widely--dark);
+	/* ... */
+}
+```
+
+See [“Custom properties API”](#custom-properties-api) below for a full list of available variables.
+
+### Custom properties API
+
+The `<BaselineStatus>` component supports the following API for controlling its styles with CSS custom properties.
+
+```css
+.baseline-status::part(root) {
+	/* Light color scheme */
+	--color-outline--light: #d9d9d9;
+	--color-background--light: transparent;
+	--color-text--light: inherit;
+	--color-link--light: #1a73e8;
+	--color-badge-background--light: #3367d6;
+	--color-badge-text--light: #fff;
+	--color-limited--light: #ea8600;
+	--color-limited-secondary--light: #c6c6c6;
+	--color-widely--light: #1e8e3e;
+	--color-widely-secondary--light: #c4eed0;
+	--color-newly--light: #1a73e8;
+	--color-newly-secondary--light: #a8c7fa;
+	--color-no_data--light: #707070;
+	--color-no_data-secondary--light: #909090;
+	/* Dark color scheme */
+	--color-outline--dark: #d9d9d9;
+	--color-background--dark: transparent;
+	--color-text--dark: inherit;
+	--color-link--dark: #5aa1ff;
+	--color-badge-background--dark: #3367d6;
+	--color-badge-text--dark: #fff;
+	--color-limited--dark: #f09418;
+	--color-limited-secondary--dark: #565656;
+	--color-widely--dark: #24a446;
+	--color-widely-secondary--dark: #125225;
+	--color-newly--dark: #4185ff;
+	--color-newly-secondary--dark: #2d509e;
+	--color-no_data--dark: #868686;
+	--color-no_data-secondary--dark: #666666;
+}
+```
+
+### CSS class names API
+
+The root element of the `<BaselineStatus>` component can be targeted using the `.baseline-status` selector.
+
+In addition, the following variant class names are applied and can be used to customise appearance for the different Baseline status levels:
+
+- `.baseline-status--limited`: applied if the feature has limited availability
+- `.baseline-status--newly`: applied if the feature is newly available
+- `.baseline-status--widely`: applied if the feature is widely available
+- `.baseline-status--no_data`: applied if there is no data available for the feature
+
+For example, you could use these to display custom colors only for widely available features:
+
+```css
+.baseline-status--widely::part(root) {
+	--color-outline--light: hsl(120, 100%, 80%);
+	--color-background--light: hsl(120, 100%, 95%);
+	--color-outline--dark: hsl(120, 100%, 20%);
+	--color-background--dark: hsl(120, 100%, 5%);
+}
+```
+
+import BaselineVariants from './_examples/StyledBaselineVariants.astro';
+
+<BaselineVariants id="cascade-layers" />
+
+### Component parts API
+
+The following component parts are exposed to set custom styles in your CSS.
+
+#### `::part(root)`
+
+Selects the wrapper at the base of the component.
+Particularly useful for setting CSS variables that impact component styles.
+
+#### `::part(feature-name)`
+
+The name of the feature support information is being displayed for.
+
+#### `::part(details)`
+
+The `<details>` element.
+
+#### `::part(summary)`
+
+The `<summary>` element.
+
+#### `::part(summary-content)`
+
+The main content of the `<summary>` element. This includes the visible text (`summary-label`) and browser icons (`browsers`), but excludes the Baseline icon and disclosure caret (`caret`).
+
+#### `::part(summary-label)`
+
+Element specifying the global support level in the `<summary>`, e.g. text reading “Baseline: Widely available” or “Limited availability”.
+
+#### `::part(badge)`
+
+Badge element added to highlight newly available Baseline features.
+
+#### `::part(browsers)`
+
+Wrapper element around the browser support icons.
+
+#### `::part(browser-support)`
+
+A browser support lockup, including browser logo, support level icon, and accessible text label.
+
+#### `::part(browser-support-label)`
+
+Accessible text label for browser support, visually hidden by default.
+
+#### `::part(caret)`
+
+The disclosure caret displayed instead of the default `<details>` marker.
+
+#### `::part(description)`
+
+The detailed description of the support level visible when the component is expanded.
+
+#### `::part(link)`
+
+The link element visible when the component is expanded.
+
+## Standalone installation
+
+If you only need the `<BaselineStatus>` component, you can install the package directly instead of the main `astro-embed` package:
+
+import { PackageManagers } from 'starlight-package-managers';
+
+<PackageManagers pkg="@astro-community/astro-embed-baseline-status" />
+
+The `<BaselineStatus>` component can then be imported as:
+
+```js
+import { BaselineStatus } from '@astro-community/astro-embed-baseline-status';
+```
