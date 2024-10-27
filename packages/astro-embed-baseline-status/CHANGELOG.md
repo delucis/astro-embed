@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-baseline-status
 
+## 0.1.1
+
+### Patch Changes
+
+- [`a80bb8c8e0368e042ab75d6ff102d260d6400463`](https://github.com/delucis/astro-embed/commit/a80bb8c8e0368e042ab75d6ff102d260d6400463) Thanks [@delucis](https://github.com/delucis)! - Fixes missing README and docs link in the baseline-status package
+
 ## 0.1.0
 
 ### Minor Changes
