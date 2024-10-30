@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-twitter
 
+## 0.5.8
+
+### Patch Changes
+
+- [#161](https://github.com/delucis/astro-embed/pull/161) [`a024bf2072062d142a193826b24d22cd8c8dd0c2`](https://github.com/delucis/astro-embed/commit/a024bf2072062d142a193826b24d22cd8c8dd0c2) Thanks [@flo-bit](https://github.com/flo-bit)! - Fixes support for newer `x.com` URLs
+
 ## 0.5.7
 
 ### Patch Changes
