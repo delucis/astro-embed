@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-baseline-status
 
+## 0.1.2
+
+### Patch Changes
+
+- [#163](https://github.com/delucis/astro-embed/pull/163) [`0383e4e6295eea4425c4ba367d677fdb901c3515`](https://github.com/delucis/astro-embed/commit/0383e4e6295eea4425c4ba367d677fdb901c3515) Thanks [@mayank99](https://github.com/mayank99)! - Removes `max-width` from `::part(browsers)` to prevent undesirable wrapping of browser icons.
+
 ## 0.1.1
 
 ### Patch Changes
