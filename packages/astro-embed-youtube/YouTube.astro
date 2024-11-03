@@ -45,8 +45,8 @@ const href = `https://youtube.com/watch?v=${videoid}`;
 	{...attrs}
 	style={`background-image: url('${posterURL}');`}
 >
-	<a {href} class="lty-playbtn" role="link" aria-label={title}>
-		<span class="lyt-visually-hidden">{attrs.playlabel}</span>
+	<a {href} class="lty-playbtn">
+		<span class="lyt-visually-hidden">{attrs.playlabel || 'Play'}</span>
 	</a>
 </lite-youtube>
 
