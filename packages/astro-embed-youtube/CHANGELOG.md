@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-youtube
 
+## 0.5.6
+
+### Patch Changes
+
+- [#165](https://github.com/delucis/astro-embed/pull/165) [`a97b51bbeba66f94aea8bfc07f115c1f201aa4ef`](https://github.com/delucis/astro-embed/commit/a97b51bbeba66f94aea8bfc07f115c1f201aa4ef) Thanks [@anotheri](https://github.com/anotheri)! - Fixes missing accessible name for `<YouTube>` component play button
+
 ## 0.5.5
 
 ### Patch Changes
