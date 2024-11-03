@@ -21,6 +21,7 @@ test('it should render a lite-youtube element', async () => {
 	);
 	assert.ok(playButton);
 	assert.is(playButton.href, `https://youtube.com/watch?v=${videoid}`);
+	assert.is(playButton.textContent?.trim(), 'Play');
 });
 
 test('it parses a youtube.com URL', async () => {
