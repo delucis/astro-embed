@@ -1,0 +1,27 @@
+---
+import { AppBskyEmbedRecordWithMedia } from "@atproto/api";
+import Media from "./media.astro";
+import Record from "./record.astro";
+
+interface Props {
+  embed: AppBskyEmbedRecordWithMedia.View;
+  postUrl: string;
+  compact?: boolean;
+}
+
+const { compact } = Astro.props;
+
+const { media, record } = Astro.props.embed;
+---
+
+<div class="record-with-media">
+  <Media media={media} postUrl={Astro.props.postUrl} compact={compact} />
+  {compact ? null : <Record embed={record} />}
+</div>
+<style>
+  .record-with-media {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+</style>

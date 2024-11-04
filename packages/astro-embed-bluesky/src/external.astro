@@ -1,0 +1,69 @@
+---
+import { AppBskyEmbedExternal } from "@atproto/api";
+
+interface Props {
+  embed: AppBskyEmbedExternal.View;
+  compact?: boolean;
+}
+
+const { uri, thumb, title, description } = Astro.props.embed.external;
+
+const domain = new URL(uri).hostname;
+
+const { compact } = Astro.props;
+---
+
+<a href={uri} target="_blank" rel="noopener noreferrer nofollow">
+  {compact ? null : <img src={thumb} alt={title} />}
+  <div class="content">
+    <p class="domain">{domain}</p>
+    {compact ? null : (<p class="title">{title}</p>
+    <p class="description">{description}</p>)}
+  </div>
+</a>
+
+<style>
+  a {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid #e5e5e5;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  img {
+    aspect-ratio: 1.91/1;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .content {
+    padding: 0.75rem 1rem;
+  }
+
+  .domain {
+    font-size: 0.875rem;
+    color: #666;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .title {
+    font-weight: 600;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  .description {
+    font-size: 0.875rem;
+    color: #666;
+    margin: 0.125rem 0 0 0;
+    overflow: hidden;
+  }
+</style>
