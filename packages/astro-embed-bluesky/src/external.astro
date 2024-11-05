@@ -1,10 +1,10 @@
 ---
 import { AppBskyEmbedExternal } from '@atproto/api';
-import './shared/styles.css';
+import './styles.css';
 
 interface Props {
 	embed: AppBskyEmbedExternal.View;
-	compact?: boolean;
+	compact?: boolean | undefined;
 }
 
 const { uri, thumb, title, description } = Astro.props.embed.external;

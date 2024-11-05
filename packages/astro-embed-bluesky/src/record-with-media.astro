@@ -6,7 +6,7 @@ import Record from "./record.astro";
 interface Props {
   embed: AppBskyEmbedRecordWithMedia.View;
   postUrl: string;
-  compact?: boolean;
+  compact?: boolean | undefined;
 }
 
 const { compact } = Astro.props;
