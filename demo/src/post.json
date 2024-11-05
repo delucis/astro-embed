@@ -49,9 +49,7 @@
           }
         }
       ],
-      "langs": [
-        "en"
-      ],
+      "langs": ["en"],
       "text": "Happy New Year! My watch app has been approved. It's a live UK train times app for Wear OS with live departures, delays etc. No fancy extra features - just the stuff you need when heading to the station. I got a free Pixel Watch 2 when I bought my phone, so made this. play.google.com/store/apps/d..."
     },
     "embed": {

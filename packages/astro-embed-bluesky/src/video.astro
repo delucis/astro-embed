@@ -1,6 +1,7 @@
 ---
 import type { AppBskyEmbedVideo } from '@atproto/api';
-import './shared/styles.css';
+import MediaContainer from './media-container.astro';
+import './styles.css';
 
 interface Props {
 	embed: AppBskyEmbedVideo.View;
@@ -9,15 +10,8 @@ interface Props {
 const { thumbnail, aspectRatio } = Astro.props.embed;
 ---
 
-<div
-	class="video-thumbnail"
-	style={{
-		aspectRatio: aspectRatio
-			? aspectRatio.width / aspectRatio.height
-			: undefined,
-	}}
->
-	<img src={thumbnail} class="thumbnail" alt="Video" />
+<MediaContainer aspectRatio={aspectRatio} className="video-container">
+	<img src={thumbnail} class="thumbnail" alt="Video thumbnail" />
 	<div class="play-button">
 		<img
 			src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20fill='none'%20viewBox='0%200%2024%2024'%3e%3cpath%20fill='%23fff'%20d='M9.576%202.534C7.578%201.299%205%202.737%205%205.086v13.828c0%202.35%202.578%203.787%204.576%202.552l11.194-6.914c1.899-1.172%201.899-3.932%200-5.104L9.576%202.534Z'/%3e%3c/svg%3e"
@@ -25,14 +19,12 @@ const { thumbnail, aspectRatio } = Astro.props.embed;
 			alt="Play button"
 		/>
 	</div>
-</div>
+</MediaContainer>
 
 <style>
-	.video-thumbnail {
+	.video-container {
 		width: 100%;
-		overflow: hidden;
-		border-radius: var(--radius-md);
-		position: relative;
+		background-color: var(--color-border);
 	}
 
 	.thumbnail {
@@ -46,18 +38,23 @@ const { thumbnail, aspectRatio } = Astro.props.embed;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		width: 6rem;
-		height: 6rem;
+		width: var(--play-button-size);
+		height: var(--play-button-size);
 		border-radius: var(--radius-full);
-		background-color: rgba(0, 0, 0, 0.5);
+		background-color: var(--color-overlay);
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		transition: transform 0.2s ease;
+	}
+
+	.play-button:hover {
+		transform: translate(-50%, -50%) scale(1.1);
 	}
 
 	.play-icon {
-		width: 60%;
-		height: 60%;
+		width: var(--play-icon-size);
+		height: var(--play-icon-size);
 		object-fit: cover;
 	}
 </style>

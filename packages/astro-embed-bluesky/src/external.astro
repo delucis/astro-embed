@@ -12,8 +12,13 @@ const domain = new URL(uri).hostname;
 const { compact } = Astro.props;
 ---
 
-<a href={uri} target="_blank" rel="noopener noreferrer nofollow">
-	{!compact && thumb && <img src={thumb} alt={title} />}
+<a
+	href={uri}
+	target="_blank"
+	rel="noopener noreferrer nofollow"
+	class="external-link"
+>
+	{!compact && thumb && <img src={thumb} alt={title} class="thumbnail" />}
 	<div class="content">
 		<p class="domain">{domain}</p>
 		{
@@ -28,24 +33,24 @@ const { compact } = Astro.props;
 </a>
 
 <style>
-	a {
+	.external-link {
 		display: flex;
 		flex-direction: column;
 		width: 100%;
-		border: 1px solid var(--color-border);
+		border: var(--card-border);
 		border-radius: var(--radius-md);
 		overflow: hidden;
 		text-decoration: none;
 		color: var(--color-text);
 		background: var(--color-background);
-		transition: background-color 0.2s;
+		transition: var(--card-transition);
 	}
 
-	a:hover {
+	.external-link:hover {
 		background: var(--color-background-hover);
 	}
 
-	img {
+	.thumbnail {
 		aspect-ratio: var(--aspect-ratio-thumb);
 		width: 100%;
 		height: auto;
@@ -66,8 +71,12 @@ const { compact } = Astro.props;
 	}
 
 	.title {
-		font-weight: 600;
+		font-weight: var(--font-weight-semibold);
 		margin: 0;
+		color: var(--color-text);
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
 		overflow: hidden;
 	}
 
@@ -75,6 +84,9 @@ const { compact } = Astro.props;
 		font-size: var(--font-size-sm);
 		color: var(--color-text-light);
 		margin: var(--space-xs) 0 0 0;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
 		overflow: hidden;
 	}
 </style>
