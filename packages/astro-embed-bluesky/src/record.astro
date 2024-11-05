@@ -1,6 +1,6 @@
 ---
 import { AppBskyEmbedRecord, AppBskyGraphDefs } from "@atproto/api";
-import { match, P } from "ts-pattern";
+import { match } from "ts-pattern";
 import ViewRecord from "./view-record.astro";
 import StarterPack from "./starter-pack.astro";
 import List from "./list.astro";
@@ -21,5 +21,5 @@ interface Props {
       <StarterPack record={record} />
     ))
     .when(AppBskyGraphDefs.isListView, (record) => <List record={record} />)
-    .otherwise((record) => <><!-- {record?.$type} --></>)
+    .otherwise(() => null)
 }

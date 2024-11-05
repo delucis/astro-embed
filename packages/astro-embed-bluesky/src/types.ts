@@ -1,5 +1,5 @@
-import { AppBskyFeedPost, AppBskyFeedDefs } from "@atproto/api";
+import { AppBskyFeedPost, AppBskyFeedDefs } from '@atproto/api';
 
 export interface Post extends AppBskyFeedDefs.PostView {
-  record: AppBskyFeedPost.Record;
+	record: AppBskyFeedPost.Record;
 }

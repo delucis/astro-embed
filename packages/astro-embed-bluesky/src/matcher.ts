@@ -4,6 +4,5 @@ const urlPattern = /^https:\/\/bsky\.app\/profile\/[^/]+\/post\/[^/]+$/;
  */
 export default function matcher(url: string): string | undefined {
 	const match = url.match(urlPattern);
-	console.log('match', match);
 	return match ? url : undefined;
 }

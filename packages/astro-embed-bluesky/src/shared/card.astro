@@ -1,0 +1,111 @@
+---
+import './styles.css';
+
+interface Props {
+	href: string;
+	image?:
+		| {
+				src: string;
+				alt?: string;
+		  }
+		| undefined;
+	avatar: {
+		src: string | undefined;
+		alt: string | undefined;
+	};
+	title: string;
+	subtitle: string;
+	description?: string | undefined;
+}
+
+const { href, image, avatar, title, subtitle, description } = Astro.props;
+---
+
+<a href={href} target="_blank" rel="noopener noreferrer nofollow">
+	{image && <img class="cover-image" src={image.src} alt={image.alt ?? ''} />}
+	<div class="content">
+		<div class="header">
+			<div class="avatar">
+				<img src={avatar.src} alt={avatar.alt} />
+			</div>
+			<div class="title-group">
+				<p class="title">{title}</p>
+				<p class="subtitle">{subtitle}</p>
+			</div>
+		</div>
+		{description && <p class="description">{description}</p>}
+	</div>
+</a>
+
+<style>
+	a {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-md);
+		overflow: hidden;
+		text-decoration: none;
+		color: inherit;
+		background: var(--color-background);
+		transition: background-color 0.2s;
+		cursor: pointer;
+	}
+
+	a:hover {
+		background: var(--color-background-hover);
+	}
+
+	.cover-image {
+		aspect-ratio: var(--aspect-ratio-thumb);
+		width: 100%;
+		height: auto;
+		object-fit: cover;
+	}
+
+	.content {
+		padding: var(--content-padding);
+	}
+
+	.header {
+		display: flex;
+		gap: var(--card-gap);
+		align-items: center;
+	}
+
+	.avatar {
+		width: var(--avatar-md);
+		height: var(--avatar-md);
+		border-radius: var(--radius-full);
+		overflow: hidden;
+	}
+
+	.avatar img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.title-group {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.title {
+		font-weight: 600;
+		line-height: var(--line-height-title);
+		margin: 0;
+	}
+
+	.subtitle {
+		font-size: var(--font-size-sm);
+		color: var(--color-text-light);
+		line-height: var(--line-height-subtitle);
+		margin: 0;
+	}
+
+	.description {
+		font-size: var(--font-size-sm);
+		margin: var(--space-xs) 0 0 0;
+	}
+</style>

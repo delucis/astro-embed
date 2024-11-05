@@ -1,7 +1,8 @@
 ---
-import { BlueskyPost } from "@astro-community/astro-embed-bluesky";
-import Base from "../layouts/Base.astro";
+import { BlueskyPost } from '@astro-community/astro-embed-bluesky';
+import Base from '../layouts/Base.astro';
 ---
+
 <Base title="BlueskyPost component example">
 	<BlueskyPost post="https://bsky.app/profile/wesbos.com/post/3la2ezdodvu2g" />
 	<p>Basic</p>
@@ -9,7 +10,9 @@ import Base from "../layouts/Base.astro";
 	<p>Images</p>
 	<BlueskyPost post="https://bsky.app/profile/mk.gg/post/3l7xzeex4vf2m" />
 	<p>External link</p>
-	<BlueskyPost post="https://bsky.app/profile/wattenberger.com/post/3la54isd7az2i" />
+	<BlueskyPost
+		post="https://bsky.app/profile/wattenberger.com/post/3la54isd7az2i"
+	/>
 	<p>Video</p>
 	<BlueskyPost post="https://bsky.app/profile/mk.gg/post/3l7zx4hltw62a" />
 	<p>External media with quote</p>

@@ -1,69 +1,80 @@
 ---
-import { AppBskyEmbedExternal } from "@atproto/api";
+import { AppBskyEmbedExternal } from '@atproto/api';
+import './shared/styles.css';
 
 interface Props {
-  embed: AppBskyEmbedExternal.View;
-  compact?: boolean;
+	embed: AppBskyEmbedExternal.View;
+	compact?: boolean;
 }
 
 const { uri, thumb, title, description } = Astro.props.embed.external;
-
 const domain = new URL(uri).hostname;
-
 const { compact } = Astro.props;
 ---
 
 <a href={uri} target="_blank" rel="noopener noreferrer nofollow">
-  {compact ? null : <img src={thumb} alt={title} />}
-  <div class="content">
-    <p class="domain">{domain}</p>
-    {compact ? null : (<p class="title">{title}</p>
-    <p class="description">{description}</p>)}
-  </div>
+	{!compact && <img src={thumb} alt={title} />}
+	<div class="content">
+		<p class="domain">{domain}</p>
+		{
+			!compact && (
+				<>
+					<p class="title">{title}</p>
+					<p class="description">{description}</p>
+				</>
+			)
+		}
+	</div>
 </a>
 
 <style>
-  a {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    border: 1px solid #e5e5e5;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    text-decoration: none;
-    color: inherit;
-  }
+	a {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-md);
+		overflow: hidden;
+		text-decoration: none;
+		color: inherit;
+		background: var(--color-background);
+		transition: background-color 0.2s;
+	}
 
-  img {
-    aspect-ratio: 1.91/1;
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
+	a:hover {
+		background: var(--color-background-hover);
+	}
 
-  .content {
-    padding: 0.75rem 1rem;
-  }
+	img {
+		aspect-ratio: var(--aspect-ratio-thumb);
+		width: 100%;
+		height: auto;
+		object-fit: cover;
+	}
 
-  .domain {
-    font-size: 0.875rem;
-    color: #666;
-    margin: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+	.content {
+		padding: var(--content-padding);
+	}
 
-  .title {
-    font-weight: 600;
-    margin: 0;
-    overflow: hidden;
-  }
+	.domain {
+		font-size: var(--font-size-sm);
+		color: var(--color-text-light);
+		margin: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
 
-  .description {
-    font-size: 0.875rem;
-    color: #666;
-    margin: 0.125rem 0 0 0;
-    overflow: hidden;
-  }
+	.title {
+		font-weight: 600;
+		margin: 0;
+		overflow: hidden;
+	}
+
+	.description {
+		font-size: var(--font-size-sm);
+		color: var(--color-text-light);
+		margin: var(--space-xs) 0 0 0;
+		overflow: hidden;
+	}
 </style>

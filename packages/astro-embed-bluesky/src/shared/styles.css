@@ -1,0 +1,36 @@
+/* styles.css */
+:root {
+	/* Colors */
+	--color-text: #000;
+	--color-text-light: #666;
+	--color-border: #e5e5e5;
+	--color-background: #fff;
+	--color-background-hover: #fafafa;
+	--color-brand: rgb(10, 122, 255);
+
+	/* Typography */
+	--font-size-sm: 0.875rem;
+	--line-height-title: 21px;
+	--line-height-subtitle: 18px;
+
+	/* Spacing */
+	--space-xs: 0.25rem;
+	--space-sm: 0.5rem;
+	--space-md: 0.75rem;
+	--space-lg: 1rem;
+
+	/* Layout */
+	--radius-sm: 0.25rem;
+	--radius-md: 0.5rem;
+	--radius-full: 9999px;
+
+	/* Avatar Sizes */
+	--avatar-sm: 1rem;
+	--avatar-md: 2.5rem;
+	--avatar-lg: 40px;
+
+	/* Content */
+	--content-padding: 0.75rem 1rem;
+	--card-gap: 0.5rem;
+	--aspect-ratio-thumb: 1.91/1;
+}

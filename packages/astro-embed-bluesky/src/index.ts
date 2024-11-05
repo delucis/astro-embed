@@ -1,1 +1,1 @@
-export { default as BlueskyPost } from "./post.astro";
+export { default as BlueskyPost } from './post.astro';

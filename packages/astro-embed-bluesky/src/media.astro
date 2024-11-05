@@ -1,6 +1,6 @@
 ---
 import type { Post } from "./types";
-import { match, P } from "ts-pattern";
+import { match } from "ts-pattern";
 import {
   AppBskyEmbedExternal,
   AppBskyEmbedImages,
@@ -9,16 +9,16 @@ import {
   AppBskyEmbedVideo,
 } from "@atproto/api";
 import External from "./external.astro";
-import ImageGrid from "./image-grid.astro";
+import ImageGrid from "./shared/image-grid.astro";
+import VideoThumbnail from "./shared/video-thumbnail.astro";
 import RecordWithMedia from "./record-with-media.astro";
-import Video from "./video.astro";
 import Record from "./record.astro";
 
-type Props = {
+interface Props {
   media: Post["embed"];
   postUrl: string;
-  compact?: boolean;
-};
+  compact?: boolean | undefined;
+}
 
 const { media, postUrl, compact } = Astro.props;
 ---
@@ -30,7 +30,7 @@ const { media, postUrl, compact } = Astro.props;
     ))
     .when(AppBskyEmbedImages.isView, (media) => (
       <a href={postUrl}>
-        <ImageGrid embed={media} />
+        <ImageGrid images={media.images} />
       </a>
     ))
     .when(AppBskyEmbedRecordWithMedia.isView, (media) => (
@@ -41,7 +41,10 @@ const { media, postUrl, compact } = Astro.props;
     ))
     .when(AppBskyEmbedVideo.isView, (media) => (
       <a href={postUrl}>
-        <Video embed={media} />
+        <VideoThumbnail 
+          thumbnail={media.thumbnail} 
+          aspectRatio={media.aspectRatio} 
+        />
       </a>
     ))
     .otherwise((media) => media?.$type)
