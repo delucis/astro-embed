@@ -39,6 +39,19 @@ The above code produces the following result:
 	<BlueskyPost id="https://bsky.app/profile/mk.gg/post/3la4wqeyztm2u" />
 </div>
 
+The `id` argument is either a Bluesky post URL, or an `at://` URI. These will be loaded using the Bluesky API at build time. You can also pass a `post` object, which will be used directly. You can load the post using [the Bluesky API](https://docs.bsky.app/docs/get-started), or use a post object from [the Astro Bluesky content loader](https://www.npmjs.com/package/@ascorbic/bluesky-loader).
+
+```astro
+---
+import { getCollection } from 'astro:content';
+import { BlueskyPost } from 'astro-embed';
+
+const posts = await getCollection('posts');
+---
+
+{ posts.map((post) => <BlueskyPost post={post.data} />) }
+```
+
 It supports various types of embedded media, including images, videos, starter packs and lists. It can also handle quoted posts and replies. These are all displayed as static HTML, so videos etc are links to the original content.
 
 Some examples:
@@ -48,16 +61,17 @@ Some examples:
 </div>
 
 <div>
-	<BlueskyPost post="https://bsky.app/profile/mk.gg/post/3la2snrsnhd2a" />
+	<BlueskyPost id="https://bsky.app/profile/mk.gg/post/3la2snrsnhd2a" />
 </div>
 
 <div>
-	<BlueskyPost post="https://bsky.app/profile/fujino.dev/post/3la2llq5x2y2q" />
+	<BlueskyPost id="https://bsky.app/profile/fujino.dev/post/3la2llq5x2y2q" />
 </div>
 
 <div>
-	<BlueskyPost post="https://bsky.app/profile/dierkens.dev/post/3la2wzxzixe2c" />
+	<BlueskyPost id="https://bsky.app/profile/dierkens.dev/post/3la2wzxzixe2c" />
 </div>
+
 
 ## Standalone installation
 
