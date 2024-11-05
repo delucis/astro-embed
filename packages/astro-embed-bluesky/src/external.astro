@@ -13,7 +13,7 @@ const { compact } = Astro.props;
 ---
 
 <a href={uri} target="_blank" rel="noopener noreferrer nofollow">
-	{!compact && <img src={thumb} alt={title} />}
+	{!compact && thumb && <img src={thumb} alt={title} />}
 	<div class="content">
 		<p class="domain">{domain}</p>
 		{
@@ -36,7 +36,7 @@ const { compact } = Astro.props;
 		border-radius: var(--radius-md);
 		overflow: hidden;
 		text-decoration: none;
-		color: inherit;
+		color: var(--color-text);
 		background: var(--color-background);
 		transition: background-color 0.2s;
 	}

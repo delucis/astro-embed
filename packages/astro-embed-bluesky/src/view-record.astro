@@ -33,15 +33,15 @@ const postUrl = atUriToPostUri(record.uri);
     flex-direction: column;
     gap: 0.375rem;
     padding: 0.5rem;
-    border: 1px solid #e5e5e5;
+    border: 1px solid var(--color-border);
     border-radius: 0.5rem;
     text-decoration: none;
-    color: inherit;
+    color: var(--color-text);
     transition: background-color 0.2s;
   }
 
   .post-container:hover {
-    background-color: #f5f5f5;
+    background-color: var(--color-background-hover);
   }
 
   .user-info {
@@ -66,15 +66,19 @@ const postUrl = atUriToPostUri(record.uri);
   }
 
   .user-text {
-    font-size: 0.875rem;
+    font-size: var(--font-size-sm);
     margin: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+		color: var(--color-text);
+
   }
 
   .name {
     font-weight: 700;
+		color: var(--color-text);
+
   }
 
   .handle {
@@ -83,7 +87,8 @@ const postUrl = atUriToPostUri(record.uri);
   }
 
   .content {
-    font-size: 0.875rem;
+    font-size: var(--font-size-sm);
+		color: var(--color-text);
     margin: 0;
   }
 
@@ -93,7 +98,7 @@ const postUrl = atUriToPostUri(record.uri);
     border-radius: 0.5rem;
     overflow: hidden;
     text-decoration: none;
-    color: inherit;
+    color: var(--color-text);
     display: flex;
     flex-direction: column;
   }

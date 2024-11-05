@@ -2,13 +2,15 @@
 :root {
 	/* Colors */
 	--color-text: #000;
-	--color-text-light: #666;
+	--color-text-light: rgb(66 87 108);
 	--color-border: #e5e5e5;
 	--color-background: #fff;
 	--color-background-hover: #fafafa;
 	--color-brand: rgb(10, 122, 255);
 
 	/* Typography */
+	--font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+		'Helvetica Neue', Arial, sans-serif;
 	--font-size-sm: 0.875rem;
 	--line-height-title: 21px;
 	--line-height-subtitle: 18px;

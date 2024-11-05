@@ -1,0 +1,73 @@
+---
+title: Bluesky Post
+description: Learn how to use the Astro Embed BlueskyPost component to embed Bluesky posts in your website
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { BlueskyPost } from '@astro-community/astro-embed-bluesky';
+
+The `<BlueskyPost>` component embeds Bluesky posts in Astro projects.
+
+## Usage
+
+The `<BlueskyPost>` component generates a static HTML embed for a single Bluesky post. The HTML is designed to match the appearance of [the Bluesky Embed](https://embed.bsky.app/), but without any client-side JavaScript.
+
+<Tabs>
+<TabItem label="Astro" icon="astro">
+```astro
+---
+import { BlueskyPost } from 'astro-embed';
+---
+
+<BlueskyPost id="https://bsky.app/profile/mk.gg/post/3la4wqeyztm2u" />
+
+```
+</TabItem>
+<TabItem label="MDX" icon="seti:markdown">
+```mdx
+import { BlueskyPost } from 'astro-embed';
+
+<BlueskyPost id="https://bsky.app/profile/mk.gg/post/3la4wqeyztm2u" />
+```
+</TabItem>
+</Tabs>
+
+The above code produces the following result:
+
+<div>
+	<BlueskyPost id="https://bsky.app/profile/mk.gg/post/3la4wqeyztm2u" />
+</div>
+
+It supports various types of embedded media, including images, videos, starter packs and lists. It can also handle quoted posts and replies. These are all displayed as static HTML, so videos etc are links to the original content.
+
+Some examples:
+
+<div>
+	<BlueskyPost id="https://bsky.app/profile/astro.build/post/3la7gw63tfn26" />
+</div>
+
+<div>
+	<BlueskyPost post="https://bsky.app/profile/mk.gg/post/3la2snrsnhd2a" />
+</div>
+
+<div>
+	<BlueskyPost post="https://bsky.app/profile/fujino.dev/post/3la2llq5x2y2q" />
+</div>
+
+<div>
+	<BlueskyPost post="https://bsky.app/profile/dierkens.dev/post/3la2wzxzixe2c" />
+</div>
+
+## Standalone installation
+
+If you only need the `<BlueskyPost>` component, you can install the package directly instead of the main `astro-embed` package:
+
+import { PackageManagers } from 'starlight-package-managers';
+
+<PackageManagers pkg="@astro-community/astro-embed-bluesky" />
+
+The `<BlueskyPost>` component can then be imported as:
+
+```js
+import { BlueskyPost } from '@astro-community/astro-embed-bluesky';
+```

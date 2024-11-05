@@ -1,9 +1,12 @@
 ---
 import { BlueskyPost } from '@astro-community/astro-embed-bluesky';
 import Base from '../layouts/Base.astro';
+import post from '../post.json';
 ---
 
 <Base title="BlueskyPost component example">
+	<BlueskyPost post={post.data} />
+	<p>Raw data</p>
 	<BlueskyPost post="https://bsky.app/profile/wesbos.com/post/3la2ezdodvu2g" />
 	<p>Basic</p>
 	<BlueskyPost post="https://bsky.app/profile/mk.gg/post/3la2snrsnhd2a" />
@@ -20,4 +23,5 @@ import Base from '../layouts/Base.astro';
 	<p>External link with quote</p>
 	<BlueskyPost post="https://bsky.app/profile/sentry.io/post/3la5clrgyw52g" />
 	<p>Starter pack</p>
+
 </Base>

@@ -1,19 +1,26 @@
 ---
-import { renderPostAsHtml, resolvePost } from './utils.js';
+import { atUriToPostUri, renderPostAsHtml, resolvePost } from './utils.js';
 import Media from './media.astro';
+import type { Post } from './types';
 
 type Props = {
-	id: string;
-	post?: string;
+	id?: string;
+	post?: string | Post;
 };
 
-const postUrl = Astro.props.id ?? Astro.props.post;
+const postRef = Astro.props.id ?? Astro.props.post;
 
-const post = await resolvePost(postUrl)!;
+if (!postRef) {
+	return new Response('');
+}
+
+const post = await resolvePost(postRef)!;
 
 if (!post) {
 	return new Response('');
 }
+
+const postUrl = atUriToPostUri(post.uri);
 
 const { record, embed, author } = post;
 
@@ -27,7 +34,7 @@ const formatter = new Intl.DateTimeFormat('en-US', {
 });
 ---
 
-<div class="post-container">
+<div class="post-container not-content">
 	<div class="post-content">
 		<div class="post-header">
 			<a href={authorUrl} class="avatar">
@@ -56,15 +63,9 @@ const formatter = new Intl.DateTimeFormat('en-US', {
 </div>
 
 <style>
-	:root {
-		--text-light: #666;
-		--brand-color: rgb(10, 122, 255);
-		--border-color: #e5e5e5;
-	}
 
 	* {
-		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-			sans-serif;
+		font-family: var(--font-family);
 	}
 
 	.post-container {
@@ -72,7 +73,7 @@ const formatter = new Intl.DateTimeFormat('en-US', {
 		min-width: 300px;
 		margin: 0 auto;
 		background: white;
-		border: 1px solid var(--border-color);
+		border: 1px solid var(--color-border);
 		border-radius: 12px;
 		transition: background-color 0.2s;
 	}
@@ -94,8 +95,8 @@ const formatter = new Intl.DateTimeFormat('en-US', {
 	}
 
 	.avatar {
-		width: 40px;
-		height: 40px;
+		width: var(--avatar-lg);
+		height: var(--avatar-lg);
 		border-radius: 50%;
 		overflow: hidden;
 	}
@@ -116,11 +117,11 @@ const formatter = new Intl.DateTimeFormat('en-US', {
 		font-size: 17px;
 		line-height: 1.2;
 		text-decoration: none;
-		color: black;
+		color: var(--color-text);
 	}
 
 	.username {
-		color: var(--text-light);
+		color: var(--color-text-light);
 		font-size: 15px;
 		text-decoration: none;
 	}
@@ -146,11 +147,16 @@ const formatter = new Intl.DateTimeFormat('en-US', {
 		margin: 0 0 12px;
 		white-space: pre-wrap;
 		word-break: break-word;
+		color: black;
+	}
+
+	.post-text :global(a) {
+		color: var(--color-text);
 	}
 
 	.timestamp {
 		display: block;
-		color: var(--text-light);
+		color: var(--color-text-light);
 		font-size: 14px;
 		margin-top: 8px;
 		text-decoration: none;
