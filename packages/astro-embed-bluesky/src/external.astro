@@ -46,10 +46,6 @@ const { compact } = Astro.props;
 		transition: var(--card-transition);
 	}
 
-	.external-link:hover {
-		background: var(--color-background-hover);
-	}
-
 	.thumbnail {
 		aspect-ratio: var(--aspect-ratio-thumb);
 		width: 100%;
@@ -63,7 +59,7 @@ const { compact } = Astro.props;
 
 	.domain {
 		font-size: var(--font-size-sm);
-		color: var(--color-text-light);
+		color: var(--color-text-secondary);
 		margin: 0;
 		overflow: hidden;
 		text-overflow: ellipsis;
@@ -82,7 +78,7 @@ const { compact } = Astro.props;
 
 	.description {
 		font-size: var(--font-size-sm);
-		color: var(--color-text-light);
+		color: var(--color-text-secondary);
 		margin: var(--space-xs) 0 0 0;
 		display: -webkit-box;
 		-webkit-line-clamp: 2;

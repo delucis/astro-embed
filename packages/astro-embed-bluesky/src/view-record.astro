@@ -1,7 +1,7 @@
 ---
 import { AppBskyEmbedRecord } from '@atproto/api';
 import Media from './media.astro';
-import { atUriToPostUri } from './utils';
+import { atUriToPostUri, atUriToStarterPackUri } from './utils';
 
 interface Props {
 	record: AppBskyEmbedRecord.ViewRecord;
@@ -11,7 +11,7 @@ const { record } = Astro.props;
 const postUrl = atUriToPostUri(record.uri);
 ---
 
-<div class="post-container">
+<a class="post-container" href={atUriToStarterPackUri(record.uri)}>
 	<div class="user-info">
 		<div class="avatar">
 			<img src={record.author.avatar} alt={record.author.displayName} />
@@ -24,7 +24,7 @@ const postUrl = atUriToPostUri(record.uri);
 
 	<p class="content">{(record.value as any).text}</p>
 	<Media media={record.embeds?.[0]} postUrl={postUrl} compact={true} />
-</div>
+</a>
 
 <style>
 	.post-container {
