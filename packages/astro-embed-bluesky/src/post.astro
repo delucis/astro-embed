@@ -2,6 +2,8 @@
 import { atUriToPostUri, renderPostAsHtml, resolvePost } from './utils.js';
 import Media from './media.astro';
 import type { Post } from './types';
+import './styles.css';
+import Avatar from './avatar.astro';
 
 type Props = {
 	id?: string;
@@ -34,12 +36,10 @@ const formatter = new Intl.DateTimeFormat('en-US', {
 });
 ---
 
-<div class="post-container not-content">
+<div class="bluesky-post-container not-content">
 	<div class="post-content">
 		<div class="post-header">
-			<a href={authorUrl} class="avatar">
-				<img src={author?.avatar} alt={author?.displayName} />
-			</a>
+			<Avatar user={author} link={true} />
 			<div class="user-info">
 				<a href={authorUrl} class="display-name">{author?.displayName}</a>
 				<a href={authorUrl} class="username">@{author?.handle}</a>
@@ -63,35 +63,28 @@ const formatter = new Intl.DateTimeFormat('en-US', {
 </div>
 
 <style>
-	.post-container {
-		max-width: var(--content-max-width);
-		min-width: var(--content-min-width);
+	.bluesky-post-container {
+		max-width: var(--bluesky-content-max-width);
+		min-width: var(--bluesky-content-min-width);
 		margin: 0 auto;
-		font-family: var(--font-family);
-		border: var(--card-border);
-		border-radius: var(--radius-lg);
-		background: var(--color-background);
-		transition: var(--card-transition);
+		font-family: var(--bluesky-font-family);
+		border: var(--bluesky-card-border);
+		border-radius: var(--bluesky-radius-lg);
+		background: var(--bluesky-color-background);
+		transition: var(--bluesky-card-transition);
 	}
 
-
 	.post-content {
-		padding: var(--space-md) var(--space-lg) var(--space-sm);
+		padding: var(--bluesky-space-md) var(--bluesky-space-lg)
+			var(--bluesky-space-sm);
 	}
 
 	.post-header {
 		display: grid;
 		grid-template-columns: min-content 1fr min-content;
-		gap: var(--space-sm);
+		gap: var(--bluesky-space-sm);
 		align-items: start;
-		margin-bottom: var(--space-sm);
-	}
-
-	.avatar {
-		width: var(--avatar-md);
-		height: var(--avatar-md);
-		border-radius: var(--radius-full);
-		overflow: hidden;
+		margin-bottom: var(--bluesky-space-sm);
 	}
 
 	.user-info {
@@ -100,16 +93,16 @@ const formatter = new Intl.DateTimeFormat('en-US', {
 	}
 
 	.display-name {
-		font-weight: var(--font-weight-bold);
-		font-size: var(--font-size-lg);
-		line-height: var(--line-height-tight);
+		font-weight: var(--bluesky-font-weight-bold);
+		font-size: var(--bluesky-font-size-lg);
+		line-height: var(--bluesky-line-height-tight);
 		text-decoration: none;
-		color: var(--color-text);
+		color: var(--bluesky-color-text);
 	}
 
 	.username {
-		color: var(--color-text-secondary);
-		font-size: var(--font-size-base);
+		color: var(--bluesky-color-text-secondary);
+		font-size: var(--bluesky-font-size-base);
 		text-decoration: none;
 	}
 
@@ -124,7 +117,7 @@ const formatter = new Intl.DateTimeFormat('en-US', {
 	}
 
 	.bluesky-logo {
-		height: var(--avatar-sm);
+		height: var(--bluesky-avatar-sm);
 		transition: transform 0.2s ease;
 	}
 
@@ -133,23 +126,23 @@ const formatter = new Intl.DateTimeFormat('en-US', {
 	}
 
 	.post-text {
-		font-size: var(--font-size-lg);
-		line-height: var(--line-height-normal);
-		margin: 0 0 var(--space-md);
+		font-size: var(--bluesky-font-size-lg);
+		line-height: var(--bluesky-line-height-normal);
+		margin: 0 0 var(--bluesky-space-md);
 		white-space: pre-wrap;
 		word-break: break-word;
-		color: var(--color-text);
+		color: var(--bluesky-color-text);
 	}
 
 	.post-text :global(a) {
-		color: var(--color-text);
+		color: var(--bluesky-color-text);
 	}
 
 	.timestamp {
 		display: block;
-		color: var(--color-text-secondary);
-		font-size: var(--font-size-sm);
-		margin-top: var(--space-sm);
+		color: var(--bluesky-color-text-secondary);
+		font-size: var(--bluesky-font-size-sm);
+		margin-top: var(--bluesky-space-sm);
 		text-decoration: none;
 	}
 

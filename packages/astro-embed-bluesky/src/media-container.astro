@@ -1,6 +1,4 @@
 ---
-import './styles.css';
-
 interface Props {
 	aspectRatio?: { width: number; height: number } | undefined;
 	onClick?: (() => void) | undefined;
@@ -26,9 +24,9 @@ const { aspectRatio, onClick, className = '' } = Astro.props;
 	.media-container {
 		width: 100%;
 		overflow: hidden;
-		border-radius: var(--radius-md);
+		border-radius: var(--bluesky-radius-md);
 		position: relative;
-		background-color: var(--color-border);
+		background-color: var(--bluesky-color-border);
 	}
 
 	/* Ensure direct img children fill container */

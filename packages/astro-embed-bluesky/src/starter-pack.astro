@@ -20,10 +20,7 @@ const pack = AppBskyGraphStarterpack.isRecord(record.record)
 		src: starterPackOgImage(record.uri),
 		alt: pack?.name || 'Starter pack cover image',
 	}}
-	avatar={{
-		src: record.creator.avatar,
-		alt: record.creator.displayName,
-	}}
+	avatarUser={record.creator}
 	title={pack?.name || ''}
 	subtitle={`Starter pack by ${record.creator.displayName}`}
 	description={pack?.description}

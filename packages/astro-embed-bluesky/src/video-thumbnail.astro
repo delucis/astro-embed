@@ -1,6 +1,5 @@
 ---
 import MediaContainer from './media-container.astro';
-import './styles.css';
 
 interface Props {
 	thumbnail?: string | undefined;
@@ -27,18 +26,18 @@ const { thumbnail, aspectRatio } = Astro.props;
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		width: var(--play-button-size);
-		height: var(--play-button-size);
-		border-radius: var(--radius-full);
-		background-color: var(--color-overlay);
+		width: 6rem;
+		height: 6rem;
+		border-radius: var(--bluesky-radius-full);
+		background-color: var(--bluesky-color-overlay);
 		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
 
 	.play-icon {
-		width: var(--play-icon-size);
-		height: var(--play-icon-size);
+		width: 60%;
+		height: 60%;
 		object-fit: cover;
 	}
 

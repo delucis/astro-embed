@@ -1,6 +1,4 @@
 ---
-import './styles.css';
-
 interface Props {
 	images: Array<{
 		thumb: string;
@@ -31,17 +29,17 @@ const { images } = Astro.props;
 <style>
 	.image-grid-container {
 		width: 100%;
-		max-width: var(--content-max-width);
+		max-width: var(--bluesky-content-max-width);
 		margin: 0 auto;
-		aspect-ratio: var(--aspect-ratio-thumb);
+		aspect-ratio: var(--bluesky-aspect-ratio-thumb);
 	}
 
 	.image-grid {
 		width: 100%;
 		height: 100%;
 		display: grid;
-		gap: var(--space-xs);
-		border-radius: var(--radius-md);
+		gap: var(--bluesky-space-xs);
+		border-radius: var(--bluesky-radius-md);
 		overflow: hidden;
 	}
 
@@ -50,7 +48,7 @@ const { images } = Astro.props;
 		overflow: hidden;
 		width: 100%;
 		height: 100%;
-		background-color: var(--color-border);
+		background-color: var(--bluesky-color-border);
 	}
 
 	.image-grid-item img {

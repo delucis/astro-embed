@@ -2,6 +2,7 @@
 import { AppBskyEmbedRecord } from '@atproto/api';
 import Media from './media.astro';
 import { atUriToPostUri, atUriToStarterPackUri } from './utils';
+import Avatar from './avatar.astro';
 
 interface Props {
 	record: AppBskyEmbedRecord.ViewRecord;
@@ -13,9 +14,7 @@ const postUrl = atUriToPostUri(record.uri);
 
 <a class="post-container" href={atUriToStarterPackUri(record.uri)}>
 	<div class="user-info">
-		<div class="avatar">
-			<img src={record.author.avatar} alt={record.author.displayName} />
-		</div>
+		<Avatar user={record.author} size="small" />
 		<p class="user-text">
 			<span class="name">{record.author.displayName}</span>
 			<span class="handle">@{record.author.handle}</span>
@@ -30,63 +29,48 @@ const postUrl = atUriToPostUri(record.uri);
 	.post-container {
 		display: flex;
 		flex-direction: column;
-		gap: var(--space-xs);
-		padding: var(--space-sm);
-		border: var(--card-border);
-		border-radius: var(--radius-md);
+		gap: var(--bluesky-space-xs);
+		padding: var(--bluesky-space-sm);
+		border: var(--bluesky-card-border);
+		border-radius: var(--bluesky-radius-md);
 		text-decoration: none;
-		color: var(--color-text);
-		transition: var(--card-transition);
+		color: var(--bluesky-color-text);
+		transition: var(--bluesky-card-transition);
 	}
 
 	.post-container:hover {
-		background-color: var(--color-background-hover);
+		background-color: var(--bluesky-color-background-hover);
 	}
 
 	.user-info {
 		display: flex;
-		gap: var(--space-xs);
+		gap: var(--bluesky-space-xs);
 		align-items: center;
 	}
 
-	.avatar {
-		width: var(--avatar-2xs);
-		height: var(--avatar-2xs);
-		border-radius: var(--radius-full);
-		overflow: hidden;
-		background-color: var(--color-border);
-		flex-shrink: 0;
-	}
-
-	.avatar img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-	}
-
 	.user-text {
-		font-size: var(--font-size-sm);
+		font-size: var(--bluesky-font-size-sm);
 		margin: 0;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
-		color: var(--color-text);
+		color: var(--bluesky-color-text);
 	}
 
 	.name {
-		font-weight: var(--font-weight-bold);
-		color: var(--color-text);
+		font-weight: var(--bluesky-font-weight-bold);
+		color: var(--bluesky-color-text);
 	}
 
 	.handle {
-		color: var(--color-text-secondary);
-		margin-left: var(--space-xs);
+		color: var(--bluesky-color-text-secondary);
+		margin-left: var(--bluesky-space-xs);
 	}
 
 	.content {
-		font-size: var(--font-size-sm);
-		color: var(--color-text);
+		font-size: var(--bluesky-font-size-sm);
+		color: var(--bluesky-color-text);
 		margin: 0;
-		line-height: var(--line-height-normal);
+		line-height: var(--bluesky-line-height-normal);
 	}
 </style>

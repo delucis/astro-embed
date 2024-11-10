@@ -49,7 +49,7 @@ import { BlueskyPost } from 'astro-embed';
 const posts = await getCollection('posts');
 ---
 
-{ posts.map((post) => <BlueskyPost post={post.data} />) }
+{posts.map((post) => <BlueskyPost post={post.data} />)}
 ```
 
 It supports various types of embedded media, including images, videos, starter packs and lists. It can also handle quoted posts and replies. These are all displayed as static HTML, so videos etc are links to the original content.
@@ -71,7 +71,6 @@ Some examples:
 <div>
 	<BlueskyPost id="https://bsky.app/profile/dierkens.dev/post/3la2wzxzixe2c" />
 </div>
-
 
 ## Standalone installation
 

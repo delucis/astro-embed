@@ -1,182 +1,122 @@
-/* styles.css */
-:root {
+.bluesky-post-container {
 	/* Colours */
-	--color-brand: rgb(10, 122, 255);
-	--color-overlay: rgba(0, 0, 0, 0.5);
+	--bluesky-color-overlay: rgba(0, 0, 0, 0.5);
 
 	/* Colour palette */
-	--color-text--light: #000000;
-	--color-text-secondary--light: rgb(66 87 108);
-	--color-border--light: #e5e5e5;
-	--color-background--light: #ffffff;
-	--color-background-hover--light: #fafafa;
+	--bluesky-color-text--light: #000000;
+	--bluesky-color-text-secondary--light: rgb(66 87 108);
+	--bluesky-color-border--light: #e5e5e5;
+	--bluesky-color-background--light: #ffffff;
+	--bluesky-color-background-hover--light: #fafafa;
 
-	--color-text--dark: white;
-	--color-text-secondary--dark: rgb(174, 187, 201);
-	--color-border--dark: rgb(46, 64, 82);
-	--color-background--dark: hsl(211, 20%, 20%);
-	--color-background-hover--dark: hsl(211, 20%, 15%);
+	--bluesky-color-text--dark: white;
+	--bluesky-color-text-secondary--dark: rgb(174, 187, 201);
+	--bluesky-color-border--dark: rgb(46, 64, 82);
+	--bluesky-color-background--dark: hsl(211, 20%, 20%);
+	--bluesky-color-background-hover--dark: hsl(211, 20%, 15%);
 
 	/* Light theme */
-	--color-text: var(--color-text--light);
-	--color-text-secondary: var(--color-text-secondary--light);
-	--color-border: var(--color-border--light);
-	--color-background: var(--color-background--light);
-	--color-background-hover: var(--color-background-hover--light);
+	--bluesky-color-text: var(--bluesky-color-text--light);
+	--bluesky-color-text-secondary: var(--bluesky-color-text-secondary--light);
+	--bluesky-color-border: var(--bluesky-color-border--light);
+	--bluesky-color-background: var(--bluesky-color-background--light);
+	--bluesky-color-background-hover: var(
+		--bluesky-color-background-hover--light
+	);
 
 	/* Typography */
-	--font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+	--bluesky-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
 		'Helvetica Neue', Arial, sans-serif;
-	--font-size-xs: 0.75rem; /* 12px */
-	--font-size-sm: 0.875rem; /* 14px */
-	--font-size-base: 1rem; /* 16px */
-	--font-size-lg: 1.125rem; /* 18px */
-	--font-size-xl: 1.25rem; /* 20px */
+	--bluesky-font-size-sm: 0.875rem; /* 14px */
+	--bluesky-font-size-base: 1rem; /* 16px */
+	--bluesky-font-size-lg: 1.125rem; /* 18px */
 
-	--font-weight-normal: 400;
-	--font-weight-medium: 500;
-	--font-weight-semibold: 600;
-	--font-weight-bold: 700;
+	--bluesky-font-weight-normal: 400;
+	--bluesky-font-weight-medium: 500;
+	--bluesky-font-weight-semibold: 600;
+	--bluesky-font-weight-bold: 700;
 
-	--line-height-tight: 1.2;
-	--line-height-normal: 1.4;
-	--line-height-relaxed: 1.6;
-	--line-height-title: 21px;
-	--line-height-subtitle: 18px;
+	--bluesky-line-height-tight: 1.2;
+	--bluesky-line-height-normal: 1.4;
+	--bluesky-line-height-relaxed: 1.6;
+	--bluesky-line-height-title: 21px;
+	--bluesky-line-height-subtitle: 18px;
 
 	/* Spacing */
-	--space-2xs: 0.125rem; /* 2px */
-	--space-xs: 0.25rem; /* 4px */
-	--space-sm: 0.5rem; /* 8px */
-	--space-md: 0.75rem; /* 12px */
-	--space-lg: 1rem; /* 16px */
-	--space-xl: 1.25rem; /* 20px */
-	--space-2xl: 1.5rem; /* 24px */
+	--bluesky-space-2xs: 0.125rem; /* 2px */
+	--bluesky-space-xs: 0.25rem; /* 4px */
+	--bluesky-space-sm: 0.5rem; /* 8px */
+	--bluesky-space-md: 0.75rem; /* 12px */
+	--bluesky-space-lg: 1rem; /* 16px */
+	--bluesky-space-xl: 1.25rem; /* 20px */
+	--bluesky-space-2xl: 1.5rem; /* 24px */
 
 	/* Layout */
-	--radius-sm: 0.25rem; /* 4px */
-	--radius-md: 0.5rem; /* 8px */
-	--radius-lg: 0.75rem; /* 12px */
-	--radius-full: 9999px;
-
-	/* Avatars */
-	--avatar-2xs: 1rem; /* 16px */
-	--avatar-xs: 1.5rem; /* 24px */
-	--avatar-sm: 2rem; /* 32px */
-	--avatar-md: 2.5rem; /* 40px */
-	--avatar-lg: 3rem; /* 48px */
-	--avatar-xl: 4rem; /* 64px */
+	--bluesky-radius-sm: 0.25rem; /* 4px */
+	--bluesky-radius-md: 0.5rem; /* 8px */
+	--bluesky-radius-lg: 0.75rem; /* 12px */
+	--bluesky-radius-full: 9999px;
 
 	/* Content */
-	--content-max-width: 600px;
-	--content-min-width: 300px;
-	--content-padding-x: var(--space-lg);
-	--content-padding-y: var(--space-md);
-	--content-padding: var(--content-padding-y) var(--content-padding-x);
+	--bluesky-content-max-width: 600px;
+	--bluesky-content-min-width: 300px;
+	--bluesky-content-padding-x: var(--bluesky-space-lg);
+	--bluesky-content-padding-y: var(--bluesky-space-md);
+	--bluesky-content-padding: var(--bluesky-content-padding-y)
+		var(--bluesky-content-padding-x);
 
 	/* Cards & Components */
-	--card-gap: var(--space-sm);
-	--card-border: 1px solid var(--color-border);
-	--card-padding: var(--content-padding);
-	--card-transition: background-color 0.2s ease;
+	--bluesky-card-gap: var(--bluesky-space-sm);
+	--bluesky-card-border: 1px solid var(--bluesky-color-border);
+	--bluesky-card-padding: var(--bluesky-content-padding);
+	--bluesky-card-transition: background-color 0.2s ease;
 
 	/* Media */
-	--aspect-ratio-thumb: 1.91/1;
-	--aspect-ratio-square: 1/1;
-	--aspect-ratio-video: 16/9;
+	--bluesky-aspect-ratio-thumb: 1.91/1;
+	--bluesky-aspect-ratio-square: 1/1;
+	--bluesky-aspect-ratio-video: 16/9;
 
 	/* Icons */
-	--icon-size-sm: 1rem;
-	--icon-size-md: 1.5rem;
-	--icon-size-lg: 2rem;
-
-	/* Overlays */
-	--play-button-size: 6rem;
-	--play-icon-size: 60%;
-}
-
-/* Shared Component Classes */
-.avatar {
-	border-radius: var(--radius-full);
-	overflow: hidden;
-	background-color: var(--color-border);
-}
-
-.avatar img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-}
-
-.card-base {
-	border: var(--card-border);
-	border-radius: var(--radius-md);
-	background: var(--color-background);
-	transition: var(--card-transition);
-}
-
-.card-base:hover {
-	background: var(--color-background-hover);
-}
-
-.media-container {
-	width: 100%;
-	overflow: hidden;
-	border-radius: var(--radius-md);
-	position: relative;
-	background-color: var(--color-border);
-}
-
-.text-ellipsis {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-
-.line-clamp-2 {
-	display: -webkit-box;
-	-webkit-line-clamp: 2;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
-}
-
-.line-clamp-3 {
-	display: -webkit-box;
-	-webkit-line-clamp: 3;
-	-webkit-box-orient: vertical;
-	overflow: hidden;
+	--bluesky-icon-size-sm: 1rem;
+	--bluesky-icon-size-md: 1.5rem;
+	--bluesky-icon-size-lg: 2rem;
 }
 
 /* Dark theme */
 @media (prefers-color-scheme: dark) {
-	:root {
-		--color-text: var(--color-text--light);
-		--color-text-secondary: var(--color-text-secondary--light);
-		--color-border: var(--color-border--light);
-		--color-background: var(--color-background--light);
-		--color-background-hover: var(--color-background-hover--light);
+	.bluesky-post-container {
+		--bluesky-color-text: var(--bluesky-color-text--light);
+		--bluesky-color-text-secondary: var(--bluesky-color-text-secondary--light);
+		--bluesky-color-border: var(--bluesky-color-border--light);
+		--bluesky-color-background: var(--bluesky-color-background--light);
+		--bluesky-color-background-hover: var(
+			--bluesky-color-background-hover--light
+		);
 	}
 }
 
 /* Dynamic colours when supported */
 @supports (--color: light-dark(var(--a), var(--b))) {
-	:root {
-		--color-text: light-dark(var(--color-text--light), var(--color-text--dark));
-		--color-text-secondary: light-dark(
-			var(--color-text-secondary--light),
-			var(--color-text-secondary--dark)
+	.bluesky-post-container {
+		--bluesky-color-text: light-dark(
+			var(--bluesky-color-text--light),
+			var(--bluesky-color-text--dark)
 		);
-		--color-border: light-dark(
-			var(--color-border--light),
-			var(--color-border--dark)
+		--bluesky-color-text-secondary: light-dark(
+			var(--bluesky-color-text-secondary--light),
+			var(--bluesky-color-text-secondary--dark)
 		);
-		--color-background: light-dark(
-			var(--color-background--light),
-			var(--color-background--dark)
+		--bluesky-color-border: light-dark(
+			var(--bluesky-color-border--light),
+			var(--bluesky-color-border--dark)
 		);
-		--color-background-hover: light-dark(
-			var(--color-background-hover--light),
-			var(--color-background-hover--dark)
+		--bluesky-color-background: light-dark(
+			var(--bluesky-color-background--light),
+			var(--bluesky-color-background--dark)
+		);
+		--bluesky-color-background-hover: light-dark(
+			var(--bluesky-color-background-hover--light),
+			var(--bluesky-color-background-hover--dark)
 		);
 	}
 }
