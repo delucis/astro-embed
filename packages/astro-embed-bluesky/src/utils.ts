@@ -1,5 +1,13 @@
-import { AtpAgent, RichText } from '@atproto/api';
-import type { PostView } from '@atproto/api/dist/client/types/app/bsky/feed/defs';
+import {
+	AppBskyEmbedExternal,
+	AppBskyEmbedImages,
+	AppBskyEmbedRecord,
+	AppBskyEmbedRecordWithMedia,
+	AppBskyEmbedVideo,
+	AppBskyFeedDefs,
+	AtpAgent,
+	RichText,
+} from '@atproto/api';
 import type { Post } from './types';
 
 const escapeMap: Record<string, string> = {
@@ -13,7 +21,7 @@ const escapeMap: Record<string, string> = {
 export const escapeHTML = (str?: string) =>
 	str?.replace(/[&<>"']/g, (match) => escapeMap[match] || match) ?? '';
 
-export function renderPostAsHtml(post?: PostView | Post) {
+export function renderPostAsHtml(post?: AppBskyFeedDefs.PostView | Post) {
 	if (!post) {
 		return '';
 	}
@@ -39,12 +47,51 @@ export function renderPostAsHtml(post?: PostView | Post) {
 	return html;
 }
 
+export function viewRecordToPostView(
+	viewRecord: AppBskyEmbedRecord.ViewRecord
+): AppBskyFeedDefs.PostView {
+	const { value, embeds, ...rest } = viewRecord;
+	return {
+		...rest,
+		$type: 'app.bsky.feed.defs#postView',
+		record: value,
+		embed: embeds?.[0],
+	} as AppBskyFeedDefs.PostView;
+}
+
+export function viewRecordToEmbed(
+	viewRecord: AppBskyEmbedRecord.ViewRecord,
+	allowNestedQuotes = false
+) {
+	const { embed } = viewRecordToPostView(viewRecord);
+
+	if (allowNestedQuotes) {
+		return embed;
+	} else {
+		if (
+			AppBskyEmbedImages.isView(embed) ||
+			AppBskyEmbedExternal.isView(embed) ||
+			AppBskyEmbedVideo.isView(embed)
+		) {
+			return embed;
+		} else if (
+			AppBskyEmbedRecordWithMedia.isView(embed) &&
+			(AppBskyEmbedImages.isView(embed.media) ||
+				AppBskyEmbedExternal.isView(embed.media) ||
+				AppBskyEmbedVideo.isView(embed.media))
+		) {
+			return embed.media;
+		}
+	}
+	return undefined;
+}
+
 const agent = new AtpAgent({
 	service: 'https://public.api.bsky.app',
 });
 
 export async function resolvePost(
-	postUrl: string | Post | PostView
+	postUrl: string | Post | AppBskyFeedDefs.PostView
 ): Promise<Post | undefined> {
 	let atUri;
 

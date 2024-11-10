@@ -23,7 +23,9 @@ const src = user.avatar;
 			{src && <img src={src} alt={user.displayName ?? user.handle} />}
 		</a>
 	) : (
-		<div class:list={['avatar', size]}>{src && <img src={src} alt={user.displayName ?? user.handle} />}</div>
+		<div class:list={['avatar', size]}>
+			{src && <img src={src} alt={user.displayName ?? user.handle} />}
+		</div>
 	)
 }
 <style>

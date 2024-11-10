@@ -1,6 +1,6 @@
 ---
 import { atUriToPostUri, renderPostAsHtml, resolvePost } from './utils.js';
-import Media from './media.astro';
+import Embed from './embed.astro';
 import type { Post } from './types';
 import './styles.css';
 import Avatar from './avatar.astro';
@@ -55,7 +55,7 @@ const formatter = new Intl.DateTimeFormat('en-US', {
 
 		<p class="post-text" set:html={body} />
 
-		{embed && <Media media={embed} postUrl={postUrl} />}
+		{embed && <Embed embed={embed} postUrl={postUrl} />}
 		<a href={postUrl} class="timestamp">
 			{formatter.format(new Date(record.createdAt ?? ''))}
 		</a>
