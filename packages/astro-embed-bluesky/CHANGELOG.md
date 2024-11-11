@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-bluesky
 
+## 0.1.1
+
+### Patch Changes
+
+- [#169](https://github.com/delucis/astro-embed/pull/169) [`a1524686a80ca1ede97853df6ba6ba7dd8a5dfd2`](https://github.com/delucis/astro-embed/commit/a1524686a80ca1ede97853df6ba6ba7dd8a5dfd2) Thanks [@ascorbic](https://github.com/ascorbic)! - Fixes Bluesky logo and styling of links in posts
+
 ## 0.1.0
 
 ### Minor Changes
