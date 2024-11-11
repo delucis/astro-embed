@@ -31,8 +31,13 @@ const authorUrl = `https://bsky.app/profile/${author?.handle}`;
 const body = renderPostAsHtml(post);
 
 const formatter = new Intl.DateTimeFormat('en-US', {
-	dateStyle: 'long',
-	timeStyle: 'short',
+	month: 'long',
+	day: 'numeric',
+	year: 'numeric',
+	hour: 'numeric',
+	minute: 'numeric',
+	timeZone: 'UTC',
+	timeZoneName: 'short',
 });
 ---
 

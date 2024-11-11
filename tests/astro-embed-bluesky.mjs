@@ -13,7 +13,7 @@ test('it should render a Bluesky post', async () => {
 	screen.getByText(
 		"Would you like to display your Bluesky posts in your Astro site? I've made an Astro content loader for Bluesky! When you build the site it loads your posts and puts them in a content collection. You can then display them on a page, or use the raw data however you want."
 	);
-	screen.getByText('November 3, 2024 at 7:15 PM');
+	screen.getByText('November 3, 2024 at 6:15 PM UTC');
 });
 
 test('it should render a Bluesky post with video', async () => {
