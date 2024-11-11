@@ -112,8 +112,16 @@ export async function resolvePost(
 			return undefined;
 		}
 		if (!did.startsWith('did:')) {
-			const handleResolution = await agent.resolveHandle({ handle: did });
-			if (!handleResolution.data.did) {
+			try {
+				const handleResolution = await agent.resolveHandle({ handle: did });
+				if (!handleResolution.data.did) {
+					return undefined;
+				}
+				did = handleResolution.data.did;
+			} catch (e: any) {
+				console.error(
+					`[error]  astro-embed` + '\n         ' + (e?.message ?? e)
+				);
 				return undefined;
 			}
 			did = handleResolution.data.did;
@@ -122,9 +130,13 @@ export async function resolvePost(
 		atUri = `at://${did}/app.bsky.feed.post/${postId}`;
 	}
 
-	const hydratedPost = await agent.getPosts({ uris: [atUri] });
-
-	return hydratedPost.data.posts[0] as unknown as Post;
+	try {
+		const hydratedPost = await agent.getPosts({ uris: [atUri] });
+		return hydratedPost.data.posts[0] as unknown as Post;
+	} catch (e: any) {
+		console.error(`[error]  astro-embed` + '\n         ' + (e?.message ?? e));
+		return undefined;
+	}
 }
 
 export function atUriToPostUri(atUri: string) {

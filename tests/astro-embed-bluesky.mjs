@@ -54,4 +54,11 @@ test('it should nest quoted Bluesky posts with links', async () => {
 	);
 });
 
+test('it should fail gracefully if the post is not found', async () => {
+	const dom = await renderDOM('./packages/astro-embed-bluesky/src/post.astro', {
+		id: 'https://bsky.app/profile/random/post/does-not-exist',
+	});
+	assert.equal(dom.document.documentElement, null);
+});
+
 test.run();
