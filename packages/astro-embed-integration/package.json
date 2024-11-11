@@ -1,6 +1,6 @@
 {
   "name": "@astro-community/astro-embed-integration",
-  "version": "0.7.2",
+  "version": "0.8.0",
   "description": "Astro integration to automatically convert URLs in Markdown files to embeds",
   "type": "module",
   "exports": {
