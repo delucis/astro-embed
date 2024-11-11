@@ -130,9 +130,14 @@ export async function resolvePost(
 		atUri = `at://${did}/app.bsky.feed.post/${postId}`;
 	}
 
-	const hydratedPost = await agent.getPosts({ uris: [atUri] });
-
-	return hydratedPost.data.posts[0] as unknown as Post;
+	try {
+		const hydratedPost = await agent.getPosts({ uris: [atUri] });
+		return hydratedPost.data.posts[0] as unknown as Post;
+	} catch (e: any) {
+		// TODO: Remove this logging
+		console.log(e);
+		return undefined;
+	}
 }
 
 export function atUriToPostUri(atUri: string) {
