@@ -2,6 +2,8 @@
 	/* Colours */
 	--bluesky-color-overlay: rgba(0, 0, 0, 0.5);
 
+	--bluesky-color-link: rgb(59 130 246);
+
 	/* Colour palette */
 	--bluesky-color-text--light: #000000;
 	--bluesky-color-text-secondary--light: rgb(66 87 108);

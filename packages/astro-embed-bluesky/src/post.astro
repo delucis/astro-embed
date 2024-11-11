@@ -79,6 +79,10 @@ const formatter = new Intl.DateTimeFormat('en-US', {
 		transition: var(--bluesky-card-transition);
 	}
 
+	.bluesky-post-container .post-content :global(a) {
+		text-decoration: none;
+	}
+
 	.post-content {
 		padding: var(--bluesky-space-md) var(--bluesky-space-lg)
 			var(--bluesky-space-sm);
@@ -122,7 +126,7 @@ const formatter = new Intl.DateTimeFormat('en-US', {
 	}
 
 	.bluesky-logo {
-		height: var(--bluesky-avatar-sm);
+		height: var(--bluesky-icon-size-lg);
 		transition: transform 0.2s ease;
 	}
 
@@ -139,8 +143,13 @@ const formatter = new Intl.DateTimeFormat('en-US', {
 		color: var(--bluesky-color-text);
 	}
 
-	.post-text :global(a) {
-		color: var(--bluesky-color-text);
+	.bluesky-post-container .post-text :global(a) {
+		color: var(--bluesky-color-link);
+		text-decoration: none;
+	}
+	.bluesky-post-container .timestamp:hover,
+	.bluesky-post-container .post-text :global(a:hover) {
+		text-decoration: underline;
 	}
 
 	.timestamp {
@@ -149,9 +158,5 @@ const formatter = new Intl.DateTimeFormat('en-US', {
 		font-size: var(--bluesky-font-size-sm);
 		margin-top: var(--bluesky-space-sm);
 		text-decoration: none;
-	}
-
-	.timestamp:hover {
-		text-decoration: underline;
 	}
 </style>
