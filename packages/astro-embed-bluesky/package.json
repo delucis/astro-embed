@@ -1,6 +1,6 @@
 {
   "name": "@astro-community/astro-embed-bluesky",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Component to embed a fully-styled Bluesky post with no client-side JavaScript in your Astro site",
   "type": "module",
   "files": [
