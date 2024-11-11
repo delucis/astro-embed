@@ -1,0 +1,91 @@
+---
+import { AppBskyEmbedRecord, AppBskyFeedPost } from '@atproto/api';
+import Embed from './embed.astro';
+import { atUriToPostUri, viewRecordToEmbed } from './utils';
+import Avatar from './avatar.astro';
+
+interface Props {
+	embed: AppBskyEmbedRecord.View;
+}
+
+const { embed } = Astro.props;
+---
+
+{
+	AppBskyEmbedRecord.isViewRecord(embed.record) &&
+	AppBskyFeedPost.isRecord(embed.record.value) ? (
+		<div class="post-container">
+			<a href={atUriToPostUri(embed.record.uri)} class="post-link">
+				<div class="user-info">
+					<Avatar user={embed.record.author} size="small" />
+					<p class="user-text">
+						<span class="name">{embed.record.author.displayName}</span>
+						<span class="handle">@{embed.record.author.handle}</span>
+					</p>
+				</div>
+			</a>
+			<a href={atUriToPostUri(embed.record.uri)} class="post-link">
+				<p class="content">{embed.record.value.text}</p>
+			</a>
+			<Embed
+				embed={viewRecordToEmbed(embed.record)}
+				postUrl={atUriToPostUri(embed.record.uri)}
+				compact={true}
+			/>
+		</div>
+	) : null
+}
+
+<style>
+	.post-container {
+		border: var(--bluesky-card-border);
+		border-radius: var(--bluesky-radius-md);
+		display: flex;
+		flex-direction: column;
+		gap: var(--bluesky-space-xs);
+		padding: var(--bluesky-space-sm);
+		text-decoration: none;
+		color: var(--bluesky-color-text);
+		transition: var(--bluesky-card-transition);
+	}
+
+	.post-link {
+		text-decoration: none;
+	}
+
+	.post-container:hover {
+		background-color: var(--bluesky-color-background-hover);
+	}
+
+	.user-info {
+		display: flex;
+		gap: var(--bluesky-space-xs);
+		align-items: center;
+	}
+
+	.user-text {
+		font-size: var(--bluesky-font-size-sm);
+		margin: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		color: var(--bluesky-color-text);
+	}
+
+	.name {
+		font-weight: var(--bluesky-font-weight-bold);
+		color: var(--bluesky-color-text);
+	}
+
+	.handle {
+		color: var(--bluesky-color-text-secondary);
+		margin-left: var(--bluesky-space-xs);
+	}
+
+	.content {
+		font-size: var(--bluesky-font-size-sm);
+		color: var(--bluesky-color-text);
+		margin: 0;
+		line-height: var(--bluesky-line-height-normal);
+	}
+</style>

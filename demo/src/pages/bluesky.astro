@@ -1,0 +1,26 @@
+---
+import { BlueskyPost } from '@astro-community/astro-embed-bluesky';
+import Base from '../layouts/Base.astro';
+import post from '../post.json';
+---
+
+<Base title="BlueskyPost component example">
+	<BlueskyPost post={post.data} />
+	<p>Raw data</p>
+	<BlueskyPost post="https://bsky.app/profile/wesbos.com/post/3la2ezdodvu2g" />
+	<p>Basic</p>
+	<BlueskyPost post="https://bsky.app/profile/mk.gg/post/3la2snrsnhd2a" />
+	<p>Images</p>
+	<BlueskyPost post="https://bsky.app/profile/mk.gg/post/3l7xzeex4vf2m" />
+	<p>External link</p>
+	<BlueskyPost
+		post="https://bsky.app/profile/wattenberger.com/post/3la54isd7az2i"
+	/>
+	<p>Video</p>
+	<BlueskyPost post="https://bsky.app/profile/mk.gg/post/3l7zx4hltw62a" />
+	<p>External media with quote</p>
+	<BlueskyPost post="https://bsky.app/profile/mk.gg/post/3la4wuiii4o2e" />
+	<p>External link with quote</p>
+	<BlueskyPost post="https://bsky.app/profile/sentry.io/post/3la5clrgyw52g" />
+	<p>Starter pack</p>
+</Base>

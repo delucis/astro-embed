@@ -1,0 +1,39 @@
+{
+  "name": "@astro-community/astro-embed-bluesky",
+  "version": "0.0.0",
+  "description": "Component to embed a fully-styled Bluesky post with no client-side JavaScript in your Astro site",
+  "type": "module",
+  "files": [
+    "src"
+  ],
+  "exports": {
+    ".": "./src/index.ts",
+    "./matcher": "./src/matcher.ts"
+  },
+  "peerDependencies": {
+    "astro": "^4.0.0 || ^5.0.0-beta.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/delucis/astro-embed.git",
+    "directory": "packages/astro-embed-bluesky"
+  },
+  "bugs": {
+    "url": "https://github.com/delucis/astro-embed/issues"
+  },
+  "homepage": "https://astro-embed.netlify.app/components/bluesky/",
+  "keywords": [
+    "withastro",
+    "astro",
+    "astro-component",
+    "ui",
+    "embeds",
+    "bluesky"
+  ],
+  "author": "Matt Kane",
+  "license": "MIT",
+  "dependencies": {
+    "@atproto/api": "^0.13.14",
+    "ts-pattern": "^5.5.0"
+  }
+}

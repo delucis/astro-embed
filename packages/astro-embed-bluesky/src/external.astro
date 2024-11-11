@@ -1,0 +1,87 @@
+---
+import { AppBskyEmbedExternal } from '@atproto/api';
+
+interface Props {
+	embed: AppBskyEmbedExternal.View;
+	compact?: boolean | undefined;
+}
+
+const { uri, thumb, title, description } = Astro.props.embed.external;
+const domain = new URL(uri).hostname;
+const { compact } = Astro.props;
+---
+
+<a
+	href={uri}
+	target="_blank"
+	rel="noopener noreferrer nofollow"
+	class="external-link"
+>
+	{!compact && thumb && <img src={thumb} alt={title} class="thumbnail" />}
+	<div class="content">
+		<p class="domain">{domain}</p>
+		{
+			!compact && (
+				<>
+					<p class="title">{title}</p>
+					<p class="description">{description}</p>
+				</>
+			)
+		}
+	</div>
+</a>
+
+<style>
+	.external-link {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		border: var(--bluesky-card-border);
+		border-radius: var(--bluesky-radius-md);
+		overflow: hidden;
+		text-decoration: none;
+		color: var(--bluesky-color-text);
+		background: var(--bluesky-color-background);
+		transition: var(--bluesky-card-transition);
+	}
+
+	.thumbnail {
+		aspect-ratio: var(--bluesky-aspect-ratio-thumb);
+		width: 100%;
+		height: auto;
+		object-fit: cover;
+	}
+
+	.content {
+		padding: var(--bluesky-content-padding);
+	}
+
+	.domain {
+		font-size: var(--bluesky-font-size-sm);
+		color: var(--bluesky-color-text-secondary);
+		margin: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.title {
+		font-weight: var(--bluesky-font-weight-semibold);
+		margin: 0;
+		color: var(--bluesky-color-text);
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	.description {
+		font-size: var(--bluesky-font-size-sm);
+		color: var(--bluesky-color-text-secondary);
+		margin: var(--bluesky-space-xs) 0 0 0;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+</style>

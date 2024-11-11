@@ -1,0 +1,27 @@
+---
+import { AppBskyGraphDefs, AppBskyGraphStarterpack } from '@atproto/api';
+import { atUriToStarterPackUri, starterPackOgImage } from './utils';
+import Card from './card.astro';
+
+interface Props {
+	record: AppBskyGraphDefs.StarterPackViewBasic;
+}
+
+const { record } = Astro.props;
+
+const pack = AppBskyGraphStarterpack.isRecord(record.record)
+	? record.record
+	: null;
+---
+
+<Card
+	href={atUriToStarterPackUri(record.uri)}
+	image={{
+		src: starterPackOgImage(record.uri),
+		alt: pack?.name || 'Starter pack cover image',
+	}}
+	avatarUser={record.creator}
+	title={pack?.name || ''}
+	subtitle={`Starter pack by ${record.creator.displayName}`}
+	description={pack?.description}
+/>
