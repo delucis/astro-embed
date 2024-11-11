@@ -4,11 +4,12 @@ import {
 	AppBskyEmbedRecord,
 	AppBskyEmbedRecordWithMedia,
 	AppBskyEmbedVideo,
-	AppBskyFeedDefs,
+	type AppBskyFeedDefs,
 	AtpAgent,
 	RichText,
 } from '@atproto/api';
 import type { Post } from './types';
+import { makeSafeGetter } from '@astro-community/astro-embed-utils';
 
 const escapeMap: Record<string, string> = {
 	'&': '&amp;',
@@ -86,8 +87,15 @@ export function viewRecordToEmbed(
 	return undefined;
 }
 
+/** Cached fetch instance. */
+const cachedFetch = makeSafeGetter((res) => res, {
+	handleError: (_, res) => res!,
+});
+
 const agent = new AtpAgent({
 	service: 'https://public.api.bsky.app',
+	fetch: async (input, init) =>
+		cachedFetch(input, init).then((res) => res.clone()),
 });
 
 export async function resolvePost(
