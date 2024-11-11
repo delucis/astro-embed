@@ -42,28 +42,16 @@ export const safeGetDOM = makeSafeGetter(
 );
 
 /** Factory to create safe, caching fetch functions. */
-export function makeSafeGetter<T, U = undefined>(
+function makeSafeGetter<T>(
 	handleResponse: (res: Response) => T | Promise<T>,
-	{
-		cacheSize = 1000,
-		handleError,
-	}: {
-		cacheSize?: number;
-		handleError?: (error: any, res: Response | undefined) => U;
-	} = {}
+	{ cacheSize = 1000 }: { cacheSize?: number } = {}
 ) {
-	const cache = new LRU<string | URL, T>(cacheSize);
-	return async function safeGet(
-		url: string | URL | Request,
-		init?: RequestInit
-	): Promise<T | U> {
-		let response: Response | undefined;
-		const cacheKey =
-			url instanceof Request ? url.url : url instanceof URL ? url.href : url;
-		const cached = cache.get(cacheKey);
-		if (cached) return cached;
+	const cache = new LRU<string, T>(cacheSize);
+	return async function safeGet(url: string): Promise<T | undefined> {
 		try {
-			response = await fetch(url, init);
+			const cached = cache.get(url);
+			if (cached) return cached;
+			const response = await fetch(url);
 			if (!response.ok)
 				throw new Error(
 					formatError(
@@ -72,11 +60,11 @@ export function makeSafeGetter<T, U = undefined>(
 					)
 				);
 			const result = await handleResponse(response);
-			cache.set(cacheKey, result);
+			cache.set(url, result);
 			return result;
 		} catch (e: any) {
 			console.error(formatError(`[error]  astro-embed`, e?.message ?? e));
-			return handleError ? handleError(e, response) : (undefined as U);
+			return undefined;
 		}
 	};
 }
