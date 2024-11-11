@@ -124,7 +124,6 @@ export async function resolvePost(
 				);
 				return undefined;
 			}
-			did = handleResolution.data.did;
 		}
 
 		atUri = `at://${did}/app.bsky.feed.post/${postId}`;
