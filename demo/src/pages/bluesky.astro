@@ -5,6 +5,7 @@ import post from '../post.json';
 ---
 
 <Base title="BlueskyPost component example">
+	<div class="content">
 	<BlueskyPost post={post.data} />
 	<p>Raw data</p>
 	<BlueskyPost post="https://bsky.app/profile/wesbos.com/post/3la2ezdodvu2g" />
@@ -24,3 +25,10 @@ import post from '../post.json';
 	<BlueskyPost post="https://bsky.app/profile/sentry.io/post/3la5clrgyw52g" />
 	<p>Starter pack</p>
 </Base>
+</div>
+<style>
+	/* Testing leaky styles */
+	.content :global(a) {
+		text-decoration: 1px solid underline;
+	}
+	</style>
