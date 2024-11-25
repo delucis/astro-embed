@@ -4,10 +4,11 @@ import Embed from './embed.astro';
 import type { Post } from './types';
 import './styles.css';
 import Avatar from './avatar.astro';
+import type { AppBskyFeedDefs } from '@atproto/api';
 
 type Props = {
 	id?: string;
-	post?: string | Post;
+	post?: string | Post | AppBskyFeedDefs.PostView;
 };
 
 const postRef = Astro.props.id ?? Astro.props.post;
