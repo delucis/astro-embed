@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-bluesky
 
+## 0.1.2
+
+### Patch Changes
+
+- [#174](https://github.com/delucis/astro-embed/pull/174) [`c9cc93aaf756446f5feb84f68abeef8ea4816dec`](https://github.com/delucis/astro-embed/commit/c9cc93aaf756446f5feb84f68abeef8ea4816dec) Thanks [@ascorbic](https://github.com/ascorbic)! - Allow PostView to be passed to embed
+
 ## 0.1.1
 
 ### Patch Changes
