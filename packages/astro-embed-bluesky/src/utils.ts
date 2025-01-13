@@ -37,7 +37,7 @@ export function renderPostAsHtml(post?: AppBskyFeedDefs.PostView | Post) {
 				segment.mention?.did
 			)}">${escapeHTML(segment.text)}</a>`;
 		} else if (segment.isTag()) {
-			html += `<a href="https://bsky.app/hastag/${escapeHTML(
+			html += `<a href="https://bsky.app/hashtag/${escapeHTML(
 				segment.tag?.tag
 			)}">#${escapeHTML(segment.tag?.tag)}</a>`;
 		} else {
