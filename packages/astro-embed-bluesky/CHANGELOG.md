@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-bluesky
 
+## 0.1.3
+
+### Patch Changes
+
+- [#178](https://github.com/delucis/astro-embed/pull/178) [`8c5c7f9377121bfd91d70be94584a66d29b0a5a7`](https://github.com/delucis/astro-embed/commit/8c5c7f9377121bfd91d70be94584a66d29b0a5a7) Thanks [@IsaacRF](https://github.com/IsaacRF)! - Fixes hashtag links in Bluesky embeds
+
 ## 0.1.2
 
 ### Patch Changes
