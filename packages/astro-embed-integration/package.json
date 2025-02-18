@@ -22,6 +22,7 @@
   },
   "homepage": "https://astro-embed.netlify.app/integration",
   "dependencies": {
+    "@astro-community/astro-embed-bluesky": "^0.1.3",
     "@astro-community/astro-embed-link-preview": "^0.2.0",
     "@astro-community/astro-embed-twitter": "^0.5.5",
     "@astro-community/astro-embed-vimeo": "^0.3.9",
