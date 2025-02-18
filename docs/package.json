@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@astrojs/starlight": "^0.24.0",
-    "astro": "^4.16.3",
+    "astro": "^4.16.18",
     "astro-og-canvas": "^0.4.2",
     "expressive-code-color-chips": "^0.1.0",
     "sharp": "^0.32.5",
