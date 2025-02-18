@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-integration
 
+## 0.8.1
+
+### Patch Changes
+
+- [#182](https://github.com/delucis/astro-embed/pull/182) [`8ff2793843c108ad5c22caf172aa0c966e2a8f69`](https://github.com/delucis/astro-embed/commit/8ff2793843c108ad5c22caf172aa0c966e2a8f69) Thanks [@DaniFoldi](https://github.com/DaniFoldi)! - fix: Add missing dependency to astro-embed-bluesky
+
 ## 0.8.0
 
 ### Minor Changes
