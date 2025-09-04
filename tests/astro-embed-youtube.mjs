@@ -89,6 +89,21 @@ test('it can render a lower resolution poster image', async () => {
 	);
 });
 
+test('it can append a custom style', async () => {
+	const style = 'width: 100%';
+	const { window } = await renderDOM(
+		'./packages/astro-embed-youtube/YouTube.astro',
+		{ id: videoid, style }
+	);
+	const embed = window.document.querySelector('lite-youtube');
+	assert.ok(embed);
+	assert.is(embed.style['width'], '100%');
+	assert.is(
+		embed.style['background-image'],
+		`url('https://i.ytimg.com/vi/${videoid}/hqdefault.jpg')`
+	);
+});
+
 test('title attribute also sets `data-title`', async () => {
 	const { window } = await renderDOM(
 		'./packages/astro-embed-youtube/YouTube.astro',
