@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-youtube
 
+## 0.5.7
+
+### Patch Changes
+
+- [#202](https://github.com/delucis/astro-embed/pull/202) [`c00ac0ab0253d7439d57de0b986317f55c66f291`](https://github.com/delucis/astro-embed/commit/c00ac0ab0253d7439d57de0b986317f55c66f291) Thanks [@echolocator](https://github.com/echolocator)! - Add support for `style` attribute in `<YouTube>` component
+
 ## 0.5.6
 
 ### Patch Changes
