@@ -142,6 +142,8 @@ The `<BaselineStatus>` component supports the following API for controlling its 
 	--color-newly-secondary--dark: #2d509e;
 	--color-no_data--dark: #868686;
 	--color-no_data-secondary--dark: #666666;
+	/* Animation duration */
+	--animation-duration: 0.3s;
 }
 ```
 
@@ -149,7 +151,7 @@ The `<BaselineStatus>` component supports the following API for controlling its 
 
 The root element of the `<BaselineStatus>` component can be targeted using the `.baseline-status` selector.
 
-In addition, the following variant class names are applied and can be used to customise appearance for the different Baseline status levels:
+In addition, the following variant class names are applied and can be used to customize appearance for the different Baseline status levels:
 
 - `.baseline-status--limited`: applied if the feature has limited availability
 - `.baseline-status--newly`: applied if the feature is newly available
@@ -223,6 +225,10 @@ The disclosure caret displayed instead of the default `<details>` marker.
 #### `::part(description)`
 
 The detailed description of the support level visible when the component is expanded.
+
+#### `::part(link-container)`
+
+The container wrapping the link element.
 
 #### `::part(link)`
 
