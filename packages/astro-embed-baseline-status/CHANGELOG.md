@@ -1,5 +1,17 @@
 # @astro-community/astro-embed-baseline-status
 
+## 0.2.0
+
+### Minor Changes
+
+- [#206](https://github.com/delucis/astro-embed/pull/206) [`d2f7b94b1185905bdf173b60df93353e6a42d127`](https://github.com/delucis/astro-embed/commit/d2f7b94b1185905bdf173b60df93353e6a42d127) Thanks [@pawcoding](https://github.com/pawcoding)! - Adds `::part(link-container)` as additional styling target
+
+- [#206](https://github.com/delucis/astro-embed/pull/206) [`d2f7b94b1185905bdf173b60df93353e6a42d127`](https://github.com/delucis/astro-embed/commit/d2f7b94b1185905bdf173b60df93353e6a42d127) Thanks [@pawcoding](https://github.com/pawcoding)! - Adds `--animation-duration` CSS variable to control animation speed
+
+### Patch Changes
+
+- [#206](https://github.com/delucis/astro-embed/pull/206) [`d2f7b94b1185905bdf173b60df93353e6a42d127`](https://github.com/delucis/astro-embed/commit/d2f7b94b1185905bdf173b60df93353e6a42d127) Thanks [@pawcoding](https://github.com/pawcoding)! - Skip caret animation when user prefers reduced motion
+
 ## 0.1.2
 
 ### Patch Changes

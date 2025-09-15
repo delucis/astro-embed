@@ -1,5 +1,12 @@
 # astro-embed
 
+## 0.9.1
+
+### Patch Changes
+
+- Updated dependencies [[`d2f7b94b1185905bdf173b60df93353e6a42d127`](https://github.com/delucis/astro-embed/commit/d2f7b94b1185905bdf173b60df93353e6a42d127)]:
+  - @astro-community/astro-embed-baseline-status@0.2.0
+
 ## 0.9.0
 
 ### Minor Changes
