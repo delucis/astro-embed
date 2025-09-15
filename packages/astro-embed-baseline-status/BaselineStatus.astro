@@ -115,7 +115,7 @@ const year =
 					</div>
 					<style>
 						[part='caret'] svg {
-							transition: transform 0.3s;
+							transition: transform var(--animation-duration);
 						}
 						details[open] [part='caret'] svg {
 							transform: rotate(180deg);
@@ -131,7 +131,7 @@ const year =
 				<p part="description" set:html={description} />
 				{
 					baseline !== 'no_data' && (
-						<p>
+						<p part="link-container">
 							<a
 								href={`https://webstatus.dev/features/${feature.feature_id}`}
 								target="_top"
@@ -148,6 +148,9 @@ const year =
 
 <style>
 	.baseline-status::part(root) {
+		/* Animation */
+		--animation-duration: 0.3s;
+
 		/* Light palette */
 		--color-outline--light: #d9d9d9;
 		--color-background--light: transparent;
@@ -373,6 +376,12 @@ const year =
 	@media (min-width: 28rem) {
 		.baseline-status::part(caret) {
 			margin-inline-start: 3rem;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.baseline-status::part(root) {
+			--animation-duration: 0s;
 		}
 	}
 </style>
