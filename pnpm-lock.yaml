@@ -86,6 +86,9 @@ importers:
       astro-og-canvas:
         specifier: ^0.7.2
         version: 0.7.2(astro@5.14.4(@types/node@24.3.0)(rollup@4.52.4)(typescript@4.9.5))
+      canvaskit-wasm:
+        specifier: ^0.40.0
+        version: 0.40.0
       expressive-code-color-chips:
         specifier: ^0.1.2
         version: 0.1.2(@expressive-code/core@0.41.3)

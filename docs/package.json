@@ -14,6 +14,7 @@
     "@astrojs/starlight": "^0.36.0",
     "astro": "^5.14.4",
     "astro-og-canvas": "^0.7.2",
+    "canvaskit-wasm": "^0.40.0",
     "expressive-code-color-chips": "^0.1.2",
     "sharp": "^0.34.4",
     "starlight-package-managers": "^0.11.0"
