@@ -7,7 +7,7 @@ This directory contains tests that check the output of the embed components matc
 You can run tests from the project root:
 
 ```bash
-npm run test
+pnpm run test
 ```
 
 ### Running a single test file
@@ -15,7 +15,7 @@ npm run test
 If you’re working on a particular component you might want to only run its tests. You can pass a pattern to the test command. Only test files that match the pattern will run.
 
 ```bash
-npm run test -- youtube
+pnpm run test youtube
 ```
 
 ## What a test looks like

@@ -70,7 +70,7 @@ While working, you’ll likely want to to see how — or if! — your component 
 
 You can use the Astro project in the `/demo` directory to do this. Add a page to `/demo/src/pages` for your component and try using different props etc. to see how it responds.
 
-Running `npm start` will start Astro’s development server for the demo project.
+Running `pnpm start` will start Astro’s development server for the demo project.
 
 ### Test your component
 
