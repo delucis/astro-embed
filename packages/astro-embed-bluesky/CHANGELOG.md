@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-bluesky
 
+## 0.1.4
+
+### Patch Changes
+
+- [`3999556592b546d24fc519cc3c66a404efe2cec1`](https://github.com/delucis/astro-embed/commit/3999556592b546d24fc519cc3c66a404efe2cec1) Thanks [@delucis](https://github.com/delucis)! - Fixes a type imported without `type` annotation
+
 ## 0.1.3
 
 ### Patch Changes
