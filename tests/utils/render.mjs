@@ -2,7 +2,7 @@
 import { prettyDOM, queries } from '@testing-library/dom';
 import { getComponentOutput } from 'astro-component-tester';
 import { parseHTML } from 'linkedom';
-import lzString from 'lz-string';
+import * as lzString from 'lz-string';
 const { compressToEncodedURIComponent } = lzString;
 
 /**
