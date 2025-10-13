@@ -84,8 +84,8 @@ importers:
         specifier: ^5.14.4
         version: 5.14.4(@types/node@24.3.0)(rollup@4.52.4)(typescript@4.9.5)
       astro-og-canvas:
-        specifier: ^0.4.2
-        version: 0.4.2(astro@5.14.4(@types/node@24.3.0)(rollup@4.52.4)(typescript@4.9.5))
+        specifier: ^0.7.2
+        version: 0.7.2(astro@5.14.4(@types/node@24.3.0)(rollup@4.52.4)(typescript@4.9.5))
       expressive-code-color-chips:
         specifier: ^0.1.2
         version: 0.1.2(@expressive-code/core@0.41.3)
@@ -1469,6 +1469,9 @@ packages:
   '@ungap/structured-clone@1.2.0':
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
 
+  '@webgpu/types@0.1.21':
+    resolution: {integrity: sha512-pUrWq3V5PiSGFLeLxoGqReTZmiiXwY3jRkIG5sLLKjyqNxrwm/04b4nw7LSmGWJcKk59XOM/YRTUwOzo4MMlow==}
+
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
@@ -1560,11 +1563,11 @@ packages:
     peerDependencies:
       astro: ^4.0.0-beta || ^5.0.0-beta || ^3.3.0
 
-  astro-og-canvas@0.4.2:
-    resolution: {integrity: sha512-OQsH6Gr2HX9ZRHdVy2OcXVBIPI65WvEtLG/60krnphh8d3ldhuAFunymYaNGcrdSZcYgXkHWejbPt//3qaRidA==}
+  astro-og-canvas@0.7.2:
+    resolution: {integrity: sha512-i7sWbdpl2MMF7wUZqSfzMnhW4c7GQz6s7T4BUJ7E06MqasZRHjJytn0n6D0JJkGDeTpZnU7E00A6Ffx0pRB4kg==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
-      astro: ^3.0.0 || ^4.0.0
+      astro: ^3.0.0 || ^4.0.0 || ^5.0.0
 
   astro@4.16.19:
     resolution: {integrity: sha512-baeSswPC5ZYvhGDoj25L2FuzKRWMgx105FetOPQVJFMCAp0o08OonYC7AhwsFdhvp7GapqjnC1Fe3lKb2lupYw==}
@@ -1649,8 +1652,8 @@ packages:
   caniuse-lite@1.0.30001700:
     resolution: {integrity: sha512-2S6XIXwaE7K7erT8dY+kLQcpa5ms63XlRkMkReXjle+kf6c5g38vyMl+Z5y8dSxOFDhcFe+nxnn261PLxBSQsQ==}
 
-  canvaskit-wasm@0.37.2:
-    resolution: {integrity: sha512-212imazRF98gLOTiU4JAXM7xDvaknI7jaPtAg4ETXGW5rLQs6pomgIvVPUSfoKnQVTdGgzj+B4e+/u0Da20aGg==}
+  canvaskit-wasm@0.40.0:
+    resolution: {integrity: sha512-Od2o+ZmoEw9PBdN/yCGvzfu0WVqlufBPEWNG452wY7E9aT8RBE+ChpZF526doOlg7zumO4iCS+RAeht4P0Gbpw==}
 
   ccount@2.0.1:
     resolution: {integrity: sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg==}
@@ -1904,6 +1907,10 @@ packages:
 
   entities@4.5.0:
     resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
+    engines: {node: '>=0.12'}
+
+  entities@7.0.0:
+    resolution: {integrity: sha512-FDWG5cmEYf2Z00IkYRhbFrwIwvdFKH07uV8dvNy0omp/Qb1xcyCWp2UDtcwJF4QZZvk0sLudP6/hAu42TaqVhQ==}
     engines: {node: '>=0.12'}
 
   es-define-property@1.0.0:
@@ -5204,6 +5211,8 @@ snapshots:
 
   '@ungap/structured-clone@1.2.0': {}
 
+  '@webgpu/types@0.1.21': {}
+
   acorn-jsx@5.3.2(acorn@8.15.0):
     dependencies:
       acorn: 8.15.0
@@ -5280,12 +5289,12 @@ snapshots:
       astro: 5.14.4(@types/node@24.3.0)(rollup@4.52.4)(typescript@4.9.5)
       rehype-expressive-code: 0.41.3
 
-  astro-og-canvas@0.4.2(astro@5.14.4(@types/node@24.3.0)(rollup@4.52.4)(typescript@4.9.5)):
+  astro-og-canvas@0.7.2(astro@5.14.4(@types/node@24.3.0)(rollup@4.52.4)(typescript@4.9.5)):
     dependencies:
       astro: 5.14.4(@types/node@24.3.0)(rollup@4.52.4)(typescript@4.9.5)
-      canvaskit-wasm: 0.37.2
+      canvaskit-wasm: 0.40.0
       deterministic-object-hash: 2.0.2
-      entities: 4.5.0
+      entities: 7.0.0
 
   astro@4.16.19(@types/node@16.18.91)(rollup@4.52.4)(typescript@4.9.5):
     dependencies:
@@ -5625,7 +5634,9 @@ snapshots:
 
   caniuse-lite@1.0.30001700: {}
 
-  canvaskit-wasm@0.37.2: {}
+  canvaskit-wasm@0.40.0:
+    dependencies:
+      '@webgpu/types': 0.1.21
 
   ccount@2.0.1: {}
 
@@ -5852,6 +5863,8 @@ snapshots:
       strip-ansi: 6.0.1
 
   entities@4.5.0: {}
+
+  entities@7.0.0: {}
 
   es-define-property@1.0.0:
     dependencies:
