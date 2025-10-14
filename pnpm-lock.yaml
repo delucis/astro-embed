@@ -171,8 +171,8 @@ importers:
         specifier: ^2.0.0 || ^3.0.0-beta || ^4.0.0-beta || ^5.0.0-beta
         version: 5.14.4(@types/node@24.3.0)(rollup@4.52.4)(typescript@4.9.5)
       astro-auto-import:
-        specifier: ^0.4.2
-        version: 0.4.2(astro@5.14.4(@types/node@24.3.0)(rollup@4.52.4)(typescript@4.9.5))
+        specifier: ^0.4.5
+        version: 0.4.5(astro@5.14.4(@types/node@24.3.0)(rollup@4.52.4)(typescript@4.9.5))
       unist-util-select:
         specifier: ^4.0.1
         version: 4.0.3
@@ -1547,11 +1547,11 @@ packages:
     resolution: {integrity: sha512-ISvCdHdlTDlH5IpxQJIex7BWBywFWgjJSVdwst+/iQCoEYnyOaQ95+X1JGshuBjGp6nxKUy1jMgE3zPqN7fQdg==}
     hasBin: true
 
-  astro-auto-import@0.4.2:
-    resolution: {integrity: sha512-ZgWZQ58+EhbEym1+aoUnNyECOy0wsG5uRUs+rVp/7BzHtj1V76J2qkhjaTWLplgNb+8WrzhvTQNxytmXRCW+Ow==}
+  astro-auto-import@0.4.5:
+    resolution: {integrity: sha512-KU1qFJ97Qks2aT+qSxjrOY6tcwzzLVhY/8w1eM8vwqpP+MDpHKAlbr8Otg9T8g/Mfl/FOdG3nO9lydv1zbtyQA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      astro: ^2.0.0 || ^3.0.0-beta || ^4.0.0-beta
+      astro: ^2.0.0 || ^3.0.0-beta || ^4.0.0-beta || ^5.0.0-beta
 
   astro-component-tester@0.8.0:
     resolution: {integrity: sha512-dBwC/jm4FPin2JMa6B989uJ5UdBvKwpHRY7x5zSfPRpfLS+Jzw7hlCjao4cIYIP0Hx52MjxvA4oVW/t5PhaM5w==}
@@ -3868,7 +3868,7 @@ snapshots:
       '@astro-community/astro-embed-youtube': 0.5.7(astro@5.14.4(@types/node@24.3.0)(rollup@4.52.4)(typescript@4.9.5))
       '@types/unist': 2.0.10
       astro: 5.14.4(@types/node@24.3.0)(rollup@4.52.4)(typescript@4.9.5)
-      astro-auto-import: 0.4.2(astro@5.14.4(@types/node@24.3.0)(rollup@4.52.4)(typescript@4.9.5))
+      astro-auto-import: 0.4.5(astro@5.14.4(@types/node@24.3.0)(rollup@4.52.4)(typescript@4.9.5))
       unist-util-select: 4.0.3
 
   '@astro-community/astro-embed-link-preview@0.2.2':
@@ -5293,7 +5293,7 @@ snapshots:
 
   astring@1.8.6: {}
 
-  astro-auto-import@0.4.2(astro@5.14.4(@types/node@24.3.0)(rollup@4.52.4)(typescript@4.9.5)):
+  astro-auto-import@0.4.5(astro@5.14.4(@types/node@24.3.0)(rollup@4.52.4)(typescript@4.9.5)):
     dependencies:
       '@types/node': 18.19.26
       acorn: 8.15.0
@@ -5451,7 +5451,7 @@ snapshots:
       unist-util-visit: 5.0.0
       vfile: 6.0.3
       vite: 5.4.20(@types/node@24.3.0)
-      vitefu: 1.1.1(vite@5.4.20(@types/node@20.19.21))
+      vitefu: 1.1.1(vite@5.4.20(@types/node@24.3.0))
       which-pm: 3.0.0
       xxhash-wasm: 1.1.0
       yargs-parser: 21.1.1
@@ -8323,6 +8323,10 @@ snapshots:
   vitefu@1.1.1(vite@5.4.20(@types/node@20.19.21)):
     optionalDependencies:
       vite: 5.4.20(@types/node@20.19.21)
+
+  vitefu@1.1.1(vite@5.4.20(@types/node@24.3.0)):
+    optionalDependencies:
+      vite: 5.4.20(@types/node@24.3.0)
 
   vitefu@1.1.1(vite@6.3.6(@types/node@24.3.0)):
     optionalDependencies:
