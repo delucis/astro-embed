@@ -15,7 +15,7 @@ importers:
         specifier: ^2.29.7
         version: 2.29.7(@types/node@20.19.21)
       '@testing-library/dom':
-        specifier: ^8.13.0
+        specifier: ^8.20.1
         version: 8.20.1
       '@types/eslint':
         specifier: ^8.56.12

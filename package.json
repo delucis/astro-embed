@@ -11,7 +11,7 @@
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.1",
     "@changesets/cli": "^2.29.7",
-    "@testing-library/dom": "^8.13.0",
+    "@testing-library/dom": "^8.20.1",
     "@types/eslint": "^8.56.12",
     "@types/node": "^20.19.21",
     "@types/prettier": "^2.7.3",
