@@ -2,3 +2,4 @@ packages:
   - 'packages/**/*'
   - 'demo'
   - 'docs'
+preferWorkspacePackages: true

@@ -15,21 +15,23 @@ export default defineConfig({
 				dark: './src/assets/logo-dark.svg',
 				replacesTitle: true,
 			},
-			social: {
-				github: 'https://github.com/delucis/astro-embed',
-			},
+			social: [
+				{
+					icon: 'github',
+					label: 'GitHub',
+					href: 'https://github.com/delucis/astro-embed',
+				},
+			],
 			sidebar: [
-				{ label: 'Getting started', link: '/getting-started/' },
+				'getting-started',
 				{
 					label: 'Components',
 					autogenerate: { directory: 'components' },
 				},
-				{ label: 'Auto-embed URLs', link: '/integration/' },
+				{ label: 'Auto-embed URLs', slug: 'integration' },
 			],
 			customCss: ['./src/assets/theme.css'],
-			components: {
-				Head: './src/overrides/Head.astro',
-			},
+			routeMiddleware: './src/routeData.ts',
 		}),
 	],
 });
