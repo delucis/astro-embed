@@ -4,9 +4,6 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "astro --root demo dev",
-    "build": "astro --root demo build",
-    "serve": "astro --root demo preview",
     "test": "uvu tests -i utils",
     "format": "prettier -w .",
     "lint": "eslint . --ext .ts,.js"
