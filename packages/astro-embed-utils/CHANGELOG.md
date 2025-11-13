@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-utils
 
+## 0.1.4
+
+### Patch Changes
+
+- [#212](https://github.com/delucis/astro-embed/pull/212) [`b684968`](https://github.com/delucis/astro-embed/commit/b6849687f9a312e086b1a5269ae940fe42219942) Thanks [@delucis](https://github.com/delucis)! - Updates internal dependencies
+
 ## 0.1.3
 
 ### Patch Changes
