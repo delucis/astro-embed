@@ -1,5 +1,14 @@
 # @astro-community/astro-embed-integration
 
+## 0.8.2
+
+### Patch Changes
+
+- [#212](https://github.com/delucis/astro-embed/pull/212) [`b684968`](https://github.com/delucis/astro-embed/commit/b6849687f9a312e086b1a5269ae940fe42219942) Thanks [@delucis](https://github.com/delucis)! - Updates internal dependencies
+
+- Updated dependencies [[`4668c58`](https://github.com/delucis/astro-embed/commit/4668c58036a1ed8f36287d8fc874a201f059a040)]:
+  - @astro-community/astro-embed-youtube@0.5.8
+
 ## 0.8.1
 
 ### Patch Changes
