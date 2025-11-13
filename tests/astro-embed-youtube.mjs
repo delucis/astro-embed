@@ -17,7 +17,7 @@ test('it should render a lite-youtube element', async () => {
 	);
 	// It renders a static link to the video.
 	const playButton = /** @type {HTMLAnchorElement} */ (
-		embed.querySelector('a.lty-playbtn')
+		embed.querySelector('a.lyt-playbtn')
 	);
 	assert.ok(playButton);
 	assert.is(playButton.href, `https://youtube.com/watch?v=${videoid}`);

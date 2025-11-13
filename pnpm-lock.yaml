@@ -234,8 +234,8 @@ importers:
         specifier: ^2.0.0 || ^3.0.0-beta || ^4.0.0-beta || ^5.0.0-beta
         version: 5.14.4(@types/node@24.3.0)(rollup@4.52.4)(typescript@4.9.5)
       lite-youtube-embed:
-        specifier: ^0.3.3
-        version: 0.3.3
+        specifier: ^0.3.4
+        version: 0.3.4
 
 packages:
 
@@ -2579,6 +2579,9 @@ packages:
 
   lite-youtube-embed@0.3.3:
     resolution: {integrity: sha512-gFfVVnj6NRjxVfJKo3qoLtpi0v5mn3AcR4eKD45wrxQuxzveFJUb+7Cr6uV6n+DjO8X3p0UzPPquhGt0H/y+NA==}
+
+  lite-youtube-embed@0.3.4:
+    resolution: {integrity: sha512-aXgxpwK7AIW58GEbRzA8EYaY4LWvF3FKak6B9OtSJmuNyLhX2ouD4cMTxz/yR5HFInhknaYd2jLWOTRTvT8oAw==}
 
   load-yaml-file@0.2.0:
     resolution: {integrity: sha512-OfCBkGEw4nN6JLtgRidPX6QxjBQGQf72q3si2uvqyFEMbycSFFHwAZeXx6cJgFM9wmLrf9zBwCP3Ivqa+LLZPw==}
@@ -6556,6 +6559,8 @@ snapshots:
       uhyphen: 0.2.0
 
   lite-youtube-embed@0.3.3: {}
+
+  lite-youtube-embed@0.3.4: {}
 
   load-yaml-file@0.2.0:
     dependencies:
