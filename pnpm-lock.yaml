@@ -77,12 +77,33 @@ importers:
 
   docs:
     dependencies:
+      '@astro-community/astro-embed-baseline-status':
+        specifier: workspace:*
+        version: link:../packages/astro-embed-baseline-status
+      '@astro-community/astro-embed-bluesky':
+        specifier: workspace:*
+        version: link:../packages/astro-embed-bluesky
+      '@astro-community/astro-embed-link-preview':
+        specifier: workspace:*
+        version: link:../packages/astro-embed-link-preview
+      '@astro-community/astro-embed-twitter':
+        specifier: workspace:*
+        version: link:../packages/astro-embed-twitter
+      '@astro-community/astro-embed-vimeo':
+        specifier: workspace:*
+        version: link:../packages/astro-embed-vimeo
+      '@astro-community/astro-embed-youtube':
+        specifier: workspace:*
+        version: link:../packages/astro-embed-youtube
       '@astrojs/starlight':
         specifier: ^0.36.0
         version: 0.36.0(astro@5.14.4(@types/node@24.3.0)(rollup@4.52.4)(typescript@4.9.5))
       astro:
         specifier: ^5.14.4
         version: 5.14.4(@types/node@24.3.0)(rollup@4.52.4)(typescript@4.9.5)
+      astro-embed:
+        specifier: workspace:*
+        version: link:../packages/astro-embed
       astro-og-canvas:
         specifier: ^0.7.2
         version: 0.7.2(astro@5.14.4(@types/node@24.3.0)(rollup@4.52.4)(typescript@4.9.5))
