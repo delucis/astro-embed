@@ -1,5 +1,14 @@
 # @astro-community/astro-embed-twitter
 
+## 0.5.9
+
+### Patch Changes
+
+- [#219](https://github.com/delucis/astro-embed/pull/219) [`d90ce7a`](https://github.com/delucis/astro-embed/commit/d90ce7aee92bcfafc66ae82a89a463dafed39992) Thanks [@delucis](https://github.com/delucis)! - No code changes. This release is the first published using OIDC trusted publisher configuration for improved security.
+
+- Updated dependencies [[`d90ce7a`](https://github.com/delucis/astro-embed/commit/d90ce7aee92bcfafc66ae82a89a463dafed39992)]:
+  - @astro-community/astro-embed-utils@0.1.5
+
 ## 0.5.8
 
 ### Patch Changes

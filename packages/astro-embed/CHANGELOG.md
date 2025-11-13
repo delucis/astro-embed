@@ -1,5 +1,20 @@
 # astro-embed
 
+## 0.9.2
+
+### Patch Changes
+
+- [#219](https://github.com/delucis/astro-embed/pull/219) [`d90ce7a`](https://github.com/delucis/astro-embed/commit/d90ce7aee92bcfafc66ae82a89a463dafed39992) Thanks [@delucis](https://github.com/delucis)! - No code changes. This release is the first published using OIDC trusted publisher configuration for improved security.
+
+- Updated dependencies [[`d90ce7a`](https://github.com/delucis/astro-embed/commit/d90ce7aee92bcfafc66ae82a89a463dafed39992)]:
+  - @astro-community/astro-embed-baseline-status@0.2.1
+  - @astro-community/astro-embed-bluesky@0.1.5
+  - @astro-community/astro-embed-integration@0.8.3
+  - @astro-community/astro-embed-link-preview@0.2.3
+  - @astro-community/astro-embed-twitter@0.5.9
+  - @astro-community/astro-embed-vimeo@0.3.11
+  - @astro-community/astro-embed-youtube@0.5.9
+
 ## 0.9.1
 
 ### Patch Changes
