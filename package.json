@@ -7,7 +7,7 @@
     "test": "uvu tests -i utils",
     "format": "prettier -w .",
     "lint": "eslint . --ext .ts,.js",
-    "version": "changeset version && pnpm install --no-frozen-lockfile"
+    "ci:version": "changeset version && pnpm install --no-frozen-lockfile"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^0.5.1",
