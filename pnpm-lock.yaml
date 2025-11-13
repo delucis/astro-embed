@@ -89,6 +89,9 @@ importers:
       '@astro-community/astro-embed-twitter':
         specifier: workspace:*
         version: link:../packages/astro-embed-twitter
+      '@astro-community/astro-embed-vimeo':
+        specifier: workspace:*
+        version: link:../packages/astro-embed-vimeo
       '@astro-community/astro-embed-youtube':
         specifier: workspace:*
         version: link:../packages/astro-embed-youtube
