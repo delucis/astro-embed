@@ -80,6 +80,9 @@ importers:
       '@astro-community/astro-embed-baseline-status':
         specifier: workspace:*
         version: link:../packages/astro-embed-baseline-status
+      '@astro-community/astro-embed-bluesky':
+        specifier: workspace:*
+        version: link:../packages/astro-embed-bluesky
       '@astro-community/astro-embed-link-preview':
         specifier: workspace:*
         version: link:../packages/astro-embed-link-preview
