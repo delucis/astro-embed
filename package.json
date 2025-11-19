@@ -18,7 +18,7 @@
     "@types/prettier": "^2.7.3",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
-    "astro": "^5.15.6",
+    "astro": "^5.15.9",
     "astro-component-tester": "^0.8.0",
     "eslint": "^8.45.0",
     "eslint-config-prettier": "^8.10.2",
