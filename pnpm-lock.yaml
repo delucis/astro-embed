@@ -4945,7 +4945,7 @@ snapshots:
 
   '@types/fontkit@2.0.8':
     dependencies:
-      '@types/node': 20.19.21
+      '@types/node': 24.10.1
 
   '@types/hast@3.0.4':
     dependencies:
@@ -4982,13 +4982,12 @@ snapshots:
   '@types/node@24.10.1':
     dependencies:
       undici-types: 7.16.0
-    optional: true
 
   '@types/prettier@2.7.3': {}
 
   '@types/sax@1.2.7':
     dependencies:
-      '@types/node': 20.19.21
+      '@types/node': 17.0.45
 
   '@types/semver@7.5.8': {}
 
@@ -8023,8 +8022,7 @@ snapshots:
 
   undici-types@6.21.0: {}
 
-  undici-types@7.16.0:
-    optional: true
+  undici-types@7.16.0: {}
 
   unicode-properties@1.4.1:
     dependencies:
