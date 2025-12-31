@@ -1,6 +1,5 @@
 ---
 import type { EmbedView } from './types';
-import { match, P } from 'ts-pattern';
 import {
 	AppBskyEmbedExternal,
 	AppBskyEmbedImages,
@@ -26,40 +25,35 @@ const { embed, postUrl, compact } = Astro.props;
 ---
 
 {
-	match(embed)
-		.when(AppBskyEmbedRecordWithMedia.isView, (embed) => (
-			<div class="record-with-media">
-				<Astro.self embed={embed.media} postUrl={postUrl} compact={compact} />
-				<QuoteEmbed embed={embed.record} />
-			</div>
-		))
-		.when(AppBskyEmbedExternal.isView, (media) => (
-			<External embed={media} compact={compact} />
-		))
-		.when(AppBskyEmbedImages.isView, (media) => (
-			<a href={postUrl}>
-				<ImageGrid images={media.images} />
-			</a>
-		))
-		.when(AppBskyEmbedVideo.isView, (media) => (
-			<a href={postUrl}>
-				<VideoThumbnail
-					thumbnail={media.thumbnail}
-					aspectRatio={media.aspectRatio}
-				/>
-			</a>
-		))
-		.with(
-			{ record: P.when(AppBskyGraphDefs.isStarterPackViewBasic) },
-			(media) => <StarterPack record={media.record} />
-		)
-		.with({ record: P.when(AppBskyGraphDefs.isListView) }, (media) => (
-			<List record={media.record} />
-		))
-		.when(AppBskyEmbedRecord.isView, (media) => <QuoteEmbed embed={media} />)
-		.with(P.nullish, () => null)
-		.otherwise((media) => media?.$type)
+	AppBskyEmbedRecordWithMedia.isView(embed) ? (
+		<div class="record-with-media">
+			<Astro.self embed={embed.media} postUrl={postUrl} compact={compact} />
+			<QuoteEmbed embed={embed.record} />
+		</div>
+	) : AppBskyEmbedExternal.isView(embed) ? (
+		<External embed={embed} compact={compact} />
+	) : AppBskyEmbedImages.isView(embed) ? (
+		<a href={postUrl}>
+			<ImageGrid images={embed.images} />
+		</a>
+	) : AppBskyEmbedVideo.isView(embed) ? (
+		<a href={postUrl}>
+			<VideoThumbnail
+				thumbnail={embed.thumbnail}
+				aspectRatio={embed.aspectRatio}
+			/>
+		</a>
+	) : AppBskyGraphDefs.isStarterPackViewBasic(embed?.record) ? (
+		<StarterPack record={embed.record} />
+	) : AppBskyGraphDefs.isListView(embed?.record) ? (
+		<List record={embed.record} />
+	) : AppBskyEmbedRecord.isView(embed) ? (
+		<QuoteEmbed embed={embed} />
+	) : !embed ? null : (
+		embed?.$type
+	)
 }
+
 <style>
 	.record-with-media {
 		display: flex;
