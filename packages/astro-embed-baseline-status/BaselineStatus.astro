@@ -45,7 +45,7 @@ function getBaselineDate(feature: { baseline: { low_date?: string } }): string {
 		? new Intl.DateTimeFormat('en-US', {
 				year: 'numeric',
 				month: 'long',
-		  }).format(new Date(feature.baseline.low_date))
+			}).format(new Date(feature.baseline.low_date))
 		: '';
 }
 
@@ -73,7 +73,7 @@ const feature: Feature = featureData?.baseline
 				status: 'no_data',
 			},
 			name: Astro.props.id || 'Unknown feature',
-	  };
+		};
 
 const baseline = feature.baseline.status || 'no_data';
 
