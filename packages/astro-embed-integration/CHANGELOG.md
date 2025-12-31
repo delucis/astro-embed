@@ -143,7 +143,6 @@
   **⚠️ BREAKING CHANGE** Due to upheaval at Twitter, the `<Tweet />` component is no longer able to fetch detailed information from Twitter’s API, limiting what a static embed can easily do.
 
   Key differences:
-
   - The `<Tweet />` component must now receive a full URL to a tweet, not just an ID. You will need to update these if you have any:
 
     ```diff

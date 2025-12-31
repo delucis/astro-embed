@@ -27,8 +27,9 @@
 	);
 
 	/* Typography */
-	--bluesky-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-		'Helvetica Neue', Arial, sans-serif;
+	--bluesky-font-family:
+		-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+		Arial, sans-serif;
 	--bluesky-font-size-sm: 0.875rem; /* 14px */
 	--bluesky-font-size-base: 1rem; /* 16px */
 	--bluesky-font-size-lg: 1.125rem; /* 18px */
