@@ -1,20 +1,12 @@
+import { makeSafeGetter } from '@astro-community/astro-embed-utils';
 import {
 	getAttribute,
 	getTextContent,
 	isElementNode,
 	query,
 	type Element,
-	type Node,
 } from '@parse5/tools';
 import { parse } from 'parse5';
-import { makeSafeGetter } from '@astro-community/astro-embed-utils';
-
-/**
- * A massively simplified CSS selector parser for `querySelector` support.
- * Only supports element names and single attribute equals selectors.
- */
-const selectorRegex =
-	/^(?<element>[a-z0-9-]+)(?:\[(?<attribute>[a-z0-9-]+)=(?:'|")?(?<attributeValue>[\w:-]+)(?:'|"))?\]?$/;
 
 /**
  * Fetch a URL and parse it as HTML, but catch errors to stop builds erroring.
@@ -23,26 +15,25 @@ const selectorRegex =
 export const safeGetDOM = makeSafeGetter(async (res) => {
 	const document = parse(await res.text());
 	return {
-		getAttribute: (el: Element | null, name: string) =>
-			el && getAttribute(el, name),
-
-		getTextContent: (node: Node | null) => node && getTextContent(node),
-
-		querySelector: (selector: string) => {
-			const { element, attribute, attributeValue } =
-				selector.toLowerCase().match(selectorRegex)?.groups ?? {};
-			return query(
+		getElement: (element: string, attributes: Record<string, string> = {}) => {
+			const attrs = Object.entries(attributes);
+			const el = query(
 				document,
 				(node) =>
 					isElementNode(node) &&
-					(!element || node.tagName === element) &&
-					(!attribute ||
+					node.tagName === element &&
+					attrs.every(([name, value]) =>
 						node.attrs.some(
-							(attr) =>
-								attr.name === attribute &&
-								(attributeValue === undefined || attr.value === attributeValue)
-						))
+							(attr) => attr.name === name && attr.value === value
+						)
+					)
 			) as Element | null;
+			return el
+				? {
+						getAttribute: (name: string) => getAttribute(el, name),
+						getTextContent: () => getTextContent(el),
+					}
+				: null;
 		},
 	};
 });

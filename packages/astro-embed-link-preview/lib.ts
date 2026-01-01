@@ -12,20 +12,13 @@ export async function parseOpenGraph(pageUrl: string) {
 	const html = await safeGetDOM(pageUrl);
 	if (!html) return;
 
-	const getMetaProperty = (prop: string) =>
-		html.getAttribute(
-			html.querySelector(`meta[property=${JSON.stringify(prop)}]`),
-			'content'
-		);
+	const getMetaProperty = (property: string) =>
+		html.getElement('meta', { property })?.getAttribute('content');
 	const getMetaName = (name: string) =>
-		html.getAttribute(
-			html.querySelector(`meta[name=${JSON.stringify(name)}]`),
-			'content'
-		);
+		html.getElement('meta', { name })?.getAttribute('content');
 
 	const title =
-		getMetaProperty('og:title') ||
-		html.getTextContent(html.querySelector('title'));
+		getMetaProperty('og:title') || html.getElement('title')?.getTextContent();
 	const description =
 		getMetaProperty('og:description') || getMetaName('description');
 	const image = urlOrNull(
@@ -43,7 +36,7 @@ export async function parseOpenGraph(pageUrl: string) {
 	const url =
 		urlOrNull(
 			getMetaProperty('og:url') ||
-				html.getAttribute(html.querySelector("link[rel='canonical']"), 'href')
+				html.getElement('link', { rel: 'canonical' })?.getAttribute('href')
 		) || pageUrl;
 
 	return { title, description, image, imageAlt, url, video, videoType };
