@@ -27,7 +27,7 @@
     "@astro-community/astro-embed-twitter": "^0.5.10",
     "@astro-community/astro-embed-vimeo": "^0.3.12",
     "@astro-community/astro-embed-youtube": "^0.5.10",
-    "@types/unist": "^2.0.0",
+    "@types/unist": "^2.0.11",
     "astro-auto-import": "^0.4.5",
     "unist-util-select": "^4.0.1"
   },
