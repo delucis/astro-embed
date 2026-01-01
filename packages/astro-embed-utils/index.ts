@@ -1,5 +1,3 @@
-import { parseHTML } from 'linkedom/worker';
-
 class LRU<K, V> extends Map<K, V> {
 	constructor(private readonly maxSize: number) {
 		super();
@@ -32,17 +30,8 @@ const formatError = (...lines: string[]) => lines.join('\n         ');
  */
 export const safeGet = makeSafeGetter<Record<string, any>>((res) => res.json());
 
-/**
- * Fetch a URL and parse it as HTML, but catch errors to stop builds erroring.
- * @param url URL to fetch
- * @returns {Promise<Document | undefined>}
- */
-export const safeGetDOM = makeSafeGetter(
-	async (res) => parseHTML(await res.text()).document
-);
-
 /** Factory to create safe, caching fetch functions. */
-function makeSafeGetter<T>(
+export function makeSafeGetter<T>(
 	handleResponse: (res: Response) => T | Promise<T>,
 	{ cacheSize = 1000 }: { cacheSize?: number } = {}
 ) {

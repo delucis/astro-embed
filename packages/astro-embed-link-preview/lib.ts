@@ -1,7 +1,5 @@
-import { safeGetDOM } from '@astro-community/astro-embed-utils';
+import { safeGetDOM } from './dom';
 
-/** Helper to get the `content` attribute of an element. */
-const getContent = (el: Element | null) => el?.getAttribute('content');
 /** Helper to filter out insecure or non-absolute URLs. */
 const urlOrNull = (url: string | null | undefined) =>
 	url?.slice(0, 8) === 'https://' ? url : null;
@@ -14,13 +12,13 @@ export async function parseOpenGraph(pageUrl: string) {
 	const html = await safeGetDOM(pageUrl);
 	if (!html) return;
 
-	const getMetaProperty = (prop: string) =>
-		getContent(html.querySelector(`meta[property=${JSON.stringify(prop)}]`));
+	const getMetaProperty = (property: string) =>
+		html.getElement('meta', { property })?.getAttribute('content');
 	const getMetaName = (name: string) =>
-		getContent(html.querySelector(`meta[name=${JSON.stringify(name)}]`));
+		html.getElement('meta', { name })?.getAttribute('content');
 
 	const title =
-		getMetaProperty('og:title') || html.querySelector('title')?.textContent;
+		getMetaProperty('og:title') || html.getElement('title')?.getTextContent();
 	const description =
 		getMetaProperty('og:description') || getMetaName('description');
 	const image = urlOrNull(
@@ -38,7 +36,7 @@ export async function parseOpenGraph(pageUrl: string) {
 	const url =
 		urlOrNull(
 			getMetaProperty('og:url') ||
-				html.querySelector("link[rel='canonical']")?.getAttribute('href')
+				html.getElement('link', { rel: 'canonical' })?.getAttribute('href')
 		) || pageUrl;
 
 	return { title, description, image, imageAlt, url, video, videoType };
