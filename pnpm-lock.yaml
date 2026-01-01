@@ -114,7 +114,7 @@ importers:
         specifier: ^0.1.4
         version: 0.1.4(@expressive-code/core@0.41.3)
       sharp:
-        specifier: ^0.34.4
+        specifier: ^0.34.5
         version: 0.34.5
       starlight-package-managers:
         specifier: ^0.11.0
