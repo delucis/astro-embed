@@ -14,7 +14,7 @@
     "@changesets/cli": "^2.29.8",
     "@testing-library/dom": "^8.20.1",
     "@types/eslint": "^8.56.12",
-    "@types/node": "^20.19.21",
+    "@types/node": "^20.19.27",
     "@types/prettier": "^2.7.3",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
