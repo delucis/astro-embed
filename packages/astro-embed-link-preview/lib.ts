@@ -1,4 +1,4 @@
-import { safeGetDOM } from '@astro-community/astro-embed-utils';
+import { safeGetDOM } from './dom';
 
 /** Helper to filter out insecure or non-absolute URLs. */
 const urlOrNull = (url: string | null | undefined) =>

@@ -194,6 +194,12 @@ importers:
       '@astro-community/astro-embed-utils':
         specifier: ^0.1.5
         version: link:../astro-embed-utils
+      '@parse5/tools':
+        specifier: ^0.7.0
+        version: 0.7.0(parse5@8.0.0)
+      parse5:
+        specifier: ^8.0.0
+        version: 8.0.0
 
   packages/astro-embed-twitter:
     dependencies:
@@ -201,14 +207,7 @@ importers:
         specifier: ^0.1.5
         version: link:../astro-embed-utils
 
-  packages/astro-embed-utils:
-    dependencies:
-      '@parse5/tools':
-        specifier: ^0.7.0
-        version: 0.7.0(parse5@8.0.0)
-      parse5:
-        specifier: ^8.0.0
-        version: 8.0.0
+  packages/astro-embed-utils: {}
 
   packages/astro-embed-vimeo:
     dependencies:
@@ -4708,7 +4707,7 @@ snapshots:
       unstorage: 1.17.2
       vfile: 6.0.3
       vite: 6.4.1(@types/node@24.10.1)
-      vitefu: 1.1.1(vite@6.4.1(@types/node@20.19.21))
+      vitefu: 1.1.1(vite@6.4.1(@types/node@24.10.1))
       xxhash-wasm: 1.1.0
       yargs-parser: 21.1.1
       yocto-spinner: 0.2.3
@@ -7375,6 +7374,10 @@ snapshots:
   vitefu@1.1.1(vite@6.4.1(@types/node@20.19.21)):
     optionalDependencies:
       vite: 6.4.1(@types/node@20.19.21)
+
+  vitefu@1.1.1(vite@6.4.1(@types/node@24.10.1)):
+    optionalDependencies:
+      vite: 6.4.1(@types/node@24.10.1)
 
   web-namespaces@2.0.1: {}
 

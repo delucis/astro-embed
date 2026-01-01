@@ -31,6 +31,8 @@
   },
   "homepage": "https://astro-embed.netlify.app/components/link-preview/",
   "dependencies": {
-    "@astro-community/astro-embed-utils": "^0.1.5"
+    "@astro-community/astro-embed-utils": "^0.1.5",
+    "@parse5/tools": "^0.7.0",
+    "parse5": "^8.0.0"
   }
 }
