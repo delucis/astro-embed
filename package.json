@@ -10,8 +10,8 @@
     "ci:version": "changeset version && pnpm install --no-frozen-lockfile"
   },
   "devDependencies": {
-    "@changesets/changelog-github": "^0.5.1",
-    "@changesets/cli": "^2.29.7",
+    "@changesets/changelog-github": "^0.5.2",
+    "@changesets/cli": "^2.29.8",
     "@testing-library/dom": "^8.20.1",
     "@types/eslint": "^8.56.12",
     "@types/node": "^20.19.21",
