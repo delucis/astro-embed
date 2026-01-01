@@ -29,7 +29,7 @@
     "@astro-community/astro-embed-youtube": "^0.5.10",
     "@types/unist": "^2.0.11",
     "astro-auto-import": "^0.4.5",
-    "unist-util-select": "^4.0.1"
+    "unist-util-select": "^4.0.3"
   },
   "peerDependencies": {
     "astro": "^5.0.0 || ^6.0.0-alpha"
