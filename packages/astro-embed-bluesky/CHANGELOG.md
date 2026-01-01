@@ -1,5 +1,13 @@
 # @astro-community/astro-embed-bluesky
 
+## 0.1.6
+
+### Patch Changes
+
+- [#229](https://github.com/delucis/astro-embed/pull/229) [`101466c`](https://github.com/delucis/astro-embed/commit/101466c35630e2cd636f0efff2c811d77311dc00) Thanks [@delucis](https://github.com/delucis)! - Makes the package install size 440 KB (4%) smaller
+
+- [#227](https://github.com/delucis/astro-embed/pull/227) [`a2201be`](https://github.com/delucis/astro-embed/commit/a2201be8335923af70452266b2d164c2e00b3a0d) Thanks [@delucis](https://github.com/delucis)! - Removes unnecessary `astro` peer dependency
+
 ## 0.1.5
 
 ### Patch Changes

@@ -123,25 +123,25 @@ importers:
   packages/astro-embed:
     dependencies:
       '@astro-community/astro-embed-baseline-status':
-        specifier: ^0.2.1
+        specifier: ^0.2.2
         version: link:../astro-embed-baseline-status
       '@astro-community/astro-embed-bluesky':
-        specifier: ^0.1.5
+        specifier: ^0.1.6
         version: link:../astro-embed-bluesky
       '@astro-community/astro-embed-integration':
-        specifier: ^0.8.3
+        specifier: ^0.9.0
         version: link:../astro-embed-integration
       '@astro-community/astro-embed-link-preview':
-        specifier: ^0.2.3
+        specifier: ^0.3.0
         version: link:../astro-embed-link-preview
       '@astro-community/astro-embed-twitter':
-        specifier: ^0.5.9
+        specifier: ^0.5.10
         version: link:../astro-embed-twitter
       '@astro-community/astro-embed-vimeo':
-        specifier: ^0.3.11
+        specifier: ^0.3.12
         version: link:../astro-embed-vimeo
       '@astro-community/astro-embed-youtube':
-        specifier: ^0.5.9
+        specifier: ^0.5.10
         version: link:../astro-embed-youtube
       astro:
         specifier: ^5.0.0 || ^6.0.0-alpha
@@ -150,7 +150,7 @@ importers:
   packages/astro-embed-baseline-status:
     dependencies:
       '@astro-community/astro-embed-utils':
-        specifier: ^0.1.5
+        specifier: ^0.2.0
         version: link:../astro-embed-utils
 
   packages/astro-embed-bluesky:
@@ -162,19 +162,19 @@ importers:
   packages/astro-embed-integration:
     dependencies:
       '@astro-community/astro-embed-bluesky':
-        specifier: ^0.1.5
+        specifier: ^0.1.6
         version: link:../astro-embed-bluesky
       '@astro-community/astro-embed-link-preview':
-        specifier: ^0.2.3
+        specifier: ^0.3.0
         version: link:../astro-embed-link-preview
       '@astro-community/astro-embed-twitter':
-        specifier: ^0.5.9
+        specifier: ^0.5.10
         version: link:../astro-embed-twitter
       '@astro-community/astro-embed-vimeo':
-        specifier: ^0.3.11
+        specifier: ^0.3.12
         version: link:../astro-embed-vimeo
       '@astro-community/astro-embed-youtube':
-        specifier: ^0.5.9
+        specifier: ^0.5.10
         version: link:../astro-embed-youtube
       '@types/unist':
         specifier: ^2.0.0
@@ -192,7 +192,7 @@ importers:
   packages/astro-embed-link-preview:
     dependencies:
       '@astro-community/astro-embed-utils':
-        specifier: ^0.1.5
+        specifier: ^0.2.0
         version: link:../astro-embed-utils
       '@parse5/tools':
         specifier: ^0.7.0
@@ -204,7 +204,7 @@ importers:
   packages/astro-embed-twitter:
     dependencies:
       '@astro-community/astro-embed-utils':
-        specifier: ^0.1.5
+        specifier: ^0.2.0
         version: link:../astro-embed-utils
 
   packages/astro-embed-utils: {}
@@ -212,7 +212,7 @@ importers:
   packages/astro-embed-vimeo:
     dependencies:
       '@astro-community/astro-embed-utils':
-        specifier: ^0.1.5
+        specifier: ^0.2.0
         version: link:../astro-embed-utils
 
   packages/astro-embed-youtube:

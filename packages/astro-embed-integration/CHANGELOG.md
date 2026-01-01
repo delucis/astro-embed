@@ -1,5 +1,20 @@
 # @astro-community/astro-embed-integration
 
+## 0.9.0
+
+### Minor Changes
+
+- [#227](https://github.com/delucis/astro-embed/pull/227) [`a2201be`](https://github.com/delucis/astro-embed/commit/a2201be8335923af70452266b2d164c2e00b3a0d) Thanks [@delucis](https://github.com/delucis)! - Drops official support for Astro 2, 3, and 4. Use Astro 5 instead.
+
+### Patch Changes
+
+- Updated dependencies [[`101466c`](https://github.com/delucis/astro-embed/commit/101466c35630e2cd636f0efff2c811d77311dc00), [`a2201be`](https://github.com/delucis/astro-embed/commit/a2201be8335923af70452266b2d164c2e00b3a0d), [`a186fa1`](https://github.com/delucis/astro-embed/commit/a186fa149d3367d735db233a8f0954eba12bee99)]:
+  - @astro-community/astro-embed-bluesky@0.1.6
+  - @astro-community/astro-embed-twitter@0.5.10
+  - @astro-community/astro-embed-youtube@0.5.10
+  - @astro-community/astro-embed-vimeo@0.3.12
+  - @astro-community/astro-embed-link-preview@0.3.0
+
 ## 0.8.3
 
 ### Patch Changes

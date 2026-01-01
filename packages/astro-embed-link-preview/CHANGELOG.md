@@ -1,5 +1,16 @@
 # @astro-community/astro-embed-link-preview
 
+## 0.3.0
+
+### Minor Changes
+
+- [#233](https://github.com/delucis/astro-embed/pull/233) [`a186fa1`](https://github.com/delucis/astro-embed/commit/a186fa149d3367d735db233a8f0954eba12bee99) Thanks [@delucis](https://github.com/delucis)! - Reduces install size by ~2 MB by switching to a new HTML parsing strategy
+
+### Patch Changes
+
+- Updated dependencies [[`a186fa1`](https://github.com/delucis/astro-embed/commit/a186fa149d3367d735db233a8f0954eba12bee99)]:
+  - @astro-community/astro-embed-utils@0.2.0
+
 ## 0.2.3
 
 ### Patch Changes

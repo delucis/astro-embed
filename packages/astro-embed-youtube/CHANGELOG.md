@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-youtube
 
+## 0.5.10
+
+### Patch Changes
+
+- [#227](https://github.com/delucis/astro-embed/pull/227) [`a2201be`](https://github.com/delucis/astro-embed/commit/a2201be8335923af70452266b2d164c2e00b3a0d) Thanks [@delucis](https://github.com/delucis)! - Removes unnecessary `astro` peer dependency
+
 ## 0.5.9
 
 ### Patch Changes

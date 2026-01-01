@@ -1,5 +1,14 @@
 # @astro-community/astro-embed-baseline-status
 
+## 0.2.2
+
+### Patch Changes
+
+- [#227](https://github.com/delucis/astro-embed/pull/227) [`a2201be`](https://github.com/delucis/astro-embed/commit/a2201be8335923af70452266b2d164c2e00b3a0d) Thanks [@delucis](https://github.com/delucis)! - Removes unnecessary `astro` peer dependency
+
+- Updated dependencies [[`a186fa1`](https://github.com/delucis/astro-embed/commit/a186fa149d3367d735db233a8f0954eba12bee99)]:
+  - @astro-community/astro-embed-utils@0.2.0
+
 ## 0.2.1
 
 ### Patch Changes
