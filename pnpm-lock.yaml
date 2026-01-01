@@ -203,9 +203,12 @@ importers:
 
   packages/astro-embed-utils:
     dependencies:
-      linkedom:
-        specifier: ^0.18.12
-        version: 0.18.12
+      '@parse5/tools':
+        specifier: ^0.7.0
+        version: 0.7.0(parse5@8.0.0)
+      parse5:
+        specifier: ^8.0.0
+        version: 8.0.0
 
   packages/astro-embed-vimeo:
     dependencies:
@@ -907,6 +910,11 @@ packages:
     resolution: {integrity: sha512-NkT+YAdgS2FPCn8mIA9bQhiBs+xmniMGq1LFPDhcFn0+2yIUEiIG06t7bsZlhdjknEQRTSdT7YitP6fC5qwP0g==}
     cpu: [x64]
     os: [win32]
+
+  '@parse5/tools@0.7.0':
+    resolution: {integrity: sha512-JDvrGhc8kYBq7/SM4obJkpgwWo6pRjF/fo9CCaiJyVOkDf203Ciq2UF6TjzCFXKs7Q/zS2sS4deyBx0XzRvh9Q==}
+    peerDependencies:
+      parse5: 7.x || 8.x
 
   '@pkgr/core@0.2.9':
     resolution: {integrity: sha512-QNqXyfVS2wm9hweSYD2O7F0G06uurj9kZ96TRQE5Y9hU7+tgdZwIkbAKc5Ocy1HxEY2kuDQa6cQ1WRs/O5LFKA==}
@@ -2644,6 +2652,9 @@ packages:
   parse5@7.1.2:
     resolution: {integrity: sha512-Czj1WaSVpaoj0wbhMzLmWD69anp2WH7FXMB9n1Sy8/ZFF9jolSQVMu1Ij5WIyGmcBmhk7EOndpO4mIpihVqAXw==}
 
+  parse5@8.0.0:
+    resolution: {integrity: sha512-9m4m5GSgXjL4AjumKzq1Fgfp3Z8rsvjRNbnkVwfu2ImRqE5D0LnY2QfDen18FSY9C573YU5XxSapdHZTZ2WolA==}
+
   path-exists@4.0.0:
     resolution: {integrity: sha512-ak9Qy5Q7jYb2Wwcey5Fpvg2KoAc/ZIhLSLOSBmRmygPsGwkVVt0fZa0qrtMz+m6tJTAHfZQ8FnmB4MG4LWy7/w==}
     engines: {node: '>=8'}
@@ -4158,6 +4169,10 @@ snapshots:
   '@pagefind/windows-x64@1.4.0':
     optional: true
 
+  '@parse5/tools@0.7.0(parse5@8.0.0)':
+    dependencies:
+      parse5: 8.0.0
+
   '@pkgr/core@0.2.9': {}
 
   '@rollup/pluginutils@5.3.0(rollup@4.53.3)':
@@ -4693,7 +4708,7 @@ snapshots:
       unstorage: 1.17.2
       vfile: 6.0.3
       vite: 6.4.1(@types/node@24.10.1)
-      vitefu: 1.1.1(vite@6.4.1(@types/node@24.10.1))
+      vitefu: 1.1.1(vite@6.4.1(@types/node@20.19.21))
       xxhash-wasm: 1.1.0
       yargs-parser: 21.1.1
       yocto-spinner: 0.2.3
@@ -6615,6 +6630,10 @@ snapshots:
     dependencies:
       entities: 4.5.0
 
+  parse5@8.0.0:
+    dependencies:
+      entities: 6.0.1
+
   path-exists@4.0.0: {}
 
   path-is-absolute@1.0.1: {}
@@ -7356,10 +7375,6 @@ snapshots:
   vitefu@1.1.1(vite@6.4.1(@types/node@20.19.21)):
     optionalDependencies:
       vite: 6.4.1(@types/node@20.19.21)
-
-  vitefu@1.1.1(vite@6.4.1(@types/node@24.10.1)):
-    optionalDependencies:
-      vite: 6.4.1(@types/node@24.10.1)
 
   web-namespaces@2.0.1: {}
 
