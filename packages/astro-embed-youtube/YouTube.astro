@@ -45,6 +45,13 @@ if (style) styles.push(style);
 if (posterURL) styles.push(`background-image: url('${posterURL}')`);
 ---
 
+<link
+  rel="preload"
+  as="image"
+  href={posterURL}
+  fetchpriority={fetchpriority}
+/>
+
 <lite-youtube
 	{videoid}
 	{title}
