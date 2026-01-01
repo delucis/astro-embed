@@ -60,7 +60,7 @@ importers:
         specifier: ^0.14.1
         version: 0.14.1
       typescript:
-        specifier: ^4.8.4
+        specifier: ^4.9.5
         version: 4.9.5
       uvu:
         specifier: ^0.5.6
