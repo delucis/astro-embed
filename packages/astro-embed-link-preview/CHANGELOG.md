@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-link-preview
 
+## 0.3.1
+
+### Patch Changes
+
+- [#238](https://github.com/delucis/astro-embed/pull/238) [`9d2e900`](https://github.com/delucis/astro-embed/commit/9d2e9001f85ce2a27da1ff00818c41828b49031b) Thanks [@delucis](https://github.com/delucis)! - Fixes missing file in published npm distribution
+
 ## 0.3.0
 
 ### Minor Changes
