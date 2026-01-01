@@ -8,6 +8,7 @@
     "./matcher": "./matcher.ts"
   },
   "files": [
+    "dom.ts",
     "lib.ts",
     "index.ts",
     "matcher.ts",
