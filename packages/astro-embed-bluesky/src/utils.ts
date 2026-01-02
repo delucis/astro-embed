@@ -18,7 +18,7 @@ const escapeMap: Record<string, string> = {
 	"'": '&#39;',
 };
 
-export const escapeHTML = (str?: string) =>
+const escapeHTML = (str?: string) =>
 	str?.replace(/[&<>"']/g, (match) => escapeMap[match] || match) ?? '';
 
 export function renderPostAsHtml(post?: AppBskyFeedDefs.PostView | Post) {
@@ -47,7 +47,7 @@ export function renderPostAsHtml(post?: AppBskyFeedDefs.PostView | Post) {
 	return html;
 }
 
-export function viewRecordToPostView(
+function viewRecordToPostView(
 	viewRecord: AppBskyEmbedRecord.ViewRecord
 ): AppBskyFeedDefs.PostView {
 	const { value, embeds, ...rest } = viewRecord;
