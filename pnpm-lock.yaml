@@ -177,8 +177,8 @@ importers:
         specifier: ^0.5.10
         version: link:../astro-embed-youtube
       '@types/unist':
-        specifier: ^2.0.11
-        version: 2.0.11
+        specifier: ^3.0.3
+        version: 3.0.3
       astro:
         specifier: ^5.0.0 || ^6.0.0-alpha
         version: 5.16.6(@types/node@24.10.4)(rollup@4.53.3)(typescript@4.9.5)
@@ -3801,7 +3801,7 @@ snapshots:
 
   '@types/hast@3.0.4':
     dependencies:
-      '@types/unist': 2.0.11
+      '@types/unist': 3.0.3
 
   '@types/js-yaml@4.0.9': {}
 
@@ -3809,7 +3809,7 @@ snapshots:
 
   '@types/mdast@4.0.4':
     dependencies:
-      '@types/unist': 2.0.11
+      '@types/unist': 3.0.3
 
   '@types/mdx@2.0.12': {}
 
@@ -3817,7 +3817,7 @@ snapshots:
 
   '@types/nlcst@2.0.3':
     dependencies:
-      '@types/unist': 2.0.11
+      '@types/unist': 3.0.3
 
   '@types/node@12.20.55': {}
 
