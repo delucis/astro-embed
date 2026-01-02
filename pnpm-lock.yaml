@@ -26,9 +26,6 @@ importers:
       '@testing-library/dom':
         specifier: ^10.4.1
         version: 10.4.1
-      '@types/eslint':
-        specifier: ^9.6.1
-        version: 9.6.1
       '@types/node':
         specifier: ^24.10.4
         version: 24.10.4
@@ -4141,6 +4138,7 @@ snapshots:
     dependencies:
       '@types/estree': 1.0.8
       '@types/json-schema': 7.0.15
+    optional: true
 
   '@types/estree-jsx@1.0.5':
     dependencies:
