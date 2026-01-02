@@ -1,4 +1,5 @@
 ---
+import { safeGet } from '@astro-community/astro-embed-utils';
 import './Tweet.css';
 
 type TweetTheme = 'light' | 'dark';
@@ -11,25 +12,15 @@ export interface Props {
 const { id, theme = 'light' } = Astro.props;
 
 async function fetchTweet(id: string, theme: TweetTheme | undefined = 'light') {
-	try {
-		const oembedUrl = new URL('https://publish.twitter.com/oembed');
-		oembedUrl.searchParams.set('url', id);
-		oembedUrl.searchParams.set('omit_script', 'true');
-		oembedUrl.searchParams.set('dnt', 'true');
-		oembedUrl.searchParams.set('theme', theme);
-		return (await fetch(oembedUrl).then((res) => res.json())) as {
-			url: string;
-			author_name: string;
-			author_url: string;
-			html: string;
-		};
-	} catch (e: any) {
-		console.error(
-			`[error]  astro-embed
-         ${e.status} - ${e.statusText}: Failed to fetch tweet ${id}`
-		);
-		return;
-	}
+	const oembedUrl = new URL('https://publish.twitter.com/oembed');
+	oembedUrl.searchParams.set('url', id);
+	oembedUrl.searchParams.set('omit_script', 'true');
+	oembedUrl.searchParams.set('dnt', 'true');
+	oembedUrl.searchParams.set('theme', theme);
+
+	return (await safeGet(oembedUrl.href)) as
+		| { url: string; author_name: string; author_url: string; html: string }
+		| undefined;
 }
 
 const tweet = await fetchTweet(id, theme);
