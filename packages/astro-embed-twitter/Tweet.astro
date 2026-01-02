@@ -23,11 +23,12 @@ async function fetchTweet(id: string, theme: TweetTheme | undefined = 'light') {
 			author_url: string;
 			html: string;
 		};
-	} catch (e) {
+	} catch (e: any) {
 		console.error(
 			`[error]  astro-embed
          ${e.status} - ${e.statusText}: Failed to fetch tweet ${id}`
 		);
+		return;
 	}
 }
 
