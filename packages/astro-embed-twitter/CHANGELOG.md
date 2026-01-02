@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-twitter
 
+## 0.5.11
+
+### Patch Changes
+
+- [#259](https://github.com/delucis/astro-embed/pull/259) [`71b2af0`](https://github.com/delucis/astro-embed/commit/71b2af0f32d05c0b3dda9260d9858789d09a437e) Thanks [@delucis](https://github.com/delucis)! - Caches requests to the Twitter embed API for repeated requests for the same tweet
+
 ## 0.5.10
 
 ### Patch Changes
