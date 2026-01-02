@@ -11,7 +11,7 @@ class LRU<K, V> extends Map<K, V> {
 
 	override set(key: K, value: V): this {
 		this.#touch(key, value);
-		if (this.size > this.maxSize) this.delete(this.keys().next().value);
+		if (this.size > this.maxSize) this.delete(this.keys().next().value!);
 		return this;
 	}
 

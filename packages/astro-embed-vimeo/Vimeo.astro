@@ -51,7 +51,7 @@ if (!posterURL) {
 
 let [searchString, t] = params.split('#t=');
 const searchParams = new URLSearchParams(searchString);
-if (!t) t = searchParams.get('t');
+if (!t) t = searchParams.get('t') ?? undefined;
 searchParams.append('autoplay', '1');
 if (!searchParams.has('dnt')) searchParams.append('dnt', '1');
 

@@ -7,9 +7,11 @@
     "test": "uvu tests -i utils",
     "format": "prettier -w .",
     "lint": "eslint . --ext .ts,.js",
+    "typecheck": "pnpm -r exec astro check",
     "ci:version": "changeset version && pnpm install --no-frozen-lockfile"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.6",
     "@changesets/changelog-github": "^0.5.2",
     "@changesets/cli": "^2.29.8",
     "@testing-library/dom": "^10.4.1",
