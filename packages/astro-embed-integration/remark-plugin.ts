@@ -57,7 +57,10 @@ export default function createPlugin({
 	function transformer(tree: Node) {
 		const paragraphs = selectAll('paragraph', tree);
 		paragraphs.forEach((paragraph) => {
-			const link: Link | null = select(':scope > link:only-child', paragraph);
+			const link: Link | undefined = select(
+				':scope > link:only-child',
+				paragraph
+			);
 			if (!link) return;
 
 			const { url, children } = link;
