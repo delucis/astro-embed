@@ -71,12 +71,30 @@ importers:
 
   demo:
     devDependencies:
+      '@astro-community/astro-embed-baseline-status':
+        specifier: workspace:*
+        version: link:../packages/astro-embed-baseline-status
+      '@astro-community/astro-embed-bluesky':
+        specifier: workspace:*
+        version: link:../packages/astro-embed-bluesky
+      '@astro-community/astro-embed-link-preview':
+        specifier: workspace:*
+        version: link:../packages/astro-embed-link-preview
+      '@astro-community/astro-embed-vimeo':
+        specifier: workspace:*
+        version: link:../packages/astro-embed-vimeo
+      '@astro-community/astro-embed-youtube':
+        specifier: workspace:*
+        version: link:../packages/astro-embed-youtube
       '@astrojs/mdx':
         specifier: ^4.3.13
         version: 4.3.13(astro@5.16.6(@types/node@24.10.4)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2))
       astro:
         specifier: ^5.16.6
         version: 5.16.6(@types/node@24.10.4)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)
+      astro-embed:
+        specifier: workspace:*
+        version: link:../packages/astro-embed
 
   docs:
     dependencies:

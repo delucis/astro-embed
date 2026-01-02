@@ -7,7 +7,7 @@
     "test": "uvu tests -i utils",
     "format": "prettier -w .",
     "lint": "eslint . --ext .ts,.js",
-    "typecheck": "pnpm -F \"./packages/**\" exec astro check",
+    "typecheck": "pnpm -r exec astro check",
     "ci:version": "changeset version && pnpm install --no-frozen-lockfile"
   },
   "devDependencies": {
