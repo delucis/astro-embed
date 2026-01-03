@@ -83,6 +83,9 @@ importers:
       '@astro-community/astro-embed-link-preview':
         specifier: workspace:*
         version: link:../packages/astro-embed-link-preview
+      '@astro-community/astro-embed-mastodon':
+        specifier: workspace:*
+        version: link:../packages/astro-embed-mastodon
       '@astro-community/astro-embed-vimeo':
         specifier: workspace:*
         version: link:../packages/astro-embed-vimeo
@@ -110,6 +113,9 @@ importers:
       '@astro-community/astro-embed-link-preview':
         specifier: workspace:*
         version: link:../packages/astro-embed-link-preview
+      '@astro-community/astro-embed-mastodon':
+        specifier: workspace:*
+        version: link:../packages/astro-embed-mastodon
       '@astro-community/astro-embed-twitter':
         specifier: workspace:*
         version: link:../packages/astro-embed-twitter
