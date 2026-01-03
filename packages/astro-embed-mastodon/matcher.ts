@@ -4,9 +4,9 @@ const urlPattern =
 	/(?:https:\/\/)?([\w\d-]*?.?[\w\d-]*.[a-z]*\/@[\w\d_]*(?:@[\w\d]*?.?[\w\d]*.[a-z]*)?\/)(\d+)/;
 
 /**
- * Return a Toot URL from a URL if it matches the pattern.
+ * Return a Mastodon post URL from a URL if it matches the pattern.
  * @param url URL to test
- * @returns A Toot URL or undefined if none matched
+ * @returns A Mastodon post URL or undefined if none matched
  */
 export default function urlMatcher(url: string): string | undefined {
 	const match = url.match(urlPattern);

@@ -1,33 +1,33 @@
 ---
-title: Toot
-description: Learn how to use the Astro Embed Toot component to embed Mastodon posts in your website
+title: Mastodon Post
+description: Learn how to use the Astro Embed MastodonPost component to embed Mastodon posts in your website
 ---
 
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 import { Tweet } from '@astro-community/astro-embed-twitter';
-import { Toot } from '@astro-community/astro-embed-mastodon';
+import { MastodonPost } from '@astro-community/astro-embed-mastodon';
 
-The `<Toot>` component embeds posts from Mastodon in Astro projects.
+The `<MastodonPost>` component embeds posts from Mastodon in Astro projects.
 
 ## Usage
 
-The `<Toot>` component generates a static Mastodon card for a single Toot using [Mastodon’s API](https://docs.joinmastodon.org/client/intro/).
+The `<MastodonPost>` component generates a static Mastodon card for a single post using [Mastodon’s API](https://docs.joinmastodon.org/client/intro/).
 
 <Tabs>
 <TabItem label="Astro" icon="astro">
 ```astro
 ---
-import { Toot } from 'astro-embed';
+import { MastodonPost } from 'astro-embed';
 ---
 
-<Toot id="https://m.webtoo.ls/@astro/112966069629573422" />
+<MastodonPost id="https://m.webtoo.ls/@astro/112966069629573422" />
 ```
 </TabItem>
 <TabItem label="MDX" icon="seti:markdown">
 ```mdx
-import { Toot } from 'astro-embed';
+import { MastodonPost } from 'astro-embed';
 
-<Toot id="https://m.webtoo.ls/@astro/112966069629573422" />
+<MastodonPost id="https://m.webtoo.ls/@astro/112966069629573422" />
 ```
 </TabItem>
 </Tabs>
@@ -35,22 +35,22 @@ import { Toot } from 'astro-embed';
 The above code produces the following result:
 
 <div>
-	<Toot id="https://m.webtoo.ls/@astro/112966069629573422" />
+	<MastodonPost id="https://m.webtoo.ls/@astro/112966069629573422" />
 </div>
 
 :::note
-The `<Toot>` component styles are intentionally minimal.
-They will match the font styles of your surrounding content. See [“Styling the Toot component”](#styling-the-toot-component) below for more details.
+The `<MastodonPost>` component styles are intentionally minimal.
+They will match the font styles of your surrounding content. See [“Styling the MastodonPost component”](#styling-the-mastodonpost-component) below for more details.
 :::
 
-## Styling the Toot component
+## Styling the MastodonPost component
 
-By default the `<Toot>` card has minimal styling, which should adapt to your site’s font settings etc.
+By default the `<MastodonPost>` card has minimal styling, which should adapt to your site’s font settings etc.
 
-You can customise it by targeting the `.mastodon-toot` class, for example:
+You can customise it by targeting the `.mastodon-post` class, for example:
 
 ```css
-.mastodon-toot {
+.mastodon-post {
 	background: floralwhite;
 	color: darkblue;
 	font-family: cursive;
@@ -58,21 +58,21 @@ You can customise it by targeting the `.mastodon-toot` class, for example:
 	border: 0;
 }
 
-.mastodon-toot a {
+.mastodon-post a {
 	color: purple;
 	font-weight: bold;
 }
 ```
 
-The above styles would render `<Toot>` like this:
+The above styles would render `<MastodonPost>` like this:
 
-import StyledToot from './_examples/StyledToot.astro';
+import StyledMastodonPost from './_examples/StyledMastodonPost.astro';
 
-<StyledToot />
+<StyledMastodonPost />
 
 ### Custom properties API
 
-The `<Toot>` component also supports a minimal API for controlling its styles by setting some CSS custom properties.
+The `<MastodonPost>` component also supports a minimal API for controlling its styles by setting some CSS custom properties.
 
 ```css
 :root {
@@ -85,14 +85,14 @@ The `<Toot>` component also supports a minimal API for controlling its styles by
 
 ## Standalone installation
 
-If you only need the `<Toot>` component, you can install the package directly instead of the main `astro-embed` package:
+If you only need the `<MastodonPost>` component, you can install the package directly instead of the main `astro-embed` package:
 
 import { PackageManagers } from 'starlight-package-managers';
 
 <PackageManagers pkg="@astro-community/astro-embed-mastodon" />
 
-The `<Toot>` component can then be imported as:
+The `<MastodonPost>` component can then be imported as:
 
 ```js
-import { Toot } from '@astro-community/astro-embed-mastodon';
+import { MastodonPost } from '@astro-community/astro-embed-mastodon';
 ```

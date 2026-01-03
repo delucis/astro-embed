@@ -1,0 +1,22 @@
+---
+import { MastodonPost } from '@astro-community/astro-embed-mastodon';
+---
+
+<div class="styled">
+	<MastodonPost id="https://m.webtoo.ls/@astro/112616562969236130" />
+</div>
+
+<style>
+	.styled :global(.mastodon-post) {
+		background: floralwhite;
+		color: darkblue;
+		font-family: cursive;
+		font-size: 1.25rem;
+		border: 0;
+	}
+
+	.styled :global(.mastodon-post a) {
+		color: purple;
+		font-weight: bold;
+	}
+</style>

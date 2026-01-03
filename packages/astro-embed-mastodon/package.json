@@ -1,7 +1,7 @@
 {
   "name": "@astro-community/astro-embed-mastodon",
   "version": "0.0.1",
-  "description": "Component to easily embed Toots on your Astro site",
+  "description": "Component to easily embed Mastodon posts on your Astro site",
   "type": "module",
   "exports": {
     ".": "./index.ts",
@@ -12,8 +12,8 @@
     "matcher.ts",
     "MediaAttachment.astro",
     "PreviewCard.astro",
-    "Toot.astro",
-    "Toot.css"
+    "MastodonPost.astro",
+    "MastodonPost.css"
   ],
   "repository": {
     "type": "git",

@@ -24,7 +24,7 @@ To use components in `.astro` files, import them in the component script and the
 ```astro
 ---
 // src/components/Example.astro
-import { Toot, Tweet, Vimeo, YouTube } from 'astro-embed';
+import { MastodonPost, Tweet, Vimeo, YouTube } from 'astro-embed';
 ---
 
 <Tweet id="https://twitter.com/astrodotbuild/status/1512144306898976768" />
@@ -33,7 +33,7 @@ import { Toot, Tweet, Vimeo, YouTube } from 'astro-embed';
 
 <YouTube id="https://youtu.be/xtTy5nKay_Y" />
 
-<Toot id="https://mastodon.social/@sarah11918/112954791910873136" />
+<MastodonPost id="https://mastodon.social/@sarah11918/112954791910873136" />
 ```
 
 ### In MDX files
@@ -46,7 +46,7 @@ When using the [Astro MDX integration](https://docs.astro.build/en/guides/integr
 title: My MDX page with embed components
 ---
 
-import { Toot, Tweet, Vimeo, YouTube } from 'astro-embed';
+import { MastodonPost, Tweet, Vimeo, YouTube } from 'astro-embed';
 
 Hey look! I can embed a tweet _in Markdown_!
 
@@ -57,9 +57,9 @@ Vimeo and YouTube videos work too :-)
 <Vimeo id="https://vimeo.com/32001208" />
 <YouTube id="https://youtu.be/xtTy5nKay_Y" />
 
-And even Mastodon toots!
+And even Mastodon posts!
 
-<Toot id="https://mastodon.social/@sarah11918/112954791910873136" />
+<MastodonPost id="https://mastodon.social/@sarah11918/112954791910873136" />
 ```
 
 ### Auto-embed URLs in MDX

@@ -1,4 +1,4 @@
-.mastodon-toot {
+.mastodon-post {
 	border: 1px solid var(--mc-border-color, #cfd9de);
 	display: flex;
 	flex-direction: column;
@@ -6,49 +6,49 @@
 	overflow-wrap: anywhere;
 	padding: var(--mc-padding, 1em);
 }
-.mastodon-toot > div > :first-child {
+.mastodon-post > div > :first-child {
 	margin-top: 0;
 }
-.mastodon-toot > div > :last-child {
+.mastodon-post > div > :last-child {
 	margin-bottom: 0;
 }
 
-.mastodon-toot-card {
+.mastodon-post-card {
 	border: 1px solid var(--mc-border-color, #cfd9de);
 	display: flex;
 	flex-direction: column;
 }
-.mastodon-toot-card img {
+.mastodon-post-card img {
 	width: 100%;
 }
-.mastodon-toot-card img + div {
+.mastodon-post-card img + div {
 	border-top: 1px solid var(--mc-border-color, #cfd9de);
 	margin-top: 0;
 }
-.mastodon-toot-card div {
+.mastodon-post-card div {
 	display: flex;
 	flex-direction: column;
 	gap: 0.75em;
 	padding: var(--mc-padding, 1em);
 }
-.mastodon-toot-card div span {
+.mastodon-post-card div span {
 	font-size: 0.875em;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
 
-.mastodon-toot-img,
-.mastodon-toot-video {
+.mastodon-post-img,
+.mastodon-post-video {
 	max-width: 100%;
 	height: auto;
 }
-.mastodon-toot-audio {
+.mastodon-post-audio {
 	max-width: 100%;
 	object-fit: contain;
 }
 
-.mastodon-toot-emoji {
+.mastodon-post-emoji {
 	height: 1em;
 	/* Grabbed from Mastodon website. */
 	margin-block: -0.2ex 0.2ex;

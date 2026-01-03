@@ -11,7 +11,7 @@ const matchers = [
 	[twitterMatcher, 'Tweet'],
 	[vimeoMatcher, 'Vimeo'],
 	[youtubeMatcher, 'YouTube'],
-	[mastodonMatcher, 'Toot'],
+	[mastodonMatcher, 'MastodonPost'],
 	/** The generic link matcher must be last otherwise it will override other URLs. */
 	[linkPreviewMatcher, 'LinkPreview'],
 ] as const;

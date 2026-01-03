@@ -4,7 +4,7 @@ import PreviewCard, { type MastodonPreviewCard } from './PreviewCard.astro';
 import MediaAttachment, {
 	type MastodonMediaAttachment,
 } from './MediaAttachment.astro';
-import './Toot.css';
+import './MastodonPost.css';
 
 export interface Props {
 	id: string;
@@ -23,7 +23,7 @@ const { id } = Astro.props;
  */
 const wellKnownRTL = ['ar', 'fa', 'he', 'prs', 'ps', 'syc', 'ug', 'ur'];
 
-// Regex to extract a toot ID from a Mastodon status URL
+// Regex to extract a post ID from a Mastodon status URL
 const idRegExp = /(\d+)$/;
 
 // Thanks to @astrojs/starlight
@@ -46,11 +46,11 @@ function extractID(url: string) {
 	return match?.[0];
 }
 
-async function fetchToot(id: string) {
-	const tootId = extractID(id);
-	if (!tootId) throw new Error('Invalid toot URL');
+async function fetchMastodonPost(url: string) {
+	const id = extractID(url);
+	if (!id) throw new Error('Invalid Mastodon post URL: ' + url);
 	const data = (await safeGet(
-		`${new URL(id).origin}/api/v1/statuses/${tootId}`
+		`${new URL(url).origin}/api/v1/statuses/${id}`
 	)) as MastodonStatus | undefined;
 	return data
 		? { ...data, dir: getLocaleDir(new Intl.Locale(data.language)) }
@@ -61,7 +61,7 @@ function replaceEmojis(text: string, emojis: MastodonCustomEmoji[]): string {
 	for (const emoji of emojis) {
 		text = text.replace(
 			new RegExp(`:${emoji.shortcode}:`, 'g'),
-			`<img alt=":${emoji.shortcode}:" class="mastodon-toot-emoji" src="${emoji.url}" />`
+			`<img alt=":${emoji.shortcode}:" class="mastodon-post-emoji" src="${emoji.url}" />`
 		);
 	}
 	return text;
@@ -90,33 +90,33 @@ export interface MastodonCustomEmoji {
 	url: string;
 }
 
-const toot = await fetchToot(id);
+const post = await fetchMastodonPost(id);
 ---
 
 {
-	toot && (
-		<astro-embed-toot>
-			<blockquote class="mastodon-toot">
+	post && (
+		<astro-embed-post>
+			<blockquote class="mastodon-post">
 				<div
-					dir={toot.dir}
-					lang={toot.language}
-					set:html={replaceEmojis(toot.content, toot.emojis)}
+					dir={post.dir}
+					lang={post.language}
+					set:html={replaceEmojis(post.content, post.emojis)}
 				/>
-				{toot.card && <PreviewCard card={toot.card} />}
-				{toot.media_attachments.map((media) => (
+				{post.card && <PreviewCard card={post.card} />}
+				{post.media_attachments.map((media) => (
 					<MediaAttachment media={media} />
 				))}
 				<div>
 					—
 					<Fragment
 						set:html={replaceEmojis(
-							toot.account.display_name || toot.account.username,
-							toot.account.emojis
+							post.account.display_name || post.account.username,
+							post.account.emojis
 						)}
 					/>
-					<> (@{toot.account.acct}) </>
-					<a href={toot.url}>
-						{new Date(toot.created_at).toLocaleDateString(undefined, {
+					<> (@{post.account.acct}) </>
+					<a href={post.url}>
+						{new Date(post.created_at).toLocaleDateString(undefined, {
 							year: 'numeric',
 							month: 'long',
 							day: 'numeric',
@@ -124,6 +124,6 @@ const toot = await fetchToot(id);
 					</a>
 				</div>
 			</blockquote>
-		</astro-embed-toot>
+		</astro-embed-post>
 	)
 }

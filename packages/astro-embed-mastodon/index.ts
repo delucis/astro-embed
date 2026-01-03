@@ -1,1 +1,1 @@
-export { default as Toot } from './Toot.astro';
+export { default as MastodonPost } from './MastodonPost.astro';

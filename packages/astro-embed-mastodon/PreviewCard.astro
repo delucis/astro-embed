@@ -17,12 +17,12 @@ export interface MastodonPreviewCard {
 const { card } = Astro.props;
 ---
 
-<a href={card.url} class="mastodon-toot-card">
+<a href={card.url} class="mastodon-post-card">
 	{
 		card.image && (
 			<img
 				alt=""
-				class="mastodon-toot-img"
+				class="mastodon-post-img"
 				height={card.height}
 				src={card.image}
 				width={card.width}

@@ -33,7 +33,7 @@ if (media.type === 'unknown') {
 		<a href={media.url}>
 			<img
 				alt={media.description}
-				class="mastodon-toot-img"
+				class="mastodon-post-img"
 				height={media.meta.small?.height}
 				src={media.preview_url}
 				width={media.meta.small?.width}
@@ -45,7 +45,7 @@ if (media.type === 'unknown') {
 	(media.type === 'video' || media.type === 'gifv') && (
 		<video
 			aria-label={media.description}
-			class="mastodon-toot-video"
+			class="mastodon-post-video"
 			controls
 			height={media.meta.original?.height}
 			poster={media.preview_url}
@@ -59,7 +59,7 @@ if (media.type === 'unknown') {
 	media.type === 'audio' && (
 		<audio
 			aria-label={media.description}
-			class="mastodon-toot-audio"
+			class="mastodon-post-audio"
 			controls
 			preload="metadata"
 			src={media.url}
