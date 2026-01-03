@@ -34,7 +34,6 @@
     "@atcute/bluesky": "^3.2.14",
     "@atcute/bluesky-richtext-segmenter": "^2.0.4",
     "@atcute/client": "^4.2.0",
-    "@atcute/lexicons": "^1.2.6",
-    "@atproto/api": "^0.13.14"
+    "@atcute/lexicons": "^1.2.6"
   }
 }
