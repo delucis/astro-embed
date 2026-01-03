@@ -137,9 +137,7 @@ export async function resolvePost(
 
 	try {
 		const hydratedPost = await client.get('app.bsky.feed.getPosts', {
-			params: {
-				uris: [atUri],
-			},
+			params: { uris: [atUri] },
 		});
 		if (!hydratedPost.ok) {
 			throw new Error(hydratedPost.data.message || 'Failed to fetch post');
