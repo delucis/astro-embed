@@ -87,12 +87,12 @@ test('it should render a toot with custom emojis', async () => {
 	const { document } = await renderDOM(
 		'./packages/astro-embed-mastodon/Toot.astro',
 		{
-			id: 'https://mastodon.social/@onokoto/112881577072270247',
+			id: 'https://m.webtoo.ls/@swithinbank/115301163677375992',
 		}
 	);
 	const emoji = document.querySelector('img.mastodon-toot-emoji');
 	assert.ok(emoji);
-	assert.equal(emoji.getAttribute('alt'), ':mastodon:');
+	assert.equal(emoji.getAttribute('alt'), ':starlight:');
 });
 
 // This test is a bit flaky, as usernames can be changed at any time and the emoji might no longer be present.
@@ -112,7 +112,7 @@ test('it should render in RTL languages', async () => {
 	const { document } = await renderDOM(
 		'./packages/astro-embed-mastodon/Toot.astro',
 		{
-			id: 'https://mastodon.social/@Panahifarah@khiar.net/112123163633804419',
+			id: 'https://khiar.net/@ebi/111512220730617416',
 		}
 	);
 	const content = document.querySelector('blockquote > div');
