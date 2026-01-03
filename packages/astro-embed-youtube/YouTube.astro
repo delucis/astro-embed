@@ -15,6 +15,7 @@ const {
 	poster,
 	posterQuality = 'default',
 	title,
+	style,
 	...attrs
 } = Astro.props as Props;
 
@@ -36,6 +37,10 @@ const posterFile =
 const posterURL =
 	poster || `https://i.ytimg.com/vi/${videoid}/${posterFile}.jpg`;
 const href = `https://youtube.com/watch?v=${videoid}`;
+
+const styles = [];
+if (style) styles.push(style);
+if (posterURL) styles.push(`background-image: url('${posterURL}')`);
 ---
 
 <lite-youtube
@@ -43,10 +48,10 @@ const href = `https://youtube.com/watch?v=${videoid}`;
 	{title}
 	data-title={title}
 	{...attrs}
-	style={`background-image: url('${posterURL}');`}
+	style={styles.join(';')}
 >
-	<a {href} class="lty-playbtn">
-		<span class="lyt-visually-hidden">{attrs.playlabel}</span>
+	<a {href} class="lyt-playbtn">
+		<span class="lyt-visually-hidden">{attrs.playlabel || 'Play'}</span>
 	</a>
 </lite-youtube>
 

@@ -1,6 +1,6 @@
 {
   "name": "@astro-community/astro-embed-integration",
-  "version": "0.7.1",
+  "version": "0.9.0",
   "description": "Astro integration to automatically convert URLs in Markdown files to embeds",
   "type": "module",
   "exports": {
@@ -22,16 +22,17 @@
   },
   "homepage": "https://astro-embed.netlify.app/integration",
   "dependencies": {
-    "@astro-community/astro-embed-link-preview": "^0.2.0",
+    "@astro-community/astro-embed-bluesky": "^0.1.6",
+    "@astro-community/astro-embed-link-preview": "^0.3.0",
     "@astro-community/astro-embed-mastodon": "^0.0.1",
-    "@astro-community/astro-embed-twitter": "^0.5.4",
-    "@astro-community/astro-embed-vimeo": "^0.3.6",
-    "@astro-community/astro-embed-youtube": "^0.5.0",
-    "@types/unist": "^2.0.0",
-    "astro-auto-import": "^0.4.2",
-    "unist-util-select": "^4.0.1"
+    "@astro-community/astro-embed-twitter": "^0.5.10",
+    "@astro-community/astro-embed-vimeo": "^0.3.12",
+    "@astro-community/astro-embed-youtube": "^0.5.10",
+    "@types/unist": "^3.0.3",
+    "astro-auto-import": "^0.4.5",
+    "unist-util-select": "^5.1.0"
   },
   "peerDependencies": {
-    "astro": "^2.0.0 || ^3.0.0-beta || ^4.0.0-beta"
+    "astro": "^5.0.0 || ^6.0.0-alpha"
   }
 }

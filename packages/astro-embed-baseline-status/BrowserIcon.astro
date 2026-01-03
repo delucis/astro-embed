@@ -1,0 +1,18 @@
+---
+import type { Browser } from './types';
+import chrome from './icons/browsers/chrome.svg';
+import edge from './icons/browsers/edge.svg';
+import firefox from './icons/browsers/firefox.svg';
+import safari from './icons/browsers/safari.svg';
+
+interface Props {
+	browser: Browser;
+}
+
+const { browser } = Astro.props;
+
+const icons = { chrome, edge, firefox, safari };
+const { src, width, height } = icons[browser];
+---
+
+<img {src} alt="" {width} {height} />

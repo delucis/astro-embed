@@ -37,19 +37,21 @@ const videoid = extractID(id);
 let posterURL = poster;
 if (!posterURL) {
 	const data = await safeGet(`https://vimeo.com/api/v2/video/${videoid}.json`);
-	const resolution =
-		{ max: 1280, high: 640, default: 480, low: 120 }[posterQuality] || 480;
-	const { thumbnail_large } = data?.[0] || {};
-	if (thumbnail_large.endsWith('d_640')) {
-		posterURL = thumbnail_large.slice(0, -3) + resolution;
-	} else {
-		posterURL = thumbnail_large;
+	if (data) {
+		const resolution =
+			{ max: 1280, high: 640, default: 480, low: 120 }[posterQuality] || 480;
+		const { thumbnail_large } = data?.[0] || {};
+		if (thumbnail_large.endsWith('d_640')) {
+			posterURL = thumbnail_large.slice(0, -3) + resolution;
+		} else {
+			posterURL = thumbnail_large;
+		}
 	}
 }
 
 let [searchString, t] = params.split('#t=');
 const searchParams = new URLSearchParams(searchString);
-if (!t) t = searchParams.get('t');
+if (!t) t = searchParams.get('t') ?? undefined;
 searchParams.append('autoplay', '1');
 if (!searchParams.has('dnt')) searchParams.append('dnt', '1');
 

@@ -17,10 +17,11 @@ test('it should render a lite-youtube element', async () => {
 	);
 	// It renders a static link to the video.
 	const playButton = /** @type {HTMLAnchorElement} */ (
-		embed.querySelector('a.lty-playbtn')
+		embed.querySelector('a.lyt-playbtn')
 	);
 	assert.ok(playButton);
 	assert.is(playButton.href, `https://youtube.com/watch?v=${videoid}`);
+	assert.is(playButton.textContent?.trim(), 'Play');
 });
 
 test('it parses a youtube.com URL', async () => {
@@ -85,6 +86,21 @@ test('it can render a lower resolution poster image', async () => {
 	assert.is(
 		embed.style['background-image'],
 		`url('https://i.ytimg.com/vi/${videoid}/default.jpg')`
+	);
+});
+
+test('it can append a custom style', async () => {
+	const style = 'width: 100%';
+	const { window } = await renderDOM(
+		'./packages/astro-embed-youtube/YouTube.astro',
+		{ id: videoid, style }
+	);
+	const embed = window.document.querySelector('lite-youtube');
+	assert.ok(embed);
+	assert.is(embed.style['width'], '100%');
+	assert.is(
+		embed.style['background-image'],
+		`url('https://i.ytimg.com/vi/${videoid}/hqdefault.jpg')`
 	);
 });
 

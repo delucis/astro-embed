@@ -1,0 +1,49 @@
+---
+import MediaContainer from './media-container.astro';
+
+interface Props {
+	thumbnail?: string | undefined;
+	aspectRatio?: { width: number; height: number } | undefined;
+}
+
+const { thumbnail, aspectRatio } = Astro.props;
+---
+
+<MediaContainer aspectRatio={aspectRatio}>
+	{thumbnail && <img src={thumbnail} class="thumbnail" alt="Video thumbnail" />}
+	<div class="play-button">
+		<img
+			src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20fill='none'%20viewBox='0%200%2024%2024'%3e%3cpath%20fill='%23fff'%20d='M9.576%202.534C7.578%201.299%205%202.737%205%205.086v13.828c0%202.35%202.578%203.787%204.576%202.552l11.194-6.914c1.899-1.172%201.899-3.932%200-5.104L9.576%202.534Z'/%3e%3c/svg%3e"
+			class="play-icon"
+			alt="Play button"
+		/>
+	</div>
+</MediaContainer>
+
+<style>
+	.play-button {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 6rem;
+		height: 6rem;
+		border-radius: var(--bluesky-radius-full);
+		background-color: var(--bluesky-color-overlay);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.play-icon {
+		width: 60%;
+		height: 60%;
+		object-fit: cover;
+	}
+
+	.thumbnail {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+</style>

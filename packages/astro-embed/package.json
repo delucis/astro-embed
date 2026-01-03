@@ -1,6 +1,6 @@
 {
   "name": "astro-embed",
-  "version": "0.7.2",
+  "version": "0.10.0",
   "description": "Astro components to easily embed common media formats",
   "type": "module",
   "exports": {
@@ -19,6 +19,7 @@
   "keywords": [
     "astro",
     "astro-component",
+    "ui",
     "embeds",
     "twitter",
     "vimeo",
@@ -32,14 +33,16 @@
   },
   "homepage": "https://astro-embed.netlify.app/",
   "dependencies": {
-    "@astro-community/astro-embed-link-preview": "^0.2.0",
-    "@astro-community/astro-embed-integration": "^0.7.1",
+    "@astro-community/astro-embed-baseline-status": "^0.2.2",
+    "@astro-community/astro-embed-bluesky": "^0.1.6",
+    "@astro-community/astro-embed-integration": "^0.9.0",
+    "@astro-community/astro-embed-link-preview": "^0.3.0",
     "@astro-community/astro-embed-mastodon": "^0.0.1",
-    "@astro-community/astro-embed-twitter": "^0.5.4",
-    "@astro-community/astro-embed-vimeo": "^0.3.7",
-    "@astro-community/astro-embed-youtube": "^0.5.0"
+    "@astro-community/astro-embed-twitter": "^0.5.10",
+    "@astro-community/astro-embed-vimeo": "^0.3.12",
+    "@astro-community/astro-embed-youtube": "^0.5.10"
   },
   "peerDependencies": {
-    "astro": "^2.0.0 || ^3.0.0-beta || ^4.0.0-beta"
+    "astro": "^5.0.0 || ^6.0.0-alpha"
   }
 }

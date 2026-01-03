@@ -1,5 +1,23 @@
 # @astro-community/astro-embed-utils
 
+## 0.2.0
+
+### Minor Changes
+
+- [#233](https://github.com/delucis/astro-embed/pull/233) [`a186fa1`](https://github.com/delucis/astro-embed/commit/a186fa149d3367d735db233a8f0954eba12bee99) Thanks [@delucis](https://github.com/delucis)! - Removes HTML-parsing `safeGetDOM()` utility and reduces install size by ~3 MB by removing `linkedom`
+
+## 0.1.5
+
+### Patch Changes
+
+- [#219](https://github.com/delucis/astro-embed/pull/219) [`d90ce7a`](https://github.com/delucis/astro-embed/commit/d90ce7aee92bcfafc66ae82a89a463dafed39992) Thanks [@delucis](https://github.com/delucis)! - No code changes. This release is the first published using OIDC trusted publisher configuration for improved security.
+
+## 0.1.4
+
+### Patch Changes
+
+- [#212](https://github.com/delucis/astro-embed/pull/212) [`b684968`](https://github.com/delucis/astro-embed/commit/b6849687f9a312e086b1a5269ae940fe42219942) Thanks [@delucis](https://github.com/delucis)! - Updates internal dependencies
+
 ## 0.1.3
 
 ### Patch Changes

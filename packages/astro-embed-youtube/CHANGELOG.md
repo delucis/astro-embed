@@ -1,5 +1,47 @@
 # @astro-community/astro-embed-youtube
 
+## 0.5.10
+
+### Patch Changes
+
+- [#227](https://github.com/delucis/astro-embed/pull/227) [`a2201be`](https://github.com/delucis/astro-embed/commit/a2201be8335923af70452266b2d164c2e00b3a0d) Thanks [@delucis](https://github.com/delucis)! - Removes unnecessary `astro` peer dependency
+
+## 0.5.9
+
+### Patch Changes
+
+- [#219](https://github.com/delucis/astro-embed/pull/219) [`d90ce7a`](https://github.com/delucis/astro-embed/commit/d90ce7aee92bcfafc66ae82a89a463dafed39992) Thanks [@delucis](https://github.com/delucis)! - No code changes. This release is the first published using OIDC trusted publisher configuration for improved security.
+
+## 0.5.8
+
+### Patch Changes
+
+- [#217](https://github.com/delucis/astro-embed/pull/217) [`4668c58`](https://github.com/delucis/astro-embed/commit/4668c58036a1ed8f36287d8fc874a201f059a040) Thanks [@Mikescops](https://github.com/Mikescops)! - Fixes compatibility with the latest release of `lite-youtube-embed` to make sure the play button displays
+
+## 0.5.7
+
+### Patch Changes
+
+- [#202](https://github.com/delucis/astro-embed/pull/202) [`c00ac0ab0253d7439d57de0b986317f55c66f291`](https://github.com/delucis/astro-embed/commit/c00ac0ab0253d7439d57de0b986317f55c66f291) Thanks [@echolocator](https://github.com/echolocator)! - Add support for `style` attribute in `<YouTube>` component
+
+## 0.5.6
+
+### Patch Changes
+
+- [#165](https://github.com/delucis/astro-embed/pull/165) [`a97b51bbeba66f94aea8bfc07f115c1f201aa4ef`](https://github.com/delucis/astro-embed/commit/a97b51bbeba66f94aea8bfc07f115c1f201aa4ef) Thanks [@anotheri](https://github.com/anotheri)! - Fixes missing accessible name for `<YouTube>` component play button
+
+## 0.5.5
+
+### Patch Changes
+
+- [`91e70e72e1f3efe2db37e9de1e721eaabfd292bc`](https://github.com/delucis/astro-embed/commit/91e70e72e1f3efe2db37e9de1e721eaabfd292bc) Thanks [@delucis](https://github.com/delucis)! - Add additional `ui` keyword for better categorization in Astro’s integrations library
+
+## 0.5.4
+
+### Patch Changes
+
+- [#148](https://github.com/delucis/astro-embed/pull/148) [`78346ae846925fa3ce90378d2f03c437620adcec`](https://github.com/delucis/astro-embed/commit/78346ae846925fa3ce90378d2f03c437620adcec) Thanks [@prototypa](https://github.com/prototypa)! - Adds support for Astro v5
+
 ## 0.5.3
 
 ### Patch Changes

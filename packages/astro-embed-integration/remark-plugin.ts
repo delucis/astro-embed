@@ -1,4 +1,5 @@
 import { type Node, select, selectAll } from 'unist-util-select';
+import blueskyMatcher from '@astro-community/astro-embed-bluesky/matcher';
 import twitterMatcher from '@astro-community/astro-embed-twitter/matcher';
 import vimeoMatcher from '@astro-community/astro-embed-vimeo/matcher';
 import youtubeMatcher from '@astro-community/astro-embed-youtube/matcher';
@@ -6,6 +7,7 @@ import linkPreviewMatcher from '@astro-community/astro-embed-link-preview/matche
 import mastodonMatcher from '@astro-community/astro-embed-mastodon/matcher';
 
 const matchers = [
+	[blueskyMatcher, 'BlueskyPost'],
 	[twitterMatcher, 'Tweet'],
 	[vimeoMatcher, 'Vimeo'],
 	[youtubeMatcher, 'YouTube'],
@@ -57,7 +59,10 @@ export default function createPlugin({
 	function transformer(tree: Node) {
 		const paragraphs = selectAll('paragraph', tree);
 		paragraphs.forEach((paragraph) => {
-			const link: Link | null = select(':scope > link:only-child', paragraph);
+			const link: Link | undefined = select(
+				':scope > link:only-child',
+				paragraph
+			);
 			if (!link) return;
 
 			const { url, children } = link;

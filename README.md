@@ -18,15 +18,14 @@ The Astro site in the [`/demo`](demo) directory can be used to preview the vario
 
 All commands are run from the root of the project, from a terminal:
 
-| Command       | Action                                                          |
-| :------------ | :-------------------------------------------------------------- |
-| `npm install` | Installs dependencies                                           |
-| `npm start`   | Starts local dev server for the `demo` site at `localhost:3000` |
-| `npm t`       | Run the test suite                                              |
+| Command        | Action                |
+| :------------- | :-------------------- |
+| `pnpm install` | Installs dependencies |
+| `pnpm t`       | Run the test suite    |
 
 ## 🧪 Testing
 
-You can run unit tests by running `npm t` in a terminal or run `npm start` to start a dev server for the demo project.
+You can run unit tests by running `pnpm t` in a terminal or run `pnpm start` in the `demo/` directory to start a dev server for the demo project.
 
 ## ✨ Want to contribute?
 

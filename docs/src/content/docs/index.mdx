@@ -10,10 +10,10 @@ hero:
     - text: Get Started
       link: /getting-started/
       icon: right-arrow
-      variant: primary
     - text: Star on GitHub
       link: https://github.com/delucis/astro-embed
       icon: star
+      variant: minimal
 ---
 
 import { Icon, Card, CardGrid } from '@astrojs/starlight/components';
@@ -46,6 +46,14 @@ import { Icon, Card, CardGrid } from '@astrojs/starlight/components';
 
     </Card>
 
+    <Card title="Bluesky" icon="blueSky">
+
+    	Embed a fully-styled Bluesky post with no client-side JavaScript.
+
+    	[Bluesky Post docs](/components/bluesky/)
+
+    </Card>
+
     <Card title="Mastodon" icon="mastodon">
 
     	Embed the contents of a Toot without client-side JavaScript.
@@ -59,6 +67,14 @@ import { Icon, Card, CardGrid } from '@astrojs/starlight/components';
     	Embed the Open Graph media and metadata for any URL in your page.
 
     	[Link Preview docs](/components/link-preview/)
+
+    </Card>
+
+    <Card title="Baseline Status" icon="laptop">
+
+    	Display browser support for a web feature according to the Baseline project.
+
+    	[Baseline Status docs](/components/baseline-status/)
 
     </Card>
 

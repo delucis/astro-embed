@@ -1,6 +1,6 @@
 {
   "name": "@astro-community/astro-embed-utils",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "Shared utility methods for astro-embed components",
   "type": "module",
   "exports": {
@@ -18,8 +18,5 @@
   "bugs": {
     "url": "https://github.com/delucis/astro-embed/issues"
   },
-  "homepage": "https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-utils#readme",
-  "dependencies": {
-    "linkedom": "^0.14.26"
-  }
+  "homepage": "https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-utils#readme"
 }

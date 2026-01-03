@@ -1,0 +1,33 @@
+---
+import BrowserIcon from './BrowserIcon.astro';
+import SupportIcon from './SupportIcon.astro';
+import type { Browser, Feature } from './types';
+
+interface Props {
+	browser: Browser;
+	feature: Feature;
+}
+
+const { browser, feature } = Astro.props;
+
+const baseline = feature.baseline.status || 'no_data';
+const browserImplementation = feature.browser_implementations?.[browser];
+const browserName = {
+	chrome: 'Chrome',
+	edge: 'Edge',
+	firefox: 'Firefox',
+	safari: 'Safari',
+}[browser];
+
+let supportLabel = browserImplementation?.status || 'no';
+if (baseline === 'no_data') supportLabel = 'unknown';
+if (supportLabel === 'available') supportLabel = 'yes';
+---
+
+<span part="browser-support">
+	<span part="browser-support-label">
+		Supported in {browserName}: {supportLabel}.
+	</span>
+	<BrowserIcon {browser} />
+	<SupportIcon {baseline} {browserImplementation} />
+</span>

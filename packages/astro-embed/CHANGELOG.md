@@ -1,5 +1,93 @@
 # astro-embed
 
+## 0.10.0
+
+### Minor Changes
+
+- [#227](https://github.com/delucis/astro-embed/pull/227) [`a2201be`](https://github.com/delucis/astro-embed/commit/a2201be8335923af70452266b2d164c2e00b3a0d) Thanks [@delucis](https://github.com/delucis)! - Drops official support for Astro 2, 3, and 4. Use Astro 5 instead.
+
+### Patch Changes
+
+- Updated dependencies [[`101466c`](https://github.com/delucis/astro-embed/commit/101466c35630e2cd636f0efff2c811d77311dc00), [`a2201be`](https://github.com/delucis/astro-embed/commit/a2201be8335923af70452266b2d164c2e00b3a0d), [`a2201be`](https://github.com/delucis/astro-embed/commit/a2201be8335923af70452266b2d164c2e00b3a0d), [`a186fa1`](https://github.com/delucis/astro-embed/commit/a186fa149d3367d735db233a8f0954eba12bee99)]:
+  - @astro-community/astro-embed-bluesky@0.1.6
+  - @astro-community/astro-embed-baseline-status@0.2.2
+  - @astro-community/astro-embed-twitter@0.5.10
+  - @astro-community/astro-embed-youtube@0.5.10
+  - @astro-community/astro-embed-vimeo@0.3.12
+  - @astro-community/astro-embed-integration@0.9.0
+  - @astro-community/astro-embed-link-preview@0.3.0
+
+## 0.9.2
+
+### Patch Changes
+
+- [#219](https://github.com/delucis/astro-embed/pull/219) [`d90ce7a`](https://github.com/delucis/astro-embed/commit/d90ce7aee92bcfafc66ae82a89a463dafed39992) Thanks [@delucis](https://github.com/delucis)! - No code changes. This release is the first published using OIDC trusted publisher configuration for improved security.
+
+- Updated dependencies [[`d90ce7a`](https://github.com/delucis/astro-embed/commit/d90ce7aee92bcfafc66ae82a89a463dafed39992)]:
+  - @astro-community/astro-embed-baseline-status@0.2.1
+  - @astro-community/astro-embed-bluesky@0.1.5
+  - @astro-community/astro-embed-integration@0.8.3
+  - @astro-community/astro-embed-link-preview@0.2.3
+  - @astro-community/astro-embed-twitter@0.5.9
+  - @astro-community/astro-embed-vimeo@0.3.11
+  - @astro-community/astro-embed-youtube@0.5.9
+
+## 0.9.1
+
+### Patch Changes
+
+- Updated dependencies [[`d2f7b94b1185905bdf173b60df93353e6a42d127`](https://github.com/delucis/astro-embed/commit/d2f7b94b1185905bdf173b60df93353e6a42d127)]:
+  - @astro-community/astro-embed-baseline-status@0.2.0
+
+## 0.9.0
+
+### Minor Changes
+
+- [#167](https://github.com/delucis/astro-embed/pull/167) [`22779f0a7b48283e4c6a71f7b01641d93fdb2a6f`](https://github.com/delucis/astro-embed/commit/22779f0a7b48283e4c6a71f7b01641d93fdb2a6f) Thanks [@ascorbic](https://github.com/ascorbic)! - Adds Bluesky Post embed
+
+### Patch Changes
+
+- Updated dependencies [[`22779f0a7b48283e4c6a71f7b01641d93fdb2a6f`](https://github.com/delucis/astro-embed/commit/22779f0a7b48283e4c6a71f7b01641d93fdb2a6f)]:
+  - @astro-community/astro-embed-integration@0.8.0
+  - @astro-community/astro-embed-bluesky@0.1.0
+
+## 0.8.0
+
+### Minor Changes
+
+- [#156](https://github.com/delucis/astro-embed/pull/156) [`bdaa3dba3be5f4f9d5da5ac4cf9f3ee65f402cca`](https://github.com/delucis/astro-embed/commit/bdaa3dba3be5f4f9d5da5ac4cf9f3ee65f402cca) Thanks [@delucis](https://github.com/delucis)! - Adds new `<BaselineStatus>` component
+
+  This component displays the status of a web feature according to the [Baseline](https://web.dev/baseline/) project.
+
+### Patch Changes
+
+- Updated dependencies [[`bdaa3dba3be5f4f9d5da5ac4cf9f3ee65f402cca`](https://github.com/delucis/astro-embed/commit/bdaa3dba3be5f4f9d5da5ac4cf9f3ee65f402cca)]:
+  - @astro-community/astro-embed-baseline-status@0.1.0
+
+## 0.7.4
+
+### Patch Changes
+
+- [`91e70e72e1f3efe2db37e9de1e721eaabfd292bc`](https://github.com/delucis/astro-embed/commit/91e70e72e1f3efe2db37e9de1e721eaabfd292bc) Thanks [@delucis](https://github.com/delucis)! - Add additional `ui` keyword for better categorization in Astro’s integrations library
+
+- Updated dependencies [[`91e70e72e1f3efe2db37e9de1e721eaabfd292bc`](https://github.com/delucis/astro-embed/commit/91e70e72e1f3efe2db37e9de1e721eaabfd292bc)]:
+  - @astro-community/astro-embed-link-preview@0.2.2
+  - @astro-community/astro-embed-twitter@0.5.6
+  - @astro-community/astro-embed-youtube@0.5.5
+  - @astro-community/astro-embed-vimeo@0.3.10
+
+## 0.7.3
+
+### Patch Changes
+
+- [#148](https://github.com/delucis/astro-embed/pull/148) [`78346ae846925fa3ce90378d2f03c437620adcec`](https://github.com/delucis/astro-embed/commit/78346ae846925fa3ce90378d2f03c437620adcec) Thanks [@prototypa](https://github.com/prototypa)! - Adds support for Astro v5
+
+- Updated dependencies [[`78346ae846925fa3ce90378d2f03c437620adcec`](https://github.com/delucis/astro-embed/commit/78346ae846925fa3ce90378d2f03c437620adcec)]:
+  - @astro-community/astro-embed-integration@0.7.2
+  - @astro-community/astro-embed-twitter@0.5.5
+  - @astro-community/astro-embed-vimeo@0.3.9
+  - @astro-community/astro-embed-youtube@0.5.4
+
 ## 0.7.2
 
 ### Patch Changes
@@ -108,7 +196,6 @@
   **⚠️ BREAKING CHANGE** Due to upheaval at Twitter, the `<Tweet />` component is no longer able to fetch detailed information from Twitter’s API, limiting what a static embed can easily do.
 
   Key differences:
-
   - The `<Tweet />` component must now receive a full URL to a tweet, not just an ID. You will need to update these if you have any:
 
     ```diff
