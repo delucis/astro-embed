@@ -29,12 +29,15 @@ test('it should render a toot with a preview card with an image', async () => {
 	const { document } = await renderDOM(
 		'./packages/astro-embed-mastodon/Toot.astro',
 		{
-			id: 'https://mastodon.social/@sarah11918/112954791910873136',
+			id: 'https://mastodon.social/@sarah11918/115757774216377685',
 		}
 	);
 	const card = document.querySelector('.mastodon-toot-card');
 	assert.ok(card);
-	assert.match(card.textContent ?? '', /50 Docs tips in 50 days/);
+	assert.match(
+		card.textContent ?? '',
+		/What They Don't Tell You About Maintaining an Open Source Project/
+	);
 	const image = card.querySelector('img');
 	assert.ok(image);
 });
