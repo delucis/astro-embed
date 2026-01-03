@@ -1,14 +1,17 @@
+import type {} from '@atcute/atproto';
 import {
-	AppBskyEmbedExternal,
-	AppBskyEmbedImages,
-	AppBskyEmbedRecord,
-	AppBskyEmbedRecordWithMedia,
-	AppBskyEmbedVideo,
 	type AppBskyFeedDefs,
-	AtpAgent,
-	RichText,
-} from '@atproto/api';
+	type AppBskyEmbedRecord,
+	AppBskyEmbedImages,
+	AppBskyEmbedExternal,
+	AppBskyEmbedVideo,
+	AppBskyEmbedRecordWithMedia,
+	AppBskyFeedPost,
+} from '@atcute/bluesky';
+import { segmentize } from '@atcute/bluesky-richtext-segmenter';
+import { Client, simpleFetchHandler } from '@atcute/client';
 import type { Post } from './types';
+import { is } from '@atcute/lexicons';
 
 const escapeMap: Record<string, string> = {
 	'&': '&amp;',
@@ -22,26 +25,26 @@ const escapeHTML = (str?: string) =>
 	str?.replace(/[&<>"']/g, (match) => escapeMap[match] || match) ?? '';
 
 export function renderPostAsHtml(post?: AppBskyFeedDefs.PostView | Post) {
-	if (!post) {
+	if (!post || !is(AppBskyFeedPost.mainSchema, post.record)) {
 		return '';
 	}
-	const rt = new RichText(post.record as any);
+	const segments = segmentize(post.record.text, post.record.facets);
 	let html = '';
-	for (const segment of rt.segments()) {
-		if (segment.isLink()) {
-			html += `<a href="${escapeHTML(segment.link?.uri)}">${escapeHTML(
-				segment.text
-			)}</a>`;
-		} else if (segment.isMention()) {
-			html += `<a href="https://bsky.app/profile/${escapeHTML(
-				segment.mention?.did
-			)}">${escapeHTML(segment.text)}</a>`;
-		} else if (segment.isTag()) {
-			html += `<a href="https://bsky.app/hashtag/${escapeHTML(
-				segment.tag?.tag
-			)}">#${escapeHTML(segment.tag?.tag)}</a>`;
-		} else {
-			html += escapeHTML(segment.text);
+	for (const { text, features } of segments) {
+		const [feature] = features || [];
+		switch (feature?.$type) {
+			case 'app.bsky.richtext.facet#link':
+				html += `<a href="${escapeHTML(feature.uri)}">${escapeHTML(text)}</a>`;
+				break;
+			case 'app.bsky.richtext.facet#mention':
+				html += `<a href="https://bsky.app/profile/${escapeHTML(feature.did)}">${escapeHTML(text)}</a>`;
+				break;
+			case 'app.bsky.richtext.facet#tag':
+				html += `<a href="https://bsky.app/hashtag/${escapeHTML(feature.tag)}">#${escapeHTML(feature.tag)}</a>`;
+				break;
+			default:
+				html += escapeHTML(text);
+				break;
 		}
 	}
 	return html;
@@ -69,16 +72,16 @@ export function viewRecordToEmbed(
 		return embed;
 	} else {
 		if (
-			AppBskyEmbedImages.isView(embed) ||
-			AppBskyEmbedExternal.isView(embed) ||
-			AppBskyEmbedVideo.isView(embed)
+			is(AppBskyEmbedImages.viewSchema, embed) ||
+			is(AppBskyEmbedExternal.viewSchema, embed) ||
+			is(AppBskyEmbedVideo.viewSchema, embed)
 		) {
 			return embed;
 		} else if (
-			AppBskyEmbedRecordWithMedia.isView(embed) &&
-			(AppBskyEmbedImages.isView(embed.media) ||
-				AppBskyEmbedExternal.isView(embed.media) ||
-				AppBskyEmbedVideo.isView(embed.media))
+			is(AppBskyEmbedRecordWithMedia.viewSchema, embed) &&
+			(is(AppBskyEmbedImages.viewSchema, embed.media) ||
+				is(AppBskyEmbedExternal.viewSchema, embed.media) ||
+				is(AppBskyEmbedVideo.viewSchema, embed.media))
 		) {
 			return embed.media;
 		}
@@ -86,35 +89,38 @@ export function viewRecordToEmbed(
 	return undefined;
 }
 
-const agent = new AtpAgent({
-	service: 'https://public.api.bsky.app',
+const client = new Client({
+	handler: simpleFetchHandler({ service: 'https://public.api.bsky.app' }),
 });
 
 export async function resolvePost(
 	postUrl: string | Post | AppBskyFeedDefs.PostView
 ): Promise<Post | undefined> {
-	let atUri;
+	let atUri: `at://${string}.${string}`;
 
 	if (typeof postUrl === 'object') {
 		return postUrl as Post;
 	}
 
 	if (postUrl.startsWith('at:')) {
-		atUri = postUrl;
+		atUri = postUrl as any;
 	} else {
 		if (!postUrl.startsWith('https://bsky.app/')) {
 			return undefined;
 		}
 		const urlParts = new URL(postUrl).pathname.split('/');
-		let did = urlParts[2]!;
+		let did = urlParts[2]! as any;
 		const postId = urlParts[4]!;
 		if (!did || !postId) {
 			return undefined;
 		}
 		if (!did.startsWith('did:')) {
 			try {
-				const handleResolution = await agent.resolveHandle({ handle: did });
-				if (!handleResolution.data.did) {
+				const handleResolution = await client.get(
+					'com.atproto.identity.resolveHandle',
+					{ params: { handle: did } }
+				);
+				if (!handleResolution.ok || !handleResolution.data.did) {
 					return undefined;
 				}
 				did = handleResolution.data.did;
@@ -130,7 +136,14 @@ export async function resolvePost(
 	}
 
 	try {
-		const hydratedPost = await agent.getPosts({ uris: [atUri] });
+		const hydratedPost = await client.get('app.bsky.feed.getPosts', {
+			params: {
+				uris: [atUri],
+			},
+		});
+		if (!hydratedPost.ok) {
+			throw new Error(hydratedPost.data.message || 'Failed to fetch post');
+		}
 		return hydratedPost.data.posts[0] as unknown as Post;
 	} catch (e: any) {
 		console.error(`[error]  astro-embed` + '\n         ' + (e?.message ?? e));
