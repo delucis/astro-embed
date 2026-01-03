@@ -2,7 +2,7 @@
 import type { AppBskyActorDefs } from '@atcute/bluesky';
 
 type Props = {
-	user: AppBskyActorDefs.ProfileViewBasic;
+	user: AppBskyActorDefs.ProfileView | AppBskyActorDefs.ProfileViewBasic;
 	link?: boolean | undefined;
 	size?: 'small' | 'medium' | undefined;
 };
