@@ -99,16 +99,16 @@ test('it should render a post with custom emojis', async () => {
 });
 
 // This test is a bit flaky, as usernames can be changed at any time and the emoji might no longer be present.
-test.skip('it should render a post with a username including custom emojis', async () => {
+test('it should render a post with a username including custom emojis', async () => {
 	const { document } = await renderDOM(
 		'./packages/astro-embed-mastodon/MastodonPost.astro',
 		{
-			id: 'https://nahe.social/@yuliyan/112948405749089071',
+			id: 'https://front-end.social/@sarajw/109994451332222396',
 		}
 	);
 	const emoji = document.querySelector('img.mastodon-post-emoji');
 	assert.ok(emoji);
-	assert.equal(emoji.getAttribute('alt'), ':questified:');
+	assert.equal(emoji.getAttribute('alt'), ':happy_pepper:');
 });
 
 test('it should render in RTL languages', async () => {
