@@ -36,6 +36,7 @@ if (media.type === 'unknown') {
 			preload="metadata"
 			src={media.url}
 			width={media.meta?.original?.width}
+			loop={media.type === 'gifv'}
 		/>
 	)
 }
