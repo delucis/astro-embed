@@ -37,10 +37,12 @@ const { post } = Astro.props;
 		gap: 0.125em;
 		overflow: clip;
 		border-radius: var(--mc-border-radius);
+		aspect-ratio: 3 / 2;
 	}
 	astro-embed-mastodon::part(gallery media-count-1) {
 		grid-template-columns: 1fr;
 		grid-template-rows: 1fr;
+		aspect-ratio: unset;
 	}
 	astro-embed-mastodon::part(row-span) {
 		grid-row: span 2;
