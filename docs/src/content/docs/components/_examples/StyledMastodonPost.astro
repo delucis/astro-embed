@@ -8,15 +8,12 @@ import { MastodonPost } from '@astro-community/astro-embed-mastodon';
 
 <style>
 	.styled :global(.mastodon-post) {
-		background: floralwhite;
-		color: darkblue;
-		font-family: cursive;
-		font-size: 1.25rem;
-		border: 0;
-	}
-
-	.styled :global(.mastodon-post a) {
-		color: purple;
-		font-weight: bold;
+		--mc-color: gray;
+		--mc-color-primary: darkblue;
+		--mc-color-secondary: purple;
+		--mc-color-link: purple;
+		--mc-background-color: floralwhite;
+		--mc-border-color: orange;
+		--mc-font-family: cursive;
 	}
 </style>

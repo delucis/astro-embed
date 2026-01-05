@@ -38,11 +38,6 @@ The above code produces the following result:
 	<MastodonPost id="https://m.webtoo.ls/@astro/112966069629573422" />
 </div>
 
-:::note
-The `<MastodonPost>` component styles are intentionally minimal.
-They will match the font styles of your surrounding content. See [“Styling the MastodonPost component”](#styling-the-mastodonpost-component) below for more details.
-:::
-
 ## Styling the MastodonPost component
 
 By default the `<MastodonPost>` card has minimal styling, which should adapt to your site’s font settings etc.
@@ -51,16 +46,13 @@ You can customise it by targeting the `.mastodon-post` class, for example:
 
 ```css
 .mastodon-post {
-	background: floralwhite;
-	color: darkblue;
-	font-family: cursive;
-	font-size: 1.25rem;
-	border: 0;
-}
-
-.mastodon-post a {
-	color: purple;
-	font-weight: bold;
+	--mc-color: gray;
+	--mc-color-primary: darkblue;
+	--mc-color-secondary: purple;
+	--mc-color-link: purple;
+	--mc-background-color: floralwhite;
+	--mc-border-color: orange;
+	--mc-font-family: cursive;
 }
 ```
 
@@ -78,10 +70,34 @@ The `<MastodonPost>` component also supports a minimal API for controlling its s
 :root {
 	/* Control the padding inside the Mastodon card. */
 	--mc-padding: 1em;
+	/* Set the corner-radius of elements in the Mastodon card. */
+	--mc-border-radius: 0.5em;
+	/* Set the font family for text in the Mastodon card. */
+	--mc-font-family: inherit;
+
+	/* Set the CSS `color-scheme` within the Mastodon card. */
+	--mc-color-scheme: light dark;
+	/* Set the text color in the Mastodon card. */
+	--mc-color: #292938;
+	/* Set the primary text color in the Mastodon card. */
+	--mc-color-primary: #000;
+	/* Set the secondary text color in the Mastodon card. */
+	--mc-color-secondary: #45455f;
+	/* Set the link color in the Mastodon card. */
+	--mc-color-link: #5653ed;
+	/* Set the background color of the Mastodon card. */
+	--mc-background-color: #fff;
 	/* Set the border color of the Mastodon card. */
 	--mc-border-color: #cfd9de;
+	/* Set the background color of surfaces in the Mastodon card. */
+	--mc-background-color-surface: #e8e6f0;
+	/* Set the accent background color in the Mastodon card. */
+	--mc-background-color-accent: #c6bfd9;
 }
 ```
+
+Each color variable can also be set for light and dark mode specifically by using the `--mc-*--light` and `--mc-*--dark` variants.
+For example, to set the link color only in dark mode, use `--mc-color-link--dark`.
 
 ## Standalone installation
 
