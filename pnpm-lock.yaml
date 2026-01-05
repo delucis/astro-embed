@@ -83,6 +83,9 @@ importers:
       '@astro-community/astro-embed-link-preview':
         specifier: workspace:*
         version: link:../packages/astro-embed-link-preview
+      '@astro-community/astro-embed-mastodon':
+        specifier: workspace:*
+        version: link:../packages/astro-embed-mastodon
       '@astro-community/astro-embed-vimeo':
         specifier: workspace:*
         version: link:../packages/astro-embed-vimeo
@@ -110,6 +113,9 @@ importers:
       '@astro-community/astro-embed-link-preview':
         specifier: workspace:*
         version: link:../packages/astro-embed-link-preview
+      '@astro-community/astro-embed-mastodon':
+        specifier: workspace:*
+        version: link:../packages/astro-embed-mastodon
       '@astro-community/astro-embed-twitter':
         specifier: workspace:*
         version: link:../packages/astro-embed-twitter
@@ -158,6 +164,9 @@ importers:
       '@astro-community/astro-embed-link-preview':
         specifier: ^0.3.0
         version: link:../astro-embed-link-preview
+      '@astro-community/astro-embed-mastodon':
+        specifier: ^0.0.1
+        version: link:../astro-embed-mastodon
       '@astro-community/astro-embed-twitter':
         specifier: ^0.5.10
         version: link:../astro-embed-twitter
@@ -191,6 +200,9 @@ importers:
       '@astro-community/astro-embed-link-preview':
         specifier: ^0.3.0
         version: link:../astro-embed-link-preview
+      '@astro-community/astro-embed-mastodon':
+        specifier: ^0.0.1
+        version: link:../astro-embed-mastodon
       '@astro-community/astro-embed-twitter':
         specifier: ^0.5.10
         version: link:../astro-embed-twitter
@@ -224,6 +236,12 @@ importers:
       parse5:
         specifier: ^8.0.0
         version: 8.0.0
+
+  packages/astro-embed-mastodon:
+    dependencies:
+      '@astro-community/astro-embed-utils':
+        specifier: ^0.2.0
+        version: link:../astro-embed-utils
 
   packages/astro-embed-twitter:
     dependencies:

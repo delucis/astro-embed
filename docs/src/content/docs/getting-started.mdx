@@ -24,7 +24,7 @@ To use components in `.astro` files, import them in the component script and the
 ```astro
 ---
 // src/components/Example.astro
-import { Tweet, Vimeo, YouTube } from 'astro-embed';
+import { MastodonPost, Tweet, Vimeo, YouTube } from 'astro-embed';
 ---
 
 <Tweet id="https://twitter.com/astrodotbuild/status/1512144306898976768" />
@@ -32,6 +32,8 @@ import { Tweet, Vimeo, YouTube } from 'astro-embed';
 <Vimeo id="https://vimeo.com/32001208" />
 
 <YouTube id="https://youtu.be/xtTy5nKay_Y" />
+
+<MastodonPost id="https://mastodon.social/@sarah11918/112954791910873136" />
 ```
 
 ### In MDX files
@@ -44,7 +46,7 @@ When using the [Astro MDX integration](https://docs.astro.build/en/guides/integr
 title: My MDX page with embed components
 ---
 
-import { Tweet, Vimeo, YouTube } from 'astro-embed';
+import { MastodonPost, Tweet, Vimeo, YouTube } from 'astro-embed';
 
 Hey look! I can embed a tweet _in Markdown_!
 
@@ -54,6 +56,10 @@ Vimeo and YouTube videos work too :-)
 
 <Vimeo id="https://vimeo.com/32001208" />
 <YouTube id="https://youtu.be/xtTy5nKay_Y" />
+
+And even Mastodon posts!
+
+<MastodonPost id="https://mastodon.social/@sarah11918/112954791910873136" />
 ```
 
 ### Auto-embed URLs in MDX
@@ -68,6 +74,7 @@ Astro Embed currently supports the following services:
 
 <CardGrid>
 	<LinkCard title="Baseline" href="/components/baseline-status/" />
+	<LinkCard title="Mastodon" href="/components/mastodon/" />
 	<LinkCard title="Open Graph" href="/components/link-preview/" />
 	<LinkCard title="Twitter" href="/components/twitter/" />
 	<LinkCard title="Vimeo" href="/components/vimeo/" />

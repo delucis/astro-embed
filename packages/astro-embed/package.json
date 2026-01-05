@@ -23,7 +23,8 @@
     "embeds",
     "twitter",
     "vimeo",
-    "youtube"
+    "youtube",
+    "mastodon"
   ],
   "author": "delucis",
   "license": "MIT",
@@ -36,6 +37,7 @@
     "@astro-community/astro-embed-bluesky": "^0.1.6",
     "@astro-community/astro-embed-integration": "^0.9.0",
     "@astro-community/astro-embed-link-preview": "^0.3.0",
+    "@astro-community/astro-embed-mastodon": "^0.0.1",
     "@astro-community/astro-embed-twitter": "^0.5.10",
     "@astro-community/astro-embed-vimeo": "^0.3.12",
     "@astro-community/astro-embed-youtube": "^0.5.10"

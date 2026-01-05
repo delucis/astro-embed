@@ -1,0 +1,122 @@
+---
+import PreviewCardAuthors from './PreviewCardAuthors.astro';
+import type { MastodonPreviewCard } from './types';
+
+interface Props {
+	card: MastodonPreviewCard;
+}
+
+const { card } = Astro.props;
+---
+
+<div part="preview-card">
+	<a
+		href={card.url}
+		part={`preview-card-link ${!card.image ? 'preview-card-link--no-image' : ''}`}
+	>
+		{
+			card.image ? (
+				<img
+					alt=""
+					part="preview-card-image"
+					height={card.height}
+					src={card.image}
+					width={card.width}
+					loading="lazy"
+					decoding="async"
+				/>
+			) : (
+				<span part="preview-card-image-placeholder">
+					{/* Document icon */}
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 -960 960 960"
+						width="18"
+						height="18"
+						aria-hidden="true"
+						fill="currentColor"
+					>
+						<path d="M320-240h320v-80H320v80Zm0-160h320v-80H320v80ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520h200L520-800v200Z" />
+					</svg>
+				</span>
+			)
+		}
+		<div part="preview-card-content">
+			<span part="preview-card-provider-name">
+				{card.provider_name || new URL(card.url).hostname}
+			</span>
+			<strong part="preview-card-title">{card.title}</strong>
+			{
+				card.description && (
+					<span part="preview-card-description">{card.description}</span>
+				)
+			}
+		</div>
+	</a>
+	<PreviewCardAuthors authors={card.authors} />
+</div>
+
+<style is:global>
+	astro-embed-mastodon::part(preview-card) {
+		border: 1px solid var(--border-color, #cfd9de);
+		border-radius: var(--border-radius);
+		overflow: clip;
+	}
+	astro-embed-mastodon::part(preview-card-link) {
+		display: flex;
+		flex-direction: column;
+		text-decoration: none;
+		color: inherit;
+		border-radius: var(--border-radius) var(--border-radius) 0 0;
+		outline-offset: -2px;
+	}
+	astro-embed-mastodon::part(preview-card-link--no-image) {
+		flex-direction: row;
+	}
+
+	astro-embed-mastodon::part(preview-card-image) {
+		width: 100%;
+		height: auto;
+	}
+	astro-embed-mastodon::part(preview-card-image-placeholder) {
+		flex: 0 0 auto;
+		width: 7.5em;
+		aspect-ratio: 1;
+		display: grid;
+		place-items: center;
+		background-color: var(--background-color-accent);
+		color: var(--color-secondary);
+	}
+
+	astro-embed-mastodon::part(preview-card-content) {
+		flex: 1 1 auto;
+		overflow: hidden;
+		padding: var(--padding, 1em);
+		max-width: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5em;
+		justify-content: center;
+	}
+	astro-embed-mastodon::part(preview-card-provider-name),
+	astro-embed-mastodon::part(preview-card-description) {
+		display: block;
+		font-size: 0.875em;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		color: var(--color-secondary);
+	}
+
+	astro-embed-mastodon::part(preview-card-title) {
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		line-clamp: 2;
+		font-size: 1.1875em;
+		line-height: 1.25;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		color: var(--color-primary);
+	}
+</style>
