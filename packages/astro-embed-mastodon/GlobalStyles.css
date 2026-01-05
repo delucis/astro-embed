@@ -1,0 +1,57 @@
+/* Global styles for various elements throughout component */
+
+/* Very simple reset to remove default styling from elements. */
+:where(*) {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+/* Set link colour globally. */
+:where(:any-link) {
+	color: var(--mc-color-link);
+}
+
+/* Custom styles for paragraphs in post content. */
+p {
+	white-space: pre-wrap;
+	unicode-bidi: plaintext;
+}
+
+/* Styles for built-in classes Mastodon adds to post HTML. */
+
+/* This classname is equivalent to “visually-hidden” or “sr-only” classes. */
+.invisible {
+	font-size: 0;
+	line-height: 0;
+	display: inline-block;
+	width: 0;
+	height: 0;
+	position: absolute;
+}
+
+/* Add ellipsis to truncated text (e.g. link URLs). */
+.ellipsis::after {
+	content: '…';
+}
+
+/* Calculate text-direction independently inside links and mentions. */
+.unhandled-link,
+.mention {
+	unicode-bidi: isolate;
+}
+
+/* Hide the inline quote text because our component displays quoted posts separately. */
+.quote-inline {
+	display: none;
+}
+
+/* Styles for Mastodon post emojis */
+.mastodon-post-emoji {
+	width: 1.25em;
+	height: 1.25em;
+	/* Grabbed from Mastodon website. */
+	margin-block: -0.2ex 0.2ex;
+	object-fit: contain;
+	vertical-align: middle;
+}

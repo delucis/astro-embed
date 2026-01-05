@@ -2,7 +2,7 @@
 import MediaAttachment from './MediaAttachment.astro';
 import PreviewCard from './PreviewCard.astro';
 import type { MastodonStatus } from './types';
-import { fetchMastodonPost, replaceEmojis } from './utils';
+import { fetchMastodonPost, getLocaleDir, replaceEmojis } from './utils';
 
 interface Props {
 	parent: MastodonStatus;
@@ -27,13 +27,14 @@ if ('quoted_status' in quote && quote.quoted_status) {
 {
 	post &&
 		(compact ? (
-			<blockquote class="mastodon-subquote">
+			<blockquote part="subquote">
 				Quoted a post by @{post.account.acct}
 			</blockquote>
 		) : (
-			<blockquote class="mastodon-quoted-post">
-				<div class="mastodon-quoted-post__header">
+			<blockquote part="quoted-post">
+				<div part="quoted-post-header">
 					<img
+						part="quoted-post-avatar"
 						src={post.account.avatar_static}
 						alt=""
 						width="32"
@@ -41,7 +42,7 @@ if ('quoted_status' in quote && quote.quoted_status) {
 						loading="lazy"
 						decoding="async"
 					/>
-					<span class="display-name">
+					<span part="quoted-post-display-name">
 						<bdi>
 							<strong
 								set:html={replaceEmojis(
@@ -50,7 +51,7 @@ if ('quoted_status' in quote && quote.quoted_status) {
 								)}
 							/>
 						</bdi>
-						<span class="display-name__account">@{post.account.acct}</span>
+						<span part="quoted-post-username">@{post.account.acct}</span>
 					</span>
 					<a href={post.url}>
 						{new Date(post.created_at).toLocaleDateString(undefined, {
@@ -61,8 +62,8 @@ if ('quoted_status' in quote && quote.quoted_status) {
 					</a>
 				</div>
 				<div
-					class="mastodon-quoted-post__content"
-					dir={post.dir}
+					part="quoted-post-content"
+					dir={getLocaleDir(post.language)}
 					lang={post.language}
 					set:html={replaceEmojis(post.content, post.emojis)}
 				/>
@@ -75,12 +76,8 @@ if ('quoted_status' in quote && quote.quoted_status) {
 		))
 }
 
-<style>
-	blockquote {
-		margin: 0;
-	}
-
-	.mastodon-quoted-post {
+<style is:global>
+	astro-embed-mastodon::part(quoted-post) {
 		border: 1px solid var(--mc-border-color, #cfd9de);
 		border-radius: var(--mc-border-radius);
 		padding: 0.875em;
@@ -89,28 +86,32 @@ if ('quoted_status' in quote && quote.quoted_status) {
 		gap: 1em;
 	}
 
-	.mastodon-quoted-post__header {
+	astro-embed-mastodon::part(quoted-post-header) {
 		display: flex;
 		gap: 0.5em;
 		font-size: 0.875em;
 	}
-	.mastodon-quoted-post__header img {
+	astro-embed-mastodon::part(quoted-post-avatar) {
 		border-radius: var(--mc-border-radius);
 	}
-	.mastodon-quoted-post__header .display-name {
+	astro-embed-mastodon::part(quoted-post-display-name) {
 		display: flex;
 		flex-direction: column;
 		margin-inline-end: auto;
 	}
-	.display-name__account {
+	astro-embed-mastodon::part(quoted-post-username) {
 		font-size: 0.85em;
 	}
 
-	.mastodon-quoted-post__content {
+	astro-embed-mastodon::part(quoted-post-content) {
+		display: flex;
+		flex-direction: column;
+		gap: 1em;
+
 		font-size: 0.875em;
 	}
 
-	.mastodon-subquote {
+	astro-embed-mastodon::part(subquote) {
 		border-radius: var(--mc-border-radius);
 		color: var(--mc-color-secondary);
 		background-color: var(--mc-background-color-surface);

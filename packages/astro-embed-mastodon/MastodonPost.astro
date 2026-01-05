@@ -1,9 +1,10 @@
 ---
-import MediaAttachment from './MediaAttachment.astro';
+import Attachments from './Attachments.astro';
+import PostFooter from './PostFooter.astro';
 import PostHeader from './PostHeader.astro';
-import PreviewCard from './PreviewCard.astro';
 import QuotedPost from './QuotedPost.astro';
 import { fetchMastodonPost, replaceEmojis } from './utils';
+import styleUrl from './GlobalStyles.css?url';
 
 export interface Props {
 	id: string;
@@ -15,45 +16,23 @@ const post = await fetchMastodonPost(id);
 
 {
 	post && (
-		<astro-embed-post>
-			<blockquote class="mastodon-post">
-				<PostHeader {post} />
-				<div
-					class="mastodon-post__content"
-					dir={post.dir}
-					lang={post.language}
-					set:html={replaceEmojis(post.content, post.emojis)}
-				/>
-				{post.media_attachments.length > 0 ? (
+		<astro-embed-mastodon>
+			<template shadowrootmode="open">
+				<link rel="stylesheet" href={styleUrl} />
+				<blockquote part="root">
+					<PostHeader {post} />
 					<div
-						class="mastodon-post__media"
-						data-media-count={post.media_attachments.length}
-						data-has-audio={
-							post.media_attachments.some(({ type }) => type === 'audio') ||
-							undefined
-						}
-					>
-						{post.media_attachments.map((media) => (
-							<MediaAttachment media={media} />
-						))}
-					</div>
-				) : (
-					post.card && <PreviewCard card={post.card} />
-				)}
-				{post.quote && <QuotedPost parent={post} quote={post.quote} />}
-				<div>
-					<a href={post.url}>
-						<time datetime={post.created_at}>
-							{new Date(post.created_at).toLocaleDateString(undefined, {
-								year: 'numeric',
-								month: 'long',
-								day: 'numeric',
-							})}
-						</time>
-					</a>
-				</div>
-			</blockquote>
-		</astro-embed-post>
+						part="content"
+						dir={post.dir}
+						lang={post.language}
+						set:html={replaceEmojis(post.content, post.emojis)}
+					/>
+					<Attachments {post} />
+					{post.quote && <QuotedPost parent={post} quote={post.quote} />}
+					<PostFooter {post} />
+				</blockquote>
+			</template>
+		</astro-embed-mastodon>
 	)
 }
 <style>
@@ -149,9 +128,8 @@ const post = await fetchMastodonPost(id);
 		}
 	}
 
-	.mastodon-post {
+	astro-embed-mastodon::part(root) {
 		margin: 0;
-		border: 0;
 		border: 1px solid var(--mc-border-color, #cfd9de);
 		border-radius: var(--mc-border-radius);
 
@@ -166,79 +144,19 @@ const post = await fetchMastodonPost(id);
 		color: var(--mc-color);
 		background-color: var(--mc-background-color);
 	}
-	:global(:where(.mastodon-post *)) {
-		box-sizing: border-box;
-		margin: 0;
-		padding: 0;
-	}
-	:global(:where(.mastodon-post a)) {
-		color: var(--mc-color-link);
-	}
-	.mastodon-post :global(.invisible) {
-		font-size: 0;
-		line-height: 0;
-		display: inline-block;
-		width: 0;
-		height: 0;
-		position: absolute;
-	}
-	.mastodon-post__content {
+
+	astro-embed-mastodon::part(content) {
+		display: flex;
+		flex-direction: column;
+		gap: 1.16em;
+
 		font-size: 1.1875em;
 		line-height: 1.25;
+
 		overflow-wrap: break-word;
 		overflow: hidden;
 		text-overflow: ellipsis;
+
 		color: var(--mc-color-primary);
-	}
-	.mastodon-post :global(p:not(:last-child)) {
-		margin-bottom: 1.16em;
-		white-space: pre-wrap;
-		unicode-bidi: plaintext;
-	}
-
-	/* Styles for built-in classes Mastodon adds to post HTML. */
-	.mastodon-post :global(.ellipsis::after) {
-		content: '…';
-	}
-	.mastodon-post :global(.unhandled-link) {
-		unicode-bidi: isolate;
-	}
-	.mastodon-post :global(.mention.u-url) {
-		/* @user mention style */
-	}
-	.mastodon-post :global(.mention.hashtag) {
-		unicode-bidi: isolate;
-	}
-	.mastodon-post :global(.quote-inline) {
-		display: none;
-	}
-	.mastodon-post :global(.mastodon-post-emoji) {
-		width: 1.25em;
-		height: 1.25em;
-		/* Grabbed from Mastodon website. */
-		margin-block: -0.2ex 0.2ex;
-		object-fit: contain;
-		vertical-align: middle;
-	}
-
-	.mastodon-post__media:not([data-has-audio]) {
-		min-height: 4em;
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		grid-template-rows: 1fr 1fr;
-		gap: 0.125em;
-		overflow: clip;
-		border-radius: var(--mc-border-radius);
-	}
-	.mastodon-post__media[data-media-count='1'] {
-		grid-template-columns: 1fr;
-		grid-template-rows: 1fr;
-	}
-	.mastodon-post__media[data-media-count='3'] :global(:first-child) {
-		grid-row: span 2;
-	}
-
-	time {
-		font-size: 0.875em;
 	}
 </style>

@@ -9,13 +9,16 @@ interface Props {
 const { card } = Astro.props;
 ---
 
-<div class="mastodon-post-card">
-	<a href={card.url}>
+<div part="preview-card">
+	<a
+		href={card.url}
+		part={`preview-card-link ${!card.image ? 'preview-card-link--no-image' : ''}`}
+	>
 		{
 			card.image ? (
 				<img
 					alt=""
-					class="mastodon-post-img"
+					part="preview-card-image"
 					height={card.height}
 					src={card.image}
 					width={card.width}
@@ -23,7 +26,7 @@ const { card } = Astro.props;
 					decoding="async"
 				/>
 			) : (
-				<span class="mastodon-post-preview-icon">
+				<span part="preview-card-image-placeholder">
 					{/* Document icon */}
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -38,22 +41,28 @@ const { card } = Astro.props;
 				</span>
 			)
 		}
-		<div class="mastodon-post-preview-content">
-			<span>{card.provider_name || new URL(card.url).hostname}</span>
-			<strong>{card.title}</strong>
-			{card.description && <span>{card.description}</span>}
+		<div part="preview-card-content">
+			<span part="preview-card-provider-name">
+				{card.provider_name || new URL(card.url).hostname}
+			</span>
+			<strong part="preview-card-title">{card.title}</strong>
+			{
+				card.description && (
+					<span part="preview-card-description">{card.description}</span>
+				)
+			}
 		</div>
 	</a>
 	<PreviewCardAuthors authors={card.authors} />
 </div>
 
-<style>
-	.mastodon-post-card {
+<style is:global>
+	astro-embed-mastodon::part(preview-card) {
 		border: 1px solid var(--mc-border-color, #cfd9de);
 		border-radius: var(--mc-border-radius);
 		overflow: clip;
 	}
-	.mastodon-post-card > a {
+	astro-embed-mastodon::part(preview-card-link) {
 		display: flex;
 		flex-direction: column;
 		text-decoration: none;
@@ -61,19 +70,15 @@ const { card } = Astro.props;
 		border-radius: var(--mc-border-radius) var(--mc-border-radius) 0 0;
 		outline-offset: -2px;
 	}
-	.mastodon-post-card > a:has(.mastodon-post-preview-icon) {
+	astro-embed-mastodon::part(preview-card-link--no-image) {
 		flex-direction: row;
 	}
 
-	.mastodon-post-img {
+	astro-embed-mastodon::part(preview-card-image) {
 		width: 100%;
 		height: auto;
 	}
-	.mastodon-post-img + div {
-		border-top: 1px solid var(--mc-border-color, #cfd9de);
-		margin-top: 0;
-	}
-	.mastodon-post-preview-icon {
+	astro-embed-mastodon::part(preview-card-image-placeholder) {
 		flex: 0 0 auto;
 		width: 7.5em;
 		aspect-ratio: 1;
@@ -83,7 +88,7 @@ const { card } = Astro.props;
 		color: var(--mc-color-secondary);
 	}
 
-	.mastodon-post-preview-content {
+	astro-embed-mastodon::part(preview-card-content) {
 		flex: 1 1 auto;
 		overflow: hidden;
 		padding: var(--mc-padding, 1em);
@@ -93,7 +98,8 @@ const { card } = Astro.props;
 		gap: 0.5em;
 		justify-content: center;
 	}
-	.mastodon-post-preview-content span {
+	astro-embed-mastodon::part(preview-card-provider-name),
+	astro-embed-mastodon::part(preview-card-description) {
 		display: block;
 		font-size: 0.875em;
 		white-space: nowrap;
@@ -102,7 +108,7 @@ const { card } = Astro.props;
 		color: var(--mc-color-secondary);
 	}
 
-	.mastodon-post-preview-content strong {
+	astro-embed-mastodon::part(preview-card-title) {
 		display: -webkit-box;
 		-webkit-box-orient: vertical;
 		-webkit-line-clamp: 2;

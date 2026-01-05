@@ -15,7 +15,8 @@ const wellKnownRTL = ['ar', 'fa', 'he', 'prs', 'ps', 'syc', 'ug', 'ur'];
 
 // Thanks to @astrojs/starlight
 // https://github.com/withastro/starlight/blob/8a861d16b586b019f61f30d93c61bdcd58e1503f/packages/starlight/utils/i18n.ts#L177-L188
-function getLocaleDir(locale: Intl.Locale): 'ltr' | 'rtl' {
+export function getLocaleDir(lang: string): 'ltr' | 'rtl' {
+	const locale = new Intl.Locale(lang);
 	if ('textInfo' in locale) {
 		// @ts-expect-error - `textInfo` is not typed but is available in v8 based environments.
 		return locale.textInfo.direction;
@@ -42,9 +43,7 @@ export async function fetchMastodonPost(url: string) {
 	const data = (await safeGet(
 		`${new URL(url).origin}/api/v1/statuses/${id}`
 	)) as MastodonStatus | undefined;
-	return data
-		? { ...data, dir: getLocaleDir(new Intl.Locale(data.language)) }
-		: undefined;
+	return data ? { ...data, dir: getLocaleDir(data.language) } : undefined;
 }
 
 export function replaceEmojis(

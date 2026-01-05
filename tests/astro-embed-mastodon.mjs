@@ -118,7 +118,7 @@ test('it should render in RTL languages', async () => {
 			id: 'https://khiar.net/@ebi/111512220730617416',
 		}
 	);
-	const content = document.querySelector('.mastodon-post__content');
+	const content = document.querySelector('[part="content"]');
 	assert.ok(content);
 	assert.equal(content.getAttribute('lang'), 'fa');
 	assert.equal(content.getAttribute('dir'), 'rtl');

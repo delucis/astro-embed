@@ -1,0 +1,50 @@
+---
+import MediaAttachment from './MediaAttachment.astro';
+import PreviewCard from './PreviewCard.astro';
+import type { MastodonStatus } from './types';
+
+interface Props {
+	post: MastodonStatus;
+}
+
+const { post } = Astro.props;
+---
+
+{
+	post.media_attachments.length > 0 ? (
+		<div part={`gallery media-count-${post.media_attachments.length}`}>
+			{post.media_attachments.map((media, index) => (
+				<div
+					part={
+						index === 0 && post.media_attachments.length === 3
+							? 'row-span'
+							: undefined
+					}
+				>
+					<MediaAttachment media={media} />
+				</div>
+			))}
+		</div>
+	) : (
+		post.card && <PreviewCard card={post.card} />
+	)
+}
+
+<style is:global>
+	astro-embed-mastodon::part(gallery) {
+		min-height: 4em;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 1fr 1fr;
+		gap: 0.125em;
+		overflow: clip;
+		border-radius: var(--mc-border-radius);
+	}
+	astro-embed-mastodon::part(gallery media-count-1) {
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr;
+	}
+	astro-embed-mastodon::part(row-span) {
+		grid-row: span 2;
+	}
+</style>
