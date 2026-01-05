@@ -1,1 +1,1 @@
-export { default as MastodonPost } from './MastodonPost.astro';
+export { default as MastodonPost } from './src/MastodonPost.astro';

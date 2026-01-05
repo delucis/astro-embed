@@ -10,10 +10,7 @@
   "files": [
     "index.ts",
     "matcher.ts",
-    "MediaAttachment.astro",
-    "PreviewCard.astro",
-    "MastodonPost.astro",
-    "MastodonPost.css"
+    "src"
   ],
   "repository": {
     "type": "git",
