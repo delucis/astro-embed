@@ -1,24 +1,8 @@
 ---
+import type { MastodonMediaAttachment } from './types';
+
 interface Props {
 	media: MastodonMediaAttachment;
-}
-
-// https://docs.joinmastodon.org/entities/MediaAttachment/
-export interface MastodonMediaAttachment {
-	description: string | null;
-	meta: {
-		original?: {
-			height: number;
-			width: number;
-		};
-		small?: {
-			height: number;
-			width: number;
-		};
-	};
-	preview_url: string | null;
-	type: 'image' | 'gifv' | 'video' | 'audio' | 'unknown';
-	url: string;
 }
 
 const { media } = Astro.props;
@@ -34,9 +18,9 @@ if (media.type === 'unknown') {
 			<img
 				alt={media.description}
 				class="mastodon-post-img"
-				height={media.meta.small?.height}
+				height={media.meta?.small?.height}
 				src={media.preview_url}
-				width={media.meta.small?.width}
+				width={media.meta?.small?.width}
 			/>
 		</a>
 	)
@@ -47,11 +31,11 @@ if (media.type === 'unknown') {
 			aria-label={media.description}
 			class="mastodon-post-video"
 			controls
-			height={media.meta.original?.height}
+			height={media.meta?.original?.height}
 			poster={media.preview_url}
 			preload="metadata"
 			src={media.url}
-			width={media.meta.original?.width}
+			width={media.meta?.original?.width}
 		/>
 	)
 }
