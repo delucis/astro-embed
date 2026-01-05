@@ -13,15 +13,13 @@ const { post } = Astro.props;
 {
 	post.media_attachments.length > 0 ? (
 		<div part={`gallery media-count-${post.media_attachments.length}`}>
-			{post.media_attachments.map((media, index) => (
+			{post.media_attachments.map((media, index, attachments) => (
 				<div
 					part={
-						index === 0 && post.media_attachments.length === 3
-							? 'row-span'
-							: undefined
+						index === 0 && attachments.length === 3 ? 'row-span' : undefined
 					}
 				>
-					<MediaAttachment media={media} />
+					<MediaAttachment media={media} halfWidth={attachments.length > 1} />
 				</div>
 			))}
 		</div>

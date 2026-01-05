@@ -3,9 +3,10 @@ import type { MastodonMediaAttachment } from './types';
 
 interface Props {
 	media: MastodonMediaAttachment;
+	halfWidth?: boolean;
 }
 
-const { media } = Astro.props;
+const { media, halfWidth } = Astro.props;
 
 if (media.type === 'unknown') {
 	return;
@@ -20,6 +21,14 @@ if (media.type === 'unknown') {
 				part="image-attachment"
 				height={media.meta?.small?.height}
 				src={media.preview_url}
+				srcset={[
+					`${media.preview_url} ${media.meta?.small?.width}w`,
+					`${media.url} ${media.meta?.original?.width}w`,
+				].join(', ')}
+				sizes={[
+					`(width <= 400px) ${halfWidth ? '50vw' : '100vw'}`,
+					halfWidth ? '200px' : '400px',
+				].join(', ')}
 				width={media.meta?.small?.width}
 				loading="lazy"
 				decoding="async"
