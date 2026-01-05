@@ -159,13 +159,13 @@ importers:
         specifier: ^0.1.6
         version: link:../astro-embed-bluesky
       '@astro-community/astro-embed-integration':
-        specifier: ^0.9.0
+        specifier: ^0.10.0
         version: link:../astro-embed-integration
       '@astro-community/astro-embed-link-preview':
         specifier: ^0.3.0
         version: link:../astro-embed-link-preview
       '@astro-community/astro-embed-mastodon':
-        specifier: ^0.0.1
+        specifier: ^0.1.0
         version: link:../astro-embed-mastodon
       '@astro-community/astro-embed-twitter':
         specifier: ^0.5.10
@@ -201,7 +201,7 @@ importers:
         specifier: ^0.3.0
         version: link:../astro-embed-link-preview
       '@astro-community/astro-embed-mastodon':
-        specifier: ^0.0.1
+        specifier: ^0.1.0
         version: link:../astro-embed-mastodon
       '@astro-community/astro-embed-twitter':
         specifier: ^0.5.10
