@@ -119,6 +119,10 @@ export interface MastodonCustomEmoji {
 	 * A link to the custom emoji.
 	 */
 	url: string;
+	/**
+	 * A link to a static copy of the custom emoji.
+	 */
+	static_url: string;
 }
 
 /**
