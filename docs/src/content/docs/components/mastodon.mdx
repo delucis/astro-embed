@@ -45,13 +45,13 @@ You can override the default styles using [custom properties](#custom-properties
 
 ```css
 astro-embed-mastodon::part(root) {
-	--mc-color: gray;
-	--mc-color-primary: darkblue;
-	--mc-color-secondary: purple;
-	--mc-color-link: purple;
-	--mc-background-color: floralwhite;
-	--mc-border-color: orange;
-	--mc-font-family: cursive;
+	--color: gray;
+	--color-primary: darkblue;
+	--color-secondary: purple;
+	--color-link: purple;
+	--background-color: floralwhite;
+	--border-color: orange;
+	--font-family: cursive;
 
 	max-width: 400px;
 }
@@ -93,9 +93,9 @@ For example, if you use a `data-theme="dark"` attribute to enable dark mode on y
 
 ```css
 [data-theme='dark'] astro-embed-mastodon::part(root) {
-	--mc-color: var(--mc-color--dark);
-	--mc-color-primary: var(--mc-color-primary--dark);
-	--mc-color-secondary: var(--mc-color-secondary--dark);
+	--color: var(--color--dark);
+	--color-primary: var(--color-primary--dark);
+	--color-secondary: var(--color-secondary--dark);
 	/* ... */
 }
 ```
@@ -109,33 +109,33 @@ The `<MastodonPost>` component supports the following API for controlling its st
 ```css
 :root {
 	/* Control the padding inside the Mastodon card. */
-	--mc-padding: 1em;
+	--padding: 1em;
 	/* Set the corner-radius of elements in the Mastodon card. */
-	--mc-border-radius: 0.5em;
+	--border-radius: 0.5em;
 	/* Set the font family for text in the Mastodon card. */
-	--mc-font-family: inherit;
+	--font-family: inherit;
 
 	/* Light mode color palette. */
-	--mc-color-scheme--light: light;
-	--mc-color--light: #292938;
-	--mc-color-primary--light: #000;
-	--mc-color-secondary--light: #45455f;
-	--mc-color-link--light: #5653ed;
-	--mc-background-color--light: #fff;
-	--mc-border-color--light: #cfd9de;
-	--mc-background-color-surface--light: #e8e6f0;
-	--mc-background-color-accent--light: #c6bfd9;
+	--color-scheme--light: light;
+	--color--light: #292938;
+	--color-primary--light: #000;
+	--color-secondary--light: #45455f;
+	--color-link--light: #5653ed;
+	--background-color--light: #fff;
+	--border-color--light: #cfd9de;
+	--background-color-surface--light: #e8e6f0;
+	--background-color-accent--light: #c6bfd9;
 
 	/* Dark mode color palette. */
-	--mc-color-scheme--dark: dark;
-	--mc-color--dark: #cfd9de;
-	--mc-color-primary--dark: #f0f1ff;
-	--mc-color-secondary--dark: #8b8dac;
-	--mc-color-link--dark: #8886ff;
-	--mc-background-color--dark: #181821;
-	--mc-border-color--dark: #c8cdfe2e;
-	--mc-background-color-surface--dark: #6247e61a;
-	--mc-background-color-accent--dark: #c8cdfe14;
+	--color-scheme--dark: dark;
+	--color--dark: #cfd9de;
+	--color-primary--dark: #f0f1ff;
+	--color-secondary--dark: #8b8dac;
+	--color-link--dark: #8886ff;
+	--background-color--dark: #181821;
+	--border-color--dark: #c8cdfe2e;
+	--background-color-surface--dark: #6247e61a;
+	--background-color-accent--dark: #c8cdfe14;
 }
 ```
 

@@ -58,8 +58,8 @@ const { card } = Astro.props;
 
 <style is:global>
 	astro-embed-mastodon::part(preview-card) {
-		border: 1px solid var(--mc-border-color, #cfd9de);
-		border-radius: var(--mc-border-radius);
+		border: 1px solid var(--border-color, #cfd9de);
+		border-radius: var(--border-radius);
 		overflow: clip;
 	}
 	astro-embed-mastodon::part(preview-card-link) {
@@ -67,7 +67,7 @@ const { card } = Astro.props;
 		flex-direction: column;
 		text-decoration: none;
 		color: inherit;
-		border-radius: var(--mc-border-radius) var(--mc-border-radius) 0 0;
+		border-radius: var(--border-radius) var(--border-radius) 0 0;
 		outline-offset: -2px;
 	}
 	astro-embed-mastodon::part(preview-card-link--no-image) {
@@ -84,14 +84,14 @@ const { card } = Astro.props;
 		aspect-ratio: 1;
 		display: grid;
 		place-items: center;
-		background-color: var(--mc-background-color-accent);
-		color: var(--mc-color-secondary);
+		background-color: var(--background-color-accent);
+		color: var(--color-secondary);
 	}
 
 	astro-embed-mastodon::part(preview-card-content) {
 		flex: 1 1 auto;
 		overflow: hidden;
-		padding: var(--mc-padding, 1em);
+		padding: var(--padding, 1em);
 		max-width: 100%;
 		display: flex;
 		flex-direction: column;
@@ -105,7 +105,7 @@ const { card } = Astro.props;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		color: var(--mc-color-secondary);
+		color: var(--color-secondary);
 	}
 
 	astro-embed-mastodon::part(preview-card-title) {
@@ -117,6 +117,6 @@ const { card } = Astro.props;
 		line-height: 1.25;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		color: var(--mc-color-primary);
+		color: var(--color-primary);
 	}
 </style>

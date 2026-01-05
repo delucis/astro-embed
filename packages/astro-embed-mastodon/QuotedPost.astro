@@ -78,8 +78,8 @@ if ('quoted_status' in quote && quote.quoted_status) {
 
 <style is:global>
 	astro-embed-mastodon::part(quote) {
-		border: 1px solid var(--mc-border-color, #cfd9de);
-		border-radius: var(--mc-border-radius);
+		border: 1px solid var(--border-color, #cfd9de);
+		border-radius: var(--border-radius);
 		padding: 0.875em;
 		display: flex;
 		flex-direction: column;
@@ -92,18 +92,18 @@ if ('quoted_status' in quote && quote.quoted_status) {
 		font-size: 0.875em;
 	}
 	astro-embed-mastodon::part(quote-avatar) {
-		border-radius: var(--mc-border-radius);
+		border-radius: var(--border-radius);
 	}
 	astro-embed-mastodon::part(quote-display-name) {
 		display: flex;
 		flex-direction: column;
 		margin-inline-end: auto;
-		color: var(--mc-color-primary);
+		color: var(--color-primary);
 	}
 	astro-embed-mastodon::part(quote-username) {
 		font-size: 0.85em;
 		letter-spacing: 0.04em;
-		color: var(--mc-color-secondary);
+		color: var(--color-secondary);
 	}
 
 	astro-embed-mastodon::part(quote-content) {
@@ -111,14 +111,14 @@ if ('quoted_status' in quote && quote.quoted_status) {
 		flex-direction: column;
 		gap: 1em;
 
-		color: var(--mc-color-primary);
+		color: var(--color-primary);
 		font-size: 0.875em;
 	}
 
 	astro-embed-mastodon::part(subquote) {
-		border-radius: var(--mc-border-radius);
-		color: var(--mc-color-secondary);
-		background-color: var(--mc-background-color-surface);
+		border-radius: var(--border-radius);
+		color: var(--color-secondary);
+		background-color: var(--background-color-surface);
 		padding: 0.5em 0.75em;
 		font-size: 0.875em;
 	}

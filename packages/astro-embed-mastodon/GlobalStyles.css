@@ -9,7 +9,7 @@
 
 /* Set link colour globally. */
 :where(:any-link) {
-	color: var(--mc-color-link);
+	color: var(--color-link);
 }
 
 /* Custom styles for paragraphs in post content. */

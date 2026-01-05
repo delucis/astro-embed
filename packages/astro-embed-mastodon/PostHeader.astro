@@ -73,7 +73,7 @@ const username = `${post.account.username}@${hostname}`;
 		color: inherit;
 	}
 	astro-embed-mastodon::part(user-avatar) {
-		border-radius: var(--mc-border-radius);
+		border-radius: var(--border-radius);
 		width: 3em;
 		height: 3em;
 		object-fit: cover;
@@ -86,11 +86,11 @@ const username = `${post.account.username}@${hostname}`;
 		white-space: nowrap;
 		overflow: hidden;
 
-		color: var(--mc-color-secondary);
+		color: var(--color-secondary);
 	}
 	astro-embed-mastodon::part(user-display-name) {
 		font-weight: 600;
-		color: var(--mc-color-primary);
+		color: var(--color-primary);
 	}
 	astro-embed-mastodon::part(user-display-name),
 	astro-embed-mastodon::part(user-account) {
@@ -100,7 +100,7 @@ const username = `${post.account.username}@${hostname}`;
 	}
 
 	astro-embed-mastodon::part(mastodon-logo) {
-		color: var(--mc-color-secondary);
+		color: var(--color-secondary);
 		width: 2.5em;
 		height: 2.5em;
 	}

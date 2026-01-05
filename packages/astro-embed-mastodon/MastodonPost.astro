@@ -35,114 +35,114 @@ const post = await fetchMastodonPost(id);
 		</astro-embed-mastodon>
 	)
 }
-<style>
-	:global(:root) {
+<style is:global>
+	astro-embed-mastodon::part(root) {
 		/* Light colour palette */
-		--mc-color-scheme--light: light;
-		--mc-color--light: #292938;
-		--mc-color-primary--light: #000;
-		--mc-color-secondary--light: #45455f;
-		--mc-color-link--light: #5653ed;
-		--mc-background-color--light: #fff;
-		--mc-border-color--light: #cfd9de;
-		--mc-background-color-surface--light: #e8e6f0;
-		--mc-background-color-accent--light: #c6bfd9;
-		/* --mc-border-color-media--light: rgba(252, 248, 255, .15) */
+		--color-scheme--light: light;
+		--color--light: #292938;
+		--color-primary--light: #000;
+		--color-secondary--light: #45455f;
+		--color-link--light: #5653ed;
+		--background-color--light: #fff;
+		--border-color--light: #cfd9de;
+		--background-color-surface--light: #e8e6f0;
+		--background-color-accent--light: #c6bfd9;
+		/* --border-color-media--light: rgba(252, 248, 255, .15) */
 
 		/* Dark colour palette */
-		--mc-color-scheme--dark: dark;
-		--mc-color--dark: #cfd9de;
-		--mc-color-primary--dark: #f0f1ff;
-		--mc-color-secondary--dark: #8b8dac;
-		--mc-color-link--dark: #8886ff;
-		--mc-background-color--dark: #181821;
-		--mc-border-color--dark: #c8cdfe2e;
-		--mc-background-color-surface--dark: #6247e61a;
-		--mc-background-color-accent--dark: #c8cdfe14;
-		/* --mc-border-color-media--dark: rgba(252, 248, 255, .15) */
+		--color-scheme--dark: dark;
+		--color--dark: #cfd9de;
+		--color-primary--dark: #f0f1ff;
+		--color-secondary--dark: #8b8dac;
+		--color-link--dark: #8886ff;
+		--background-color--dark: #181821;
+		--border-color--dark: #c8cdfe2e;
+		--background-color-surface--dark: #6247e61a;
+		--background-color-accent--dark: #c8cdfe14;
+		/* --border-color-media--dark: rgba(252, 248, 255, .15) */
 
-		--mc-color-scheme: var(--mc-color-scheme--light);
-		--mc-color: var(--mc-color--light);
-		--mc-color-primary: var(--mc-color-primary--light);
-		--mc-color-secondary: var(--mc-color-secondary--light);
-		--mc-color-link: var(--mc-color-link--light);
-		--mc-background-color: var(--mc-background-color--light);
-		--mc-border-color: var(--mc-border-color--light);
-		--mc-background-color-surface: var(--mc-background-color-surface--light);
-		--mc-background-color-accent: var(--mc-background-color-accent--light);
+		--color-scheme: var(--color-scheme--light);
+		--color: var(--color--light);
+		--color-primary: var(--color-primary--light);
+		--color-secondary: var(--color-secondary--light);
+		--color-link: var(--color-link--light);
+		--background-color: var(--background-color--light);
+		--border-color: var(--border-color--light);
+		--background-color-surface: var(--background-color-surface--light);
+		--background-color-accent: var(--background-color-accent--light);
 
-		--mc-padding: 1em;
-		--mc-border-radius: 0.5em;
-		--mc-font-family:
+		--padding: 1em;
+		--border-radius: 0.5em;
+		--font-family:
 			Roboto, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen,
 			Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 	}
 
 	@media (prefers-color-scheme: dark) {
-		:global(:root) {
-			--mc-color-scheme: var(--mc-color-scheme--dark);
-			--mc-color: var(--mc-color--dark);
-			--mc-color-primary: var(--mc-color-primary--dark);
-			--mc-color-secondary: var(--mc-color-secondary--dark);
-			--mc-color-link: var(--mc-color-link--dark);
-			--mc-background-color: var(--mc-background-color--dark);
-			--mc-border-color: var(--mc-border-color--dark);
-			--mc-background-color-surface: var(--mc-background-color-surface--dark);
-			--mc-background-color-accent: var(--mc-background-color-accent--dark);
+		astro-embed-mastodon::part(root) {
+			--color-scheme: var(--color-scheme--dark);
+			--color: var(--color--dark);
+			--color-primary: var(--color-primary--dark);
+			--color-secondary: var(--color-secondary--dark);
+			--color-link: var(--color-link--dark);
+			--background-color: var(--background-color--dark);
+			--border-color: var(--border-color--dark);
+			--background-color-surface: var(--background-color-surface--dark);
+			--background-color-accent: var(--background-color-accent--dark);
 		}
 	}
 
 	/* Dynamic colours when supported */
 	@supports (--color: light-dark(var(--a), var(--b))) {
-		:global(:root) {
-			--mc-color-scheme: inherit;
-			--mc-color: light-dark(var(--mc-color--light), var(--mc-color--dark));
-			--mc-color-primary: light-dark(
-				var(--mc-color-primary--light),
-				var(--mc-color-primary--dark)
+		astro-embed-mastodon::part(root) {
+			--color-scheme: inherit;
+			--color: light-dark(var(--color--light), var(--color--dark));
+			--color-primary: light-dark(
+				var(--color-primary--light),
+				var(--color-primary--dark)
 			);
-			--mc-color-secondary: light-dark(
-				var(--mc-color-secondary--light),
-				var(--mc-color-secondary--dark)
+			--color-secondary: light-dark(
+				var(--color-secondary--light),
+				var(--color-secondary--dark)
 			);
-			--mc-color-link: light-dark(
-				var(--mc-color-link--light),
-				var(--mc-color-link--dark)
+			--color-link: light-dark(
+				var(--color-link--light),
+				var(--color-link--dark)
 			);
-			--mc-background-color: light-dark(
-				var(--mc-background-color--light),
-				var(--mc-background-color--dark)
+			--background-color: light-dark(
+				var(--background-color--light),
+				var(--background-color--dark)
 			);
-			--mc-border-color: light-dark(
-				var(--mc-border-color--light),
-				var(--mc-border-color--dark)
+			--border-color: light-dark(
+				var(--border-color--light),
+				var(--border-color--dark)
 			);
-			--mc-background-color-surface: light-dark(
-				var(--mc-background-color-surface--light),
-				var(--mc-background-color-surface--dark)
+			--background-color-surface: light-dark(
+				var(--background-color-surface--light),
+				var(--background-color-surface--dark)
 			);
-			--mc-background-color-accent: light-dark(
-				var(--mc-background-color-accent--light),
-				var(--mc-background-color-accent--dark)
+			--background-color-accent: light-dark(
+				var(--background-color-accent--light),
+				var(--background-color-accent--dark)
 			);
 		}
 	}
 
 	astro-embed-mastodon::part(root) {
 		margin: 0;
-		border: 1px solid var(--mc-border-color, #cfd9de);
-		border-radius: var(--mc-border-radius);
+		border: 1px solid var(--border-color, #cfd9de);
+		border-radius: var(--border-radius);
 
 		display: flex;
 		flex-direction: column;
 		gap: 1em;
 
 		overflow-wrap: anywhere;
-		padding: var(--mc-padding, 1em);
-		font-family: var(--mc-font-family, inherit);
-		color-scheme: var(--mc-color-scheme);
-		color: var(--mc-color);
-		background-color: var(--mc-background-color);
+		padding: var(--padding, 1em);
+		font-family: var(--font-family, inherit);
+		color-scheme: var(--color-scheme);
+		color: var(--color);
+		background-color: var(--background-color);
 	}
 
 	astro-embed-mastodon::part(content) {
@@ -157,6 +157,6 @@ const post = await fetchMastodonPost(id);
 		overflow: hidden;
 		text-overflow: ellipsis;
 
-		color: var(--mc-color-primary);
+		color: var(--color-primary);
 	}
 </style>
