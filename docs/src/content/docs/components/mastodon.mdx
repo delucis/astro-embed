@@ -11,7 +11,7 @@ The `<MastodonPost>` component embeds posts from Mastodon in Astro projects.
 
 ## Usage
 
-The `<MastodonPost>` component generates a static Mastodon card for a single post using [Mastodon’s API](https://docs.joinmastodon.org/client/intro/).
+The `<MastodonPost>` component generates a static card for a single post using [Mastodon’s API](https://docs.joinmastodon.org/client/intro/).
 
 <Tabs>
 <TabItem label="Astro" icon="astro">
@@ -40,12 +40,11 @@ The above code produces the following result:
 
 ## Styling the MastodonPost component
 
-By default the `<MastodonPost>` card has minimal styling, which should adapt to your site’s font settings etc.
-
-You can customise it by targeting the `.mastodon-post` class, for example:
+Due to its relatively complex layout and content, the `<MastodonPost>` component uses [Declarative Shadow DOM](https://web.dev/articles/declarative-shadow-dom) to isolate its markup from your site’s styles.
+You can override the default styles using [custom properties](#custom-properties-api) and [CSS parts](#component-parts-api).
 
 ```css
-.mastodon-post {
+astro-embed-mastodon::part(root) {
 	--mc-color: gray;
 	--mc-color-primary: darkblue;
 	--mc-color-secondary: purple;
@@ -53,6 +52,18 @@ You can customise it by targeting the `.mastodon-post` class, for example:
 	--mc-background-color: floralwhite;
 	--mc-border-color: orange;
 	--mc-font-family: cursive;
+
+	max-width: 400px;
+}
+
+/* Skew post author details in the header. */
+astro-embed-mastodon::part(user) {
+	transform: skew(-15deg, 0);
+}
+
+/* Hide preview card for links in a post. */
+astro-embed-mastodon::part(preview-card) {
+	display: none;
 }
 ```
 
@@ -62,9 +73,38 @@ import StyledMastodonPost from './_examples/StyledMastodonPost.astro';
 
 <StyledMastodonPost />
 
+### Light/dark theming support
+
+The default styles make a best effort to adapt automatically to a site’s color theme.
+
+By default, colors adapt to the user’s color scheme preference using a `prefers-color-scheme` media query.
+
+In browsers that support the [`light-dark()` CSS function](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark), if your site sets the correct `color-scheme` values, `<MastodonPost>` will adapt to match the current theme even if it does not match system-level color scheme preferences.
+
+import { BaselineStatus } from '@astro-community/astro-embed-baseline-status';
+
+<BaselineStatus id="light-dark" />
+
+#### Supporting a custom theme picker
+
+If your site uses a theme picker to set the current theme and you need to support older browsers, you can add custom styles to control the color variables `<MastodonPost>` uses.
+
+For example, if you use a `data-theme="dark"` attribute to enable dark mode on your site, configure colors when that is set:
+
+```css
+[data-theme='dark'] astro-embed-mastodon::part(root) {
+	--mc-color: var(--mc-color--dark);
+	--mc-color-primary: var(--mc-color-primary--dark);
+	--mc-color-secondary: var(--mc-color-secondary--dark);
+	/* ... */
+}
+```
+
+See [“Custom properties API”](#custom-properties-api) below for a full list of available variables.
+
 ### Custom properties API
 
-The `<MastodonPost>` component also supports a minimal API for controlling its styles by setting some CSS custom properties.
+The `<MastodonPost>` component supports the following API for controlling its styles with CSS custom properties.
 
 ```css
 :root {
@@ -75,29 +115,93 @@ The `<MastodonPost>` component also supports a minimal API for controlling its s
 	/* Set the font family for text in the Mastodon card. */
 	--mc-font-family: inherit;
 
-	/* Set the CSS `color-scheme` within the Mastodon card. */
-	--mc-color-scheme: light dark;
-	/* Set the text color in the Mastodon card. */
-	--mc-color: #292938;
-	/* Set the primary text color in the Mastodon card. */
-	--mc-color-primary: #000;
-	/* Set the secondary text color in the Mastodon card. */
-	--mc-color-secondary: #45455f;
-	/* Set the link color in the Mastodon card. */
-	--mc-color-link: #5653ed;
-	/* Set the background color of the Mastodon card. */
-	--mc-background-color: #fff;
-	/* Set the border color of the Mastodon card. */
-	--mc-border-color: #cfd9de;
-	/* Set the background color of surfaces in the Mastodon card. */
-	--mc-background-color-surface: #e8e6f0;
-	/* Set the accent background color in the Mastodon card. */
-	--mc-background-color-accent: #c6bfd9;
+	/* Light mode color palette. */
+	--mc-color-scheme--light: light;
+	--mc-color--light: #292938;
+	--mc-color-primary--light: #000;
+	--mc-color-secondary--light: #45455f;
+	--mc-color-link--light: #5653ed;
+	--mc-background-color--light: #fff;
+	--mc-border-color--light: #cfd9de;
+	--mc-background-color-surface--light: #e8e6f0;
+	--mc-background-color-accent--light: #c6bfd9;
+
+	/* Dark mode color palette. */
+	--mc-color-scheme--dark: dark;
+	--mc-color--dark: #f0f1ff;
+	--mc-color-primary--dark: #f0f1ff;
+	--mc-color-secondary--dark: #8b8dac;
+	--mc-color-link--dark: #8886ff;
+	--mc-background-color--dark: #181821;
+	--mc-border-color--dark: #c8cdfe2e;
+	--mc-background-color-surface--dark: #6247e61a;
+	--mc-background-color-accent--dark: #c8cdfe14;
 }
 ```
 
-Each color variable can also be set for light and dark mode specifically by using the `--mc-*--light` and `--mc-*--dark` variants.
-For example, to set the link color only in dark mode, use `--mc-color-link--dark`.
+### Component parts API
+
+#### Common parts
+
+All Mastodon embeds include the following parts which can be styled with the [`::part()` pseudo-element](https://developer.mozilla.org/en-US/docs/Web/CSS/::part):
+
+##### `::part(root)`
+
+Selects the wrapper at the base of the component. Particularly useful for setting CSS variables that impact component styles.
+
+##### `::part(header)`
+
+The post header containing user details.
+
+##### `::part(user)`
+
+The post author’s details in the header.
+
+Includes the following sub-parts: `::part(user-avatar)`, `::part(user-content)`, `::part(user-display-name)`, and `::part(user-account)`.
+
+##### `::part(mastodon-logo)`
+
+The Mastodon logo in the header.
+
+##### `::part(content)`
+
+The main text content of the post.
+
+##### `::part(footer)`
+
+The post footer containing the date.
+
+#### Rich content parts
+
+Depending on the content of a post, additional parts can be included for rich media:
+
+##### `::part(attachments)`
+
+Wrapper element around one or more media attachments (images, videos, audio).
+
+You can target specific numbers of media attachments using `::part(attachments media-count-N)` where `N` is the number of attachments, e.g. `::part(attachments media-count-3)`.
+
+Includes one or more of the following sub-parts depending on what media was uploaded: `::part(image-attachment)`, `::part(video-attachment)`, and `::part(audio-attachment)`.
+
+##### `::part(preview-card)`
+
+Open Graph preview card for links shared in the post content.
+
+Includes the following sub-parts:
+
+- `::part(preview-card-image)` or, if no image is available, `::part(preview-card-image-placeholder)`
+- `::part(preview-card-content)`
+- `::part(preview-card-provider-name)`
+- `::part(preview-card-title)`
+- `::part(preview-card-description)`
+
+For links with author attribution, the following additional sub-parts are included: `::part(preview-card-authors)`, `::part(preview-card-author)`, `::part(preview-card-author-avatar)`, `::part(preview-card-author-name)`.
+
+##### `::part(quote)`
+
+A quoted Mastodon post.
+
+Includes the following sub-parts: `::part(quote-header)`, `::part(quote-avatar)`, `::part(quote-display-name)`, `::part(quote-username)`, `::part(quote-content)`, and `::part(subquote)`.
 
 ## Standalone installation
 
