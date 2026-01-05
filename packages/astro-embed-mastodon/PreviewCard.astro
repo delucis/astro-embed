@@ -1,37 +1,116 @@
 ---
+import PreviewCardAuthors from './PreviewCardAuthors.astro';
+import type { MastodonPreviewCard } from './types';
+
 interface Props {
 	card: MastodonPreviewCard;
-}
-
-// https://docs.joinmastodon.org/entities/PreviewCard/
-export interface MastodonPreviewCard {
-	description: string;
-	height: number;
-	image: string | null;
-	provider_name: string;
-	title: string;
-	url: string;
-	width: number;
 }
 
 const { card } = Astro.props;
 ---
 
-<a href={card.url} class="mastodon-post-card">
-	{
-		card.image && (
-			<img
-				alt=""
-				class="mastodon-post-img"
-				height={card.height}
-				src={card.image}
-				width={card.width}
-			/>
-		)
+<div class="mastodon-post-card">
+	<a href={card.url}>
+		{
+			card.image ? (
+				<img
+					alt=""
+					class="mastodon-post-img"
+					height={card.height}
+					src={card.image}
+					width={card.width}
+					loading="lazy"
+					decoding="async"
+				/>
+			) : (
+				<span class="mastodon-post-preview-icon">
+					{/* Document icon */}
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 -960 960 960"
+						width="18"
+						height="18"
+						aria-hidden="true"
+						fill="currentColor"
+					>
+						<path d="M320-240h320v-80H320v80Zm0-160h320v-80H320v80ZM240-80q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80H240Zm280-520h200L520-800v200Z" />
+					</svg>
+				</span>
+			)
+		}
+		<div class="mastodon-post-preview-content">
+			<span>{card.provider_name || new URL(card.url).hostname}</span>
+			<strong>{card.title}</strong>
+			{card.description && <span>{card.description}</span>}
+		</div>
+	</a>
+	<PreviewCardAuthors authors={card.authors} />
+</div>
+
+<style>
+	.mastodon-post-card {
+		border: 1px solid var(--mc-border-color, #cfd9de);
+		border-radius: var(--mc-border-radius);
+		overflow: clip;
 	}
-	<div>
-		{card.provider_name && <span>{card.provider_name}</span>}
-		<strong>{card.title}</strong>
-		{card.description && <span>{card.description}</span>}
-	</div>
-</a>
+	.mastodon-post-card > a {
+		display: flex;
+		flex-direction: column;
+		text-decoration: none;
+		color: inherit;
+		border-radius: var(--mc-border-radius) var(--mc-border-radius) 0 0;
+		outline-offset: -2px;
+	}
+	.mastodon-post-card > a:has(.mastodon-post-preview-icon) {
+		flex-direction: row;
+	}
+
+	.mastodon-post-img {
+		width: 100%;
+		height: auto;
+	}
+	.mastodon-post-img + div {
+		border-top: 1px solid var(--mc-border-color, #cfd9de);
+		margin-top: 0;
+	}
+	.mastodon-post-preview-icon {
+		flex: 0 0 auto;
+		width: 7.5em;
+		aspect-ratio: 1;
+		display: grid;
+		place-items: center;
+		background-color: var(--mc-background-color-accent);
+		color: var(--mc-color-secondary);
+	}
+
+	.mastodon-post-preview-content {
+		flex: 1 1 auto;
+		overflow: hidden;
+		padding: var(--mc-padding, 1em);
+		max-width: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5em;
+		justify-content: center;
+	}
+	.mastodon-post-preview-content span {
+		display: block;
+		font-size: 0.875em;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		color: var(--mc-color-secondary);
+	}
+
+	.mastodon-post-preview-content strong {
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		line-clamp: 2;
+		font-size: 1.1875em;
+		line-height: 1.25;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		color: var(--mc-color-primary);
+	}
+</style>

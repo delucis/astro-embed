@@ -1,94 +1,14 @@
 ---
-import { safeGet } from '@astro-community/astro-embed-utils';
-import PreviewCard, { type MastodonPreviewCard } from './PreviewCard.astro';
-import MediaAttachment, {
-	type MastodonMediaAttachment,
-} from './MediaAttachment.astro';
-import './MastodonPost.css';
+import MediaAttachment from './MediaAttachment.astro';
+import PostHeader from './PostHeader.astro';
+import PreviewCard from './PreviewCard.astro';
+import QuotedPost from './QuotedPost.astro';
+import { fetchMastodonPost, replaceEmojis } from './utils';
 
 export interface Props {
 	id: string;
 }
 const { id } = Astro.props;
-
-/**
- * Thanks to @astrojs/starlight
- * https://github.com/withastro/starlight/blob/8a861d16b586b019f61f30d93c61bdcd58e1503f/packages/starlight/utils/i18n.ts#L12
- *
- * A list of well-known right-to-left languages used as a fallback when determining the text
- * direction of a locale is not supported by the `Intl.Locale` API in the current environment.
- *
- * @see getLocaleDir()
- * @see https://en.wikipedia.org/wiki/IETF_language_tag#List_of_common_primary_language_subtags
- */
-const wellKnownRTL = ['ar', 'fa', 'he', 'prs', 'ps', 'syc', 'ug', 'ur'];
-
-// Regex to extract a post ID from a Mastodon status URL
-const idRegExp = /(\d+)$/;
-
-// Thanks to @astrojs/starlight
-// https://github.com/withastro/starlight/blob/8a861d16b586b019f61f30d93c61bdcd58e1503f/packages/starlight/utils/i18n.ts#L177-L188
-function getLocaleDir(locale: Intl.Locale): 'ltr' | 'rtl' {
-	if ('textInfo' in locale) {
-		// @ts-expect-error - `textInfo` is not typed but is available in v8 based environments.
-		return locale.textInfo.direction;
-	} else if ('getTextInfo' in locale) {
-		// @ts-expect-error - `getTextInfo` is not typed but is available in some non-v8 based environments.
-		return locale.getTextInfo().direction;
-	}
-	// Firefox does not support `textInfo` or `getTextInfo` yet so we fallback to a well-known list
-	// of right-to-left languages.
-	return wellKnownRTL.includes(locale.language) ? 'rtl' : 'ltr';
-}
-
-function extractID(url: string) {
-	const match = url.match(idRegExp);
-	return match?.[0];
-}
-
-async function fetchMastodonPost(url: string) {
-	const id = extractID(url);
-	if (!id) throw new Error('Invalid Mastodon post URL: ' + url);
-	const data = (await safeGet(
-		`${new URL(url).origin}/api/v1/statuses/${id}`
-	)) as MastodonStatus | undefined;
-	return data
-		? { ...data, dir: getLocaleDir(new Intl.Locale(data.language)) }
-		: undefined;
-}
-
-function replaceEmojis(text: string, emojis: MastodonCustomEmoji[]): string {
-	for (const emoji of emojis) {
-		text = text.replace(
-			new RegExp(`:${emoji.shortcode}:`, 'g'),
-			`<img alt=":${emoji.shortcode}:" class="mastodon-post-emoji" src="${emoji.url}" />`
-		);
-	}
-	return text;
-}
-
-// https://docs.joinmastodon.org/entities/Status/
-interface MastodonStatus {
-	account: {
-		acct: string;
-		display_name: string;
-		emojis: MastodonCustomEmoji[];
-		username: string;
-	};
-	card: MastodonPreviewCard | null;
-	content: string;
-	created_at: string;
-	emojis: MastodonCustomEmoji[];
-	language: string;
-	media_attachments: MastodonMediaAttachment[];
-	url: string;
-}
-
-// https://docs.joinmastodon.org/entities/Status/
-export interface MastodonCustomEmoji {
-	shortcode: string;
-	url: string;
-}
 
 const post = await fetchMastodonPost(id);
 ---
@@ -97,33 +17,228 @@ const post = await fetchMastodonPost(id);
 	post && (
 		<astro-embed-post>
 			<blockquote class="mastodon-post">
+				<PostHeader {post} />
 				<div
+					class="mastodon-post__content"
 					dir={post.dir}
 					lang={post.language}
 					set:html={replaceEmojis(post.content, post.emojis)}
 				/>
-				{post.card && <PreviewCard card={post.card} />}
-				{post.media_attachments.map((media) => (
-					<MediaAttachment media={media} />
-				))}
+				{post.media_attachments.length > 0 ? (
+					<div
+						class="mastodon-post__media"
+						data-media-count={post.media_attachments.length}
+						data-has-audio={
+							post.media_attachments.some(({ type }) => type === 'audio') ||
+							undefined
+						}
+					>
+						{post.media_attachments.map((media) => (
+							<MediaAttachment media={media} />
+						))}
+					</div>
+				) : (
+					post.card && <PreviewCard card={post.card} />
+				)}
+				{post.quote && <QuotedPost parent={post} quote={post.quote} />}
 				<div>
-					—
-					<Fragment
-						set:html={replaceEmojis(
-							post.account.display_name || post.account.username,
-							post.account.emojis
-						)}
-					/>
-					<> (@{post.account.acct}) </>
 					<a href={post.url}>
-						{new Date(post.created_at).toLocaleDateString(undefined, {
-							year: 'numeric',
-							month: 'long',
-							day: 'numeric',
-						})}
+						<time datetime={post.created_at}>
+							{new Date(post.created_at).toLocaleDateString(undefined, {
+								year: 'numeric',
+								month: 'long',
+								day: 'numeric',
+							})}
+						</time>
 					</a>
 				</div>
 			</blockquote>
 		</astro-embed-post>
 	)
 }
+<style>
+	:global(:root) {
+		/* Light colour palette */
+		--mc-color-scheme--light: light;
+		--mc-color--light: #292938;
+		--mc-color-primary--light: #000;
+		--mc-color-secondary--light: #45455f;
+		--mc-color-link--light: #5653ed;
+		--mc-background-color--light: #fff;
+		--mc-border-color--light: #cfd9de;
+		--mc-background-color-surface--light: #e8e6f0;
+		--mc-background-color-accent--light: #c6bfd9;
+		/* --mc-border-color-media--light: rgba(252, 248, 255, .15) */
+
+		/* Dark colour palette */
+		--mc-color-scheme--dark: dark;
+		--mc-color--dark: #f0f1ff;
+		--mc-color-primary--dark: #f0f1ff;
+		--mc-color-secondary--dark: #8b8dac;
+		--mc-color-link--dark: #8886ff;
+		--mc-background-color--dark: #181821;
+		--mc-border-color--dark: #c8cdfe2e;
+		--mc-background-color-surface--dark: #6247e61a;
+		--mc-background-color-accent--dark: #c8cdfe14;
+		/* --mc-border-color-media--dark: rgba(252, 248, 255, .15) */
+
+		--mc-color-scheme: var(--mc-color-scheme--light);
+		--mc-color: var(--mc-color--light);
+		--mc-color-primary: var(--mc-color-primary--light);
+		--mc-color-secondary: var(--mc-color-secondary--light);
+		--mc-color-link: var(--mc-color-link--light);
+		--mc-background-color: var(--mc-background-color--light);
+		--mc-border-color: var(--mc-border-color--light);
+		--mc-background-color-surface: var(--mc-background-color-surface--light);
+		--mc-background-color-accent: var(--mc-background-color-accent--light);
+
+		--mc-padding: 1em;
+		--mc-border-radius: 0.5em;
+		--mc-font-family:
+			system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+			Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	}
+
+	@media (prefers-color-scheme: dark) {
+		:global(:root) {
+			--mc-color-scheme: var(--mc-color-scheme--dark);
+			--mc-color: var(--mc-color--dark);
+			--mc-color-primary: var(--mc-color-primary--dark);
+			--mc-color-secondary: var(--mc-color-secondary--dark);
+			--mc-color-link: var(--mc-color-link--dark);
+			--mc-background-color: var(--mc-background-color--dark);
+			--mc-border-color: var(--mc-border-color--dark);
+			--mc-background-color-surface: var(--mc-background-color-surface--dark);
+			--mc-background-color-accent: var(--mc-background-color-accent--dark);
+		}
+	}
+
+	/* Dynamic colours when supported */
+	@supports (--color: light-dark(var(--a), var(--b))) {
+		:global(:root) {
+			--mc-color-scheme: inherit;
+			--mc-color: light-dark(var(--mc-color--light), var(--mc-color--dark));
+			--mc-color-primary: light-dark(
+				var(--mc-color-primary--light),
+				var(--mc-color-primary--dark)
+			);
+			--mc-color-secondary: light-dark(
+				var(--mc-color-secondary--light),
+				var(--mc-color-secondary--dark)
+			);
+			--mc-color-link: light-dark(
+				var(--mc-color-link--light),
+				var(--mc-color-link--dark)
+			);
+			--mc-background-color: light-dark(
+				var(--mc-background-color--light),
+				var(--mc-background-color--dark)
+			);
+			--mc-border-color: light-dark(
+				var(--mc-border-color--light),
+				var(--mc-border-color--dark)
+			);
+			--mc-background-color-surface: light-dark(
+				var(--mc-background-color-surface--light),
+				var(--mc-background-color-surface--dark)
+			);
+			--mc-background-color-accent: light-dark(
+				var(--mc-background-color-accent--light),
+				var(--mc-background-color-accent--dark)
+			);
+		}
+	}
+
+	.mastodon-post {
+		margin: 0;
+		border: 0;
+		border: 1px solid var(--mc-border-color, #cfd9de);
+		border-radius: var(--mc-border-radius);
+
+		display: flex;
+		flex-direction: column;
+		gap: 1em;
+
+		overflow-wrap: anywhere;
+		padding: var(--mc-padding, 1em);
+		font-family: var(--mc-font-family, inherit);
+		color-scheme: var(--mc-color-scheme);
+		color: var(--mc-color);
+		background-color: var(--mc-background-color);
+	}
+	:global(:where(.mastodon-post *)) {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+	:global(:where(.mastodon-post a)) {
+		color: var(--mc-color-link);
+	}
+	.mastodon-post :global(.invisible) {
+		font-size: 0;
+		line-height: 0;
+		display: inline-block;
+		width: 0;
+		height: 0;
+		position: absolute;
+	}
+	.mastodon-post__content {
+		font-size: 1.1875em;
+		line-height: 1.25;
+		overflow-wrap: break-word;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		color: var(--mc-color-primary);
+	}
+	.mastodon-post :global(p:not(:last-child)) {
+		margin-bottom: 1.16em;
+		white-space: pre-wrap;
+		unicode-bidi: plaintext;
+	}
+
+	/* Styles for built-in classes Mastodon adds to post HTML. */
+	.mastodon-post :global(.ellipsis::after) {
+		content: '…';
+	}
+	.mastodon-post :global(.unhandled-link) {
+		unicode-bidi: isolate;
+	}
+	.mastodon-post :global(.mention.u-url) {
+		/* @user mention style */
+	}
+	.mastodon-post :global(.mention.hashtag) {
+		unicode-bidi: isolate;
+	}
+	.mastodon-post :global(.quote-inline) {
+		display: none;
+	}
+	.mastodon-post :global(.mastodon-post-emoji) {
+		width: 1.25em;
+		height: 1.25em;
+		/* Grabbed from Mastodon website. */
+		margin-block: -0.2ex 0.2ex;
+		object-fit: contain;
+		vertical-align: middle;
+	}
+
+	.mastodon-post__media:not([data-has-audio]) {
+		min-height: 4em;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 1fr 1fr;
+		gap: 0.125em;
+		overflow: clip;
+		border-radius: var(--mc-border-radius);
+	}
+	.mastodon-post__media[data-media-count='1'] {
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr;
+	}
+	.mastodon-post__media[data-media-count='3'] :global(:first-child) {
+		grid-row: span 2;
+	}
+
+	time {
+		font-size: 0.875em;
+	}
+</style>

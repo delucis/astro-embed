@@ -1,0 +1,113 @@
+---
+import MediaAttachment from './MediaAttachment.astro';
+import PreviewCard from './PreviewCard.astro';
+import type { MastodonStatus } from './types';
+import { fetchMastodonPost, replaceEmojis } from './utils';
+
+interface Props {
+	parent: MastodonStatus;
+	quote:
+		| { state: string; quoted_status_id: string | null }
+		| { state: string; quoted_status: MastodonStatus | null };
+	compact?: boolean;
+}
+
+const { parent, quote, compact = false } = Astro.props;
+
+let post: MastodonStatus | undefined;
+if ('quoted_status' in quote && quote.quoted_status) {
+	post = quote.quoted_status;
+} else if ('quoted_status_id' in quote && quote.quoted_status_id) {
+	post = await fetchMastodonPost(
+		new URL(quote.quoted_status_id, parent.url).href
+	);
+}
+---
+
+{
+	post &&
+		(compact ? (
+			<blockquote class="mastodon-subquote">
+				Quoted a post by @{post.account.acct}
+			</blockquote>
+		) : (
+			<blockquote class="mastodon-quoted-post">
+				<div class="mastodon-quoted-post__header">
+					<img src={post.account.avatar_static} alt="" width="32" height="32" />
+					<span class="display-name">
+						<bdi>
+							<strong
+								set:html={replaceEmojis(
+									post.account.display_name || post.account.username,
+									post.account.emojis
+								)}
+							/>
+						</bdi>
+						<span class="display-name__account">@{post.account.acct}</span>
+					</span>
+					<a href={post.url}>
+						{new Date(post.created_at).toLocaleDateString(undefined, {
+							year: 'numeric',
+							month: 'short',
+							day: 'numeric',
+						})}
+					</a>
+				</div>
+				<div
+					class="mastodon-quoted-post__content"
+					dir={post.dir}
+					lang={post.language}
+					set:html={replaceEmojis(post.content, post.emojis)}
+				/>
+				{post.card && <PreviewCard card={post.card} />}
+				{post.media_attachments.map((media) => (
+					<MediaAttachment media={media} />
+				))}
+				{post.quote && <Astro.self parent={post} quote={post.quote} compact />}
+			</blockquote>
+		))
+}
+
+<style>
+	blockquote {
+		margin: 0;
+	}
+
+	.mastodon-quoted-post {
+		border: 1px solid var(--mc-border-color, #cfd9de);
+		border-radius: var(--mc-border-radius);
+		padding: 0.875em;
+		display: flex;
+		flex-direction: column;
+		gap: 1em;
+	}
+
+	.mastodon-quoted-post__header {
+		display: flex;
+		gap: 0.5em;
+		font-size: 0.875em;
+	}
+	.mastodon-quoted-post__header img {
+		border-radius: var(--mc-border-radius);
+	}
+	.mastodon-quoted-post__header .display-name {
+		display: flex;
+		flex-direction: column;
+		margin-inline-end: auto;
+	}
+	.display-name__account {
+		font-size: 0.85em;
+	}
+
+	.mastodon-quoted-post__content {
+		font-size: 0.875em;
+	}
+
+	.mastodon-subquote {
+		border-radius: var(--mc-border-radius);
+		color: var(--mc-color-secondary);
+		background-color: var(--mc-background-color-surface);
+		padding: 0.5em 0.75em;
+		font-size: 0.875em;
+	}
+</style>
