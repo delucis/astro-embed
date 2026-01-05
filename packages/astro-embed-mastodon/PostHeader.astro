@@ -12,10 +12,10 @@ const { hostname } = new URL(post.account.url);
 const username = `${post.account.username}@${hostname}`;
 ---
 
-<div part="post-header">
-	<a part="post-header-user" href={post.account.url}>
+<div part="header">
+	<a part="user" href={post.account.url}>
 		<img
-			part="post-header-user-avatar"
+			part="user-avatar"
 			src={post.account.avatar_static}
 			alt=""
 			width="46"
@@ -23,24 +23,24 @@ const username = `${post.account.username}@${hostname}`;
 			loading="lazy"
 			decoding="async"
 		/>
-		<span part="post-header-user-content">
+		<span part="user-content">
 			<bdi>
 				<strong
-					part="post-header-user-display-name"
+					part="user-display-name"
 					set:html={replaceEmojis(
 						post.account.display_name || post.account.username,
 						post.account.emojis
 					)}
 				/>
 			</bdi>
-			<span part="post-header-user-account">@{username}</span>
+			<span part="user-account">@{username}</span>
 		</span>
 	</a>
 	<a href={post.url}>
 		<span class="invisible">View on Mastodon</span>
 		<svg
 			{...{
-				part: 'post-header-mastodon-logo',
+				part: 'mastodon-logo',
 			} /* `part` is missing in Astro’s types for SVGs, so this is a workaround to avoid type errors */}
 			width="40"
 			height="40"
@@ -55,7 +55,7 @@ const username = `${post.account.username}@${hostname}`;
 </div>
 
 <style is:global>
-	astro-embed-mastodon::part(post-header) {
+	astro-embed-mastodon::part(header) {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -63,7 +63,7 @@ const username = `${post.account.username}@${hostname}`;
 		line-height: 1.467em;
 		gap: 0.667em;
 	}
-	astro-embed-mastodon::part(post-header-user) {
+	astro-embed-mastodon::part(user) {
 		display: flex;
 		align-items: center;
 		gap: 0.667em;
@@ -72,13 +72,13 @@ const username = `${post.account.username}@${hostname}`;
 		text-decoration: none;
 		color: inherit;
 	}
-	astro-embed-mastodon::part(post-header-user-avatar) {
+	astro-embed-mastodon::part(user-avatar) {
 		border-radius: var(--mc-border-radius);
 		width: 3em;
 		height: 3em;
 		object-fit: cover;
 	}
-	astro-embed-mastodon::part(post-header-user-content) {
+	astro-embed-mastodon::part(user-content) {
 		max-width: 100%;
 		display: flex;
 		flex-direction: column;
@@ -88,18 +88,18 @@ const username = `${post.account.username}@${hostname}`;
 
 		color: var(--mc-color-secondary);
 	}
-	astro-embed-mastodon::part(post-header-user-display-name) {
+	astro-embed-mastodon::part(user-display-name) {
 		font-weight: 600;
 		color: var(--mc-color-primary);
 	}
-	astro-embed-mastodon::part(post-header-user-display-name),
-	astro-embed-mastodon::part(post-header-user-account) {
+	astro-embed-mastodon::part(user-display-name),
+	astro-embed-mastodon::part(user-account) {
 		display: block;
 		text-overflow: ellipsis;
 		overflow: hidden;
 	}
 
-	astro-embed-mastodon::part(post-header-mastodon-logo) {
+	astro-embed-mastodon::part(mastodon-logo) {
 		color: var(--mc-color-secondary);
 		width: 2.5em;
 		height: 2.5em;

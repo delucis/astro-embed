@@ -31,10 +31,10 @@ if ('quoted_status' in quote && quote.quoted_status) {
 				Quoted a post by @{post.account.acct}
 			</blockquote>
 		) : (
-			<blockquote part="quoted-post">
-				<div part="quoted-post-header">
+			<blockquote part="quote">
+				<div part="quote-header">
 					<img
-						part="quoted-post-avatar"
+						part="quote-avatar"
 						src={post.account.avatar_static}
 						alt=""
 						width="32"
@@ -42,7 +42,7 @@ if ('quoted_status' in quote && quote.quoted_status) {
 						loading="lazy"
 						decoding="async"
 					/>
-					<span part="quoted-post-display-name">
+					<span part="quote-display-name">
 						<bdi>
 							<strong
 								set:html={replaceEmojis(
@@ -51,7 +51,7 @@ if ('quoted_status' in quote && quote.quoted_status) {
 								)}
 							/>
 						</bdi>
-						<span part="quoted-post-username">@{post.account.acct}</span>
+						<span part="quote-username">@{post.account.acct}</span>
 					</span>
 					<a href={post.url}>
 						{new Date(post.created_at).toLocaleDateString(undefined, {
@@ -62,7 +62,7 @@ if ('quoted_status' in quote && quote.quoted_status) {
 					</a>
 				</div>
 				<div
-					part="quoted-post-content"
+					part="quote-content"
 					dir={getLocaleDir(post.language)}
 					lang={post.language}
 					set:html={replaceEmojis(post.content, post.emojis)}
@@ -77,7 +77,7 @@ if ('quoted_status' in quote && quote.quoted_status) {
 }
 
 <style is:global>
-	astro-embed-mastodon::part(quoted-post) {
+	astro-embed-mastodon::part(quote) {
 		border: 1px solid var(--mc-border-color, #cfd9de);
 		border-radius: var(--mc-border-radius);
 		padding: 0.875em;
@@ -86,24 +86,24 @@ if ('quoted_status' in quote && quote.quoted_status) {
 		gap: 1em;
 	}
 
-	astro-embed-mastodon::part(quoted-post-header) {
+	astro-embed-mastodon::part(quote-header) {
 		display: flex;
 		gap: 0.5em;
 		font-size: 0.875em;
 	}
-	astro-embed-mastodon::part(quoted-post-avatar) {
+	astro-embed-mastodon::part(quote-avatar) {
 		border-radius: var(--mc-border-radius);
 	}
-	astro-embed-mastodon::part(quoted-post-display-name) {
+	astro-embed-mastodon::part(quote-display-name) {
 		display: flex;
 		flex-direction: column;
 		margin-inline-end: auto;
 	}
-	astro-embed-mastodon::part(quoted-post-username) {
+	astro-embed-mastodon::part(quote-username) {
 		font-size: 0.85em;
 	}
 
-	astro-embed-mastodon::part(quoted-post-content) {
+	astro-embed-mastodon::part(quote-content) {
 		display: flex;
 		flex-direction: column;
 		gap: 1em;

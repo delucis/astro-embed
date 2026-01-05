@@ -12,7 +12,7 @@ const { post } = Astro.props;
 
 {
 	post.media_attachments.length > 0 ? (
-		<div part={`gallery media-count-${post.media_attachments.length}`}>
+		<div part={`attachments media-count-${post.media_attachments.length}`}>
 			{post.media_attachments.map((media, index, attachments) => (
 				<div
 					part={
@@ -29,7 +29,7 @@ const { post } = Astro.props;
 }
 
 <style is:global>
-	astro-embed-mastodon::part(gallery) {
+	astro-embed-mastodon::part(attachments) {
 		min-height: 4em;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
@@ -39,7 +39,7 @@ const { post } = Astro.props;
 		border-radius: var(--mc-border-radius);
 		aspect-ratio: 3 / 2;
 	}
-	astro-embed-mastodon::part(gallery media-count-1) {
+	astro-embed-mastodon::part(attachments media-count-1) {
 		grid-template-columns: 1fr;
 		grid-template-rows: 1fr;
 		aspect-ratio: unset;
