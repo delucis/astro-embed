@@ -54,7 +54,7 @@ export function replaceEmojis(
 	for (const emoji of emojis) {
 		text = text.replace(
 			new RegExp(`:${emoji.shortcode}:`, 'g'),
-			`<img alt=":${emoji.shortcode}:" class="mastodon-post-emoji" src="${emoji.static_url}" />`
+			`<img alt=":${emoji.shortcode}:" class="mastodon-post-emoji" src="${emoji.static_url}" loading="lazy" decoding="async" />`
 		);
 	}
 	return text;

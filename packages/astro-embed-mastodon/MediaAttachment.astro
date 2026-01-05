@@ -21,6 +21,8 @@ if (media.type === 'unknown') {
 				height={media.meta?.small?.height}
 				src={media.preview_url}
 				width={media.meta?.small?.width}
+				loading="lazy"
+				decoding="async"
 			/>
 		</a>
 	)

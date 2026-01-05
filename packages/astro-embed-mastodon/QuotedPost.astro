@@ -33,7 +33,14 @@ if ('quoted_status' in quote && quote.quoted_status) {
 		) : (
 			<blockquote class="mastodon-quoted-post">
 				<div class="mastodon-quoted-post__header">
-					<img src={post.account.avatar_static} alt="" width="32" height="32" />
+					<img
+						src={post.account.avatar_static}
+						alt=""
+						width="32"
+						height="32"
+						loading="lazy"
+						decoding="async"
+					/>
 					<span class="display-name">
 						<bdi>
 							<strong
