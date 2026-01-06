@@ -1,5 +1,5 @@
 const urlPattern =
-	/^https:\/\/gist\.github\.com\/[^\/]+\/[^\/]+\/?(?:\?file=.+)?$/;
+	/^https:\/\/gist\.github\.com\/[^/]+\/[^/]+\/?(?:\?file=.+)?$/;
 
 /**
  * Tests if a URL is a GitHub Gist URL. If it is, returns the URL, otherwise returns undefined.
