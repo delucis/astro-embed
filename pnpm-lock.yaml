@@ -212,6 +212,9 @@ importers:
       '@astro-community/astro-embed-bluesky':
         specifier: ^0.1.6
         version: link:../astro-embed-bluesky
+      '@astro-community/astro-embed-gist':
+        specifier: ^0.0.1
+        version: link:../astro-embed-gist
       '@astro-community/astro-embed-link-preview':
         specifier: ^0.3.0
         version: link:../astro-embed-link-preview
