@@ -9,15 +9,15 @@ export interface Props {
 	/**
 	 * Optional file name to fetch, case sensitive
 	 */
-	fileName?: string;
+	file?: string;
 }
 
-const { id, fileName } = Astro.props;
+const { id, file } = Astro.props;
 
 const url = new URL(id);
 url.pathname += '.json';
-if (fileName) {
-	url.searchParams.set('file', fileName);
+if (file) {
+	url.searchParams.set('file', file);
 }
 
 async function fetchGist(gistUrl: string) {
