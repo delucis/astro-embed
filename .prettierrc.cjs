@@ -1,11 +1,11 @@
-/** @type {import("@types/prettier").Options */
+/** @type {import("prettier").Config} */
 module.exports = {
 	printWidth: 80,
 	semi: true,
 	singleQuote: true,
 	tabWidth: 2,
 	trailingComma: 'es5',
-	plugins: ['./node_modules/prettier-plugin-astro'],
+	plugins: ['prettier-plugin-astro'],
 	overrides: [
 		{
 			files: '*.astro',

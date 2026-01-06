@@ -1,0 +1,45 @@
+# @astro-community/astro-embed-bluesky
+
+## 0.1.6
+
+### Patch Changes
+
+- [#229](https://github.com/delucis/astro-embed/pull/229) [`101466c`](https://github.com/delucis/astro-embed/commit/101466c35630e2cd636f0efff2c811d77311dc00) Thanks [@delucis](https://github.com/delucis)! - Makes the package install size 440 KB (4%) smaller
+
+- [#227](https://github.com/delucis/astro-embed/pull/227) [`a2201be`](https://github.com/delucis/astro-embed/commit/a2201be8335923af70452266b2d164c2e00b3a0d) Thanks [@delucis](https://github.com/delucis)! - Removes unnecessary `astro` peer dependency
+
+## 0.1.5
+
+### Patch Changes
+
+- [#219](https://github.com/delucis/astro-embed/pull/219) [`d90ce7a`](https://github.com/delucis/astro-embed/commit/d90ce7aee92bcfafc66ae82a89a463dafed39992) Thanks [@delucis](https://github.com/delucis)! - No code changes. This release is the first published using OIDC trusted publisher configuration for improved security.
+
+## 0.1.4
+
+### Patch Changes
+
+- [`3999556592b546d24fc519cc3c66a404efe2cec1`](https://github.com/delucis/astro-embed/commit/3999556592b546d24fc519cc3c66a404efe2cec1) Thanks [@delucis](https://github.com/delucis)! - Fixes a type imported without `type` annotation
+
+## 0.1.3
+
+### Patch Changes
+
+- [#178](https://github.com/delucis/astro-embed/pull/178) [`8c5c7f9377121bfd91d70be94584a66d29b0a5a7`](https://github.com/delucis/astro-embed/commit/8c5c7f9377121bfd91d70be94584a66d29b0a5a7) Thanks [@IsaacRF](https://github.com/IsaacRF)! - Fixes hashtag links in Bluesky embeds
+
+## 0.1.2
+
+### Patch Changes
+
+- [#174](https://github.com/delucis/astro-embed/pull/174) [`c9cc93aaf756446f5feb84f68abeef8ea4816dec`](https://github.com/delucis/astro-embed/commit/c9cc93aaf756446f5feb84f68abeef8ea4816dec) Thanks [@ascorbic](https://github.com/ascorbic)! - Allow PostView to be passed to embed
+
+## 0.1.1
+
+### Patch Changes
+
+- [#169](https://github.com/delucis/astro-embed/pull/169) [`a1524686a80ca1ede97853df6ba6ba7dd8a5dfd2`](https://github.com/delucis/astro-embed/commit/a1524686a80ca1ede97853df6ba6ba7dd8a5dfd2) Thanks [@ascorbic](https://github.com/ascorbic)! - Fixes Bluesky logo and styling of links in posts
+
+## 0.1.0
+
+### Minor Changes
+
+- [#167](https://github.com/delucis/astro-embed/pull/167) [`22779f0a7b48283e4c6a71f7b01641d93fdb2a6f`](https://github.com/delucis/astro-embed/commit/22779f0a7b48283e4c6a71f7b01641d93fdb2a6f) Thanks [@ascorbic](https://github.com/ascorbic)! - Adds Bluesky Post embed

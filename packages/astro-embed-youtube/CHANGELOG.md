@@ -1,5 +1,107 @@
 # @astro-community/astro-embed-youtube
 
+## 0.5.10
+
+### Patch Changes
+
+- [#227](https://github.com/delucis/astro-embed/pull/227) [`a2201be`](https://github.com/delucis/astro-embed/commit/a2201be8335923af70452266b2d164c2e00b3a0d) Thanks [@delucis](https://github.com/delucis)! - Removes unnecessary `astro` peer dependency
+
+## 0.5.9
+
+### Patch Changes
+
+- [#219](https://github.com/delucis/astro-embed/pull/219) [`d90ce7a`](https://github.com/delucis/astro-embed/commit/d90ce7aee92bcfafc66ae82a89a463dafed39992) Thanks [@delucis](https://github.com/delucis)! - No code changes. This release is the first published using OIDC trusted publisher configuration for improved security.
+
+## 0.5.8
+
+### Patch Changes
+
+- [#217](https://github.com/delucis/astro-embed/pull/217) [`4668c58`](https://github.com/delucis/astro-embed/commit/4668c58036a1ed8f36287d8fc874a201f059a040) Thanks [@Mikescops](https://github.com/Mikescops)! - Fixes compatibility with the latest release of `lite-youtube-embed` to make sure the play button displays
+
+## 0.5.7
+
+### Patch Changes
+
+- [#202](https://github.com/delucis/astro-embed/pull/202) [`c00ac0ab0253d7439d57de0b986317f55c66f291`](https://github.com/delucis/astro-embed/commit/c00ac0ab0253d7439d57de0b986317f55c66f291) Thanks [@echolocator](https://github.com/echolocator)! - Add support for `style` attribute in `<YouTube>` component
+
+## 0.5.6
+
+### Patch Changes
+
+- [#165](https://github.com/delucis/astro-embed/pull/165) [`a97b51bbeba66f94aea8bfc07f115c1f201aa4ef`](https://github.com/delucis/astro-embed/commit/a97b51bbeba66f94aea8bfc07f115c1f201aa4ef) Thanks [@anotheri](https://github.com/anotheri)! - Fixes missing accessible name for `<YouTube>` component play button
+
+## 0.5.5
+
+### Patch Changes
+
+- [`91e70e72e1f3efe2db37e9de1e721eaabfd292bc`](https://github.com/delucis/astro-embed/commit/91e70e72e1f3efe2db37e9de1e721eaabfd292bc) Thanks [@delucis](https://github.com/delucis)! - Add additional `ui` keyword for better categorization in Astro’s integrations library
+
+## 0.5.4
+
+### Patch Changes
+
+- [#148](https://github.com/delucis/astro-embed/pull/148) [`78346ae846925fa3ce90378d2f03c437620adcec`](https://github.com/delucis/astro-embed/commit/78346ae846925fa3ce90378d2f03c437620adcec) Thanks [@prototypa](https://github.com/prototypa)! - Adds support for Astro v5
+
+## 0.5.3
+
+### Patch Changes
+
+- [#138](https://github.com/delucis/astro-embed/pull/138) [`e74c4233c5e2bb088e6bca642b09a5a6ef5f9df7`](https://github.com/delucis/astro-embed/commit/e74c4233c5e2bb088e6bca642b09a5a6ef5f9df7) Thanks [@delucis](https://github.com/delucis)! - Fixes accessibility of play button in YouTube embed by upgrading `lite-youtube-embed`
+
+## 0.5.2
+
+### Patch Changes
+
+- [#117](https://github.com/delucis/astro-embed/pull/117) [`c16d622eca47cd08d9455cc8be3a2a688f07c145`](https://github.com/delucis/astro-embed/commit/c16d622eca47cd08d9455cc8be3a2a688f07c145) Thanks [@jrouleau](https://github.com/jrouleau)! - Revert to `jpg` for `<YouTube>` poster
+
+## 0.5.1
+
+### Patch Changes
+
+- [#104](https://github.com/delucis/astro-embed/pull/104) [`7e4fa54f6d75df3d87d14857306b26bf9036913a`](https://github.com/delucis/astro-embed/commit/7e4fa54f6d75df3d87d14857306b26bf9036913a) Thanks [@delucis](https://github.com/delucis)! - Adds a new `posterQuality` prop to the `<YouTube>` component to control the resolution of the poster image.
+
+- [#106](https://github.com/delucis/astro-embed/pull/106) [`add2a1e6afd3f1c9fdb6608037d1e0e7698e6c41`](https://github.com/delucis/astro-embed/commit/add2a1e6afd3f1c9fdb6608037d1e0e7698e6c41) Thanks [@delucis](https://github.com/delucis)! - Improves support for the `title` attribute in the YouTube component
+
+## 0.5.0
+
+### Minor Changes
+
+- [#102](https://github.com/delucis/astro-embed/pull/102) [`4d7c9f334b61d3e7f73d230b149645da6e7a4b37`](https://github.com/delucis/astro-embed/commit/4d7c9f334b61d3e7f73d230b149645da6e7a4b37) Thanks [@delucis](https://github.com/delucis)! - Uses the WebP version of YouTube poster images by default for smaller file size.
+
+- [#102](https://github.com/delucis/astro-embed/pull/102) [`4d7c9f334b61d3e7f73d230b149645da6e7a4b37`](https://github.com/delucis/astro-embed/commit/4d7c9f334b61d3e7f73d230b149645da6e7a4b37) Thanks [@delucis](https://github.com/delucis)! - Uses a progressive enhancement pattern to improve YouTube component experience for users with JavaScript disabled
+
+  `<YouTube>` now renders its play button as a link to the video. This means if JavaScript is disabled or fails to load, users can still click through to the original video.
+
+### Patch Changes
+
+- [#100](https://github.com/delucis/astro-embed/pull/100) [`39e3d162b1e380c85e451b37001d82c7813794e7`](https://github.com/delucis/astro-embed/commit/39e3d162b1e380c85e451b37001d82c7813794e7) Thanks [@delucis](https://github.com/delucis)! - Simplifies README.md to link to docs site
+
+- [#100](https://github.com/delucis/astro-embed/pull/100) [`39e3d162b1e380c85e451b37001d82c7813794e7`](https://github.com/delucis/astro-embed/commit/39e3d162b1e380c85e451b37001d82c7813794e7) Thanks [@delucis](https://github.com/delucis)! - Updates documentation links in `package.json`
+
+## 0.4.5
+
+### Patch Changes
+
+- [#93](https://github.com/delucis/astro-embed/pull/93) [`40ec350`](https://github.com/delucis/astro-embed/commit/40ec350dae316cfa02674eb9a8f24be2e709e2ac) Thanks [@delucis](https://github.com/delucis)! - Updates internal `lite-youtube-embed` dependency from 0.2.0 to 0.3.2
+
+## 0.4.4
+
+### Patch Changes
+
+- [#86](https://github.com/delucis/astro-embed/pull/86) [`ee42a36`](https://github.com/delucis/astro-embed/commit/ee42a36f3fb36921a526d9774fc6f95160013b6d) Thanks [@delucis](https://github.com/delucis)! - Add support for `/shorts/` URLs in YouTube URL matcher
+
+## 0.4.3
+
+### Patch Changes
+
+- [#77](https://github.com/delucis/astro-embed/pull/77) [`b0f153d`](https://github.com/delucis/astro-embed/commit/b0f153dd414985abb49916cdd8a581580095e863) Thanks [@silent1mezzo](https://github.com/silent1mezzo)! - Adds support for a peer dependency of Astro 4
+
+## 0.4.2
+
+### Patch Changes
+
+- [#74](https://github.com/delucis/astro-embed/pull/74) [`d415ab9`](https://github.com/delucis/astro-embed/commit/d415ab9a420aab67ff3816b58b70442ae961d9f3) Thanks [@vasfvitor](https://github.com/vasfvitor)! - Fix YouTube embed styling in environments that already apply `<iframe>` styles
+
 ## 0.4.1
 
 ### Patch Changes

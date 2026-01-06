@@ -1,0 +1,30 @@
+{
+  "name": "@astro-community/astro-embed-baseline-status",
+  "version": "0.2.2",
+  "description": "Component to easily embed the Baseline status of a web feature on your Astro site",
+  "type": "module",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/delucis/astro-embed.git",
+    "directory": "packages/astro-embed-baseline-status"
+  },
+  "keywords": [
+    "astro",
+    "astro-component",
+    "ui",
+    "embeds",
+    "baseline"
+  ],
+  "author": "delucis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/delucis/astro-embed/issues"
+  },
+  "homepage": "https://astro-embed.netlify.app/components/baseline-status/",
+  "dependencies": {
+    "@astro-community/astro-embed-utils": "^0.2.0"
+  }
+}

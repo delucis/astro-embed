@@ -1,0 +1,29 @@
+---
+import type { MastodonStatus } from './types';
+
+interface Props {
+	post: MastodonStatus;
+}
+
+const { post } = Astro.props;
+---
+
+<div part="footer">
+	<a href={post.url}>
+		<time datetime={post.created_at}>
+			{
+				new Date(post.created_at).toLocaleDateString(undefined, {
+					year: 'numeric',
+					month: 'long',
+					day: 'numeric',
+				})
+			}
+		</time>
+	</a>
+</div>
+
+<style is:global>
+	astro-embed-mastodon::part(footer) {
+		font-size: 0.875em;
+	}
+</style>

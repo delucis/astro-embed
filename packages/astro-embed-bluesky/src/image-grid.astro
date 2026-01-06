@@ -1,0 +1,81 @@
+---
+interface Props {
+	images: Array<{
+		thumb: string;
+		alt: string | undefined;
+	}>;
+}
+
+const { images } = Astro.props;
+---
+
+<div class="image-grid-container">
+	<div class:list={['image-grid', `image-grid--${images.length}`]}>
+		{
+			images.map((image) => (
+				<div class="image-grid-item">
+					<img
+						src={image.thumb}
+						alt={image.alt || ''}
+						loading="lazy"
+						decoding="async"
+					/>
+				</div>
+			))
+		}
+	</div>
+</div>
+
+<style>
+	.image-grid-container {
+		width: 100%;
+		max-width: var(--bluesky-content-max-width);
+		margin: 0 auto;
+		aspect-ratio: var(--bluesky-aspect-ratio-thumb);
+	}
+
+	.image-grid {
+		width: 100%;
+		height: 100%;
+		display: grid;
+		gap: var(--bluesky-space-xs);
+		border-radius: var(--bluesky-radius-md);
+		overflow: hidden;
+	}
+
+	.image-grid-item {
+		position: relative;
+		overflow: hidden;
+		width: 100%;
+		height: 100%;
+		background-color: var(--bluesky-color-border);
+	}
+
+	.image-grid-item img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	/* Grid Layouts */
+	.image-grid--1 {
+		grid-template-columns: 1fr;
+	}
+
+	.image-grid--2 {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.image-grid--3 {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.image-grid--3 .image-grid-item:first-child {
+		grid-row: span 2;
+	}
+
+	.image-grid--4 {
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: repeat(2, 1fr);
+	}
+</style>

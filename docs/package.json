@@ -1,0 +1,30 @@
+{
+  "name": "@astro-community/astro-embed-docs",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astro-community/astro-embed-baseline-status": "workspace:*",
+    "@astro-community/astro-embed-bluesky": "workspace:*",
+    "@astro-community/astro-embed-link-preview": "workspace:*",
+    "@astro-community/astro-embed-mastodon": "workspace:*",
+    "@astro-community/astro-embed-twitter": "workspace:*",
+    "@astro-community/astro-embed-vimeo": "workspace:*",
+    "@astro-community/astro-embed-youtube": "workspace:*",
+    "@astrojs/starlight": "^0.37.1",
+    "astro": "^5.16.6",
+    "astro-embed": "workspace:*",
+    "astro-og-canvas": "^0.7.2",
+    "canvaskit-wasm": "^0.40.0",
+    "expressive-code-color-chips": "^0.1.4",
+    "sharp": "^0.34.5",
+    "starlight-package-managers": "^0.11.1"
+  }
+}

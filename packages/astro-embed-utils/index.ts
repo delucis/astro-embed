@@ -11,7 +11,7 @@ class LRU<K, V> extends Map<K, V> {
 
 	override set(key: K, value: V): this {
 		this.#touch(key, value);
-		if (this.size > this.maxSize) this.delete(this.keys().next().value);
+		if (this.size > this.maxSize) this.delete(this.keys().next().value!);
 		return this;
 	}
 
@@ -21,8 +21,6 @@ class LRU<K, V> extends Map<K, V> {
 	}
 }
 
-const cache = new LRU<string, Record<string, any>>(1000);
-
 const formatError = (...lines: string[]) => lines.join('\n         ');
 
 /**
@@ -30,25 +28,32 @@ const formatError = (...lines: string[]) => lines.join('\n         ');
  * @param url URL to fetch
  * @returns {Promise<Record<string, any> | undefined>}
  */
-export async function safeGet(
-	url: string
-): Promise<Record<string, any> | undefined> {
-	try {
-		const cached = cache.get(url);
-		if (cached) return cached;
-		const res = await fetch(url);
-		if (!res.ok)
-			throw new Error(
-				formatError(
-					`Failed to fetch ${url}`,
-					`Error ${res.status}: ${res.statusText}`
-				)
-			);
-		const json = await res.json();
-		cache.set(url, json);
-		return json;
-	} catch (e: any) {
-		console.error(formatError(`[error]  astro-embed`, e?.message ?? e));
-		return undefined;
-	}
+export const safeGet = makeSafeGetter<Record<string, any>>((res) => res.json());
+
+/** Factory to create safe, caching fetch functions. */
+export function makeSafeGetter<T>(
+	handleResponse: (res: Response) => T | Promise<T>,
+	{ cacheSize = 1000 }: { cacheSize?: number } = {}
+) {
+	const cache = new LRU<string, T>(cacheSize);
+	return async function safeGet(url: string): Promise<T | undefined> {
+		try {
+			const cached = cache.get(url);
+			if (cached) return cached;
+			const response = await fetch(url);
+			if (!response.ok)
+				throw new Error(
+					formatError(
+						`Failed to fetch ${url}`,
+						`Error ${response.status}: ${response.statusText}`
+					)
+				);
+			const result = await handleResponse(response);
+			cache.set(url, result);
+			return result;
+		} catch (e: any) {
+			console.error(formatError(`[error]  astro-embed`, e?.message ?? e));
+			return undefined;
+		}
+	};
 }

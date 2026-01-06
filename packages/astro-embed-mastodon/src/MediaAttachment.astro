@@ -1,0 +1,77 @@
+---
+import type { MastodonMediaAttachment } from './types';
+
+interface Props {
+	media: MastodonMediaAttachment;
+	halfWidth?: boolean;
+}
+
+const { media, halfWidth } = Astro.props;
+
+if (media.type === 'unknown') {
+	return;
+}
+---
+
+{
+	media.type === 'image' && media.preview_url && (
+		<a href={media.url}>
+			<img
+				alt={media.description}
+				part="image-attachment"
+				height={media.meta?.small?.height}
+				src={media.preview_url}
+				srcset={[
+					`${media.preview_url} ${media.meta?.small?.width}w`,
+					`${media.url} ${media.meta?.original?.width}w`,
+				].join(', ')}
+				sizes={[
+					`(width <= 400px) ${halfWidth ? '50vw' : '100vw'}`,
+					halfWidth ? '200px' : '400px',
+				].join(', ')}
+				width={media.meta?.small?.width}
+				loading="lazy"
+				decoding="async"
+			/>
+		</a>
+	)
+}
+{
+	(media.type === 'video' || media.type === 'gifv') && (
+		<video
+			aria-label={media.description}
+			part="video-attachment"
+			controls
+			height={media.meta?.original?.height}
+			poster={media.preview_url}
+			preload="metadata"
+			src={media.url}
+			width={media.meta?.original?.width}
+			loop={media.type === 'gifv'}
+		/>
+	)
+}
+{
+	media.type === 'audio' && (
+		<audio
+			aria-label={media.description}
+			part="audio-attachment"
+			controls
+			preload="metadata"
+			src={media.url}
+		/>
+	)
+}
+
+<style is:global>
+	astro-embed-mastodon::part(image-attachment),
+	astro-embed-mastodon::part(video-attachment) {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+	astro-embed-mastodon::part(audio-attachment) {
+		width: 100%;
+	}
+	height: 100%;
+</style>

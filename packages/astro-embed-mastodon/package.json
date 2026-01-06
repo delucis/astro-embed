@@ -1,0 +1,35 @@
+{
+  "name": "@astro-community/astro-embed-mastodon",
+  "version": "0.1.0",
+  "description": "Component to easily embed Mastodon posts on your Astro site",
+  "type": "module",
+  "exports": {
+    ".": "./index.ts",
+    "./matcher": "./matcher.ts"
+  },
+  "files": [
+    "index.ts",
+    "matcher.ts",
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/delucis/astro-embed",
+    "directory": "packages/astro-embed-mastodon"
+  },
+  "keywords": [
+    "astro",
+    "astro-component",
+    "embeds",
+    "mastodon"
+  ],
+  "author": "delucis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/delucis/astro-embed/issues"
+  },
+  "homepage": "https://astro-embed.netlify.app/components/mastodon/",
+  "dependencies": {
+    "@astro-community/astro-embed-utils": "^0.2.0"
+  }
+}

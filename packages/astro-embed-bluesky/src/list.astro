@@ -1,0 +1,26 @@
+---
+import { AppBskyGraphDefs } from '@atproto/api';
+import { atUriToListUri } from './utils';
+import Card from './card.astro';
+
+interface Props {
+	record: AppBskyGraphDefs.ListView;
+}
+
+const { record } = Astro.props;
+const list = AppBskyGraphDefs.isListView(record) ? record : null;
+const purposes: Record<AppBskyGraphDefs.ListPurpose, string> = {
+	'app.bsky.graph.defs#curatelist': 'User list',
+	'app.bsky.graph.defs#modlist': 'Moderation list',
+	'app.bsky.graph.defs#referencelist': 'List',
+};
+const purpose = (list && purposes[list.purpose]) ?? 'List';
+---
+
+<Card
+	href={atUriToListUri(record.uri)}
+	avatarUser={record.creator}
+	title={list?.name || ''}
+	subtitle={`${purpose} by ${record.creator.displayName}`}
+	description={list?.description}
+/>

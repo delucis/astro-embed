@@ -1,0 +1,82 @@
+---
+title: Getting started
+description: Set up Astro Embed to add high performance, rich media embeds to your website
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+import { PackageManagers } from 'starlight-package-managers';
+
+The Astro Embed package provides components for adding rich media from third-party services to your [Astro](https://astro.build/) website.
+
+## Installation
+
+<PackageManagers pkg="astro-embed" />
+
+## Using the components
+
+Astro Embed components can be used in Astro and MDX files.
+Each component expects an `id` prop identifying the resource to be embedded.
+
+### In Astro files
+
+To use components in `.astro` files, import them in the component script and then use them in your template:
+
+```astro
+---
+// src/components/Example.astro
+import { MastodonPost, Tweet, Vimeo, YouTube } from 'astro-embed';
+---
+
+<Tweet id="https://twitter.com/astrodotbuild/status/1512144306898976768" />
+
+<Vimeo id="https://vimeo.com/32001208" />
+
+<YouTube id="https://youtu.be/xtTy5nKay_Y" />
+
+<MastodonPost id="https://mastodon.social/@sarah11918/112954791910873136" />
+```
+
+### In MDX files
+
+When using the [Astro MDX integration](https://docs.astro.build/en/guides/integrations-guide/mdx/), you can also import and use the embed components in MDX files:
+
+```mdx
+---
+# src/content/examples/page.mdx
+title: My MDX page with embed components
+---
+
+import { MastodonPost, Tweet, Vimeo, YouTube } from 'astro-embed';
+
+Hey look! I can embed a tweet _in Markdown_!
+
+<Tweet id="https://twitter.com/astrodotbuild/status/1512144306898976768" />
+
+Vimeo and YouTube videos work too :-)
+
+<Vimeo id="https://vimeo.com/32001208" />
+<YouTube id="https://youtu.be/xtTy5nKay_Y" />
+
+And even Mastodon posts!
+
+<MastodonPost id="https://mastodon.social/@sarah11918/112954791910873136" />
+```
+
+### Auto-embed URLs in MDX
+
+Use the Astro Embed integration to automatically convert URLs in MDX files to embed components.
+
+Learn how to set up the integration in the [“Auto-embed URLs”](/integration/) guide.
+
+## Supported services
+
+Astro Embed currently supports the following services:
+
+<CardGrid>
+	<LinkCard title="Baseline" href="/components/baseline-status/" />
+	<LinkCard title="Mastodon" href="/components/mastodon/" />
+	<LinkCard title="Open Graph" href="/components/link-preview/" />
+	<LinkCard title="Twitter" href="/components/twitter/" />
+	<LinkCard title="Vimeo" href="/components/vimeo/" />
+	<LinkCard title="YouTube" href="/components/youtube/" />
+</CardGrid>

@@ -1,5 +1,89 @@
 # @astro-community/astro-embed-vimeo
 
+## 0.3.12
+
+### Patch Changes
+
+- [#227](https://github.com/delucis/astro-embed/pull/227) [`a2201be`](https://github.com/delucis/astro-embed/commit/a2201be8335923af70452266b2d164c2e00b3a0d) Thanks [@delucis](https://github.com/delucis)! - Removes unnecessary `astro` peer dependency
+
+- Updated dependencies [[`a186fa1`](https://github.com/delucis/astro-embed/commit/a186fa149d3367d735db233a8f0954eba12bee99)]:
+  - @astro-community/astro-embed-utils@0.2.0
+
+## 0.3.11
+
+### Patch Changes
+
+- [#219](https://github.com/delucis/astro-embed/pull/219) [`d90ce7a`](https://github.com/delucis/astro-embed/commit/d90ce7aee92bcfafc66ae82a89a463dafed39992) Thanks [@delucis](https://github.com/delucis)! - No code changes. This release is the first published using OIDC trusted publisher configuration for improved security.
+
+- Updated dependencies [[`d90ce7a`](https://github.com/delucis/astro-embed/commit/d90ce7aee92bcfafc66ae82a89a463dafed39992)]:
+  - @astro-community/astro-embed-utils@0.1.5
+
+## 0.3.10
+
+### Patch Changes
+
+- [`91e70e72e1f3efe2db37e9de1e721eaabfd292bc`](https://github.com/delucis/astro-embed/commit/91e70e72e1f3efe2db37e9de1e721eaabfd292bc) Thanks [@delucis](https://github.com/delucis)! - Add additional `ui` keyword for better categorization in Astro’s integrations library
+
+## 0.3.9
+
+### Patch Changes
+
+- [#148](https://github.com/delucis/astro-embed/pull/148) [`78346ae846925fa3ce90378d2f03c437620adcec`](https://github.com/delucis/astro-embed/commit/78346ae846925fa3ce90378d2f03c437620adcec) Thanks [@prototypa](https://github.com/prototypa)! - Adds support for Astro v5
+
+## 0.3.8
+
+### Patch Changes
+
+- [#142](https://github.com/delucis/astro-embed/pull/142) [`5227cf6fa58ab372d08e5efba707caad8db254a5`](https://github.com/delucis/astro-embed/commit/5227cf6fa58ab372d08e5efba707caad8db254a5) Thanks [@BryceRussell](https://github.com/BryceRussell)! - Fix issue with invalid Vimeo links causing build errors
+
+## 0.3.7
+
+### Patch Changes
+
+- [#113](https://github.com/delucis/astro-embed/pull/113) [`17d556e9acb33635a75a5e3c75a84c2ba7849f12`](https://github.com/delucis/astro-embed/commit/17d556e9acb33635a75a5e3c75a84c2ba7849f12) Thanks [@KristianH](https://github.com/KristianH)! - Add `astro-embed-utils` as dependency to package `astro-embed-vimeo`
+
+## 0.3.6
+
+### Patch Changes
+
+- [`929b1eeef166dfbd21c9dcaf64d2427f549548da`](https://github.com/delucis/astro-embed/commit/929b1eeef166dfbd21c9dcaf64d2427f549548da) Thanks [@delucis](https://github.com/delucis)! - Fix play button layout bug on Firefox
+
+## 0.3.5
+
+### Patch Changes
+
+- [#107](https://github.com/delucis/astro-embed/pull/107) [`2bf675cc53fa2a8559182c33f646a412a94016ec`](https://github.com/delucis/astro-embed/commit/2bf675cc53fa2a8559182c33f646a412a94016ec) Thanks [@delucis](https://github.com/delucis)! - Tweaks the play button styles to match Vimeo style more closely
+
+- [#107](https://github.com/delucis/astro-embed/pull/107) [`2bf675cc53fa2a8559182c33f646a412a94016ec`](https://github.com/delucis/astro-embed/commit/2bf675cc53fa2a8559182c33f646a412a94016ec) Thanks [@delucis](https://github.com/delucis)! - Uses progressive enhancement pattern to display a link to the Vimeo video until the `<lite-vimeo>` JavaScript loads
+
+- [#107](https://github.com/delucis/astro-embed/pull/107) [`2bf675cc53fa2a8559182c33f646a412a94016ec`](https://github.com/delucis/astro-embed/commit/2bf675cc53fa2a8559182c33f646a412a94016ec) Thanks [@delucis](https://github.com/delucis)! - Adds a `posterQuality` prop to `<Vimeo>`
+
+  The new default resolution is 480px instead of 640px. Set `posterQuality="high"` to use the previous 640px resolution.
+
+- [#83](https://github.com/delucis/astro-embed/pull/83) [`3b4ecfacb83cb4bc07aeb3742ceee8bbe809ba6b`](https://github.com/delucis/astro-embed/commit/3b4ecfacb83cb4bc07aeb3742ceee8bbe809ba6b) Thanks [@hesselberg](https://github.com/hesselberg)! - Adds support for passing arbitrary props to the `<lite-vimeo>` element
+
+## 0.3.4
+
+### Patch Changes
+
+- [#103](https://github.com/delucis/astro-embed/pull/103) [`c6939bc60dff6c30c9389a4f220a15b4aefe3ece`](https://github.com/delucis/astro-embed/commit/c6939bc60dff6c30c9389a4f220a15b4aefe3ece) Thanks [@delucis](https://github.com/delucis)! - Fixes risk of Vimeo custom element trying to redefine itself
+
+- [#100](https://github.com/delucis/astro-embed/pull/100) [`39e3d162b1e380c85e451b37001d82c7813794e7`](https://github.com/delucis/astro-embed/commit/39e3d162b1e380c85e451b37001d82c7813794e7) Thanks [@delucis](https://github.com/delucis)! - Simplifies README.md to link to docs site
+
+- [#100](https://github.com/delucis/astro-embed/pull/100) [`39e3d162b1e380c85e451b37001d82c7813794e7`](https://github.com/delucis/astro-embed/commit/39e3d162b1e380c85e451b37001d82c7813794e7) Thanks [@delucis](https://github.com/delucis)! - Updates documentation links in `package.json`
+
+## 0.3.3
+
+### Patch Changes
+
+- [#97](https://github.com/delucis/astro-embed/pull/97) [`77a1228b9a2057b59194b649b6d203a3e8d15e13`](https://github.com/delucis/astro-embed/commit/77a1228b9a2057b59194b649b6d203a3e8d15e13) Thanks [@delucis](https://github.com/delucis)! - Fixes styling for the Vimeo `<iframe>` so user styles don’t override it
+
+## 0.3.2
+
+### Patch Changes
+
+- [#77](https://github.com/delucis/astro-embed/pull/77) [`b0f153d`](https://github.com/delucis/astro-embed/commit/b0f153dd414985abb49916cdd8a581580095e863) Thanks [@silent1mezzo](https://github.com/silent1mezzo)! - Adds support for a peer dependency of Astro 4
+
 ## 0.3.1
 
 ### Patch Changes

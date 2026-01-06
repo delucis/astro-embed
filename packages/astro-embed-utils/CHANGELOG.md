@@ -1,5 +1,41 @@
 # @astro-community/astro-embed-utils
 
+## 0.2.0
+
+### Minor Changes
+
+- [#233](https://github.com/delucis/astro-embed/pull/233) [`a186fa1`](https://github.com/delucis/astro-embed/commit/a186fa149d3367d735db233a8f0954eba12bee99) Thanks [@delucis](https://github.com/delucis)! - Removes HTML-parsing `safeGetDOM()` utility and reduces install size by ~3 MB by removing `linkedom`
+
+## 0.1.5
+
+### Patch Changes
+
+- [#219](https://github.com/delucis/astro-embed/pull/219) [`d90ce7a`](https://github.com/delucis/astro-embed/commit/d90ce7aee92bcfafc66ae82a89a463dafed39992) Thanks [@delucis](https://github.com/delucis)! - No code changes. This release is the first published using OIDC trusted publisher configuration for improved security.
+
+## 0.1.4
+
+### Patch Changes
+
+- [#212](https://github.com/delucis/astro-embed/pull/212) [`b684968`](https://github.com/delucis/astro-embed/commit/b6849687f9a312e086b1a5269ae940fe42219942) Thanks [@delucis](https://github.com/delucis)! - Updates internal dependencies
+
+## 0.1.3
+
+### Patch Changes
+
+- [#130](https://github.com/delucis/astro-embed/pull/130) [`826ec796fddc337421eb5477661bc0f76e87a811`](https://github.com/delucis/astro-embed/commit/826ec796fddc337421eb5477661bc0f76e87a811) Thanks [@IshanKBG](https://github.com/IshanKBG)! - Fixes support for serverless usage, for example with the Cloudflare adapter.
+
+## 0.1.2
+
+### Patch Changes
+
+- [`e4b7ddc0e17bfe2735f502b6dff40b27d4eb6f31`](https://github.com/delucis/astro-embed/commit/e4b7ddc0e17bfe2735f502b6dff40b27d4eb6f31) Thanks [@delucis](https://github.com/delucis)! - Fixes missing dependency on `linkedom`
+
+## 0.1.1
+
+### Patch Changes
+
+- [#73](https://github.com/delucis/astro-embed/pull/73) [`495cf6fb66e4fd7ca6b25ae8c95078d268b1c078`](https://github.com/delucis/astro-embed/commit/495cf6fb66e4fd7ca6b25ae8c95078d268b1c078) Thanks [@vasfvitor](https://github.com/vasfvitor)! - Adds a utility to fetch a URL and parse it as an HTML document
+
 ## 0.1.0
 
 ### Minor Changes

@@ -1,27 +1,41 @@
-import { Node, select, selectAll } from 'unist-util-select';
+import { type Node, select, selectAll } from 'unist-util-select';
+import blueskyMatcher from '@astro-community/astro-embed-bluesky/matcher';
 import twitterMatcher from '@astro-community/astro-embed-twitter/matcher';
 import vimeoMatcher from '@astro-community/astro-embed-vimeo/matcher';
 import youtubeMatcher from '@astro-community/astro-embed-youtube/matcher';
+import linkPreviewMatcher from '@astro-community/astro-embed-link-preview/matcher';
+import mastodonMatcher from '@astro-community/astro-embed-mastodon/matcher';
 
 const matchers = [
+	[blueskyMatcher, 'BlueskyPost'],
 	[twitterMatcher, 'Tweet'],
 	[vimeoMatcher, 'Vimeo'],
 	[youtubeMatcher, 'YouTube'],
+	[mastodonMatcher, 'MastodonPost'],
+	/** The generic link matcher must be last otherwise it will override other URLs. */
+	[linkPreviewMatcher, 'LinkPreview'],
 ] as const;
 export const componentNames = matchers.map(([, name]) => name);
 
+interface CreatePluginOptions {
+	importNamespace: string;
+	enabledComponents: typeof componentNames;
+}
+
 export default function createPlugin({
 	importNamespace,
-}: {
-	importNamespace: string;
-}) {
+	enabledComponents,
+}: CreatePluginOptions) {
+	const enabledMatchers = matchers.filter(([, name]) =>
+		enabledComponents.includes(name)
+	);
 	/**
 	 * Get the name of the embed component for this URL
 	 * @param {string} url URL to test
 	 * @returns Component node for this URL or undefined if none matched
 	 */
 	function getComponent(url: string) {
-		for (const [matcher, componentName] of matchers) {
+		for (const [matcher, componentName] of enabledMatchers) {
 			const id = matcher(url);
 			if (id) {
 				// MDX custom component node.
@@ -45,12 +59,28 @@ export default function createPlugin({
 	function transformer(tree: Node) {
 		const paragraphs = selectAll('paragraph', tree);
 		paragraphs.forEach((paragraph) => {
-			const link: Link | null = select(':scope > link:only-child', paragraph);
+			const link: Link | undefined = select(
+				':scope > link:only-child',
+				paragraph
+			);
 			if (!link) return;
 
-			const { url } = link;
+			const { url, children } = link;
 			// We’re only interested in HTTP links
-			if (!url?.startsWith('http')) return;
+			if (!url || !url.startsWith('http')) return;
+			// URLs should have a single child
+			if (!children || children.length !== 1) return;
+
+			// The child should be a text node with a value matching the URL
+			const child = children[0];
+			if (
+				!child ||
+				child.type !== 'text' ||
+				!('value' in child) ||
+				child.value !== url
+			) {
+				return;
+			}
 
 			const component = getComponent(url);
 			if (component) {

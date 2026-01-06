@@ -9,7 +9,14 @@
     "preview": "astro preview"
   },
   "devDependencies": {
-    "@astrojs/mdx": "^0.19.7",
-    "astro": "^2.8.3"
+    "@astro-community/astro-embed-baseline-status": "workspace:*",
+    "@astro-community/astro-embed-bluesky": "workspace:*",
+    "@astro-community/astro-embed-link-preview": "workspace:*",
+    "@astro-community/astro-embed-mastodon": "workspace:*",
+    "@astro-community/astro-embed-vimeo": "workspace:*",
+    "@astro-community/astro-embed-youtube": "workspace:*",
+    "@astrojs/mdx": "^4.3.13",
+    "astro": "^5.16.6",
+    "astro-embed": "workspace:*"
   }
 }

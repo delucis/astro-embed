@@ -1,5 +1,5 @@
 import { test } from 'uvu';
-import { renderScreen } from './utils/render';
+import { renderScreen } from './utils/render.mjs';
 
 test('it should render user information in the footer', async () => {
 	const screen = await renderScreen(
@@ -26,6 +26,19 @@ test('it does not crash when we have undefined entities', async () => {
 	);
 	screen.getByText(/@addyosmani/);
 	screen.getByText('December 7, 2022');
+});
+
+test('it works with x.com URLs', async () => {
+	const screen = await renderScreen(
+		'./packages/astro-embed-twitter/Tweet.astro',
+		{ id: 'https://x.com/astrodotbuild/status/1851286331491578330' }
+	);
+	screen.getByText(/⚠️ Be sure to check your kid's candy this year! ⚠️/);
+	screen.getByText(
+		/Just found a bloated 5.8 MB JavaScript bundle in this Reese's! 😱/
+	);
+	screen.getByText(/@astrodotbuild/);
+	screen.getByText('October 29, 2024');
 });
 
 test.run();

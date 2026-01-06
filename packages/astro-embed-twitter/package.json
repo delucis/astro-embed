@@ -1,6 +1,6 @@
 {
   "name": "@astro-community/astro-embed-twitter",
-  "version": "0.5.2",
+  "version": "0.5.11",
   "description": "Component to easily embed Tweets on your Astro site",
   "type": "module",
   "exports": {
@@ -15,11 +15,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/delucis/astro-embed.git"
+    "url": "https://github.com/delucis/astro-embed",
+    "directory": "packages/astro-embed-twitter"
   },
   "keywords": [
     "astro",
     "astro-component",
+    "ui",
     "embeds",
     "twitter"
   ],
@@ -28,11 +30,8 @@
   "bugs": {
     "url": "https://github.com/delucis/astro-embed/issues"
   },
-  "homepage": "https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-twitter#readme",
+  "homepage": "https://astro-embed.netlify.app/components/twitter/",
   "dependencies": {
-    "@astro-community/astro-embed-utils": "^0.1.0"
-  },
-  "peerDependencies": {
-    "astro": "^2.0.0 || ^3.0.0-beta"
+    "@astro-community/astro-embed-utils": "^0.2.0"
   }
 }

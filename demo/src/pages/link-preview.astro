@@ -1,0 +1,14 @@
+---
+import { LinkPreview as LP } from '@astro-community/astro-embed-link-preview';
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="LinkPreview component example">
+	<h2>Default</h2>
+	<p>
+		<code
+			>&lt;LinkPreview id="https://astro.build/blog/welcome-world/" /&gt;</code
+		>
+	</p>
+	<LP id="https://astro.build/blog/welcome-world/" />
+</Base>

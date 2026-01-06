@@ -1,0 +1,126 @@
+---
+title: Tweet
+description: Learn how to use the Astro Embed Tweet component to embed Twitter posts in your website
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { Tweet } from '@astro-community/astro-embed-twitter';
+
+The `<Tweet>` component embeds posts to Twitter (also known as X) in Astro projects.
+
+## Usage
+
+The `<Tweet>` component generates a static Twitter card for a single Tweet using [Twitter’s oEmbed API](https://developer.twitter.com/en/docs/twitter-for-websites/oembed-api).
+
+<Tabs>
+<TabItem label="Astro" icon="astro">
+```astro
+---
+import { Tweet } from 'astro-embed';
+---
+
+<Tweet id="https://twitter.com/astrodotbuild/status/1511750228428435457" />
+```
+</TabItem>
+<TabItem label="MDX" icon="seti:markdown">
+```mdx
+import { Tweet } from 'astro-embed';
+
+<Tweet id="https://twitter.com/astrodotbuild/status/1511750228428435457" />
+```
+</TabItem>
+</Tabs>
+
+The above code produces the following result:
+
+<div>
+	<Tweet id="https://twitter.com/astrodotbuild/status/1511750228428435457" />
+</div>
+
+:::note
+The `<Tweet>` component styles are intentionally minimal.
+They will match the font styles of your surrounding content. See [“Styling the Tweet component”](#styling-the-tweet-component) below for more details.
+:::
+
+## Loading Twitter’s JavaScript
+
+By design, `<Tweet>` is a minimal component and loads zero JavaScript, only rendering some static HTML content.
+However, this HTML is compatible with Twitter’s widget system.
+Loading Twitter’s large bundle of widget JavaScript will convert each `<Tweet>` into an interactive embed.
+
+You can do this by including the following `<script>` tag in your Astro layout file:
+
+```html
+<script async src="https://platform.twitter.com/widgets.js"></script>
+```
+
+[See an example of `<Tweet>` with Twitter’s JavaScript](/examples/tweet-with-js/)
+
+### Use Twitter’s dark theme
+
+When loading Twitter’s JavaScript, the `<Tweet>` card will render with their light theme by default.
+You can use their dark theme by setting the `theme` prop:
+
+```astro 'theme="dark"'
+---
+import { Tweet } from 'astro-embed';
+---
+
+<Tweet theme="dark" id="..." />
+```
+
+[See an example of `<Tweet>` with Twitter’s JavaScript and dark theme](/examples/tweet-with-js-dark/)
+
+## Styling the Tweet component
+
+By default the `<Tweet>` card has minimal styling, which should adapt to your site’s font settings etc.
+
+You can customise it by targeting the `.twitter-tweet` class, for example:
+
+```css
+.twitter-tweet {
+	background: floralwhite;
+	color: darkblue;
+	font-family: cursive;
+	font-size: 1.25rem;
+	border: 0;
+}
+
+.twitter-tweet a {
+	color: purple;
+	font-weight: bold;
+}
+```
+
+The above styles would render `<Tweet>` like this:
+
+import StyledTweet from './_examples/StyledTweet.astro';
+
+<StyledTweet />
+
+### Custom properties API
+
+The `<Tweet>` component also supports a minimal API for controlling its styles by setting some CSS custom properties.
+
+```css
+:root {
+	/* Control the padding inside the Tweet card. */
+	--tc-padding: 1em;
+	/* Set the border color of the Tweet card. */
+	--tc-border-color: #cfd9de;
+}
+```
+
+## Standalone installation
+
+If you only need the `<Tweet>` component, you can install the package directly instead of the main `astro-embed` package:
+
+import { PackageManagers } from 'starlight-package-managers';
+
+<PackageManagers pkg="@astro-community/astro-embed-twitter" />
+
+The `<Tweet>` component can then be imported as:
+
+```js
+import { Tweet } from '@astro-community/astro-embed-twitter';
+```

@@ -1,0 +1,125 @@
+---
+import MediaAttachment from './MediaAttachment.astro';
+import PreviewCard from './PreviewCard.astro';
+import type { MastodonStatus } from './types';
+import { fetchMastodonPost, getLocaleDir, replaceEmojis } from './utils';
+
+interface Props {
+	parent: MastodonStatus;
+	quote:
+		| { state: string; quoted_status_id: string | null }
+		| { state: string; quoted_status: MastodonStatus | null };
+	compact?: boolean;
+}
+
+const { parent, quote, compact = false } = Astro.props;
+
+let post: MastodonStatus | undefined;
+if ('quoted_status' in quote && quote.quoted_status) {
+	post = quote.quoted_status;
+} else if ('quoted_status_id' in quote && quote.quoted_status_id) {
+	post = await fetchMastodonPost(
+		new URL(quote.quoted_status_id, parent.url).href
+	);
+}
+---
+
+{
+	post &&
+		(compact ? (
+			<blockquote part="subquote">
+				Quoted a post by @{post.account.acct}
+			</blockquote>
+		) : (
+			<blockquote part="quote">
+				<div part="quote-header">
+					<img
+						part="quote-avatar"
+						src={post.account.avatar_static}
+						alt=""
+						width="32"
+						height="32"
+						loading="lazy"
+						decoding="async"
+					/>
+					<span part="quote-display-name">
+						<bdi>
+							<strong
+								set:html={replaceEmojis(
+									post.account.display_name || post.account.username,
+									post.account.emojis
+								)}
+							/>
+						</bdi>
+						<span part="quote-username">@{post.account.acct}</span>
+					</span>
+					<a href={post.url}>
+						{new Date(post.created_at).toLocaleDateString(undefined, {
+							year: 'numeric',
+							month: 'short',
+							day: 'numeric',
+						})}
+					</a>
+				</div>
+				<div
+					part="quote-content"
+					dir={getLocaleDir(post.language)}
+					lang={post.language}
+					set:html={replaceEmojis(post.content, post.emojis)}
+				/>
+				{post.card && <PreviewCard card={post.card} />}
+				{post.media_attachments.map((media) => (
+					<MediaAttachment media={media} />
+				))}
+				{post.quote && <Astro.self parent={post} quote={post.quote} compact />}
+			</blockquote>
+		))
+}
+
+<style is:global>
+	astro-embed-mastodon::part(quote) {
+		border: 1px solid var(--border-color, #cfd9de);
+		border-radius: var(--border-radius);
+		padding: 0.875em;
+		display: flex;
+		flex-direction: column;
+		gap: 1em;
+	}
+
+	astro-embed-mastodon::part(quote-header) {
+		display: flex;
+		gap: 0.5em;
+		font-size: 0.875em;
+	}
+	astro-embed-mastodon::part(quote-avatar) {
+		border-radius: var(--border-radius);
+	}
+	astro-embed-mastodon::part(quote-display-name) {
+		display: flex;
+		flex-direction: column;
+		margin-inline-end: auto;
+		color: var(--color-primary);
+	}
+	astro-embed-mastodon::part(quote-username) {
+		font-size: 0.85em;
+		letter-spacing: 0.04em;
+		color: var(--color-secondary);
+	}
+
+	astro-embed-mastodon::part(quote-content) {
+		display: flex;
+		flex-direction: column;
+		gap: 1em;
+
+		color: var(--color-primary);
+		font-size: 0.875em;
+	}
+
+	astro-embed-mastodon::part(subquote) {
+		border-radius: var(--border-radius);
+		color: var(--color-secondary);
+		background-color: var(--background-color-surface);
+		padding: 0.5em 0.75em;
+		font-size: 0.875em;
+	}
+</style>

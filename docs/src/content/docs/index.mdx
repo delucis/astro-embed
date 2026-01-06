@@ -1,0 +1,90 @@
+---
+title: Astro Embed
+description: High performance, rich media embed components. For your site, from the Astro community.
+template: splash
+hero:
+  tagline: High performance, rich media embed components. For your site, from the Astro community.
+  image:
+    file: ../../assets/splash.webp
+  actions:
+    - text: Get Started
+      link: /getting-started/
+      icon: right-arrow
+    - text: Star on GitHub
+      link: https://github.com/delucis/astro-embed
+      icon: star
+      variant: minimal
+---
+
+import { Icon, Card, CardGrid } from '@astrojs/starlight/components';
+
+## What can Astro Embed do?
+
+<CardGrid stagger>
+
+    <Card title="YouTube" icon="youtube">
+
+    	Don’t slow your users down. Only load YouTube’s JavaScript when they click.
+
+    	[YouTube docs](/components/youtube/)
+
+    </Card>
+
+    <Card title="Vimeo" icon="seti:video">
+
+    	Load Vimeo embeds on user interaction for faster page loads.
+
+    	[Vimeo docs](/components/vimeo/)
+
+    </Card>
+
+    <Card title="Twitter" icon="twitter">
+
+    	Embed the contents of a Tweet in your post without client-side JavaScript.
+
+    	[Tweet docs](/components/twitter/)
+
+    </Card>
+
+    <Card title="Bluesky" icon="blueSky">
+
+    	Embed a fully-styled Bluesky post with no client-side JavaScript.
+
+    	[Bluesky Post docs](/components/bluesky/)
+
+    </Card>
+
+    <Card title="Mastodon" icon="mastodon">
+
+    	Embed the contents of a Mastodon post without client-side JavaScript.
+
+    	[Mastodon Post docs](/components/mastodon/)
+
+    </Card>
+
+    <Card title="Link Preview" icon="seti:html">
+
+    	Embed the Open Graph media and metadata for any URL in your page.
+
+    	[Link Preview docs](/components/link-preview/)
+
+    </Card>
+
+    <Card title="Baseline Status" icon="laptop">
+
+    	Display browser support for a web feature according to the Baseline project.
+
+    	[Baseline Status docs](/components/baseline-status/)
+
+    </Card>
+
+    <Card title="Auto-embed URLs" icon="document">
+
+    	Automatically convert matching URLs in your MDX content to a rich media
+    	embed.
+
+    	[Learn how to configure auto-embeds](/integration/)
+
+    </Card>
+
+</CardGrid>

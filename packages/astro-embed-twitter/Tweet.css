@@ -8,3 +8,6 @@
 .twitter-tweet:not(.twitter-tweet-rendered) > :last-child {
 	margin-bottom: 0;
 }
+.twitter-tweet.twitter-tweet-rendered {
+	color-scheme: normal;
+}

@@ -1,6 +1,6 @@
 {
   "name": "@astro-community/astro-embed-integration",
-  "version": "0.6.0",
+  "version": "0.10.0",
   "description": "Astro integration to automatically convert URLs in Markdown files to embeds",
   "type": "module",
   "exports": {
@@ -12,23 +12,27 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/delucis/astro-embed.git"
+    "url": "https://github.com/delucis/astro-embed",
+    "directory": "packages/astro-embed-integration"
   },
   "author": "delucis",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/delucis/astro-embed/issues"
   },
-  "homepage": "https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-integration#readme",
+  "homepage": "https://astro-embed.netlify.app/integration",
   "dependencies": {
-    "@astro-community/astro-embed-twitter": "^0.5.2",
-    "@astro-community/astro-embed-vimeo": "^0.3.1",
-    "@astro-community/astro-embed-youtube": "^0.4.1",
-    "@types/unist": "^2.0.0",
-    "astro-auto-import": "^0.3.0",
-    "unist-util-select": "^4.0.1"
+    "@astro-community/astro-embed-bluesky": "^0.1.6",
+    "@astro-community/astro-embed-link-preview": "^0.3.0",
+    "@astro-community/astro-embed-mastodon": "^0.1.0",
+    "@astro-community/astro-embed-twitter": "^0.5.10",
+    "@astro-community/astro-embed-vimeo": "^0.3.12",
+    "@astro-community/astro-embed-youtube": "^0.5.10",
+    "@types/unist": "^3.0.3",
+    "astro-auto-import": "^0.4.5",
+    "unist-util-select": "^5.1.0"
   },
   "peerDependencies": {
-    "astro": "^2.0.0 || ^3.0.0-beta"
+    "astro": "^5.0.0 || ^6.0.0-alpha"
   }
 }

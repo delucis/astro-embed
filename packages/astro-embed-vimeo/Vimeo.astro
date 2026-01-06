@@ -3,18 +3,28 @@ import { safeGet } from '@astro-community/astro-embed-utils';
 import urlMatcher from './matcher';
 import './Vimeo.css';
 
-export interface Props {
+export interface Props extends astroHTML.JSX.HTMLAttributes {
 	/** Vimeo video ID or URL. */
 	id: string;
 	/** URL to an image to use as the poster instead of the default thumbnail. */
 	poster?: string;
+	/** Resolution to use for the Vimeo poster image. */
+	posterQuality?: 'max' | 'high' | 'default' | 'low';
 	/** See https://vimeo.zendesk.com/hc/en-us/articles/360001494447-Player-parameters-overview */
 	params?: string;
 	/** Label for the button that will play the video. Default label: `'Play'` */
 	playlabel?: string;
 }
 
-const { id, poster, params = '', playlabel = 'Play' } = Astro.props as Props;
+const {
+	id,
+	poster,
+	posterQuality = 'default',
+	params = '',
+	playlabel = 'Play',
+	style,
+	...attrs
+} = Astro.props as Props;
 
 const idRegExp = /^\d+$/;
 
@@ -27,19 +37,28 @@ const videoid = extractID(id);
 let posterURL = poster;
 if (!posterURL) {
 	const data = await safeGet(`https://vimeo.com/api/v2/video/${videoid}.json`);
-	const { thumbnail_large } = data?.[0] || {};
-	posterURL = thumbnail_large;
+	if (data) {
+		const resolution =
+			{ max: 1280, high: 640, default: 480, low: 120 }[posterQuality] || 480;
+		const { thumbnail_large } = data?.[0] || {};
+		if (thumbnail_large.endsWith('d_640')) {
+			posterURL = thumbnail_large.slice(0, -3) + resolution;
+		} else {
+			posterURL = thumbnail_large;
+		}
+	}
 }
 
 let [searchString, t] = params.split('#t=');
 const searchParams = new URLSearchParams(searchString);
-if (!t) t = searchParams.get('t');
+if (!t) t = searchParams.get('t') ?? undefined;
 searchParams.append('autoplay', '1');
 if (!searchParams.has('dnt')) searchParams.append('dnt', '1');
 
 const color = searchParams.get('color');
 
 const styles = [];
+if (style) styles.push(style);
 if (color) styles.push(`--ltv-color: #${color}`);
 if (posterURL) styles.push(`background-image: url('${posterURL}')`);
 ---
@@ -49,19 +68,21 @@ if (posterURL) styles.push(`background-image: url('${posterURL}')`);
 	data-t={t}
 	data-params={searchParams.toString()}
 	style={styles.join(';')}
+	{...attrs}
 >
-	<button class="ltv-playbtn" type="button" aria-label={playlabel}></button>
+	<a
+		class="ltv-playbtn"
+		href={`https://vimeo.com/${videoid}`}
+		aria-label={playlabel}></a>
 </lite-vimeo>
 
 <script>
 	class LiteVimeo extends HTMLElement {
-		videoId: string;
+		// Gotta encode the untrusted value to prevent XSS.
+		videoId = encodeURIComponent(this.dataset.id!);
 		static preconnected = false;
 
 		connectedCallback() {
-			// Gotta encode the untrusted value to prevent XSS.
-			this.videoId = encodeURIComponent(this.dataset.id);
-
 			// On hover (or tap), warm up the TCP connections we're (likely) about to use.
 			this.addEventListener('pointerover', LiteVimeo.warmConnections, {
 				once: true,
@@ -69,6 +90,18 @@ if (posterURL) styles.push(`background-image: url('${posterURL}')`);
 
 			// Once the user clicks, add the real iframe and drop our play button
 			this.addEventListener('click', (e) => this.addIframe(e));
+
+			// Progressively enhance the link to the Vimeo as a play button.
+			const playLink = this.querySelector('a');
+			if (playLink) {
+				const playBtn = document.createElement('button');
+				playBtn.classList.add(...playLink.classList.values());
+				playBtn.setAttribute(
+					'aria-label',
+					playLink.getAttribute('aria-label')!
+				);
+				playLink.replaceWith(playBtn);
+			}
 		}
 
 		/**
@@ -127,5 +160,7 @@ if (posterURL) styles.push(`background-image: url('${posterURL}')`);
 	}
 
 	// Register custom element
-	customElements.define('lite-vimeo', LiteVimeo);
+	if (!customElements.get('lite-vimeo')) {
+		customElements.define('lite-vimeo', LiteVimeo);
+	}
 </script>

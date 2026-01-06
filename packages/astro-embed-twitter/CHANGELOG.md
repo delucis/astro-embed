@@ -1,5 +1,67 @@
 # @astro-community/astro-embed-twitter
 
+## 0.5.11
+
+### Patch Changes
+
+- [#259](https://github.com/delucis/astro-embed/pull/259) [`71b2af0`](https://github.com/delucis/astro-embed/commit/71b2af0f32d05c0b3dda9260d9858789d09a437e) Thanks [@delucis](https://github.com/delucis)! - Caches requests to the Twitter embed API for repeated requests for the same tweet
+
+## 0.5.10
+
+### Patch Changes
+
+- [#227](https://github.com/delucis/astro-embed/pull/227) [`a2201be`](https://github.com/delucis/astro-embed/commit/a2201be8335923af70452266b2d164c2e00b3a0d) Thanks [@delucis](https://github.com/delucis)! - Removes unnecessary `astro` peer dependency
+
+- Updated dependencies [[`a186fa1`](https://github.com/delucis/astro-embed/commit/a186fa149d3367d735db233a8f0954eba12bee99)]:
+  - @astro-community/astro-embed-utils@0.2.0
+
+## 0.5.9
+
+### Patch Changes
+
+- [#219](https://github.com/delucis/astro-embed/pull/219) [`d90ce7a`](https://github.com/delucis/astro-embed/commit/d90ce7aee92bcfafc66ae82a89a463dafed39992) Thanks [@delucis](https://github.com/delucis)! - No code changes. This release is the first published using OIDC trusted publisher configuration for improved security.
+
+- Updated dependencies [[`d90ce7a`](https://github.com/delucis/astro-embed/commit/d90ce7aee92bcfafc66ae82a89a463dafed39992)]:
+  - @astro-community/astro-embed-utils@0.1.5
+
+## 0.5.8
+
+### Patch Changes
+
+- [#161](https://github.com/delucis/astro-embed/pull/161) [`a024bf2072062d142a193826b24d22cd8c8dd0c2`](https://github.com/delucis/astro-embed/commit/a024bf2072062d142a193826b24d22cd8c8dd0c2) Thanks [@flo-bit](https://github.com/flo-bit)! - Fixes support for newer `x.com` URLs
+
+## 0.5.7
+
+### Patch Changes
+
+- [#155](https://github.com/delucis/astro-embed/pull/155) [`11f10861177beb06fc80137e1ca918b08f317bd0`](https://github.com/delucis/astro-embed/commit/11f10861177beb06fc80137e1ca918b08f317bd0) Thanks [@anotheri](https://github.com/anotheri)! - Adds `theme` prop support to `Tweet` component
+
+## 0.5.6
+
+### Patch Changes
+
+- [`91e70e72e1f3efe2db37e9de1e721eaabfd292bc`](https://github.com/delucis/astro-embed/commit/91e70e72e1f3efe2db37e9de1e721eaabfd292bc) Thanks [@delucis](https://github.com/delucis)! - Add additional `ui` keyword for better categorization in Astro’s integrations library
+
+## 0.5.5
+
+### Patch Changes
+
+- [#148](https://github.com/delucis/astro-embed/pull/148) [`78346ae846925fa3ce90378d2f03c437620adcec`](https://github.com/delucis/astro-embed/commit/78346ae846925fa3ce90378d2f03c437620adcec) Thanks [@prototypa](https://github.com/prototypa)! - Adds support for Astro v5
+
+## 0.5.4
+
+### Patch Changes
+
+- [#100](https://github.com/delucis/astro-embed/pull/100) [`39e3d162b1e380c85e451b37001d82c7813794e7`](https://github.com/delucis/astro-embed/commit/39e3d162b1e380c85e451b37001d82c7813794e7) Thanks [@delucis](https://github.com/delucis)! - Simplifies README.md to link to docs site
+
+- [#100](https://github.com/delucis/astro-embed/pull/100) [`39e3d162b1e380c85e451b37001d82c7813794e7`](https://github.com/delucis/astro-embed/commit/39e3d162b1e380c85e451b37001d82c7813794e7) Thanks [@delucis](https://github.com/delucis)! - Updates documentation links in `package.json`
+
+## 0.5.3
+
+### Patch Changes
+
+- [#77](https://github.com/delucis/astro-embed/pull/77) [`b0f153d`](https://github.com/delucis/astro-embed/commit/b0f153dd414985abb49916cdd8a581580095e863) Thanks [@silent1mezzo](https://github.com/silent1mezzo)! - Adds support for a peer dependency of Astro 4
+
 ## 0.5.2
 
 ### Patch Changes
@@ -38,7 +100,6 @@
   **⚠️ BREAKING CHANGE** Due to upheaval at Twitter, the `<Tweet />` component is no longer able to fetch detailed information from Twitter’s API, limiting what a static embed can easily do.
 
   Key differences:
-
   - The `<Tweet />` component must now receive a full URL to a tweet, not just an ID. You will need to update these if you have any:
 
     ```diff

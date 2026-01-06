@@ -1,0 +1,22 @@
+---
+import { BaselineStatus } from '@astro-community/astro-embed-baseline-status';
+---
+
+<div class="styled-baseline">
+	<BaselineStatus id="anchor-positioning" />
+</div>
+
+<style>
+	.styled-baseline :global(.baseline-status::part(root)) {
+		color-scheme: light;
+		background: floralwhite;
+		color: darkblue;
+		font-family: fantasy;
+		border: 1px dashed;
+	}
+
+	.styled-baseline :global(.baseline-status::part(feature-name)) {
+		color: purple;
+		font-weight: bold;
+	}
+</style>

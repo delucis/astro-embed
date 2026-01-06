@@ -1,0 +1,125 @@
+.bluesky-post-container {
+	/* Colours */
+	--bluesky-color-overlay: rgba(0, 0, 0, 0.5);
+
+	--bluesky-color-link: rgb(59 130 246);
+
+	/* Colour palette */
+	--bluesky-color-text--light: #000000;
+	--bluesky-color-text-secondary--light: rgb(66 87 108);
+	--bluesky-color-border--light: #e5e5e5;
+	--bluesky-color-background--light: #ffffff;
+	--bluesky-color-background-hover--light: #fafafa;
+
+	--bluesky-color-text--dark: white;
+	--bluesky-color-text-secondary--dark: rgb(174, 187, 201);
+	--bluesky-color-border--dark: rgb(46, 64, 82);
+	--bluesky-color-background--dark: hsl(211, 20%, 20%);
+	--bluesky-color-background-hover--dark: hsl(211, 20%, 15%);
+
+	/* Light theme */
+	--bluesky-color-text: var(--bluesky-color-text--light);
+	--bluesky-color-text-secondary: var(--bluesky-color-text-secondary--light);
+	--bluesky-color-border: var(--bluesky-color-border--light);
+	--bluesky-color-background: var(--bluesky-color-background--light);
+	--bluesky-color-background-hover: var(
+		--bluesky-color-background-hover--light
+	);
+
+	/* Typography */
+	--bluesky-font-family:
+		-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+		Arial, sans-serif;
+	--bluesky-font-size-sm: 0.875rem; /* 14px */
+	--bluesky-font-size-base: 1rem; /* 16px */
+	--bluesky-font-size-lg: 1.125rem; /* 18px */
+
+	--bluesky-font-weight-normal: 400;
+	--bluesky-font-weight-medium: 500;
+	--bluesky-font-weight-semibold: 600;
+	--bluesky-font-weight-bold: 700;
+
+	--bluesky-line-height-tight: 1.2;
+	--bluesky-line-height-normal: 1.4;
+	--bluesky-line-height-relaxed: 1.6;
+	--bluesky-line-height-title: 21px;
+	--bluesky-line-height-subtitle: 18px;
+
+	/* Spacing */
+	--bluesky-space-2xs: 0.125rem; /* 2px */
+	--bluesky-space-xs: 0.25rem; /* 4px */
+	--bluesky-space-sm: 0.5rem; /* 8px */
+	--bluesky-space-md: 0.75rem; /* 12px */
+	--bluesky-space-lg: 1rem; /* 16px */
+	--bluesky-space-xl: 1.25rem; /* 20px */
+	--bluesky-space-2xl: 1.5rem; /* 24px */
+
+	/* Layout */
+	--bluesky-radius-sm: 0.25rem; /* 4px */
+	--bluesky-radius-md: 0.5rem; /* 8px */
+	--bluesky-radius-lg: 0.75rem; /* 12px */
+	--bluesky-radius-full: 9999px;
+
+	/* Content */
+	--bluesky-content-max-width: 600px;
+	--bluesky-content-min-width: 300px;
+	--bluesky-content-padding-x: var(--bluesky-space-lg);
+	--bluesky-content-padding-y: var(--bluesky-space-md);
+	--bluesky-content-padding: var(--bluesky-content-padding-y)
+		var(--bluesky-content-padding-x);
+
+	/* Cards & Components */
+	--bluesky-card-gap: var(--bluesky-space-sm);
+	--bluesky-card-border: 1px solid var(--bluesky-color-border);
+	--bluesky-card-padding: var(--bluesky-content-padding);
+	--bluesky-card-transition: background-color 0.2s ease;
+
+	/* Media */
+	--bluesky-aspect-ratio-thumb: 1.91/1;
+	--bluesky-aspect-ratio-square: 1/1;
+	--bluesky-aspect-ratio-video: 16/9;
+
+	/* Icons */
+	--bluesky-icon-size-sm: 1rem;
+	--bluesky-icon-size-md: 1.5rem;
+	--bluesky-icon-size-lg: 2rem;
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+	.bluesky-post-container {
+		--bluesky-color-text: var(--bluesky-color-text--light);
+		--bluesky-color-text-secondary: var(--bluesky-color-text-secondary--light);
+		--bluesky-color-border: var(--bluesky-color-border--light);
+		--bluesky-color-background: var(--bluesky-color-background--light);
+		--bluesky-color-background-hover: var(
+			--bluesky-color-background-hover--light
+		);
+	}
+}
+
+/* Dynamic colours when supported */
+@supports (--color: light-dark(var(--a), var(--b))) {
+	.bluesky-post-container {
+		--bluesky-color-text: light-dark(
+			var(--bluesky-color-text--light),
+			var(--bluesky-color-text--dark)
+		);
+		--bluesky-color-text-secondary: light-dark(
+			var(--bluesky-color-text-secondary--light),
+			var(--bluesky-color-text-secondary--dark)
+		);
+		--bluesky-color-border: light-dark(
+			var(--bluesky-color-border--light),
+			var(--bluesky-color-border--dark)
+		);
+		--bluesky-color-background: light-dark(
+			var(--bluesky-color-background--light),
+			var(--bluesky-color-background--dark)
+		);
+		--bluesky-color-background-hover: light-dark(
+			var(--bluesky-color-background-hover--light),
+			var(--bluesky-color-background-hover--dark)
+		);
+	}
+}
