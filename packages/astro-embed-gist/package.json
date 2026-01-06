@@ -28,9 +28,6 @@
   },
   "homepage": "https://github.com/delucis/astro-embed/tree/main/packages/astro-embed-gist#readme",
   "dependencies": {
-    "@astro-community/astro-embed-utils": "^0.1.0"
-  },
-  "peerDependencies": {
-    "astro": "^2.0.0 || ^3.0.0-beta || ^4.0.0-beta"
+    "@astro-community/astro-embed-utils": "^0.2.0"
   }
 }
