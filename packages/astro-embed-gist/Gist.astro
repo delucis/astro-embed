@@ -1,7 +1,9 @@
 ---
+import { safeGet } from '@astro-community/astro-embed-utils';
+
 export interface Props {
 	/**
-	 * Gist url to fetch
+	 * Gist URL to fetch
 	 */
 	id: string;
 	/**
@@ -9,70 +11,42 @@ export interface Props {
 	 */
 	fileName?: string;
 }
+
 const { id, fileName } = Astro.props;
-let url = id + '.json';
+
+let url = new URL(`${id}.json`);
 if (fileName) {
-	url += `?file=${fileName}`;
+	url.searchParams.set('file', fileName);
 }
 
-async function fetchGist(id: string): Promise<
-	| {
-			description: string;
-			created_at: Date;
-			files: string[];
-			owner: string;
-			stylesheet: string;
-			div: string;
-	  }
-	| undefined
-> {
-	try {
-		const gistUrl = new URL(url);
-		return await fetch(gistUrl).then((res) => res.json());
-	} catch (e: any) {
-		console.error(
-			`[error]  astro-embed
-         ${e.status} - ${e.statusText}: Failed to fetch gist ${id}`
-		);
-		return;
-	}
+async function fetchGist(gistUrl: string) {
+	return (await safeGet(gistUrl)) as
+		| undefined
+		| {
+				description: string;
+				created_at: string;
+				files: string[];
+				owner: string;
+				stylesheet: string;
+				div: string;
+		  };
 }
-const gist = await fetchGist(id);
-
-// TODO use stylesheet
-const stylesheetUrl = gist?.stylesheet;
+const gist = await fetchGist(url.href);
 ---
 
 {
 	gist && (
-		<astro-embed-gist data-cssurl={stylesheetUrl}>
-			<p class="gist-embed-description">{gist.description}</p>
-			<Fragment set:html={gist.div} />
-			<span class="gist-embed-owner">gist by {gist.owner}</span>
+		<astro-embed-gist>
+			<template shadowrootmode="open">
+				<link rel="stylesheet" href={gist.stylesheet} />
+				<Fragment set:html={gist.div} />
+			</template>
 		</astro-embed-gist>
 	)
 }
 <style>
 	astro-embed-gist {
-		display: block;
-	}
-	.gist-embed-owner {
-	}
-	.gist-embed-description {
+		--borderWidth-thin: 1px;
+		--borderRadius-medium: 0.5em;
 	}
 </style>
-
-<script>
-	document.addEventListener('DOMContentLoaded', function () {
-		const gists = document.querySelectorAll<HTMLElement>('astro-embed-gist');
-		gists.forEach((e) => {
-			const stylesheetUrl = e.dataset.cssurl;
-			if (!stylesheetUrl) return;
-			const linkElement = document.createElement('link');
-			linkElement.href = stylesheetUrl;
-			linkElement.rel = 'stylesheet';
-			linkElement.type = 'text/css';
-			document.head.appendChild(linkElement);
-		});
-	});
-</script>
