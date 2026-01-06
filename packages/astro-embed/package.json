@@ -35,6 +35,7 @@
   "dependencies": {
     "@astro-community/astro-embed-baseline-status": "^0.2.2",
     "@astro-community/astro-embed-bluesky": "^0.1.6",
+    "@astro-community/astro-embed-gist": "^0.0.1",
     "@astro-community/astro-embed-integration": "^0.10.0",
     "@astro-community/astro-embed-link-preview": "^0.3.0",
     "@astro-community/astro-embed-mastodon": "^0.1.0",

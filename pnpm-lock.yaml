@@ -80,6 +80,9 @@ importers:
       '@astro-community/astro-embed-bluesky':
         specifier: workspace:*
         version: link:../packages/astro-embed-bluesky
+      '@astro-community/astro-embed-gist':
+        specifier: workspace:*
+        version: link:../packages/astro-embed-gist
       '@astro-community/astro-embed-link-preview':
         specifier: workspace:*
         version: link:../packages/astro-embed-link-preview
@@ -110,6 +113,9 @@ importers:
       '@astro-community/astro-embed-bluesky':
         specifier: workspace:*
         version: link:../packages/astro-embed-bluesky
+      '@astro-community/astro-embed-gist':
+        specifier: workspace:*
+        version: link:../packages/astro-embed-gist
       '@astro-community/astro-embed-link-preview':
         specifier: workspace:*
         version: link:../packages/astro-embed-link-preview
@@ -158,6 +164,9 @@ importers:
       '@astro-community/astro-embed-bluesky':
         specifier: ^0.1.6
         version: link:../astro-embed-bluesky
+      '@astro-community/astro-embed-gist':
+        specifier: ^0.0.1
+        version: link:../astro-embed-gist
       '@astro-community/astro-embed-integration':
         specifier: ^0.10.0
         version: link:../astro-embed-integration
