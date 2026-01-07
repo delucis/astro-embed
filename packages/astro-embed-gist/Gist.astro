@@ -1,6 +1,6 @@
 ---
 import { safeGet } from '@astro-community/astro-embed-utils';
-import styleUrl from './Gist.css?url';
+import styles from './Gist.css?raw';
 
 export interface Props {
 	/**
@@ -41,7 +41,7 @@ const gist = await fetchGist(url.href);
 		<astro-embed-gist>
 			<template shadowrootmode="open">
 				<link rel="stylesheet" href={gist.stylesheet} />
-				<link rel="stylesheet" href={styleUrl} />
+				<style set:html={styles} />
 				<Fragment set:html={gist.div} />
 			</template>
 		</astro-embed-gist>
