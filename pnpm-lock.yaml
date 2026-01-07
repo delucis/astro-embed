@@ -165,10 +165,10 @@ importers:
         specifier: ^0.1.6
         version: link:../astro-embed-bluesky
       '@astro-community/astro-embed-gist':
-        specifier: ^0.0.1
+        specifier: ^0.1.0
         version: link:../astro-embed-gist
       '@astro-community/astro-embed-integration':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../astro-embed-integration
       '@astro-community/astro-embed-link-preview':
         specifier: ^0.3.0
@@ -213,7 +213,7 @@ importers:
         specifier: ^0.1.6
         version: link:../astro-embed-bluesky
       '@astro-community/astro-embed-gist':
-        specifier: ^0.0.1
+        specifier: ^0.1.0
         version: link:../astro-embed-gist
       '@astro-community/astro-embed-link-preview':
         specifier: ^0.3.0
