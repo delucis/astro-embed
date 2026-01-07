@@ -1,6 +1,7 @@
 export { Tweet } from '@astro-community/astro-embed-twitter';
 export { YouTube } from '@astro-community/astro-embed-youtube';
 export { Vimeo } from '@astro-community/astro-embed-vimeo';
+export { Gist } from '@astro-community/astro-embed-gist';
 export { LinkPreview } from '@astro-community/astro-embed-link-preview';
 export { MastodonPost } from '@astro-community/astro-embed-mastodon';
 export { BaselineStatus } from '@astro-community/astro-embed-baseline-status';

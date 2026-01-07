@@ -1,0 +1,37 @@
+{
+  "name": "@astro-community/astro-embed-gist",
+  "version": "0.0.1",
+  "description": "Component to easily embed GitHub Gists on your Astro site",
+  "type": "module",
+  "exports": {
+    ".": "./index.ts",
+    "./matcher": "./matcher.ts"
+  },
+  "files": [
+    "index.ts",
+    "matcher.ts",
+    "Gist.astro",
+    "Gist.css"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/delucis/astro-embed.git",
+    "directory": "packages/astro-embed-gist"
+  },
+  "keywords": [
+    "astro",
+    "astro-component",
+    "embeds",
+    "gist",
+    "github"
+  ],
+  "author": "delucis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/delucis/astro-embed/issues"
+  },
+  "homepage": "https://astro-embed.netlify.app/components/gist/",
+  "dependencies": {
+    "@astro-community/astro-embed-utils": "^0.2.0"
+  }
+}
