@@ -1,0 +1,11 @@
+:host {
+	--borderWidth-thin: 1px;
+	--borderRadius-medium: 0.5rem;
+
+	display: block;
+	color-scheme: light;
+}
+
+.gist .gist-file {
+	border-radius: calc(var(--borderRadius-medium) + 1px);
+}

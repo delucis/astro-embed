@@ -10,7 +10,8 @@
   "files": [
     "index.ts",
     "matcher.ts",
-    "Gist.astro"
+    "Gist.astro",
+    "Gist.css"
   ],
   "repository": {
     "type": "git",
