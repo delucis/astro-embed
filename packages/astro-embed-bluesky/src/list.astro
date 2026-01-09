@@ -1,14 +1,15 @@
 ---
-import { AppBskyGraphDefs } from '@atproto/api';
-import { atUriToListUri } from './utils';
+import { AppBskyGraphDefs } from '@atcute/bluesky';
+import { is } from '@atcute/lexicons';
 import Card from './card.astro';
+import { atUriToListUri } from './utils';
 
 interface Props {
 	record: AppBskyGraphDefs.ListView;
 }
 
 const { record } = Astro.props;
-const list = AppBskyGraphDefs.isListView(record) ? record : null;
+const list = is(AppBskyGraphDefs.listViewSchema, record) ? record : null;
 const purposes: Record<AppBskyGraphDefs.ListPurpose, string> = {
 	'app.bsky.graph.defs#curatelist': 'User list',
 	'app.bsky.graph.defs#modlist': 'Moderation list',

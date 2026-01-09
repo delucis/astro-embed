@@ -1,5 +1,9 @@
 ---
-import { type AppBskyGraphDefs, AppBskyGraphStarterpack } from '@atproto/api';
+import {
+	type AppBskyGraphDefs,
+	AppBskyGraphStarterpack,
+} from '@atcute/bluesky';
+import { is } from '@atcute/lexicons';
 import { atUriToStarterPackUri, starterPackOgImage } from './utils';
 import Card from './card.astro';
 
@@ -9,7 +13,7 @@ interface Props {
 
 const { record } = Astro.props;
 
-const pack = AppBskyGraphStarterpack.isRecord(record.record)
+const pack = is(AppBskyGraphStarterpack.mainSchema, record.record)
 	? record.record
 	: null;
 ---
