@@ -1,5 +1,6 @@
 ---
-import { AppBskyEmbedRecord, AppBskyFeedPost } from '@atproto/api';
+import { AppBskyEmbedRecord, AppBskyFeedPost } from '@atcute/bluesky';
+import { is } from '@atcute/lexicons';
 import Embed from './embed.astro';
 import { atUriToPostUri, viewRecordToEmbed } from './utils';
 import Avatar from './avatar.astro';
@@ -12,8 +13,8 @@ const { embed } = Astro.props;
 ---
 
 {
-	AppBskyEmbedRecord.isViewRecord(embed.record) &&
-	AppBskyFeedPost.isRecord(embed.record.value) ? (
+	is(AppBskyEmbedRecord.viewRecordSchema, embed.record) &&
+	is(AppBskyFeedPost.mainSchema, embed.record.value) ? (
 		<div class="post-container">
 			<a href={atUriToPostUri(embed.record.uri)} class="post-link">
 				<div class="user-info">

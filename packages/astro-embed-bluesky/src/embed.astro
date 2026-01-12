@@ -1,5 +1,4 @@
 ---
-import type { EmbedView } from './types';
 import {
 	AppBskyEmbedExternal,
 	AppBskyEmbedImages,
@@ -7,13 +6,15 @@ import {
 	AppBskyEmbedRecordWithMedia,
 	AppBskyEmbedVideo,
 	AppBskyGraphDefs,
-} from '@atproto/api';
+} from '@atcute/bluesky';
+import { is } from '@atcute/lexicons';
 import External from './external.astro';
 import ImageGrid from './image-grid.astro';
-import VideoThumbnail from './video-thumbnail.astro';
+import List from './list.astro';
 import QuoteEmbed from './quote-embed.astro';
 import StarterPack from './starter-pack.astro';
-import List from './list.astro';
+import type { EmbedView } from './types';
+import VideoThumbnail from './video-thumbnail.astro';
 
 interface Props {
 	embed?: EmbedView | undefined | null;
@@ -25,29 +26,29 @@ const { embed, postUrl, compact } = Astro.props;
 ---
 
 {
-	AppBskyEmbedRecordWithMedia.isView(embed) ? (
+	is(AppBskyEmbedRecordWithMedia.viewSchema, embed) ? (
 		<div class="record-with-media">
 			<Astro.self embed={embed.media} postUrl={postUrl} compact={compact} />
 			<QuoteEmbed embed={embed.record} />
 		</div>
-	) : AppBskyEmbedExternal.isView(embed) ? (
+	) : is(AppBskyEmbedExternal.viewSchema, embed) ? (
 		<External embed={embed} compact={compact} />
-	) : AppBskyEmbedImages.isView(embed) ? (
+	) : is(AppBskyEmbedImages.viewSchema, embed) ? (
 		<a href={postUrl}>
 			<ImageGrid images={embed.images} />
 		</a>
-	) : AppBskyEmbedVideo.isView(embed) ? (
+	) : is(AppBskyEmbedVideo.viewSchema, embed) ? (
 		<a href={postUrl}>
 			<VideoThumbnail
 				thumbnail={embed.thumbnail}
 				aspectRatio={embed.aspectRatio}
 			/>
 		</a>
-	) : AppBskyGraphDefs.isStarterPackViewBasic(embed?.record) ? (
+	) : is(AppBskyGraphDefs.starterPackViewBasicSchema, embed?.record) ? (
 		<StarterPack record={embed.record} />
-	) : AppBskyGraphDefs.isListView(embed?.record) ? (
+	) : is(AppBskyGraphDefs.listViewSchema, embed?.record) ? (
 		<List record={embed.record} />
-	) : AppBskyEmbedRecord.isView(embed) ? (
+	) : is(AppBskyEmbedRecord.viewSchema, embed) ? (
 		<QuoteEmbed embed={embed} />
 	) : !embed ? null : (
 		embed?.$type

@@ -1,12 +1,12 @@
 ---
-import { BlueskyPost } from '@astro-community/astro-embed-bluesky';
+import { BlueskyPost, type Post } from '@astro-community/astro-embed-bluesky';
 import Base from '../layouts/Base.astro';
 import post from '../post.json';
 ---
 
 <Base title="BlueskyPost component example">
 	<div class="content">
-		<BlueskyPost post={post.data} />
+		<BlueskyPost post={post.data as Post} />
 		<p>Raw data</p>
 		<BlueskyPost
 			post="https://bsky.app/profile/wesbos.com/post/3la2ezdodvu2g"
