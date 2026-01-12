@@ -1,5 +1,27 @@
 # @astro-community/astro-embed-integration
 
+## 0.11.0
+
+### Minor Changes
+
+- [#84](https://github.com/delucis/astro-embed/pull/84) [`eee1d7e`](https://github.com/delucis/astro-embed/commit/eee1d7e767475d1201a2702ce0a8e0d2f9778f75) Thanks [@vasfvitor](https://github.com/vasfvitor)! - Adds a new `Gist` component for embedding GitHub Gists
+
+### Patch Changes
+
+- Updated dependencies [[`eee1d7e`](https://github.com/delucis/astro-embed/commit/eee1d7e767475d1201a2702ce0a8e0d2f9778f75)]:
+  - @astro-community/astro-embed-gist@0.1.0
+
+## 0.10.0
+
+### Minor Changes
+
+- [#140](https://github.com/delucis/astro-embed/pull/140) [`30121f2`](https://github.com/delucis/astro-embed/commit/30121f2111d45325d76b20c5622a048f2d6e2cb1) Thanks [@HiDeoo](https://github.com/HiDeoo)! - Adds a new `MastodonPost` component for embedding posts to Mastodon servers
+
+### Patch Changes
+
+- Updated dependencies [[`30121f2`](https://github.com/delucis/astro-embed/commit/30121f2111d45325d76b20c5622a048f2d6e2cb1)]:
+  - @astro-community/astro-embed-mastodon@0.1.0
+
 ## 0.9.0
 
 ### Minor Changes

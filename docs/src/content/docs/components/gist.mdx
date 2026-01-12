@@ -1,0 +1,75 @@
+---
+title: GitHub Gist
+description: Learn how to use the Astro Embed Gist component to embed files from GitHub Gists in your website with zero JavaScript.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { Gist } from '@astro-community/astro-embed-gist';
+
+The `<Gist>` component embeds files from a GitHub Gist in Astro projects.
+
+## Usage
+
+The `<Gist>` component generates static HTML for files from a [GitHub Gist](https://docs.github.com/en/get-started/writing-on-github/editing-and-sharing-content-with-gists/creating-gists).
+It uses the HTML markup provided by GitHub and links to GitHub’s CSS for styling, so no client-side JavaScript is required.
+
+<Tabs>
+<TabItem label="Astro" icon="astro">
+```astro
+---
+import { Gist } from 'astro-embed';
+---
+
+<Gist id="https://gist.github.com/delucis/0b44f4ff0397767b2416cc981692c346" />
+```
+</TabItem>
+<TabItem label="MDX" icon="seti:markdown">
+```mdx
+import { Gist } from 'astro-embed';
+
+<Gist id="https://gist.github.com/delucis/0b44f4ff0397767b2416cc981692c346" />
+```
+</TabItem>
+</Tabs>
+
+The above code produces the following result:
+
+<Gist id="https://gist.github.com/delucis/0b44f4ff0397767b2416cc981692c346" />
+
+## Optional props
+
+In addition to the required `id` prop, the following props are available to customise how the `<Gist>` component renders:
+
+### `file`
+
+**Type:** `string`
+
+You can display only a single file from a multi-file Gist by specifying the `file` attribute with the name of the file to embed.
+
+For example, this is the same Gist as above, but only showing the `README.md` file:
+
+```astro /file=".+"/
+<Gist
+	id="https://gist.github.com/delucis/0b44f4ff0397767b2416cc981692c346"
+	file="README.md"
+/>
+```
+
+<Gist
+	id="https://gist.github.com/delucis/0b44f4ff0397767b2416cc981692c346"
+	file="README.md"
+/>
+
+## Standalone installation
+
+If you only need the `<Gist>` component, you can install the package directly instead of the main `astro-embed` package:
+
+import { PackageManagers } from 'starlight-package-managers';
+
+<PackageManagers pkg="@astro-community/astro-embed-gist" />
+
+The `<Gist>` component can then be imported as:
+
+```js
+import { Gist } from '@astro-community/astro-embed-gist';
+```

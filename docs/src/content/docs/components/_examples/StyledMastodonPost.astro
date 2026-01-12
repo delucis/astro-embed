@@ -1,0 +1,29 @@
+---
+import { MastodonPost } from '@astro-community/astro-embed-mastodon';
+---
+
+<div class="styled">
+	<MastodonPost id="https://m.webtoo.ls/@astro/112966069629573422" />
+</div>
+
+<style>
+	.styled :global(astro-embed-mastodon::part(root)) {
+		--color: gray;
+		--color-primary: darkblue;
+		--color-secondary: purple;
+		--color-link: purple;
+		--background-color: floralwhite;
+		--border-color: orange;
+		--font-family: cursive;
+
+		max-width: 400px;
+	}
+
+	.styled :global(astro-embed-mastodon::part(user)) {
+		transform: skew(-15deg, 0);
+	}
+
+	.styled :global(astro-embed-mastodon::part(preview-card)) {
+		display: none;
+	}
+</style>

@@ -11,7 +11,9 @@
   "devDependencies": {
     "@astro-community/astro-embed-baseline-status": "workspace:*",
     "@astro-community/astro-embed-bluesky": "workspace:*",
+    "@astro-community/astro-embed-gist": "workspace:*",
     "@astro-community/astro-embed-link-preview": "workspace:*",
+    "@astro-community/astro-embed-mastodon": "workspace:*",
     "@astro-community/astro-embed-vimeo": "workspace:*",
     "@astro-community/astro-embed-youtube": "workspace:*",
     "@astrojs/mdx": "^4.3.13",
