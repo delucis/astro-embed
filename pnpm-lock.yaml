@@ -171,13 +171,13 @@ importers:
         specifier: ^0.11.0
         version: link:../astro-embed-integration
       '@astro-community/astro-embed-link-preview':
-        specifier: ^0.3.0
+        specifier: ^0.3.1
         version: link:../astro-embed-link-preview
       '@astro-community/astro-embed-mastodon':
         specifier: ^0.1.0
         version: link:../astro-embed-mastodon
       '@astro-community/astro-embed-twitter':
-        specifier: ^0.5.10
+        specifier: ^0.5.11
         version: link:../astro-embed-twitter
       '@astro-community/astro-embed-vimeo':
         specifier: ^0.3.12
@@ -216,13 +216,13 @@ importers:
         specifier: ^0.1.0
         version: link:../astro-embed-gist
       '@astro-community/astro-embed-link-preview':
-        specifier: ^0.3.0
+        specifier: ^0.3.1
         version: link:../astro-embed-link-preview
       '@astro-community/astro-embed-mastodon':
         specifier: ^0.1.0
         version: link:../astro-embed-mastodon
       '@astro-community/astro-embed-twitter':
-        specifier: ^0.5.10
+        specifier: ^0.5.11
         version: link:../astro-embed-twitter
       '@astro-community/astro-embed-vimeo':
         specifier: ^0.3.12
