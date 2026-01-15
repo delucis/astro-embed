@@ -30,7 +30,7 @@
     "@astro-community/astro-embed-vimeo": "^0.3.12",
     "@astro-community/astro-embed-youtube": "^0.5.10",
     "@types/unist": "^3.0.3",
-    "astro-auto-import": "^0.4.5",
+    "astro-auto-import": "^0.5.1",
     "unist-util-select": "^5.1.0"
   },
   "peerDependencies": {
