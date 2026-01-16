@@ -30,10 +30,10 @@ importers:
         specifier: ^24.10.7
         version: 24.10.8
       '@typescript-eslint/eslint-plugin':
-        specifier: ^8.52.0
+        specifier: ^8.53.0
         version: 8.53.0(@typescript-eslint/parser@8.53.0(eslint@9.39.2)(typescript@5.9.3))(eslint@9.39.2)(typescript@5.9.3)
       '@typescript-eslint/parser':
-        specifier: ^8.52.0
+        specifier: ^8.53.0
         version: 8.53.0(eslint@9.39.2)(typescript@5.9.3)
       astro:
         specifier: ^5.16.9
