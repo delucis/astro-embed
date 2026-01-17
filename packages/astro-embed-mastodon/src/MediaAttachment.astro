@@ -65,12 +65,11 @@ if (media.type === 'unknown') {
 
 <style is:global>
 	astro-embed-mastodon::part(image-attachment),
+	astro-embed-mastodon::part(audio-attachment),
 	astro-embed-mastodon::part(video-attachment) {
+		display: block;
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-	}
-	astro-embed-mastodon::part(audio-attachment) {
-		width: 100%;
 	}
 </style>
