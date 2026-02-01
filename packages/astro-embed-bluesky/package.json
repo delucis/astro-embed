@@ -30,6 +30,6 @@
   "author": "Matt Kane",
   "license": "MIT",
   "dependencies": {
-    "@atproto/api": "^0.13.14"
+    "@atproto/api": "^0.18.18"
   }
 }
