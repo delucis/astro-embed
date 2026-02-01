@@ -38,7 +38,7 @@
     "@astro-community/astro-embed-gist": "^0.1.0",
     "@astro-community/astro-embed-integration": "^0.11.0",
     "@astro-community/astro-embed-link-preview": "^0.3.1",
-    "@astro-community/astro-embed-mastodon": "^0.1.0",
+    "@astro-community/astro-embed-mastodon": "^0.1.1",
     "@astro-community/astro-embed-twitter": "^0.5.11",
     "@astro-community/astro-embed-vimeo": "^0.3.12",
     "@astro-community/astro-embed-youtube": "^0.5.10"

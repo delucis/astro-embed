@@ -174,7 +174,7 @@ importers:
         specifier: ^0.3.1
         version: link:../astro-embed-link-preview
       '@astro-community/astro-embed-mastodon':
-        specifier: ^0.1.0
+        specifier: ^0.1.1
         version: link:../astro-embed-mastodon
       '@astro-community/astro-embed-twitter':
         specifier: ^0.5.11
@@ -219,7 +219,7 @@ importers:
         specifier: ^0.3.1
         version: link:../astro-embed-link-preview
       '@astro-community/astro-embed-mastodon':
-        specifier: ^0.1.0
+        specifier: ^0.1.1
         version: link:../astro-embed-mastodon
       '@astro-community/astro-embed-twitter':
         specifier: ^0.5.11
