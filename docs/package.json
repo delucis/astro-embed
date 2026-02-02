@@ -20,7 +20,7 @@
     "@astro-community/astro-embed-vimeo": "workspace:*",
     "@astro-community/astro-embed-youtube": "workspace:*",
     "@astrojs/starlight": "^0.37.4",
-    "astro": "^5.17.0",
+    "astro": "^5.17.1",
     "astro-embed": "workspace:*",
     "astro-og-canvas": "^0.10.0",
     "canvaskit-wasm": "^0.40.0",
