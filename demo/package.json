@@ -17,7 +17,7 @@
     "@astro-community/astro-embed-vimeo": "workspace:*",
     "@astro-community/astro-embed-youtube": "workspace:*",
     "@astrojs/mdx": "^4.3.13",
-    "astro": "^5.17.1",
+    "astro": "^5.17.2",
     "astro-embed": "workspace:*"
   }
 }
