@@ -51,7 +51,7 @@ importers:
         specifier: ^5.5.5
         version: 5.5.5(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@9.39.2))(eslint@9.39.2)(prettier@3.8.1)
       globals:
-        specifier: ^17.2.0
+        specifier: ^17.3.0
         version: 17.3.0
       linkedom:
         specifier: ^0.18.12
