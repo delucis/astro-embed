@@ -141,8 +141,8 @@ importers:
         specifier: workspace:*
         version: link:../packages/astro-embed
       astro-og-canvas:
-        specifier: ^0.10.0
-        version: 0.10.0(astro@5.17.2(@types/node@24.10.13)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2))
+        specifier: ^0.10.1
+        version: 0.10.1(astro@5.17.2(@types/node@24.10.13)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2))
       canvaskit-wasm:
         specifier: ^0.40.0
         version: 0.40.0
@@ -1482,8 +1482,8 @@ packages:
     peerDependencies:
       astro: ^4.0.0-beta || ^5.0.0-beta || ^3.3.0
 
-  astro-og-canvas@0.10.0:
-    resolution: {integrity: sha512-JkSIYEo2sTJiuht7iVQ2CNT38+rrlvkRpJkqjA58WDFHdymgWktoT9zLkjEkn2u9K2zeZx2GTev16IBJzIoZNQ==}
+  astro-og-canvas@0.10.1:
+    resolution: {integrity: sha512-cUjsWIOkDBi9Bfkgta1Cr45m2UnTX/jW+tK406SVcD1idhqIHrGD+M5qtwGcJ6OanHeWSgyHGmzQuzELGAwPKg==}
     peerDependencies:
       astro: ^5.0.0 || ^6.0.0-alpha
 
@@ -1777,8 +1777,8 @@ packages:
     resolution: {integrity: sha512-aN97NXWF6AWBTahfVOIrB/NShkzi5H7F9r1s9mD3cDj4Ko5f2qhhVoYMibXF7GlLveb/D2ioWay8lxI97Ven3g==}
     engines: {node: '>=0.12'}
 
-  entities@7.0.0:
-    resolution: {integrity: sha512-FDWG5cmEYf2Z00IkYRhbFrwIwvdFKH07uV8dvNy0omp/Qb1xcyCWp2UDtcwJF4QZZvk0sLudP6/hAu42TaqVhQ==}
+  entities@7.0.1:
+    resolution: {integrity: sha512-TWrgLOFUQTH994YUyl1yT4uyavY5nNB5muff+RtWaqNVCAK408b5ZnnbNAUEWLTCpum9w6arT70i1XdQ4UeOPA==}
     engines: {node: '>=0.12'}
 
   es-module-lexer@1.7.0:
@@ -4682,12 +4682,12 @@ snapshots:
       astro: 5.17.2(@types/node@24.10.13)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)
       rehype-expressive-code: 0.41.3
 
-  astro-og-canvas@0.10.0(astro@5.17.2(@types/node@24.10.13)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)):
+  astro-og-canvas@0.10.1(astro@5.17.2(@types/node@24.10.13)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)):
     dependencies:
       astro: 5.17.2(@types/node@24.10.13)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)
       canvaskit-wasm: 0.40.0
       deterministic-object-hash: 2.0.2
-      entities: 7.0.0
+      entities: 7.0.1
 
   astro@5.17.2(@types/node@24.10.13)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2):
     dependencies:
@@ -5034,7 +5034,7 @@ snapshots:
 
   entities@6.0.1: {}
 
-  entities@7.0.0: {}
+  entities@7.0.1: {}
 
   es-module-lexer@1.7.0: {}
 
