@@ -22,7 +22,7 @@
     "@astrojs/starlight": "^0.37.6",
     "astro": "^5.17.2",
     "astro-embed": "workspace:*",
-    "astro-og-canvas": "^0.10.0",
+    "astro-og-canvas": "^0.10.1",
     "canvaskit-wasm": "^0.40.0",
     "expressive-code-color-chips": "^0.1.4",
     "sharp": "^0.34.5",
