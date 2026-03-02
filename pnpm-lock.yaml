@@ -27,7 +27,7 @@ importers:
         specifier: ^10.4.1
         version: 10.4.1
       '@types/node':
-        specifier: ^24.10.14
+        specifier: ^24.10.15
         version: 24.11.0
       '@typescript-eslint/eslint-plugin':
         specifier: ^8.56.1

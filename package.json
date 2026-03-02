@@ -17,7 +17,7 @@
     "@eslint/eslintrc": "^3.3.4",
     "@eslint/js": "^10.0.1",
     "@testing-library/dom": "^10.4.1",
-    "@types/node": "^24.10.14",
+    "@types/node": "^24.10.15",
     "@typescript-eslint/eslint-plugin": "^8.56.1",
     "@typescript-eslint/parser": "^8.56.1",
     "astro": "^5.18.0",
