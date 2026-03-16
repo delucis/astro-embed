@@ -20,7 +20,7 @@
     "@types/node": "^24.12.0",
     "@typescript-eslint/eslint-plugin": "^8.57.0",
     "@typescript-eslint/parser": "^8.57.0",
-    "astro": "^6.0.3",
+    "astro": "^6.0.4",
     "astro-component-tester": "^0.8.0",
     "eslint": "^10.0.3",
     "eslint-config-prettier": "^10.1.8",
