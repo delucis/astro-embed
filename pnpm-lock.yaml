@@ -144,8 +144,8 @@ importers:
         specifier: ^0.10.1
         version: 0.10.1(astro@6.0.4(@types/node@24.12.0)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2))
       canvaskit-wasm:
-        specifier: ^0.40.0
-        version: 0.40.0
+        specifier: ^0.41.0
+        version: 0.41.0
       expressive-code-color-chips:
         specifier: ^0.1.4
         version: 0.1.4(@expressive-code/core@0.41.7)
@@ -1421,6 +1421,9 @@ packages:
 
   canvaskit-wasm@0.40.0:
     resolution: {integrity: sha512-Od2o+ZmoEw9PBdN/yCGvzfu0WVqlufBPEWNG452wY7E9aT8RBE+ChpZF526doOlg7zumO4iCS+RAeht4P0Gbpw==}
+
+  canvaskit-wasm@0.41.0:
+    resolution: {integrity: sha512-cnbL02NFB3yOYMF/MtxViZHgD1vh55Pvy+zR8q4JuFvyCPejZP3eClkt2GuZ0S7jOmGMCJXaHBasbMChbR9JZg==}
 
   ccount@2.0.1:
     resolution: {integrity: sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg==}
@@ -4611,6 +4614,10 @@ snapshots:
   callsites@3.1.0: {}
 
   canvaskit-wasm@0.40.0:
+    dependencies:
+      '@webgpu/types': 0.1.21
+
+  canvaskit-wasm@0.41.0:
     dependencies:
       '@webgpu/types': 0.1.21
 
