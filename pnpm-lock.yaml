@@ -16,7 +16,7 @@ importers:
         version: 0.6.0
       '@changesets/cli':
         specifier: ^2.30.0
-        version: 2.30.0(@types/node@24.12.0)
+        version: 2.30.0(@types/node@24.12.2)
       '@eslint/eslintrc':
         specifier: ^3.3.5
         version: 3.3.5
@@ -27,8 +27,8 @@ importers:
         specifier: ^10.4.1
         version: 10.4.1
       '@types/node':
-        specifier: ^24.12.0
-        version: 24.12.0
+        specifier: ^24.12.2
+        version: 24.12.2
       '@typescript-eslint/eslint-plugin':
         specifier: ^8.57.2
         version: 8.58.0(@typescript-eslint/parser@8.58.0(eslint@10.1.0)(typescript@5.9.3))(eslint@10.1.0)(typescript@5.9.3)
@@ -37,10 +37,10 @@ importers:
         version: 8.58.0(eslint@10.1.0)(typescript@5.9.3)
       astro:
         specifier: ^6.1.1
-        version: 6.1.2(@types/node@24.12.0)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)
+        version: 6.1.2(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)
       astro-component-tester:
         specifier: ^0.8.0
-        version: 0.8.0(astro@6.1.2(@types/node@24.12.0)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2))
+        version: 0.8.0(astro@6.1.2(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2))
       eslint:
         specifier: ^10.1.0
         version: 10.1.0
@@ -97,10 +97,10 @@ importers:
         version: link:../packages/astro-embed-youtube
       '@astrojs/mdx':
         specifier: ^5.0.3
-        version: 5.0.3(astro@6.1.2(@types/node@24.12.0)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2))
+        version: 5.0.3(astro@6.1.2(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2))
       astro:
         specifier: ^6.1.1
-        version: 6.1.2(@types/node@24.12.0)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)
+        version: 6.1.2(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)
       astro-embed:
         specifier: workspace:*
         version: link:../packages/astro-embed
@@ -133,16 +133,16 @@ importers:
         version: link:../packages/astro-embed-youtube
       '@astrojs/starlight':
         specifier: ^0.38.2
-        version: 0.38.2(astro@6.1.2(@types/node@24.12.0)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2))
+        version: 0.38.2(astro@6.1.2(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2))
       astro:
         specifier: ^6.1.1
-        version: 6.1.2(@types/node@24.12.0)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)
+        version: 6.1.2(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)
       astro-embed:
         specifier: workspace:*
         version: link:../packages/astro-embed
       astro-og-canvas:
         specifier: ^0.10.1
-        version: 0.10.1(astro@6.1.2(@types/node@24.12.0)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2))
+        version: 0.10.1(astro@6.1.2(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2))
       canvaskit-wasm:
         specifier: ^0.41.0
         version: 0.41.0
@@ -154,7 +154,7 @@ importers:
         version: 0.34.5
       starlight-package-managers:
         specifier: ^0.12.0
-        version: 0.12.0(@astrojs/starlight@0.38.2(astro@6.1.2(@types/node@24.12.0)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)))
+        version: 0.12.0(@astrojs/starlight@0.38.2(astro@6.1.2(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)))
 
   packages/astro-embed:
     dependencies:
@@ -187,7 +187,7 @@ importers:
         version: link:../astro-embed-youtube
       astro:
         specifier: ^5.0.0 || ^6.0.0-alpha
-        version: 6.1.2(@types/node@24.12.0)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)
+        version: 6.1.2(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)
 
   packages/astro-embed-baseline-status:
     dependencies:
@@ -235,10 +235,10 @@ importers:
         version: 3.0.3
       astro:
         specifier: ^5.0.0 || ^6.0.0-alpha
-        version: 6.1.2(@types/node@24.12.0)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)
+        version: 6.1.2(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)
       astro-auto-import:
         specifier: ^0.5.1
-        version: 0.5.1(astro@6.1.2(@types/node@24.12.0)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2))
+        version: 0.5.1(astro@6.1.2(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2))
       unist-util-select:
         specifier: ^5.1.0
         version: 5.1.0
@@ -1171,8 +1171,8 @@ packages:
   '@types/node@12.20.55':
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
 
-  '@types/node@24.12.0':
-    resolution: {integrity: sha512-GYDxsZi3ChgmckRT9HPU0WEhKLP08ev/Yfcq2AstjrDASOYCSXeyjDsHg4v5t4jOj7cyDX3vmprafKlWIG9MXQ==}
+  '@types/node@24.12.2':
+    resolution: {integrity: sha512-A1sre26ke7HDIuY/M23nd9gfB+nrmhtYyMINbjI1zHJxYteKR6qSMX56FsmjMcDb3SMcjJg5BiRRgOCC/yBD0g==}
 
   '@types/sax@1.2.7':
     resolution: {integrity: sha512-rO73L89PJxeYM3s3pPPjiPgVVcymqU490g0YO5n5By0k2Erzj6tay/4lr1CHAAU4JyOWd1rpQ8bCf6cZfHU96A==}
@@ -3345,12 +3345,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/mdx@5.0.3(astro@6.1.2(@types/node@24.12.0)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2))':
+  '@astrojs/mdx@5.0.3(astro@6.1.2(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2))':
     dependencies:
       '@astrojs/markdown-remark': 7.1.0
       '@mdx-js/mdx': 3.1.1
       acorn: 8.16.0
-      astro: 6.1.2(@types/node@24.12.0)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)
+      astro: 6.1.2(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)
       es-module-lexer: 2.0.0
       estree-util-visit: 2.0.0
       hast-util-to-html: 9.0.5
@@ -3374,17 +3374,17 @@ snapshots:
       stream-replace-string: 2.0.0
       zod: 4.3.6
 
-  '@astrojs/starlight@0.38.2(astro@6.1.2(@types/node@24.12.0)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2))':
+  '@astrojs/starlight@0.38.2(astro@6.1.2(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2))':
     dependencies:
       '@astrojs/markdown-remark': 7.1.0
-      '@astrojs/mdx': 5.0.3(astro@6.1.2(@types/node@24.12.0)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2))
+      '@astrojs/mdx': 5.0.3(astro@6.1.2(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2))
       '@astrojs/sitemap': 3.7.1
       '@pagefind/default-ui': 1.4.0
       '@types/hast': 3.0.4
       '@types/js-yaml': 4.0.9
       '@types/mdast': 4.0.4
-      astro: 6.1.2(@types/node@24.12.0)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)
-      astro-expressive-code: 0.41.7(astro@6.1.2(@types/node@24.12.0)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2))
+      astro: 6.1.2(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)
+      astro-expressive-code: 0.41.7(astro@6.1.2(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2))
       bcp-47: 2.1.0
       hast-util-from-html: 2.0.3
       hast-util-select: 6.0.2
@@ -3521,7 +3521,7 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  '@changesets/cli@2.30.0(@types/node@24.12.0)':
+  '@changesets/cli@2.30.0(@types/node@24.12.2)':
     dependencies:
       '@changesets/apply-release-plan': 7.1.0
       '@changesets/assemble-release-plan': 6.0.9
@@ -3537,7 +3537,7 @@ snapshots:
       '@changesets/should-skip-package': 0.1.2
       '@changesets/types': 6.1.0
       '@changesets/write': 0.4.0
-      '@inquirer/external-editor': 1.0.3(@types/node@24.12.0)
+      '@inquirer/external-editor': 1.0.3(@types/node@24.12.2)
       '@manypkg/get-packages': 1.1.3
       ansi-colors: 4.1.3
       enquirer: 2.4.1
@@ -3939,12 +3939,12 @@ snapshots:
   '@img/sharp-win32-x64@0.34.5':
     optional: true
 
-  '@inquirer/external-editor@1.0.3(@types/node@24.12.0)':
+  '@inquirer/external-editor@1.0.3(@types/node@24.12.2)':
     dependencies:
       chardet: 2.1.1
       iconv-lite: 0.7.1
     optionalDependencies:
-      '@types/node': 24.12.0
+      '@types/node': 24.12.2
 
   '@isaacs/cliui@9.0.0': {}
 
@@ -4238,13 +4238,13 @@ snapshots:
 
   '@types/node@12.20.55': {}
 
-  '@types/node@24.12.0':
+  '@types/node@24.12.2':
     dependencies:
       undici-types: 7.16.0
 
   '@types/sax@1.2.7':
     dependencies:
-      '@types/node': 24.12.0
+      '@types/node': 24.12.2
 
   '@types/unist@2.0.11': {}
 
@@ -4454,28 +4454,28 @@ snapshots:
 
   astring@1.8.6: {}
 
-  astro-auto-import@0.5.1(astro@6.1.2(@types/node@24.12.0)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)):
+  astro-auto-import@0.5.1(astro@6.1.2(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)):
     dependencies:
       acorn: 8.16.0
-      astro: 6.1.2(@types/node@24.12.0)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)
+      astro: 6.1.2(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)
 
-  astro-component-tester@0.8.0(astro@6.1.2(@types/node@24.12.0)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)):
+  astro-component-tester@0.8.0(astro@6.1.2(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)):
     dependencies:
-      astro: 6.1.2(@types/node@24.12.0)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)
+      astro: 6.1.2(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)
 
-  astro-expressive-code@0.41.7(astro@6.1.2(@types/node@24.12.0)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)):
+  astro-expressive-code@0.41.7(astro@6.1.2(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)):
     dependencies:
-      astro: 6.1.2(@types/node@24.12.0)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)
+      astro: 6.1.2(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)
       rehype-expressive-code: 0.41.7
 
-  astro-og-canvas@0.10.1(astro@6.1.2(@types/node@24.12.0)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)):
+  astro-og-canvas@0.10.1(astro@6.1.2(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)):
     dependencies:
-      astro: 6.1.2(@types/node@24.12.0)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)
+      astro: 6.1.2(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)
       canvaskit-wasm: 0.40.0
       deterministic-object-hash: 2.0.2
       entities: 7.0.1
 
-  astro@6.1.2(@types/node@24.12.0)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2):
+  astro@6.1.2(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2):
     dependencies:
       '@astrojs/compiler': 3.0.1
       '@astrojs/internal-helpers': 0.8.0
@@ -4527,8 +4527,8 @@ snapshots:
       unist-util-visit: 5.1.0
       unstorage: 1.17.4
       vfile: 6.0.3
-      vite: 7.3.1(@types/node@24.12.0)(yaml@2.8.2)
-      vitefu: 1.1.2(vite@7.3.1(@types/node@24.12.0)(yaml@2.8.2))
+      vite: 7.3.1(@types/node@24.12.2)(yaml@2.8.2)
+      vitefu: 1.1.2(vite@7.3.1(@types/node@24.12.2)(yaml@2.8.2))
       xxhash-wasm: 1.1.0
       yargs-parser: 22.0.0
       zod: 4.3.6
@@ -6464,7 +6464,7 @@ snapshots:
 
   sitemap@9.0.1:
     dependencies:
-      '@types/node': 24.12.0
+      '@types/node': 24.12.2
       '@types/sax': 1.2.7
       arg: 5.0.2
       sax: 1.6.0
@@ -6486,9 +6486,9 @@ snapshots:
 
   sprintf-js@1.0.3: {}
 
-  starlight-package-managers@0.12.0(@astrojs/starlight@0.38.2(astro@6.1.2(@types/node@24.12.0)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2))):
+  starlight-package-managers@0.12.0(@astrojs/starlight@0.38.2(astro@6.1.2(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2))):
     dependencies:
-      '@astrojs/starlight': 0.38.2(astro@6.1.2(@types/node@24.12.0)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2))
+      '@astrojs/starlight': 0.38.2(astro@6.1.2(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2))
 
   stream-replace-string@2.0.0: {}
 
@@ -6710,7 +6710,7 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.3
 
-  vite@7.3.1(@types/node@24.12.0)(yaml@2.8.2):
+  vite@7.3.1(@types/node@24.12.2)(yaml@2.8.2):
     dependencies:
       esbuild: 0.27.3
       fdir: 6.5.0(picomatch@4.0.3)
@@ -6719,13 +6719,13 @@ snapshots:
       rollup: 4.53.3
       tinyglobby: 0.2.15
     optionalDependencies:
-      '@types/node': 24.12.0
+      '@types/node': 24.12.2
       fsevents: 2.3.3
       yaml: 2.8.2
 
-  vitefu@1.1.2(vite@7.3.1(@types/node@24.12.0)(yaml@2.8.2)):
+  vitefu@1.1.2(vite@7.3.1(@types/node@24.12.2)(yaml@2.8.2)):
     optionalDependencies:
-      vite: 7.3.1(@types/node@24.12.0)(yaml@2.8.2)
+      vite: 7.3.1(@types/node@24.12.2)(yaml@2.8.2)
 
   volar-service-css@0.0.70(@volar/language-service@2.4.28):
     dependencies:
