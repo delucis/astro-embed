@@ -1,5 +1,18 @@
 # @astro-community/astro-embed-integration
 
+## 0.12.0
+
+### Minor Changes
+
+- [#261](https://github.com/delucis/astro-embed/pull/261) [`eb53671`](https://github.com/delucis/astro-embed/commit/eb53671135c13df1c1cc56215c43ed939bbf1274) Thanks [@delucis](https://github.com/delucis)! - Reduces install size of `@astro-community/astro-embed-bluesky` by ~60%
+
+  The `<Bluesky>` component now uses [atcute](https://github.com/mary-ext/atcute) instead of `@atproto/api` internally. Because of this, the `Post` TypeScript type has changed slightly. If you were passing Bluesky data directly to the component (instead of a post URL), it should still work, but in some circumstances you may see type errors and need to adjust things slightly. [Let us know if you run into issues upgrading](https://github.com/delucis/astro-embed/issues/new/choose).
+
+### Patch Changes
+
+- Updated dependencies [[`eb53671`](https://github.com/delucis/astro-embed/commit/eb53671135c13df1c1cc56215c43ed939bbf1274)]:
+  - @astro-community/astro-embed-bluesky@0.2.0
+
 ## 0.11.0
 
 ### Minor Changes
