@@ -103,14 +103,14 @@ export async function resolvePost(
 	}
 
 	if (postUrl.startsWith('at:')) {
-		atUri = postUrl as any;
+		atUri = postUrl as `at://${string}.${string}`;
 	} else {
 		if (!postUrl.startsWith('https://bsky.app/')) {
 			return undefined;
 		}
 		const urlParts = new URL(postUrl).pathname.split('/');
-		let did = urlParts[2]! as any;
-		const postId = urlParts[4]!;
+		let did = urlParts[2];
+		const postId = urlParts[4];
 		if (!did || !postId) {
 			return undefined;
 		}
@@ -118,7 +118,7 @@ export async function resolvePost(
 			try {
 				const handleResolution = await client.get(
 					'com.atproto.identity.resolveHandle',
-					{ params: { handle: did } }
+					{ params: { handle: did as `${string}.${string}` } }
 				);
 				if (!handleResolution.ok || !handleResolution.data.did) {
 					return undefined;
