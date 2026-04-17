@@ -26,6 +26,7 @@ export function getLocaleDir(lang: string): 'ltr' | 'rtl' {
 	}
 	// Firefox does not support `textInfo` or `getTextInfo` yet so we fallback to a well-known list
 	// of right-to-left languages.
+	// @ts-expect-error — TS thinks this condition is unreachable but in reality this case can occur
 	return wellKnownRTL.includes(locale.language) ? 'rtl' : 'ltr';
 }
 
