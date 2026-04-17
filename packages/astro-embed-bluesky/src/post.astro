@@ -1,10 +1,10 @@
 ---
+import type { AppBskyFeedDefs } from '@atcute/bluesky';
 import { atUriToPostUri, renderPostAsHtml, resolvePost } from './utils.js';
 import Embed from './embed.astro';
 import type { Post } from './types';
 import './styles.css';
 import Avatar from './avatar.astro';
-import type { AppBskyFeedDefs } from '@atproto/api';
 
 type Props = {
 	id?: string;

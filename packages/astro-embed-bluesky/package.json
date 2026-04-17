@@ -30,6 +30,14 @@
   "author": "Matt Kane",
   "license": "MIT",
   "dependencies": {
-    "@atproto/api": "^0.13.14"
+    "@atcute/atproto": "3.1.10",
+    "@atcute/bluesky": "3.2.15",
+    "@atcute/bluesky-richtext-segmenter": "^2.0.4",
+    "@atcute/client": "^4.2.1",
+    "@atcute/lexicons": "1.2.6"
+  },
+  "overrides": {
+    "@atcute/lexicons": "1.2.6",
+    "@atcute/util-text": "1.1.1"
   }
 }

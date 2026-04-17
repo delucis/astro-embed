@@ -1,15 +1,15 @@
 import type {
-	AppBskyFeedPost,
-	AppBskyFeedDefs,
-	AppBskyEmbedRecord,
 	AppBskyEmbedExternal,
 	AppBskyEmbedImages,
+	AppBskyEmbedRecord,
 	AppBskyEmbedRecordWithMedia,
 	AppBskyEmbedVideo,
-} from '@atproto/api';
+	AppBskyFeedDefs,
+	AppBskyFeedPost,
+} from '@atcute/bluesky';
 
 export interface Post extends AppBskyFeedDefs.PostView {
-	record: AppBskyFeedPost.Record;
+	record: AppBskyFeedPost.Main;
 }
 
 export type EmbedView =
