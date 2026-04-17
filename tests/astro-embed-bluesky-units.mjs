@@ -49,7 +49,7 @@ test('resolvePost should fetch a Bluesky post by its postUrl', async () => {
 	assert.equal(post.author.displayName, 'Matt Kane');
 	assert.equal(
 		post.author.avatar,
-		'https://cdn.bsky.app/img/avatar/plain/did:plc:uwbl4k3tza7eyjv3morkrld2/bafkreic4mwsbm2tmuonamj4jq4kcjofk35bwics2f4oorp57f3cdfusjwu@jpeg'
+		'https://cdn.bsky.app/img/avatar/plain/did:plc:uwbl4k3tza7eyjv3morkrld2/bafkreic4mwsbm2tmuonamj4jq4kcjofk35bwics2f4oorp57f3cdfusjwu'
 	);
 	assert.equal(
 		post.uri,
