@@ -1,6 +1,6 @@
 {
   "name": "@astro-community/astro-embed-integration",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "description": "Astro integration to automatically convert URLs in Markdown files to embeds",
   "type": "module",
   "exports": {
@@ -22,7 +22,7 @@
   },
   "homepage": "https://astro-embed.netlify.app/integration",
   "dependencies": {
-    "@astro-community/astro-embed-bluesky": "^0.1.6",
+    "@astro-community/astro-embed-bluesky": "^0.2.0",
     "@astro-community/astro-embed-gist": "^0.1.0",
     "@astro-community/astro-embed-link-preview": "^0.3.1",
     "@astro-community/astro-embed-mastodon": "^0.1.1",
