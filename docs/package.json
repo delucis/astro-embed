@@ -19,13 +19,13 @@
     "@astro-community/astro-embed-twitter": "workspace:*",
     "@astro-community/astro-embed-vimeo": "workspace:*",
     "@astro-community/astro-embed-youtube": "workspace:*",
-    "@astrojs/starlight": "^0.37.1",
-    "astro": "^5.16.6",
+    "@astrojs/starlight": "^0.38.3",
+    "astro": "^6.1.5",
     "astro-embed": "workspace:*",
-    "astro-og-canvas": "^0.7.2",
-    "canvaskit-wasm": "^0.40.0",
+    "astro-og-canvas": "^0.11.0",
+    "canvaskit-wasm": "^0.41.1",
     "expressive-code-color-chips": "^0.1.4",
     "sharp": "^0.34.5",
-    "starlight-package-managers": "^0.11.1"
+    "starlight-package-managers": "^0.12.0"
   }
 }
