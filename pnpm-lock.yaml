@@ -198,20 +198,20 @@ importers:
   packages/astro-embed-bluesky:
     dependencies:
       '@atcute/atproto':
-        specifier: 3.1.10
-        version: 3.1.10
+        specifier: ^3.1.11
+        version: 3.1.11
       '@atcute/bluesky':
-        specifier: 3.2.15
-        version: 3.2.15
+        specifier: ^3.3.3
+        version: 3.3.3
       '@atcute/bluesky-richtext-segmenter':
-        specifier: ^2.0.4
-        version: 2.0.4
+        specifier: ^3.0.0
+        version: 3.0.0
       '@atcute/client':
         specifier: ^4.2.1
         version: 4.2.1
       '@atcute/lexicons':
-        specifier: 1.2.6
-        version: 1.2.6
+        specifier: ^1.3.0
+        version: 1.3.0
 
   packages/astro-embed-gist:
     dependencies:
@@ -354,14 +354,14 @@ packages:
   '@astrojs/yaml2ts@0.2.3':
     resolution: {integrity: sha512-PJzRmgQzUxI2uwpdX2lXSHtP4G8ocp24/t+bZyf5Fy0SZLSF9f9KXZoMlFM/XCGue+B0nH/2IZ7FpBYQATBsCg==}
 
-  '@atcute/atproto@3.1.10':
-    resolution: {integrity: sha512-+GKZpOc0PJcdWMQEkTfg/rSNDAAHxmAUGBl60g2az15etqJn5WaUPNGFE2sB7hKpwi5Ue2h/L0OacINcE/JDDQ==}
+  '@atcute/atproto@3.1.11':
+    resolution: {integrity: sha512-yh+ASvA+iHHQij6UeHEKp2+rwvFvQR8A6/5Dk/xvqDslIikWEFx9VlprNwm/clQIPl2bLuQg+LHS8uY9o5nFTA==}
 
-  '@atcute/bluesky-richtext-segmenter@2.0.4':
-    resolution: {integrity: sha512-6m5QEAv4lU3qTy5MeJXJRRG33acipYJnMW1T7W/KrMyThGhQ7jSTTh8Z48quElgivgX7MDj6o/ow1oLUsjsCKw==}
+  '@atcute/bluesky-richtext-segmenter@3.0.0':
+    resolution: {integrity: sha512-NhZTUKtFpeBBbILwAcxj5u4RobIoHOmGw3CAaaEFNebKYSvmTecrXJ7XufHw5DFOUdr8SiKXQVRQxGAxulMNWg==}
 
-  '@atcute/bluesky@3.2.15':
-    resolution: {integrity: sha512-H4RW3WffjfdKvOZ9issEUQnuSR4KfuAwwJnYu0fclA9VDa99JTJ+pa8tTl9lFeBV9DINtWJAx7rdIbICoVCstQ==}
+  '@atcute/bluesky@3.3.3':
+    resolution: {integrity: sha512-R1VyEmbvIUhub6ONnt7sm6FcRoKJISWf+I0qraXtk59KLmNCsJYMX8fLdIcdv5o1i9XtDg8/Um/wqLrl84IuFg==}
 
   '@atcute/client@4.2.1':
     resolution: {integrity: sha512-ZBFM2pW075JtgGFu5g7HHZBecrClhlcNH8GVP9Zz1aViWR+cjjBsTpeE63rJs+FCOHFYlirUyo5L8SGZ4kMINw==}
@@ -369,14 +369,14 @@ packages:
   '@atcute/identity@1.1.3':
     resolution: {integrity: sha512-oIqPoI8TwWeQxvcLmFEZLdN2XdWcaLVtlm8pNk0E72As9HNzzD9pwKPrLr3rmTLRIoULPPFmq9iFNsTeCIU9ng==}
 
-  '@atcute/lexicons@1.2.6':
-    resolution: {integrity: sha512-s76UQd8D+XmHIzrjD9CJ9SOOeeLPHc+sMmcj7UFakAW/dDFXc579fcRdRfuUKvXBL5v1Gs2VgDdlh/IvvQZAwA==}
+  '@atcute/lexicons@1.3.0':
+    resolution: {integrity: sha512-Eq5y+9onnCXNVUlNiMf31beSXHKqptB7lUo/68YbhlmxdaR7ooywHmahya9goP5AsmlYEA1z+dRPXIDAa9O7cg==}
 
-  '@atcute/uint8array@1.0.6':
-    resolution: {integrity: sha512-ucfRBQc7BFT8n9eCyGOzDHEMKF/nZwhS2pPao4Xtab1ML3HdFYcX2DM1tadCzas85QTGxHe5urnUAAcNKGRi9A==}
+  '@atcute/uint8array@1.1.1':
+    resolution: {integrity: sha512-3LsC8XB8TKe9q/5hOA5sFuzGaIFdJZJNewC5OKa3o/eU6+K7JR6see9Zy2JbQERNVnRl11EzbNov1efgLMAs4g==}
 
-  '@atcute/util-text@0.0.1':
-    resolution: {integrity: sha512-t1KZqvn0AYy+h2KcJyHnKF9aEqfRfMUmyY8j1ELtAEIgqN9CxINAjxnoRCJIFUlvWzb+oY3uElQL/Vyk3yss0g==}
+  '@atcute/util-text@1.3.1':
+    resolution: {integrity: sha512-MRgJXkx67znuBXuoAYCJkBZyd3OApL7zZlNf5kXhuoCXcdiu1nblRDycYTADSkym4epBSQWxh26kmI9sewaq6A==}
 
   '@babel/code-frame@7.27.1':
     resolution: {integrity: sha512-cjQ7ZlQ0Mv3b47hABuTevyTuYN4i+loJKGeV9flcCgIK37cCXRh+L1bd3iBHlynerhQ7BhCkn2BPbQUL+rGqFg==}
@@ -3438,40 +3438,37 @@ snapshots:
     dependencies:
       yaml: 2.8.2
 
-  '@atcute/atproto@3.1.10':
+  '@atcute/atproto@3.1.11':
     dependencies:
-      '@atcute/lexicons': 1.2.6
+      '@atcute/lexicons': 1.3.0
 
-  '@atcute/bluesky-richtext-segmenter@2.0.4':
-    dependencies:
-      '@atcute/bluesky': 3.2.15
-      '@atcute/lexicons': 1.2.6
+  '@atcute/bluesky-richtext-segmenter@3.0.0': {}
 
-  '@atcute/bluesky@3.2.15':
+  '@atcute/bluesky@3.3.3':
     dependencies:
-      '@atcute/atproto': 3.1.10
-      '@atcute/lexicons': 1.2.6
+      '@atcute/atproto': 3.1.11
+      '@atcute/lexicons': 1.3.0
 
   '@atcute/client@4.2.1':
     dependencies:
       '@atcute/identity': 1.1.3
-      '@atcute/lexicons': 1.2.6
+      '@atcute/lexicons': 1.3.0
 
   '@atcute/identity@1.1.3':
     dependencies:
-      '@atcute/lexicons': 1.2.6
+      '@atcute/lexicons': 1.3.0
       '@badrap/valita': 0.4.6
 
-  '@atcute/lexicons@1.2.6':
+  '@atcute/lexicons@1.3.0':
     dependencies:
-      '@atcute/uint8array': 1.0.6
-      '@atcute/util-text': 0.0.1
+      '@atcute/uint8array': 1.1.1
+      '@atcute/util-text': 1.3.1
       '@standard-schema/spec': 1.1.0
       esm-env: 1.2.2
 
-  '@atcute/uint8array@1.0.6': {}
+  '@atcute/uint8array@1.1.1': {}
 
-  '@atcute/util-text@0.0.1':
+  '@atcute/util-text@1.3.1':
     dependencies:
       unicode-segmenter: 0.14.5
 
