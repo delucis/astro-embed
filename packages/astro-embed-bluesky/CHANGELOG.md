@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-bluesky
 
+## 0.2.1
+
+### Patch Changes
+
+- [#362](https://github.com/delucis/astro-embed/pull/362) [`876d632`](https://github.com/delucis/astro-embed/commit/876d632be860fe1b3d1af19169353305770dab96) Thanks [@delucis](https://github.com/delucis)! - Updates Bluesky client dependencies
+
 ## 0.2.0
 
 ### Minor Changes
