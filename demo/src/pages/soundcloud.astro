@@ -1,0 +1,55 @@
+---
+import { SoundCloud } from '@astro-community/astro-embed-soundcloud';
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="SoundCloud component examples">
+	<h2>Track</h2>
+	<p>
+		<code
+			>&lt;SoundCloud
+			id="https://soundcloud.com/rick-astley-official/never-gonna-give-you-up-2022"
+			/&gt;</code
+		>
+	</p>
+	<SoundCloud
+		id="https://soundcloud.com/rick-astley-official/never-gonna-give-you-up-2022"
+	/>
+
+	<h2>Playlist</h2>
+	<p>
+		<code
+			>&lt;SoundCloud
+			id="https://soundcloud.com/rick-astley-official/sets/the-greatest-hits-44"
+			playLabel="Play the greatest hits!" params="auto_play=true&start_track=1"
+			/&gt;</code
+		>
+	</p>
+	<SoundCloud
+		id="https://soundcloud.com/rick-astley-official/sets/the-greatest-hits-44"
+		playLabel="Play the greatest hits!"
+		params="auto_play=true&start_track=1"
+	/>
+
+	<h2>Artist page</h2>
+	<p>
+		<code
+			>&lt;SoundCloud id="https://soundcloud.com/rick-astley-official" /&gt;</code
+		>
+	</p>
+	<SoundCloud id="https://soundcloud.com/rick-astley-official" />
+
+	<h2>With a custom poster and play label</h2>
+	<p>
+		<code
+			>&lt;SoundCloud
+			id="https://soundcloud.com/rick-astley-official/never-gonna-give-you-up-2022"
+			playLabel="Get Rick Rolled!" poster="/rick-rolled.png" /&gt;</code
+		>
+	</p>
+	<SoundCloud
+		id="https://soundcloud.com/rick-astley-official/never-gonna-give-you-up-2022"
+		playLabel="Get Rick Rolled!"
+		poster="/rick-rolled.png"
+	/>
+</Base>
