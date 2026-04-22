@@ -38,6 +38,11 @@ function extractTypeAndId(idOrUrl: string): string | undefined {
 }
 
 const typeAndId = extractTypeAndId(id);
+
+if (!typeAndId) {
+	console.warn(`[Spotify] Invalid or unrecognised Spotify ID or URL: ${JSON.stringify(id)}`);
+}
+
 const [contentType, contentId] = typeAndId?.split('/') ?? [];
 
 let posterURL = poster;
@@ -59,6 +64,7 @@ styles.push(`--ls-height: ${height}px`);
 if (posterURL) styles.push(`background-image: url('${posterURL}')`);
 ---
 
+{typeAndId && (
 <lite-spotify
 	data-type={contentType}
 	data-id={contentId}
@@ -71,6 +77,7 @@ if (posterURL) styles.push(`background-image: url('${posterURL}')`);
 		href={`https://open.spotify.com/${typeAndId}`}
 		aria-label={playLabel}></a>
 </lite-spotify>
+)}
 
 <script>
 	class LiteSpotify extends HTMLElement {

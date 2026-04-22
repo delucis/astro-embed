@@ -76,9 +76,15 @@ import Base from '../layouts/Base.astro';
 	<h2>Custom play label</h2>
 	<p>
 		<code
-			>&lt;Spotify id="track/4cOdK2wGLETKBW3PvgPWqT" playlabel="Get Rick
+			>&lt;Spotify id="track/4cOdK2wGLETKBW3PvgPWqT" playLabel="Get Rick
 			Rolled!" /&gt;</code
 		>
 	</p>
 	<Spot id="track/4cOdK2wGLETKBW3PvgPWqT" playLabel="Get Rick Rolled!" />
+
+	<h2>Bad Spotify id</h2>
+	<p>
+		<code>&lt;Spotify id="track/not-real-track-id" /&gt;</code>
+	</p>
+	<Spot id="track/not-real-track-id" />
 </Base>

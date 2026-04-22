@@ -12,7 +12,8 @@ lite-spotify {
 }
 
 lite-spotify > iframe {
-	all: unset !important;
+	margin: 0 !important;
+	padding: 0 !important;
 	width: 100% !important;
 	height: 100% !important;
 	position: absolute !important;
