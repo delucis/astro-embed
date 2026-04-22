@@ -1,0 +1,79 @@
+lite-spotify {
+	font-size: 10px;
+	background-color: #121212;
+	position: relative;
+	display: block;
+	contain: content;
+	background-position: center center;
+	background-size: cover;
+	border-radius: 12px;
+	width: 100%;
+	height: var(--ls-height, 152px);
+}
+
+lite-spotify > iframe {
+	all: unset !important;
+	width: 100% !important;
+	height: 100% !important;
+	position: absolute !important;
+	inset: 0 !important;
+	border: 0 !important;
+	border-radius: 12px !important;
+}
+
+/* play button */
+lite-spotify > .lts-playbtn {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	background: transparent;
+	outline: 0;
+	border: 0;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+lite-spotify > .lts-playbtn:focus::before {
+	outline: auto;
+}
+
+/* circle background */
+lite-spotify > .lts-playbtn::before {
+	width: 4.4em;
+	height: 4.4em;
+	background: rgba(0, 0, 0, 0.75);
+	border-radius: 50%;
+	transition: background 0.2s ease;
+}
+
+lite-spotify:hover > .lts-playbtn::after {
+	border-color: transparent transparent transparent #000;
+}
+
+lite-spotify:hover > .lts-playbtn::before {
+	background: #1db954;
+}
+
+/* play triangle */
+lite-spotify > .lts-playbtn::after {
+	border-style: solid;
+	border-width: 0.75em 0 0.75em 1.3em;
+	border-color: transparent transparent transparent #fff;
+	margin-left: 0.15em;
+}
+
+lite-spotify > .lts-playbtn::before,
+lite-spotify > .lts-playbtn::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate3d(-50%, -50%, 0);
+}
+
+/* post-click styles */
+lite-spotify.lts-activated > .lts-playbtn {
+	cursor: unset;
+	opacity: 0;
+	pointer-events: none;
+}
