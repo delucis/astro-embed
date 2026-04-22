@@ -52,4 +52,15 @@ import Base from '../layouts/Base.astro';
 		playLabel="Get Rick Rolled!"
 		poster="/rick-rolled.png"
 	/>
+
+	<h2>With a bad SoundCloud id</h2>
+	<p>
+		<code
+			>&lt;SoundCloud
+			id="https://soundcloud.com/rick-astley-official/not-a-real-track" /&gt;</code
+		>
+	</p>
+	<SoundCloud
+		id="https://soundcloud.com/rick-astley-official/not-a-real-track"
+	/>
 </Base>

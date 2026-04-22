@@ -16,8 +16,15 @@ export interface Props extends astroHTML.JSX.HTMLAttributes {
 	playLabel?: string;
 }
 
-const { id, poster, posterQuality = 'default', params = '', playLabel, style, ...attrs } =
-	Astro.props as Props;
+const {
+	id,
+	poster,
+	posterQuality = 'default',
+	params = '',
+	playLabel,
+	style,
+	...attrs
+} = Astro.props as Props;
 
 interface OEmbedData {
 	title?: string;
@@ -32,7 +39,10 @@ async function resolveUrl(input: string): Promise<string | undefined> {
 	// Resolve on.soundcloud.com short links to their canonical URL at build time.
 	if (canonical.includes('on.soundcloud.com')) {
 		try {
-			const res = await fetch(canonical, { method: 'HEAD', redirect: 'follow' });
+			const res = await fetch(canonical, {
+				method: 'HEAD',
+				redirect: 'follow',
+			});
 			return res.url || canonical;
 		} catch {
 			return canonical;
@@ -43,16 +53,27 @@ async function resolveUrl(input: string): Promise<string | undefined> {
 
 const url = await resolveUrl(id);
 
+if (!url) {
+	console.warn(`[SoundCloud] Invalid or unrecognized SoundCloud URL: "${id}"`);
+}
+
 let oembed: OEmbedData | undefined;
 if (url) {
 	oembed = (await safeGet(
 		`https://soundcloud.com/oembed?url=${encodeURIComponent(url)}&format=json`
 	)) as OEmbedData | undefined;
+	if (!oembed) {
+		console.warn(
+			`[SoundCloud] Could not load oEmbed data for: "${url}". The content may not exist or may be private.`
+		);
+	}
 }
 
 const isPlaylist = url?.includes('/sets/');
 // Extract the canonical player src from oEmbed's html field; decode HTML entities in the URL.
-const oembedSrc = oembed?.html?.match(/src="([^"]+)"/)?.[1]?.replaceAll('&amp;', '&');
+const oembedSrc = oembed?.html
+	?.match(/src="([^"]+)"/)?.[1]
+	?.replaceAll('&amp;', '&');
 
 function applyParams(base: string, extra: string): string {
 	try {
@@ -65,22 +86,32 @@ function applyParams(base: string, extra: string): string {
 }
 
 const playerSrc = oembedSrc
-	? params ? applyParams(oembedSrc, params) : oembedSrc
+	? params
+		? applyParams(oembedSrc, params)
+		: oembedSrc
 	: url
-	? applyParams(
-			`https://w.soundcloud.com/player/?url=${encodeURIComponent(url)}&auto_play=false`,
-			params
-		)
-	: undefined;
+		? applyParams(
+				`https://w.soundcloud.com/player/?url=${encodeURIComponent(url)}&auto_play=false`,
+				params
+			)
+		: undefined;
 const qualitySuffix =
-	({ max: 't500x500', high: 't300x300', default: 't200x200', low: 't67x67' } as const)[
-		posterQuality
-	] ?? 't200x200';
+	(
+		{
+			max: 't500x500',
+			high: 't300x300',
+			default: 't200x200',
+			low: 't67x67',
+		} as const
+	)[posterQuality] ?? 't200x200';
 const rawThumb = oembed?.thumbnail_url;
 const posterUrl =
 	poster ??
 	(rawThumb
-		? rawThumb.replace(/-(?:t\d+x\d+|large|small|crop|badge|tiny)(\.\w+)$/, `-${qualitySuffix}$1`)
+		? rawThumb.replace(
+				/-(?:t\d+x\d+|large|small|crop|badge|tiny)(\.\w+)$/,
+				`-${qualitySuffix}$1`
+			)
 		: undefined);
 const defaultLabel = oembed?.title
 	? `Play "${oembed.title}"${oembed.author_name ? ` by ${oembed.author_name}` : ''}`
@@ -89,7 +120,7 @@ const ariaLabel = playLabel || defaultLabel;
 
 const styles: string[] = [];
 if (style) styles.push(style as string);
-if (posterUrl) styles.push(`background-image: url('${posterUrl}')`);
+if (posterUrl) styles.push(`background-image: url('${encodeURI(posterUrl)}')`);
 ---
 
 {

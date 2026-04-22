@@ -92,6 +92,9 @@ importers:
       '@astro-community/astro-embed-soundcloud':
         specifier: workspace:*
         version: link:../packages/astro-embed-soundcloud
+      '@astro-community/astro-embed-twitter':
+        specifier: workspace:*
+        version: link:../packages/astro-embed-twitter
       '@astro-community/astro-embed-vimeo':
         specifier: workspace:*
         version: link:../packages/astro-embed-vimeo
@@ -125,6 +128,9 @@ importers:
       '@astro-community/astro-embed-mastodon':
         specifier: workspace:*
         version: link:../packages/astro-embed-mastodon
+      '@astro-community/astro-embed-soundcloud':
+        specifier: workspace:*
+        version: link:../packages/astro-embed-soundcloud
       '@astro-community/astro-embed-twitter':
         specifier: workspace:*
         version: link:../packages/astro-embed-twitter
