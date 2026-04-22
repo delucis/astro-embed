@@ -3,13 +3,17 @@ import * as assert from 'uvu/assert';
 import { renderDOM } from './utils/render.mjs';
 
 const poster = 'https://example.com/cover.jpg';
+const title = 'Never Gonna Give You Up';
 const trackId = '4cOdK2wGLETKBW3PvgPWqT';
 const trackTypeAndId = `track/${trackId}`;
+
+// Shared props that skip oEmbed network calls by providing all metadata upfront.
+const baseProps = { id: trackTypeAndId, poster, title };
 
 test('it should render a lite-spotify element', async () => {
 	const { window } = await renderDOM(
 		'./packages/astro-embed-spotify/Spotify.astro',
-		{ id: trackTypeAndId, poster }
+		baseProps
 	);
 	const embed = window.document.querySelector('lite-spotify');
 	assert.ok(embed);
@@ -20,7 +24,7 @@ test('it should render a lite-spotify element', async () => {
 test('it parses a Spotify URL', async () => {
 	const { window } = await renderDOM(
 		'./packages/astro-embed-spotify/Spotify.astro',
-		{ id: `https://open.spotify.com/${trackTypeAndId}`, poster }
+		{ ...baseProps, id: `https://open.spotify.com/${trackTypeAndId}` }
 	);
 	const embed = window.document.querySelector('lite-spotify');
 	assert.ok(embed);
@@ -31,7 +35,7 @@ test('it parses a Spotify URL', async () => {
 test('it parses a Spotify embed URL', async () => {
 	const { window } = await renderDOM(
 		'./packages/astro-embed-spotify/Spotify.astro',
-		{ id: `https://open.spotify.com/embed/${trackTypeAndId}`, poster }
+		{ ...baseProps, id: `https://open.spotify.com/embed/${trackTypeAndId}` }
 	);
 	const embed = window.document.querySelector('lite-spotify');
 	assert.ok(embed);
@@ -39,62 +43,77 @@ test('it parses a Spotify embed URL', async () => {
 	assert.is(embed.getAttribute('data-id'), trackId);
 });
 
-test('it can set a custom poster image', async () => {
+test('it renders a thumbnail image', async () => {
 	const { window } = await renderDOM(
 		'./packages/astro-embed-spotify/Spotify.astro',
-		{ id: trackTypeAndId, poster }
+		baseProps
 	);
-	const embed = window.document.querySelector('lite-spotify');
-	assert.ok(embed);
-	assert.is(embed.style['background-image'], `url('${poster}')`);
+	const img = window.document.querySelector('lite-spotify img.lts-cover');
+	assert.ok(img);
+	assert.is(img.getAttribute('src'), poster);
+	assert.is(img.getAttribute('alt'), title);
+});
+
+test('it renders the track title', async () => {
+	const { window } = await renderDOM(
+		'./packages/astro-embed-spotify/Spotify.astro',
+		baseProps
+	);
+	const titleEl = window.document.querySelector('lite-spotify .lts-title');
+	assert.ok(titleEl);
+	assert.is(titleEl.textContent, title);
 });
 
 test('it renders compact size by default', async () => {
 	const { window } = await renderDOM(
 		'./packages/astro-embed-spotify/Spotify.astro',
-		{ id: trackTypeAndId, poster }
+		baseProps
 	);
 	const embed = window.document.querySelector('lite-spotify');
 	assert.ok(embed);
 	assert.is(embed.style.getPropertyValue('--ls-height'), '152px');
+	assert.is(embed.getAttribute('data-size'), 'compact');
 });
 
 test('it renders full size when size is "full"', async () => {
 	const { window } = await renderDOM(
 		'./packages/astro-embed-spotify/Spotify.astro',
-		{ id: trackTypeAndId, poster, size: 'full' }
+		{ ...baseProps, size: 'full' }
 	);
 	const embed = window.document.querySelector('lite-spotify');
 	assert.ok(embed);
 	assert.is(embed.style.getPropertyValue('--ls-height'), '352px');
+	assert.is(embed.getAttribute('data-size'), 'full');
 });
 
 test('it uses dark theme by default', async () => {
 	const { window } = await renderDOM(
 		'./packages/astro-embed-spotify/Spotify.astro',
-		{ id: trackTypeAndId, poster }
+		baseProps
 	);
 	const embed = window.document.querySelector('lite-spotify');
 	assert.ok(embed);
 	const params = new URLSearchParams(embed.getAttribute('data-params'));
 	assert.is(params.get('theme'), '0');
+	assert.is(embed.getAttribute('data-theme'), 'dark');
 });
 
 test('it uses light theme when theme is "light"', async () => {
 	const { window } = await renderDOM(
 		'./packages/astro-embed-spotify/Spotify.astro',
-		{ id: trackTypeAndId, poster, theme: 'light' }
+		{ ...baseProps, theme: 'light' }
 	);
 	const embed = window.document.querySelector('lite-spotify');
 	assert.ok(embed);
 	const params = new URLSearchParams(embed.getAttribute('data-params'));
 	assert.is(params.get('theme'), '1');
+	assert.is(embed.getAttribute('data-theme'), 'light');
 });
 
 test('it renders a fallback link to Spotify', async () => {
 	const { window } = await renderDOM(
 		'./packages/astro-embed-spotify/Spotify.astro',
-		{ id: trackTypeAndId, poster }
+		baseProps
 	);
 	const link = window.document.querySelector('lite-spotify a.lts-playbtn');
 	assert.ok(link);
@@ -107,7 +126,7 @@ test('it renders a fallback link to Spotify', async () => {
 test('it uses the default play label', async () => {
 	const { window } = await renderDOM(
 		'./packages/astro-embed-spotify/Spotify.astro',
-		{ id: trackTypeAndId, poster }
+		baseProps
 	);
 	const link = window.document.querySelector('lite-spotify a.lts-playbtn');
 	assert.ok(link);
@@ -117,7 +136,7 @@ test('it uses the default play label', async () => {
 test('it can set a custom play label', async () => {
 	const { window } = await renderDOM(
 		'./packages/astro-embed-spotify/Spotify.astro',
-		{ id: trackTypeAndId, poster, playLabel: 'Play on Spotify' }
+		{ ...baseProps, playLabel: 'Play on Spotify' }
 	);
 	const link = window.document.querySelector('lite-spotify a.lts-playbtn');
 	assert.ok(link);

@@ -6,8 +6,12 @@ import './Spotify.css';
 export interface Props extends astroHTML.JSX.HTMLAttributes {
 	/** Spotify content URL or `"{type}/{id}"` string (e.g. `"track/4cOdK2wGLETKBW3PvgPWqT"`). */
 	id: string;
-	/** URL to an image to use as the poster instead of the default thumbnail. */
+	/** URL to an image to use as the thumbnail instead of the oEmbed thumbnail. */
 	poster?: string;
+	/** Track/album/playlist/episode title shown in the placeholder. Falls back to oEmbed title. */
+	title?: string;
+	/** Artist or show name shown in the placeholder. Falls back to oEmbed author_name. */
+	artist?: string;
 	/** Player colour theme. Default: `'dark'` */
 	theme?: 'dark' | 'light';
 	/** Player height preset. Default: `'compact'` */
@@ -21,11 +25,12 @@ export interface Props extends astroHTML.JSX.HTMLAttributes {
 const {
 	id,
 	poster,
+	title,
+	artist,
 	theme = 'dark',
 	size = 'compact',
 	params = '',
 	playLabel = 'Play',
-	style,
 	...attrs
 } = Astro.props as Props;
 
@@ -40,46 +45,59 @@ function extractTypeAndId(idOrUrl: string): string | undefined {
 const typeAndId = extractTypeAndId(id);
 
 if (!typeAndId) {
-	console.warn(`[Spotify] Invalid or unrecognised Spotify ID or URL: ${JSON.stringify(id)}`);
+	console.warn(
+		`[Spotify] Invalid or unrecognised Spotify ID or URL: ${JSON.stringify(id)}`
+	);
 }
 
 const [contentType, contentId] = typeAndId?.split('/') ?? [];
 
 let posterURL = poster;
-if (!posterURL && typeAndId) {
+let trackTitle = title as string | undefined;
+
+if (typeAndId && (!posterURL || !trackTitle)) {
 	const data = await safeGet(
 		`https://open.spotify.com/oembed?url=https://open.spotify.com/${typeAndId}`
 	);
-	if (data) posterURL = data.thumbnail_url as string | undefined;
+	if (data) {
+		posterURL ??= data.thumbnail_url as string | undefined;
+		trackTitle ??= data.title as string | undefined;
+	}
 }
 
 const searchParams = new URLSearchParams(params);
 searchParams.set('theme', theme === 'dark' ? '0' : '1');
-
-const height = size === 'compact' ? '152' : '352';
-
-const styles = [];
-if (style) styles.push(style);
-styles.push(`--ls-height: ${height}px`);
-if (posterURL) styles.push(`background-image: url('${posterURL}')`);
 ---
 
-{typeAndId ? (
-<lite-spotify
-	data-type={contentType}
-	data-id={contentId}
-	data-params={searchParams.toString()}
-	style={styles.join(';')}
-	{...attrs}
->
-	<a
-		class="lts-playbtn"
-		href={`https://open.spotify.com/${typeAndId}`}
-		aria-label={playLabel}></a>
-</lite-spotify>
-) : (
-<a href={id}>{id}</a>
-)}
+{
+	typeAndId ? (
+		<lite-spotify
+			data-type={contentType}
+			data-id={contentId}
+			data-params={searchParams.toString()}
+			data-size={size}
+			data-theme={theme}
+			{...attrs}
+		>
+			{posterURL && (
+				<div class="lts-cover">
+					<img src={posterURL} alt={trackTitle ?? ''} loading="lazy" />
+				</div>
+			)}
+			<div class="lts-info">
+				{trackTitle && <span class="lts-title">{trackTitle}</span>}
+			</div>
+			<div class="lts-play-icon" aria-hidden="true" />
+			<a
+				class="lts-playbtn"
+				href={`https://open.spotify.com/${typeAndId}`}
+				aria-label={playLabel}
+			/>
+		</lite-spotify>
+	) : (
+		<a href={id}>{id}</a>
+	)
+}
 
 <script>
 	class LiteSpotify extends HTMLElement {
