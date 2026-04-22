@@ -1,6 +1,4 @@
 lite-soundcloud {
-	font-size: 10px;
-	position: relative;
 	display: block;
 	contain: content;
 	background-color: #333;
@@ -9,6 +7,11 @@ lite-soundcloud {
 	width: 100%;
 	height: 166px;
 	overflow: hidden;
+
+	& > .lsc-link {
+		position: absolute;
+		inset: 0;
+	}
 }
 
 lite-soundcloud[data-type='playlist'] {
@@ -23,85 +26,78 @@ lite-soundcloud > iframe {
 	border: 0;
 }
 
+lite-soundcloud > .lsc-info-container {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.75rem;
+
+	& > .lsc-info {
+		color: #ffffff;
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		font-family: sans-serif;
+
+		& .lsc-title {
+			background-color: rgba(0, 0, 0, 0.8);
+			font-size: 15px;
+			font-weight: 600;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			padding: 3px 6px;
+			max-width: fit-content;
+		}
+
+		& .lsc-author {
+			background-color: rgba(0, 0, 0, 0.8);
+			font-size: 12px;
+			padding: 2px 6px;
+			max-width: fit-content;
+		}
+	}
+}
+
 /* play button — rendered as <a> for no-JS fallback, upgraded to <button> by JS */
-lite-soundcloud > .lsc-playbtn {
-	position: absolute;
-	inset: 0;
-	width: 100%;
-	background: rgba(0, 0, 0, 0.35);
+lite-soundcloud > .lsc-info-container > .lsc-playbtn {
+	position: relative;
+	height: 44px;
+	width: 44px;
 	border: 0;
 	cursor: pointer;
 	padding: 0;
 	text-decoration: none;
-	display: block;
 	filter: grayscale(100%);
 	transition: filter 0.1s cubic-bezier(0, 0, 0.2, 1);
 }
 
-lite-soundcloud:hover > .lsc-playbtn,
-lite-soundcloud > .lsc-playbtn:focus {
+lite-soundcloud:hover > .lsc-info-container > .lsc-playbtn {
 	filter: none;
 }
 
-lite-soundcloud > .lsc-playbtn::before {
+lite-soundcloud > .lsc-info-container > .lsc-playbtn::before {
 	content: '';
 	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate3d(-50%, -50%, 0);
-	width: 5em;
-	height: 5em;
+	inset: 0;
 	background: linear-gradient(to bottom, #ff5500, #ff2200);
 	border: 0.1em solid #cc4400;
 	border-radius: 50%;
 }
 
-lite-soundcloud > .lsc-playbtn::after {
+lite-soundcloud > .lsc-info-container > .lsc-playbtn::after {
 	content: '';
 	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate3d(-50%, -50%, 0);
-	width: 5em;
-	height: 5em;
+	inset: 0;
 	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 43 43'%3E%3Cpath d='M31,21.5L17,33l2.5-11.5L17,10L31,21.5z' fill='white'/%3E%3C/svg%3E");
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	background-position: center;
 }
 
-/* info overlay — pointer-events: none so clicks pass through to the play button */
-lite-soundcloud > .lsc-info {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	padding: 1em 1.5em;
-	background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-	color: #fff;
-	display: flex;
-	flex-direction: column;
-	gap: 0.3em;
-	pointer-events: none;
-	font-family: sans-serif;
-}
-
-lite-soundcloud > .lsc-info .lsc-title {
-	font-size: 1.4em;
-	font-weight: 600;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-lite-soundcloud > .lsc-info .lsc-author {
-	font-size: 1.2em;
-	opacity: 0.8;
-}
-
 /* post-click: hide poster chrome once iframe is loading */
-lite-soundcloud.lsc-activated > .lsc-playbtn,
-lite-soundcloud.lsc-activated > .lsc-info {
+lite-soundcloud.lsc-activated > .lsc-info-container {
 	opacity: 0;
 	pointer-events: none;
 }

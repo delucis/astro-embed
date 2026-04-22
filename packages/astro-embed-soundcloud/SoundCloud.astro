@@ -132,17 +132,18 @@ if (posterUrl) styles.push(`background-image: url('${encodeURI(posterUrl)}')`);
 			style={styles.join(';')}
 			{...attrs}
 		>
-			<a href={url} class="lsc-playbtn" aria-label={ariaLabel} />
-			{(playLabel || oembed.title || oembed.author_name) && (
-				<div class="lsc-info" aria-hidden="true">
-					{(playLabel || oembed.title) && (
-						<span class="lsc-title">{playLabel || oembed.title}</span>
-					)}
-					{oembed.author_name && (
-						<span class="lsc-author">{oembed.author_name}</span>
-					)}
-				</div>
-			)}
+			<div class="lsc-info-container">
+				<div class="lsc-playbtn" />
+				{(oembed.title || oembed.author_name) && (
+					<div class="lsc-info" aria-hidden="true">
+						{oembed.author_name && (
+							<div class="lsc-author">{oembed.author_name}</div>
+						)}
+						{oembed.title && <div class="lsc-title">{oembed.title}</div>}
+					</div>
+				)}
+			</div>
+			<a href={url} class="lsc-link" aria-label={ariaLabel} />
 		</lite-soundcloud>
 	) : (
 		<a href={url || id}>{oembed?.title || id}</a>
