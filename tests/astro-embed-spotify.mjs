@@ -124,13 +124,18 @@ test('it can set a custom play label', async () => {
 	assert.is(link.getAttribute('aria-label'), 'Play on Spotify');
 });
 
-test('it renders nothing for an invalid id', async () => {
+test('it renders a plain link for an invalid id', async () => {
+	const invalidId = 'not-a-valid-spotify-id';
 	const { window } = await renderDOM(
 		'./packages/astro-embed-spotify/Spotify.astro',
-		{ id: 'not-a-valid-spotify-id' }
+		{ id: invalidId }
 	);
 	const embed = window.document.querySelector('lite-spotify');
 	assert.not.ok(embed);
+	const link = window.document.querySelector('a');
+	assert.ok(link);
+	assert.is(link.getAttribute('href'), invalidId);
+	assert.is(link.textContent, invalidId);
 });
 
 test.run();

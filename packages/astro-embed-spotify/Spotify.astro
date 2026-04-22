@@ -64,7 +64,7 @@ styles.push(`--ls-height: ${height}px`);
 if (posterURL) styles.push(`background-image: url('${posterURL}')`);
 ---
 
-{typeAndId && (
+{typeAndId ? (
 <lite-spotify
 	data-type={contentType}
 	data-id={contentId}
@@ -77,6 +77,8 @@ if (posterURL) styles.push(`background-image: url('${posterURL}')`);
 		href={`https://open.spotify.com/${typeAndId}`}
 		aria-label={playLabel}></a>
 </lite-spotify>
+) : (
+<a href={id}>{id}</a>
 )}
 
 <script>
