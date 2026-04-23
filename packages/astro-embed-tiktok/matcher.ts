@@ -28,13 +28,15 @@ export default function matcher(url: string): string | undefined {
 	const vmMatch = url.match(vmShortPattern);
 	if (vmMatch) {
 		const raw = vmMatch[3];
-		return raw.startsWith('http') ? raw : `https://${raw}`;
+		if (raw) return raw.startsWith('http') ? raw : `https://${raw}`;
+		else return undefined;
 	}
 
 	const tMatch = url.match(tShortPattern);
 	if (tMatch) {
 		const raw = tMatch[3];
-		return raw.startsWith('http') ? raw : `https://${raw}`;
+		if (raw) return raw.startsWith('http') ? raw : `https://${raw}`;
+		else return undefined;
 	}
 
 	return undefined;
