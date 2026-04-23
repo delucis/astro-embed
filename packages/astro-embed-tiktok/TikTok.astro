@@ -3,20 +3,26 @@ import { safeGet } from '@astro-community/astro-embed-utils';
 import './TikTok.css';
 
 export interface Props extends astroHTML.JSX.HTMLAttributes {
+	/** Autoplay the video. Default: `true` */
+	autoplay?: boolean;
+	/** Embed type. Default: `'post'` */
+	embedType?: 'post' | 'video';
 	/** TikTok video ID or URL (full video URL, vm.tiktok.com short URL, or tiktok.com/t/ short URL). */
 	id: string;
+	/** Maximum width of the embed. Default: `'425px'` */
+	maxWidth?: string;
+	/** Orientation of the embed. Default: `'portrait'` */
+	orientation?: 'landscape' | 'portrait';
+	/** See https://developers.tiktok.com/doc/embed-creator-marketplace-products */
+	params?: string;
+	/** Label for the button that will play the video. Default label: `'Play'` */
+	playLabel?: string;
 	/** URL to an image to use as the poster instead of the default thumbnail. */
 	poster?: string;
 	/** Resolution to use for the TikTok poster image. Has no effect on automatically fetched thumbnails. */
 	posterQuality?: 'max' | 'high' | 'default' | 'low';
-	/** See https://developers.tiktok.com/doc/embed-creator-marketplace-products */
-	params?: string;
-	/** Label for the button that will play the video. Default label: `'Play'` */
-	playlabel?: string;
 	/** Title to display over the poster image. Defaults to the title from TikTok's oEmbed API. */
 	title?: string;
-	/** CSS aspect-ratio value for the embed container. Default: `'9/16'` */
-	aspectRatio?: string;
 }
 
 const {
@@ -24,9 +30,12 @@ const {
 	poster,
 	posterQuality = 'default',
 	params = '',
-	playlabel = 'Play',
+	playLabel = 'Play',
 	title: titleProp,
-	aspectRatio = '9/16',
+	orientation = 'portrait',
+	embedType = 'post',
+	maxWidth = '425px',
+	autoplay = true,
 	style,
 	...attrs
 } = Astro.props as Props;
@@ -57,6 +66,8 @@ function buildOEmbedUrl(idOrUrl: string): string {
 let videoid = extractVideoId(id);
 let posterURL = poster;
 let title = titleProp;
+let authorName: string | undefined;
+let authorId: string | undefined;
 
 const data = await safeGet(buildOEmbedUrl(id));
 if (data) {
@@ -65,6 +76,12 @@ if (data) {
 	}
 	if (!title && data.title) {
 		title = data.title as string;
+	}
+	if (data.author_name) {
+		authorName = data.author_name as string;
+	}
+	if (data.author_unique_id) {
+		authorId = data.author_unique_id as string;
 	}
 	if (data.html) {
 		const html = data.html as string;
@@ -77,27 +94,40 @@ if (data) {
 }
 
 const searchParams = new URLSearchParams(params);
-searchParams.append('autoplay', '1');
+!searchParams.has('autoplay') &&
+	searchParams.set('autoplay', autoplay ? '1' : '0');
 
 const styles: string[] = [];
 if (style) styles.push(style as string);
-if (aspectRatio !== '9/16') styles.push(`aspect-ratio: ${aspectRatio}`);
-if (aspectRatio !== '9/16') styles.push(`max-height: 325px`);
-if (aspectRatio === '9/16') styles.push(`max-width: 325px`);
+styles.push(`--max-width: ${maxWidth}`);
 if (posterURL) styles.push(`background-image: url('${posterURL}')`);
 ---
 
 <lite-tiktok
 	data-id={videoid || id}
+	data-orientation={orientation}
 	data-params={searchParams.toString()}
+	data-embed-type={embedType}
 	style={styles.join(';') || undefined}
 	{...attrs}
 >
-	{title && <span class="ltt-title">{title}</span>}
+	{
+		(authorName || authorId || title) && (
+			<div class="ltt-info">
+				{(authorName || authorId) && (
+					<div class="ltt-author-info">
+						{authorName && <div class="ltt-author">{authorName}</div>}
+						{authorId && <div class="ltt-author-id">{authorId}</div>}
+					</div>
+				)}
+				{title && <div class="ltt-title">{title}</div>}
+			</div>
+		)
+	}
 	<a
 		class="ltt-playbtn"
 		href={`https://www.tiktok.com/video/${videoid || ''}`}
-		aria-label={playlabel}></a>
+		aria-label={playLabel}></a>
 </lite-tiktok>
 
 <script>
@@ -150,12 +180,14 @@ if (posterURL) styles.push(`background-image: url('${posterURL}')`);
 			const params = new URLSearchParams(this.dataset.params || '');
 
 			const iframeEl = document.createElement('iframe');
-			iframeEl.width = '325';
-			iframeEl.height = '578';
 			iframeEl.allow =
 				'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
 			iframeEl.allowFullscreen = true;
-			iframeEl.src = `https://www.tiktok.com/embed/v2/${this.videoId}?${params.toString()}`;
+			if (this.dataset.embedType === 'video') {
+				iframeEl.src = `https://www.tiktok.com/embed/v2/${this.videoId}`;
+			} else {
+				iframeEl.src = `https://www.tiktok.com/player/v1/${this.videoId}?${params.toString()}`;
+			}
 			this.append(iframeEl);
 		}
 	}

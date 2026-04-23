@@ -50,7 +50,7 @@ test('it renders a play button with default label', async () => {
 test('it renders a play button with a custom label', async () => {
 	const { window } = await renderDOM(
 		'./packages/astro-embed-tiktok/TikTok.astro',
-		{ id: videoid, poster, playlabel: 'Watch video' }
+		{ id: videoid, poster, playLabel: 'Watch video' }
 	);
 	const embed = window.document.querySelector('lite-tiktok');
 	assert.ok(embed);
@@ -83,25 +83,24 @@ test('it passes params to data-params attribute', async () => {
 	assert.is(params.get('autoplay'), '1');
 });
 
-test('it applies aspect ratio override via inline style', async () => {
+test('it applies default orientation via data-orientation attribute', async () => {
 	const { window } = await renderDOM(
 		'./packages/astro-embed-tiktok/TikTok.astro',
-		{ id: videoid, poster, aspectRatio: '16/9' }
+		{ id: videoid, poster, orientation: 'portrait' }
 	);
 	const embed = window.document.querySelector('lite-tiktok');
 	assert.ok(embed);
-	assert.ok(embed.getAttribute('style')?.includes('aspect-ratio: 16/9'));
+	assert.ok(embed.getAttribute('data-orientation') === 'portrait');
 });
 
-test('it does not set inline aspect-ratio when using the default 9/16', async () => {
+test('it applies orientation override via data-orientation attribute', async () => {
 	const { window } = await renderDOM(
 		'./packages/astro-embed-tiktok/TikTok.astro',
-		{ id: videoid, poster }
+		{ id: videoid, poster, orientation: 'landscape' }
 	);
 	const embed = window.document.querySelector('lite-tiktok');
 	assert.ok(embed);
-	const style = embed.getAttribute('style') ?? '';
-	assert.not.ok(style.includes('aspect-ratio'));
+	assert.ok(embed.getAttribute('data-orientation') === 'landscape');
 });
 
 test.run();
