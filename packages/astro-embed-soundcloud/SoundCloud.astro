@@ -1,0 +1,214 @@
+---
+import { safeGet } from '@astro-community/astro-embed-utils';
+import urlMatcher from './matcher';
+import './SoundCloud.css';
+
+export interface Props extends astroHTML.JSX.HTMLAttributes {
+	/** SoundCloud track, playlist, or artist URL. */
+	id: string;
+	/** URL to an image to use as the poster instead of the default thumbnail. */
+	poster?: string;
+	/** Resolution to use for the SoundCloud poster image. */
+	posterQuality?: 'max' | 'high' | 'default' | 'low';
+	/** Additional SoundCloud player parameters as a query string, e.g. `"color=ff5500&show_comments=false"`. */
+	params?: string;
+	/** Label for the play button shown on the component. Default: track title or 'Play'. */
+	playLabel?: string;
+}
+
+const {
+	id,
+	poster,
+	posterQuality = 'default',
+	params = '',
+	playLabel,
+	style,
+	...attrs
+} = Astro.props as Props;
+
+interface OEmbedData {
+	title?: string;
+	author_name?: string;
+	thumbnail_url?: string;
+	html?: string;
+}
+
+async function resolveUrl(input: string): Promise<string | undefined> {
+	const canonical = urlMatcher(input);
+	if (!canonical) return undefined;
+	// Resolve on.soundcloud.com short links to their canonical URL at build time.
+	if (canonical.includes('on.soundcloud.com')) {
+		try {
+			const res = await fetch(canonical, {
+				method: 'HEAD',
+				redirect: 'follow',
+			});
+			return res.url || canonical;
+		} catch {
+			return canonical;
+		}
+	}
+	return canonical;
+}
+
+const url = await resolveUrl(id);
+
+if (!url) {
+	console.warn(`[SoundCloud] Invalid or unrecognized SoundCloud URL: "${id}"`);
+}
+
+let oembed: OEmbedData | undefined;
+if (url) {
+	oembed = (await safeGet(
+		`https://soundcloud.com/oembed?url=${encodeURIComponent(url)}&format=json`
+	)) as OEmbedData | undefined;
+	if (!oembed) {
+		console.warn(
+			`[SoundCloud] Could not load oEmbed data for: "${url}". The content may not exist or may be private.`
+		);
+	}
+}
+
+const isPlaylist = url?.includes('/sets/');
+// Extract the canonical player src from oEmbed's html field; decode HTML entities in the URL.
+const oembedSrc = oembed?.html
+	?.match(/src="([^"]+)"/)?.[1]
+	?.replaceAll('&amp;', '&');
+
+function applyParams(base: string, extra: string): string {
+	try {
+		const u = new URL(base);
+		for (const [k, v] of new URLSearchParams(extra)) u.searchParams.set(k, v);
+		return u.toString();
+	} catch {
+		return base;
+	}
+}
+
+const playerSrc = oembedSrc
+	? params
+		? applyParams(oembedSrc, params)
+		: oembedSrc
+	: url
+		? applyParams(
+				`https://w.soundcloud.com/player/?url=${encodeURIComponent(url)}&auto_play=false`,
+				params
+			)
+		: undefined;
+const qualitySuffix =
+	(
+		{
+			max: 't500x500',
+			high: 't300x300',
+			default: 't200x200',
+			low: 't67x67',
+		} as const
+	)[posterQuality] ?? 't200x200';
+const rawThumb = oembed?.thumbnail_url;
+const posterUrl =
+	poster ??
+	(rawThumb
+		? rawThumb.replace(
+				/-(?:t\d+x\d+|large|small|crop|badge|tiny)(\.\w+)$/,
+				`-${qualitySuffix}$1`
+			)
+		: undefined);
+const defaultLabel = oembed?.title
+	? `Play "${oembed.title}"${oembed.author_name ? ` by ${oembed.author_name}` : ''}`
+	: 'Play';
+const ariaLabel = playLabel || defaultLabel;
+
+const styles: string[] = [];
+if (style) styles.push(style as string);
+if (posterUrl) styles.push(`background-image: url('${encodeURI(posterUrl)}')`);
+---
+
+{
+	url && oembed ? (
+		<lite-soundcloud
+			data-url={url}
+			data-src={playerSrc}
+			data-type={isPlaylist ? 'playlist' : 'track'}
+			style={styles.join(';')}
+			{...attrs}
+		>
+			<div class="lsc-info-container">
+				<div class="lsc-playbtn" />
+				{(oembed.title || oembed.author_name) && (
+					<div class="lsc-info" aria-hidden="true">
+						{oembed.author_name && (
+							<div class="lsc-author">{oembed.author_name}</div>
+						)}
+						{oembed.title && <div class="lsc-title">{oembed.title}</div>}
+					</div>
+				)}
+			</div>
+			<a href={url} class="lsc-link" aria-label={ariaLabel} />
+		</lite-soundcloud>
+	) : (
+		<a href={url || id}>{oembed?.title || id}</a>
+	)
+}
+
+<script>
+	class LiteSoundCloud extends HTMLElement {
+		static preconnected = false;
+
+		connectedCallback() {
+			this.addEventListener('pointerover', LiteSoundCloud.warmConnections, {
+				once: true,
+			});
+			this.addEventListener('click', (e) => this.addIframe(e));
+
+			// Progressively enhance the fallback link to a play button.
+			const playLink = this.querySelector('a.lsc-playbtn');
+			if (playLink) {
+				const playBtn = document.createElement('button');
+				playBtn.classList.add(...playLink.classList.values());
+				playBtn.setAttribute(
+					'aria-label',
+					playLink.getAttribute('aria-label') ?? 'Play'
+				);
+				playLink.replaceWith(playBtn);
+			}
+		}
+
+		static addPrefetch(rel: string, href: string): void {
+			const linkEl = document.createElement('link');
+			linkEl.rel = rel;
+			linkEl.href = href;
+			document.head.append(linkEl);
+		}
+
+		static warmConnections(): void {
+			if (LiteSoundCloud.preconnected) return;
+			LiteSoundCloud.addPrefetch('preconnect', 'https://w.soundcloud.com');
+			LiteSoundCloud.addPrefetch('preconnect', 'https://a-v2.sndcdn.com');
+			LiteSoundCloud.preconnected = true;
+		}
+
+		addIframe(e: MouseEvent): void {
+			if (this.classList.contains('lsc-activated')) return;
+			e.preventDefault();
+			this.classList.add('lsc-activated');
+
+			const height = this.dataset.type === 'playlist' ? '450' : '166';
+			const src =
+				this.dataset.src ??
+				`https://w.soundcloud.com/player/?url=${encodeURIComponent(this.dataset.url!)}&auto_play=false`;
+
+			const iframeEl = document.createElement('iframe');
+			iframeEl.width = '100%';
+			iframeEl.height = height;
+			iframeEl.allow = 'autoplay';
+			iframeEl.setAttribute('scrolling', 'no');
+			iframeEl.setAttribute('frameborder', 'no');
+			iframeEl.src = src;
+			this.append(iframeEl);
+		}
+	}
+
+	if (!customElements.get('lite-soundcloud')) {
+		customElements.define('lite-soundcloud', LiteSoundCloud);
+	}
+</script>
