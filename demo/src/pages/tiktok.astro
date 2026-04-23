@@ -1,0 +1,49 @@
+---
+import { TikTok } from '@astro-community/astro-embed-tiktok';
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="TikTok component examples">
+	<h2>With just the video ID</h2>
+	<p><code>&lt;TikTok id="7512867562258992406" /&gt;</code></p>
+	<TikTok id="7512867562258992406" />
+
+	<h2>With a full tiktok.com URL</h2>
+	<p>
+		<code
+			>&lt;TikTok
+			id="https://www.tiktok.com/@rickastleyofficial/video/7512867562258992406"
+			/&gt;</code
+		>
+	</p>
+	<TikTok
+		id="https://www.tiktok.com/@rickastleyofficial/video/7512867562258992406"
+	/>
+
+	<h2>With a custom poster image</h2>
+	<p>
+		<code
+			>&lt;TikTok id="7512867562258992406" poster="/rick-rolled.png" /&gt;</code
+		>
+	</p>
+	<TikTok id="7512867562258992406" poster="/rick-rolled.png" />
+
+	<h2>With custom params (loop)</h2>
+	<p><code>&lt;TikTok id="7512867562258992406" params="loop=1" /&gt;</code></p>
+	<TikTok id="7512867562258992406" params="loop=1" />
+
+	<h2>With a custom play label</h2>
+	<p>
+		<code
+			>&lt;TikTok id="7512867562258992406" playlabel="Play the TikTok video"
+			/&gt;</code
+		>
+	</p>
+	<TikTok id="7512867562258992406" playlabel="Play the TikTok video" />
+
+	<h2>With a 16:9 aspect ratio override</h2>
+	<p>
+		<code>&lt;TikTok id="7512867562258992406" aspectRatio="16/9" /&gt;</code>
+	</p>
+	<TikTok id="7512867562258992406" aspectRatio="16/9" />
+</Base>

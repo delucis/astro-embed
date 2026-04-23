@@ -1,0 +1,135 @@
+---
+title: TikTok
+description: Learn how to use the Astro Embed TikTok component to embed TikTok videos in your website
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { TikTok } from '@astro-community/astro-embed-tiktok';
+
+The `<TikTok>` component generates an embed using a lightweight custom element that will load TikTok's `<iframe>` only when a user clicks play.
+
+TikTok embeds will always require some JavaScript, but this is one of the most minimal and performant ways to embed a TikTok video while protecting your visitors' privacy until they choose to interact.
+
+## Usage
+
+<Tabs>
+<TabItem label="Astro" icon="astro">
+```astro
+---
+import { TikTok } from 'astro-embed';
+---
+
+<TikTok id="7512867562258992406" />
+```
+</TabItem>
+<TabItem label="MDX" icon="seti:markdown">
+```astro
+import { TikTok } from 'astro-embed';
+
+<TikTok id="7512867562258992406" />
+```
+</TabItem>
+</Tabs>
+
+You can also pass in the full URL for the video:
+
+```astro
+<TikTok
+	id="https://www.tiktok.com/@rickastleyofficial/video/7512867562258992406"
+/>
+```
+
+The above code produces the following result:
+
+<TikTok id="7512867562258992406" />
+
+## Optional props
+
+In addition to the required `id` prop, the following props are available to customise how the `<TikTok>` component renders:
+
+### `poster`
+
+**Type:** `string`
+
+You can provide an alternative poster image by passing in a URL to the `poster` prop.
+
+```astro
+<TikTok id="7512867562258992406" poster="/rick-rolled.png" />
+```
+
+<TikTok id="7512867562258992406" poster="/rick-rolled.png" />
+
+### `posterQuality`
+
+**Type:** `'max' | 'high' | 'default' | 'low'`  
+**Default:** `'default'`
+
+This prop is included for API consistency with other astro-embed components. Note that quality adjustment has no effect on automatically fetched TikTok thumbnails due to TikTok's opaque CDN URL format. It can be used in combination with a custom `poster` URL that you control.
+
+### `params`
+
+You can pass a `params` prop to set [TikTok embed player parameters](https://developers.tiktok.com/doc/embed-creator-marketplace-products). This looks like a series of URL search params.
+
+For example, the following `params` value enables looping:
+
+```astro
+<TikTok id="7512867562258992406" params="loop=1" />
+```
+
+### `playlabel`
+
+**Type:** `string`  
+**Default:** `'Play'`
+
+By default, the play button in the embed has an accessible label set to "Play".
+If you want to customise this, for example to match the language of your website, you can set the `playlabel` prop:
+
+```astro
+<TikTok id="7512867562258992406" playlabel="Play the TikTok video" />
+```
+
+### `title`
+
+**Type:** `string`
+
+The video title is automatically fetched from TikTok's oEmbed API and displayed as an overlay on the poster image. You can override this with a custom title:
+
+```astro
+<TikTok id="7512867562258992406" title="My custom title" />
+```
+
+### `aspectRatio`
+
+**Type:** `string`  
+**Default:** `'9/16'`
+
+TikTok content is predominantly vertical, so the component defaults to a 9:16 aspect ratio. You can override this with any valid CSS `aspect-ratio` value:
+
+```astro
+<TikTok id="7512867562258992406" aspectRatio="16/9" />
+```
+
+## Supported URL formats
+
+The `id` prop accepts any of the following formats:
+
+| Format                    | Example                                                      |
+| ------------------------- | ------------------------------------------------------------ |
+| Numeric video ID          | `7512867562258992406`                                        |
+| Full video URL            | `https://www.tiktok.com/@username/video/7512867562258992406` |
+| `vm.tiktok.com` short URL | `https://vm.tiktok.com/ZMkABCDEF/`                           |
+| `tiktok.com/t/` short URL | `https://www.tiktok.com/t/ZMkABCDEF/`                        |
+
+## Standalone installation
+
+If you only need the `<TikTok>` component, you can install the package directly instead of the main `astro-embed` package:
+
+import { PackageManagers } from 'starlight-package-managers';
+
+<PackageManagers pkg="@astro-community/astro-embed-tiktok" />
+
+The `<TikTok>` component can then be imported as:
+
+```js
+import { TikTok } from '@astro-community/astro-embed-tiktok';
+```

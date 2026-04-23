@@ -1,0 +1,166 @@
+---
+import { safeGet } from '@astro-community/astro-embed-utils';
+import './TikTok.css';
+
+export interface Props extends astroHTML.JSX.HTMLAttributes {
+	/** TikTok video ID or URL (full video URL, vm.tiktok.com short URL, or tiktok.com/t/ short URL). */
+	id: string;
+	/** URL to an image to use as the poster instead of the default thumbnail. */
+	poster?: string;
+	/** Resolution to use for the TikTok poster image. Has no effect on automatically fetched thumbnails. */
+	posterQuality?: 'max' | 'high' | 'default' | 'low';
+	/** See https://developers.tiktok.com/doc/embed-creator-marketplace-products */
+	params?: string;
+	/** Label for the button that will play the video. Default label: `'Play'` */
+	playlabel?: string;
+	/** Title to display over the poster image. Defaults to the title from TikTok's oEmbed API. */
+	title?: string;
+	/** CSS aspect-ratio value for the embed container. Default: `'9/16'` */
+	aspectRatio?: string;
+}
+
+const {
+	id,
+	poster,
+	posterQuality = 'default',
+	params = '',
+	playlabel = 'Play',
+	title: titleProp,
+	aspectRatio = '9/16',
+	style,
+	...attrs
+} = Astro.props as Props;
+
+const numericIdRegExp = /^\d{10,20}$/;
+const videoIdInUrlRegExp = /@[^/\s]+\/video\/(\d{10,20})/;
+
+function extractVideoId(idOrUrl: string): string | undefined {
+	if (numericIdRegExp.test(idOrUrl)) return idOrUrl;
+	const match = idOrUrl.match(videoIdInUrlRegExp);
+	if (match) return match[1];
+	return undefined;
+}
+
+function buildOEmbedUrl(idOrUrl: string): string {
+	if (numericIdRegExp.test(idOrUrl)) {
+		return `https://www.tiktok.com/oembed?url=${encodeURIComponent(`https://www.tiktok.com/video/${idOrUrl}`)}`;
+	}
+	const videoIdMatch = idOrUrl.match(videoIdInUrlRegExp);
+	if (videoIdMatch) {
+		return `https://www.tiktok.com/oembed?url=${encodeURIComponent(`https://www.tiktok.com/video/${videoIdMatch[1]}`)}`;
+	}
+	// Short URL — pass directly to oEmbed
+	const url = idOrUrl.startsWith('http') ? idOrUrl : `https://${idOrUrl}`;
+	return `https://www.tiktok.com/oembed?url=${encodeURIComponent(url)}`;
+}
+
+let videoid = extractVideoId(id);
+let posterURL = poster;
+let title = titleProp;
+
+const data = await safeGet(buildOEmbedUrl(id));
+if (data) {
+	if (!posterURL && data.thumbnail_url) {
+		posterURL = data.thumbnail_url as string;
+	}
+	if (!title && data.title) {
+		title = data.title as string;
+	}
+	if (data.html) {
+		const html = data.html as string;
+		// For short URLs, the numeric video ID lives in the oEmbed `html` field.
+		if (!videoid) {
+			const idMatch = html.match(/data-video-id="(\d+)"/);
+			if (idMatch) videoid = idMatch[1];
+		}
+	}
+}
+
+const searchParams = new URLSearchParams(params);
+searchParams.append('autoplay', '1');
+
+const styles: string[] = [];
+if (style) styles.push(style as string);
+if (aspectRatio !== '9/16') styles.push(`aspect-ratio: ${aspectRatio}`);
+if (aspectRatio !== '9/16') styles.push(`max-height: 325px`);
+if (aspectRatio === '9/16') styles.push(`max-width: 325px`);
+if (posterURL) styles.push(`background-image: url('${posterURL}')`);
+---
+
+<lite-tiktok
+	data-id={videoid || id}
+	data-params={searchParams.toString()}
+	style={styles.join(';') || undefined}
+	{...attrs}
+>
+	{title && <span class="ltt-title">{title}</span>}
+	<a
+		class="ltt-playbtn"
+		href={`https://www.tiktok.com/video/${videoid || ''}`}
+		aria-label={playlabel}></a>
+</lite-tiktok>
+
+<script>
+	class LiteTikTok extends HTMLElement {
+		videoId = encodeURIComponent(this.dataset.id!);
+		static preconnected = false;
+
+		connectedCallback() {
+			this.addEventListener('pointerover', LiteTikTok.warmConnections, {
+				once: true,
+			});
+
+			this.addEventListener('click', (e) => this.addIframe(e));
+
+			// Progressively enhance the link to the TikTok video as a play button.
+			const playLink = this.querySelector('a');
+			if (playLink) {
+				const playBtn = document.createElement('button');
+				playBtn.classList.add(...playLink.classList.values());
+				playBtn.setAttribute(
+					'aria-label',
+					playLink.getAttribute('aria-label')!
+				);
+				playLink.replaceWith(playBtn);
+			}
+		}
+
+		static addPrefetch(rel: string, url: string): void {
+			const linkEl = document.createElement('link');
+			linkEl.rel = rel;
+			linkEl.href = url;
+			document.head.append(linkEl);
+		}
+
+		static warmConnections(): void {
+			if (LiteTikTok.preconnected) return;
+			LiteTikTok.addPrefetch('preconnect', 'https://www.tiktok.com');
+			LiteTikTok.addPrefetch(
+				'preconnect',
+				'https://lf16-tiktok-web.ttwstatic.com'
+			);
+			LiteTikTok.preconnected = true;
+		}
+
+		addIframe(e: MouseEvent): void {
+			if (this.classList.contains('ltt-activated')) return;
+			e.preventDefault();
+			this.classList.add('ltt-activated');
+
+			const params = new URLSearchParams(this.dataset.params || '');
+
+			const iframeEl = document.createElement('iframe');
+			iframeEl.width = '325';
+			iframeEl.height = '578';
+			iframeEl.allow =
+				'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+			iframeEl.allowFullscreen = true;
+			iframeEl.src = `https://www.tiktok.com/embed/v2/${this.videoId}?${params.toString()}`;
+			this.append(iframeEl);
+		}
+	}
+
+	if (!customElements.get('lite-tiktok')) {
+		customElements.define('lite-tiktok', LiteTikTok);
+	}
+</script>
