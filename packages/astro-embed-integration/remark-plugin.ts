@@ -1,6 +1,7 @@
 import { type Node, select, selectAll } from 'unist-util-select';
 import blueskyMatcher from '@astro-community/astro-embed-bluesky/matcher';
 import gistMatcher from '@astro-community/astro-embed-gist/matcher';
+import spotifyMatcher from '@astro-community/astro-embed-spotify/matcher';
 import twitterMatcher from '@astro-community/astro-embed-twitter/matcher';
 import vimeoMatcher from '@astro-community/astro-embed-vimeo/matcher';
 import youtubeMatcher from '@astro-community/astro-embed-youtube/matcher';
@@ -10,6 +11,7 @@ import mastodonMatcher from '@astro-community/astro-embed-mastodon/matcher';
 const matchers = [
 	[blueskyMatcher, 'BlueskyPost'],
 	[gistMatcher, 'Gist'],
+	[spotifyMatcher, 'Spotify'],
 	[twitterMatcher, 'Tweet'],
 	[vimeoMatcher, 'Vimeo'],
 	[youtubeMatcher, 'YouTube'],
