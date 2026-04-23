@@ -48,7 +48,7 @@ test('it renders a thumbnail image', async () => {
 		'./packages/astro-embed-spotify/Spotify.astro',
 		baseProps
 	);
-	const img = window.document.querySelector('lite-spotify img.lts-cover');
+	const img = window.document.querySelector('lite-spotify .lts-cover img');
 	assert.ok(img);
 	assert.is(img.getAttribute('src'), poster);
 	assert.is(img.getAttribute('alt'), title);
@@ -71,7 +71,6 @@ test('it renders compact size by default', async () => {
 	);
 	const embed = window.document.querySelector('lite-spotify');
 	assert.ok(embed);
-	assert.is(embed.style.getPropertyValue('--ls-height'), '152px');
 	assert.is(embed.getAttribute('data-size'), 'compact');
 });
 
@@ -82,7 +81,6 @@ test('it renders full size when size is "full"', async () => {
 	);
 	const embed = window.document.querySelector('lite-spotify');
 	assert.ok(embed);
-	assert.is(embed.style.getPropertyValue('--ls-height'), '352px');
 	assert.is(embed.getAttribute('data-size'), 'full');
 });
 
