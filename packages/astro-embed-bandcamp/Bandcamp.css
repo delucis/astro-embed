@@ -1,5 +1,9 @@
 lite-bandcamp {
-	background-color: #1da0c3;
+	--color-dark: 51 51 51;
+	--color-light: 255 255 255;
+	--color-gray: 210 210 210;
+	--color-teal: 29 160 195;
+	background-color: rgb(var(--color-teal));
 	position: relative;
 	display: block;
 	contain: content;
@@ -11,11 +15,15 @@ lite-bandcamp {
 		flex-direction: column;
 		gap: 0.25rem;
 		font-family: sans-serif;
-		color: #fff;
+		color: rgb(var(--color-light));
 		padding: 1rem;
 		position: absolute;
 		inset: 0;
-		background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent);
+		background: linear-gradient(
+			to bottom,
+			rgb(var(--color-dark) / 60%),
+			transparent
+		);
 
 		& > .ltb-title {
 			font-size: 1.3em;
@@ -29,6 +37,13 @@ lite-bandcamp {
 			font-size: 1.1em;
 		}
 	}
+}
+
+lite-bandcamp[data-theme='dark'] {
+	--color-dark: 255 255 255;
+	--color-light: 51 51 51;
+	--color-gray: 96 96 96;
+	--color-teal: 23 123 151;
 }
 
 lite-bandcamp > iframe {
@@ -55,7 +70,7 @@ lite-bandcamp > .ltb-playbtn {
 lite-bandcamp > .ltb-playbtn::before {
 	width: 4em;
 	height: 4em;
-	background: rgba(0, 0, 0, 0.8);
+	background: rgb(var(--color-dark) / 90%);
 	border-radius: 0.25rem;
 	transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
 }
@@ -65,7 +80,7 @@ lite-bandcamp > .ltb-playbtn:focus::before {
 }
 
 lite-bandcamp:hover > .ltb-playbtn::before {
-	background-color: #1da0c3;
+	background-color: rgb(var(--color-teal));
 	opacity: 1;
 }
 
@@ -73,7 +88,7 @@ lite-bandcamp:hover > .ltb-playbtn::before {
 lite-bandcamp > .ltb-playbtn::after {
 	border-style: solid;
 	border-width: 1em 0 1em 1.7em;
-	border-color: transparent transparent transparent #fff;
+	border-color: transparent transparent transparent rgb(var(--color-light));
 	transform: translate(50%, -50%);
 	margin-left: 0.45em;
 }
@@ -87,16 +102,16 @@ lite-bandcamp > .ltb-playbtn::after {
 }
 
 lite-bandcamp[data-layout='standard'][data-artwork-url] {
-	border: 1px solid #d2d2d2;
+	border: 1px solid rgb(var(--color-gray));
 	box-sizing: border-box;
-	background-color: unset;
+	background-color: rgb(var(--color-light));
 
 	& > .ltb-info {
 		padding: 0;
 		flex-direction: row;
 		align-items: center;
 		background: unset;
-		color: #000;
+		color: rgb(var(--color-dark));
 
 		& > img {
 			height: 120px;
@@ -131,13 +146,19 @@ lite-bandcamp[data-layout='standard'][data-artwork-url] {
 lite-bandcamp[data-layout='standard'][data-artwork-url] > .ltb-playbtn::before {
 	width: 46px;
 	height: 46px;
-	background: #ffffff;
-	border: 1px solid #d2d2d2;
+	background: rgb(var(--color-light));
+	border: 1px solid rgb(var(--color-gray));
+}
+
+lite-bandcamp[data-layout='standard'][data-artwork-url]:hover
+	> .ltb-playbtn::before {
+	background-color: rgb(var(--color-teal));
+	opacity: 1;
 }
 
 lite-bandcamp[data-layout='standard'][data-artwork-url] > .ltb-playbtn::after {
 	border-width: 0.85em 0 0.85em 1.45em;
-	border-color: transparent transparent transparent #000;
+	border-color: transparent transparent transparent rgb(var(--color-dark));
 }
 
 lite-bandcamp[data-layout='standard'][data-artwork-url] > .ltb-playbtn::before,
@@ -149,16 +170,16 @@ lite-bandcamp[data-layout='standard'][data-artwork-url] > .ltb-playbtn::after {
 }
 
 lite-bandcamp[data-layout='slim'] {
-	border: 1px solid #d2d2d2;
+	border: 1px solid rgb(var(--color-gray));
 	box-sizing: border-box;
-	background-color: unset;
+	background-color: rgb(var(--color-light));
 
 	& > .ltb-info {
 		padding: 0;
 		flex-direction: row;
 		align-items: center;
 		background: unset;
-		color: #000;
+		color: rgb(var(--color-dark));
 
 		& > img {
 			height: 42px;
@@ -189,13 +210,18 @@ lite-bandcamp[data-layout='slim'] {
 lite-bandcamp[data-layout='slim'] > .ltb-playbtn::before {
 	width: 42px;
 	height: 42px;
-	background: #ffffff;
-	border-inline: 1px solid #d2d2d2;
+	background: rgb(var(--color-light));
+	border-inline: 1px solid rgb(var(--color-gray));
+}
+
+lite-bandcamp[data-layout='slim']:hover > .ltb-playbtn::before {
+	background-color: rgb(var(--color-teal));
+	opacity: 1;
 }
 
 lite-bandcamp[data-layout='slim'] > .ltb-playbtn::after {
 	border-width: 0.75em 0 0.75em 1.3em;
-	border-color: transparent transparent transparent #000;
+	border-color: transparent transparent transparent rgb(var(--color-dark));
 }
 
 lite-bandcamp[data-layout='slim'] > .ltb-playbtn::before,

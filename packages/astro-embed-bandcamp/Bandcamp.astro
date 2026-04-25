@@ -246,15 +246,16 @@ if (style) styles.push(String(style));
 	(layout === 'standard' && artworkSize === 'small')
 		? posterURL
 		: undefined}
+	data-theme={theme}
 	style={ltbStyleParam + styles.join('; ')}
 	{...attrs}
 >
 	<div class="ltb-info">
 		{
-			layout === 'slim' ||
-				(layout === 'standard' && artworkSize === 'small' && (
-					<img src={posterURL} alt={`Artwork for ${embedTitle}`} />
-				))
+			(layout === 'slim' ||
+				(layout === 'standard' && artworkSize === 'small')) && (
+				<img src={posterURL} alt={`Artwork for ${embedTitle}`} />
+			)
 		}
 		<div class="ltb-title">{embedTitle}</div>
 		{embedArtist && <div class="ltb-artist">by {embedArtist}</div>}
