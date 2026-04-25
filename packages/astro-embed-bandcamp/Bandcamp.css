@@ -1,0 +1,241 @@
+lite-bandcamp {
+	--color-dark: 51 51 51;
+	--color-light: 255 255 255;
+	--color-gray: 210 210 210;
+	--color-teal: 29 160 195;
+	background-color: rgb(var(--color-teal));
+	position: relative;
+	display: block;
+	contain: content;
+	background-position: center center;
+	background-size: cover;
+
+	& > .ltb-info {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		font-family: sans-serif;
+		color: rgb(var(--color-light));
+		padding: 1rem;
+		position: absolute;
+		inset: 0;
+		background: linear-gradient(
+			to bottom,
+			rgb(var(--color-dark) / 60%),
+			transparent
+		);
+
+		& > .ltb-title {
+			font-size: 1.3em;
+		}
+
+		& > .ltb-artist {
+			font-size: 0.75em;
+		}
+
+		& > .ltb-track {
+			font-size: 1.1em;
+		}
+	}
+}
+
+lite-bandcamp[data-theme='dark'] {
+	--color-dark: 255 255 255;
+	--color-light: 51 51 51;
+	--color-gray: 96 96 96;
+	--color-teal: 23 123 151;
+}
+
+lite-bandcamp > iframe {
+	all: unset !important;
+	width: 100% !important;
+	height: 100% !important;
+	position: absolute !important;
+	inset: 0 !important;
+	border: 0 !important;
+}
+
+/* play button */
+lite-bandcamp > .ltb-playbtn {
+	content: '';
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	background: transparent;
+	outline: 0;
+	border: 0;
+	cursor: pointer;
+}
+
+lite-bandcamp > .ltb-playbtn::before {
+	width: 4em;
+	height: 4em;
+	background: rgb(var(--color-dark) / 90%);
+	border-radius: 0.25rem;
+	transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
+}
+
+lite-bandcamp > .ltb-playbtn:focus::before {
+	outline: auto;
+}
+
+lite-bandcamp:hover > .ltb-playbtn::before {
+	background-color: rgb(var(--color-teal));
+	opacity: 1;
+}
+
+/* play button triangle */
+lite-bandcamp > .ltb-playbtn::after {
+	border-style: solid;
+	border-width: 1em 0 1em 1.7em;
+	border-color: transparent transparent transparent rgb(var(--color-light));
+	transform: translate(50%, -50%);
+	margin-left: 0.45em;
+}
+
+lite-bandcamp > .ltb-playbtn::before,
+lite-bandcamp > .ltb-playbtn::after {
+	content: '';
+	position: absolute;
+	bottom: 1rem;
+	left: 1rem;
+}
+
+lite-bandcamp[data-layout='standard'][data-artwork-url] {
+	border: 1px solid rgb(var(--color-gray));
+	box-sizing: border-box;
+	background-color: rgb(var(--color-light));
+
+	& > .ltb-info {
+		padding: 0;
+		flex-direction: row;
+		align-items: center;
+		background: unset;
+		color: rgb(var(--color-dark));
+
+		& > img {
+			height: 120px;
+			width: 120px;
+		}
+
+		& > .ltb-title {
+			font-size: 0.95em;
+			margin-left: 8px;
+			margin-top: -76px;
+		}
+
+		& > .ltb-artist {
+			font-size: 0.95em;
+			margin-top: -76px;
+		}
+
+		& > .ltb-track {
+			font-size: 0.95em;
+			margin-top: -76px;
+		}
+
+		& > .ltb-track::before {
+			content: ' - ';
+			font-size: 0.95em;
+			color: inherit;
+			margin-top: -76px;
+		}
+	}
+}
+
+lite-bandcamp[data-layout='standard'][data-artwork-url] > .ltb-playbtn::before {
+	width: 46px;
+	height: 46px;
+	background: rgb(var(--color-light));
+	border: 1px solid rgb(var(--color-gray));
+}
+
+lite-bandcamp[data-layout='standard'][data-artwork-url]:hover
+	> .ltb-playbtn::before {
+	background-color: rgb(var(--color-teal));
+	opacity: 1;
+}
+
+lite-bandcamp[data-layout='standard'][data-artwork-url] > .ltb-playbtn::after {
+	border-width: 0.85em 0 0.85em 1.45em;
+	border-color: transparent transparent transparent rgb(var(--color-dark));
+}
+
+lite-bandcamp[data-layout='standard'][data-artwork-url] > .ltb-playbtn::before,
+lite-bandcamp[data-layout='standard'][data-artwork-url] > .ltb-playbtn::after {
+	content: '';
+	position: absolute;
+	bottom: 12px;
+	left: 132px;
+}
+
+lite-bandcamp[data-layout='slim'] {
+	border: 1px solid rgb(var(--color-gray));
+	box-sizing: border-box;
+	background-color: rgb(var(--color-light));
+
+	& > .ltb-info {
+		padding: 0;
+		flex-direction: row;
+		align-items: center;
+		background: unset;
+		color: rgb(var(--color-dark));
+
+		& > img {
+			height: 42px;
+			width: 42px;
+		}
+
+		& > .ltb-title {
+			font-size: 0.85em;
+			margin-left: 48px;
+		}
+
+		& > .ltb-artist {
+			font-size: 0.85em;
+		}
+
+		& > .ltb-track {
+			font-size: 0.85em;
+		}
+
+		& > .ltb-track::before {
+			content: ' - ';
+			font-size: 0.85em;
+			color: inherit;
+		}
+	}
+}
+
+lite-bandcamp[data-layout='slim'] > .ltb-playbtn::before {
+	width: 42px;
+	height: 42px;
+	background: rgb(var(--color-light));
+	border-inline: 1px solid rgb(var(--color-gray));
+}
+
+lite-bandcamp[data-layout='slim']:hover > .ltb-playbtn::before {
+	background-color: rgb(var(--color-teal));
+	opacity: 1;
+}
+
+lite-bandcamp[data-layout='slim'] > .ltb-playbtn::after {
+	border-width: 0.75em 0 0.75em 1.3em;
+	border-color: transparent transparent transparent rgb(var(--color-dark));
+}
+
+lite-bandcamp[data-layout='slim'] > .ltb-playbtn::before,
+lite-bandcamp[data-layout='slim'] > .ltb-playbtn::after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 42px;
+}
+
+/* Post-click styles */
+lite-bandcamp.ltb-activated::before,
+lite-bandcamp.ltb-activated > .ltb-playbtn {
+	cursor: unset;
+	opacity: 0;
+	pointer-events: none;
+}

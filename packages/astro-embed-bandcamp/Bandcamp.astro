@@ -1,0 +1,319 @@
+---
+import './Bandcamp.css';
+
+export interface Props extends astroHTML.JSX.HTMLAttributes {
+	/** Bandcamp album/track/artist URL, or embed-style ID (e.g. `album=1234567890`). */
+	id: string;
+	/** Layout style. Default: `'standard'`. */
+	layout?: 'standard' | 'artwork-only' | 'slim';
+	/** URL to an image to use as the poster instead of the default thumbnail. */
+	poster?: string;
+	/** Label for the button that will play the embed. Default label: `'Play'` */
+	playLabel?: string;
+	/** Show album artwork. Default: `true`. */
+	showArtwork?: boolean;
+	/** Artwork size. Default: `'large'`. */
+	artworkSize?: 'small' | 'large';
+	/** Show tracklist. Default: `false`. */
+	showTracklist?: boolean;
+	/** Theme. Default: `'light'`. */
+	theme?: 'light' | 'dark';
+	/** Link color. Default: `'0f91ff'`. */
+	linkColor?: string;
+	/** Height of the embed. */
+	height?: number;
+	/** Width of the embed. */
+	width?: number;
+}
+
+const {
+	id,
+	layout = 'standard',
+	poster,
+	playLabel = 'Play',
+	showArtwork = true,
+	artworkSize = 'large',
+	showTracklist = false,
+	theme = 'light',
+	linkColor = '0f91ff',
+	height,
+	width,
+	style,
+	title,
+	...attrs
+} = Astro.props as Props;
+
+const iframeSrcParams: string[] = [];
+let iframeStyleParam: string;
+let ltbStyleParam: string;
+
+/** Bandcamp player params as slash-delimited key=value segments.
+ * See https://bandcamp.com/help/artist_guide#embedding */
+switch (layout) {
+	case 'slim':
+		iframeSrcParams.push('size=small');
+
+		iframeStyleParam = 'border: 0; width: 100%; height: 42px;';
+		ltbStyleParam =
+			'width: 100%; height: 42px; min-width: 170px; max-width: 700px;';
+
+		break;
+
+	case 'artwork-only':
+		iframeSrcParams.push('size=large');
+		iframeSrcParams.push('minimal=true');
+
+		const iframeWidth =
+			width && width >= 170 && width <= 700
+				? width
+				: height && height >= 170 && height <= 700
+					? height
+					: 350;
+		const iframeHeight = iframeWidth;
+		iframeStyleParam = `border: 0; width: ${iframeWidth}px; height: ${iframeHeight}px;`;
+		ltbStyleParam = `width: ${iframeWidth}px; height: ${iframeHeight}px; min-width: 170px; max-width: 700px;`;
+
+		break;
+
+	case 'standard':
+		iframeSrcParams.push('size=large');
+
+		if (
+			!showTracklist &&
+			(!showArtwork || (showArtwork && artworkSize === 'small'))
+		) {
+			iframeStyleParam = `border: 0; width: ${width && width >= 250 && width <= 700 ? width + 'px' : '100%'}; height: 120px;`;
+			ltbStyleParam = `width: ${width && width >= 250 && width <= 700 ? width + 'px' : '100%'}; height: 120px; min-width: 250px; max-width: 700px;`;
+		} else if (!showTracklist && showArtwork && artworkSize === 'large') {
+			iframeStyleParam = `border: 0; width: ${width && width >= 170 && width <= 700 ? width : 350}px; height: ${height && height >= 312 ? height : 470}px;`;
+			ltbStyleParam = `width: ${width && width >= 170 && width <= 700 ? width : 350}px; height: ${height && height >= 312 ? height : 470}px; min-width: 170px; max-width: 700px;`;
+		} else if (
+			showTracklist &&
+			(!showArtwork || (showArtwork && artworkSize === 'small'))
+		) {
+			iframeStyleParam = `border: 0; width: ${width && width >= 250 && width <= 700 ? width + 'px' : '100%'}; height: ${height && height >= 208 ? height : 472}px;`;
+			ltbStyleParam = `width: ${width && width >= 250 && width <= 700 ? width + 'px' : '100%'}; height: ${height && height >= 208 ? height : 472}px; min-height: 208px; min-width: 250px; max-width: 700px;`;
+		} else {
+			iframeStyleParam = `border: 0; width: ${width && width >= 170 && width <= 700 ? width : 350}px; height: ${height && height >= 362 ? height : 786}px;`;
+			ltbStyleParam = `width: ${width && width >= 170 && width <= 700 ? width : 350}px; height: ${height && height >= 362 ? height : 786}px; min-width: 170px; max-width: 700px;`;
+		}
+
+		break;
+}
+
+if (!showArtwork && layout !== 'artwork-only') {
+	iframeSrcParams.push('artwork=none');
+}
+
+if (artworkSize === 'small' && layout === 'standard') {
+	iframeSrcParams.push(`artwork=small`);
+}
+
+if (!showTracklist && layout === 'standard') {
+	iframeSrcParams.push('tracklist=false');
+}
+
+if (theme === 'dark') {
+	iframeSrcParams.push('bgcol=333333');
+} else {
+	iframeSrcParams.push('bgcol=ffffff');
+}
+
+const hexColorRegExp = /^[0-9a-fA-F]{6}|[0-9a-fA-F]{3}$/;
+if (linkColor && hexColorRegExp.test(linkColor)) {
+	iframeSrcParams.push(`linkcol=${linkColor}`);
+} else {
+	iframeSrcParams.push(`linkcol=0f91ff`);
+}
+
+const embedIdPattern = /^(album|track)=(\d+)$/;
+const isEmbedId = embedIdPattern.test(id);
+
+let embedId = '';
+let posterURL = poster;
+let embedTitle = title;
+let embedTrackTitle;
+let embedArtist;
+
+if (isEmbedId) {
+	embedId = id;
+	const url = `https://bandcamp.com/EmbeddedPlayer/${embedId}/`;
+	try {
+		const response = await fetch(url);
+		if (response.ok) {
+			const html = await response.text();
+
+			// Bandcamp embeds page data in a data-player-data JSON attribute on the player script tag.
+			const [, rawEmbed] = html.match(/data-player-data="([^"]+)"/) ?? [];
+			if (rawEmbed) {
+				const dataPlayerData = JSON.parse(
+					rawEmbed.replace(/&quot;/g, '"').replace(/&amp;/g, '&')
+				);
+				if (!embedTitle) {
+					embedTitle = dataPlayerData.album_title;
+				}
+				if (!posterURL) {
+					posterURL = dataPlayerData.album_art_lg;
+				}
+				embedArtist = dataPlayerData.artist;
+				embedTrackTitle = id.startsWith('track=')
+					? dataPlayerData.tracks[0].title
+					: undefined;
+			}
+		} else {
+			console.error(
+				`[error]  astro-embed\n         Failed to fetch ${url}\n         Error ${response.status}: ${response.statusText}`
+			);
+		}
+	} catch (e: any) {
+		console.error(
+			`[error]  astro-embed\n         Failed to fetch ${url}\n         ${e?.message ?? e}`
+		);
+	}
+} else {
+	const url = id.startsWith('http') ? id : `https://${id}`;
+	try {
+		const response = await fetch(url);
+		if (response.ok) {
+			const html = await response.text();
+
+			// Bandcamp embeds page data in a data-embed JSON attribute on the player script tag.
+			// tralbum_param.name = "album" | "track", tralbum_param.value = numeric ID
+			const [, rawEmbed] = html.match(/data-embed="([^"]+)"/) ?? [];
+			if (rawEmbed) {
+				const dataEmbed = JSON.parse(
+					rawEmbed.replace(/&quot;/g, '"').replace(/&amp;/g, '&')
+				);
+				const { name, value } = (dataEmbed as any).tralbum_param ?? {};
+				if (name && value) embedId = `${name}=${value}`;
+
+				if (!embedTitle) {
+					embedTitle = dataEmbed.album_title;
+				}
+				embedArtist = dataEmbed.artist;
+			}
+
+			if (embedId.startsWith('track=')) {
+				// Bandcamp embeds page data in a data-tralbum JSON attribute on the player script tag.
+				const [, rawTrAlbum] = html.match(/data-tralbum="([^"]+)"/) ?? [];
+				if (rawTrAlbum) {
+					const dataTrAlbum = JSON.parse(
+						rawTrAlbum.replace(/&quot;/g, '"').replace(/&amp;/g, '&')
+					);
+					embedTrackTitle = dataTrAlbum.trackinfo[0].title;
+				}
+			}
+
+			if (!posterURL) {
+				const [, ogImage] =
+					html.match(/<meta\s+property="og:image"\s+content="([^"]+)"/) ?? [];
+				if (ogImage) posterURL = ogImage;
+			}
+		} else {
+			console.error(
+				`[error]  astro-embed\n         Failed to fetch ${url}\n         Error ${response.status}: ${response.statusText}`
+			);
+		}
+	} catch (e: any) {
+		console.error(
+			`[error]  astro-embed\n         Failed to fetch ${url}\n         ${e?.message ?? e}`
+		);
+	}
+
+	if (!embedId) embedId = id;
+}
+
+// Build iframe src using Bandcamp's slash-delimited path segment format
+const srcParts = ['https://bandcamp.com/EmbeddedPlayer', embedId];
+const iframeSrc = srcParts.join('/') + '/' + iframeSrcParams.join('/') + '/';
+
+const styles: string[] = [];
+if (
+	posterURL &&
+	layout !== 'slim' &&
+	!(layout === 'standard' && artworkSize === 'small')
+)
+	styles.push(`background-image: url('${posterURL}')`);
+if (style) styles.push(String(style));
+---
+
+<lite-bandcamp
+	data-src={iframeSrc}
+	data-title={embedTitle ?? 'Bandcamp player'}
+	data-iframe-style={iframeStyleParam}
+	data-layout={layout}
+	data-artwork-url={layout === 'slim' ||
+	(layout === 'standard' && artworkSize === 'small')
+		? posterURL
+		: undefined}
+	data-theme={theme}
+	style={ltbStyleParam + styles.join('; ')}
+	{...attrs}
+>
+	<div class="ltb-info">
+		{
+			(layout === 'slim' ||
+				(layout === 'standard' && artworkSize === 'small')) && (
+				<img src={posterURL} alt={`Artwork for ${embedTitle}`} />
+			)
+		}
+		<div class="ltb-title">{embedTitle}</div>
+		{embedArtist && <div class="ltb-artist">by {embedArtist}</div>}
+		{embedTrackTitle && <div class="ltb-track">{embedTrackTitle}</div>}
+	</div>
+	<a class="ltb-playbtn" href="https://bandcamp.com" aria-label={playLabel}></a>
+</lite-bandcamp>
+
+<script>
+	class LiteBandcamp extends HTMLElement {
+		static preconnected = false;
+
+		connectedCallback() {
+			this.addEventListener('pointerover', LiteBandcamp.warmConnections, {
+				once: true,
+			});
+			this.addEventListener('click', (e) => this.addIframe(e));
+
+			// Progressively enhance the link to Bandcamp as a play button.
+			const playLink = this.querySelector('a');
+			if (playLink) {
+				const playBtn = document.createElement('button');
+				playBtn.classList.add(...playLink.classList.values());
+				playBtn.setAttribute(
+					'aria-label',
+					playLink.getAttribute('aria-label')!
+				);
+				playLink.replaceWith(playBtn);
+			}
+		}
+
+		static addPrefetch(rel: string, url: string): void {
+			const linkEl = document.createElement('link');
+			linkEl.rel = rel;
+			linkEl.href = url;
+			document.head.append(linkEl);
+		}
+
+		static warmConnections(): void {
+			if (LiteBandcamp.preconnected) return;
+			LiteBandcamp.addPrefetch('preconnect', 'https://bandcamp.com');
+			LiteBandcamp.preconnected = true;
+		}
+
+		addIframe(e: MouseEvent): void {
+			if (this.classList.contains('ltb-activated')) return;
+			e.preventDefault();
+			this.classList.add('ltb-activated');
+
+			const iframeEl = document.createElement('iframe');
+			iframeEl.title = this.dataset.title ?? 'Bandcamp player';
+			iframeEl.src = this.dataset.src!;
+			iframeEl.style = this.dataset.iframeStyle ?? '';
+			this.append(iframeEl);
+		}
+	}
+
+	if (!customElements.get('lite-bandcamp')) {
+		customElements.define('lite-bandcamp', LiteBandcamp);
+	}
+</script>
