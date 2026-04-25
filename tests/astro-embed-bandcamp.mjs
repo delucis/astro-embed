@@ -4,7 +4,6 @@ import { renderDOM } from './utils/render.mjs';
 import matcher from '../packages/astro-embed-bandcamp/matcher.ts';
 
 const albumId = 'album=3998497340';
-const trackId = 'track=1234567890';
 
 test('it should render a lite-bandcamp element', async () => {
 	const { window } = await renderDOM(
@@ -90,7 +89,7 @@ test('slim layout sets the player to 42px height', async () => {
 	assert.ok((embed.getAttribute('style') ?? '').includes('42px'));
 });
 
-test('album embed does not set the track aspect ratio custom property', async () => {
+test('standard layout with large artwork uses the default dimensions', async () => {
 	const { window } = await renderDOM(
 		'./packages/astro-embed-bandcamp/Bandcamp.astro',
 		{ id: albumId }
@@ -98,7 +97,8 @@ test('album embed does not set the track aspect ratio custom property', async ()
 	const embed = window.document.querySelector('lite-bandcamp');
 	assert.ok(embed);
 	const style = embed.getAttribute('style') ?? '';
-	assert.not.ok(style.includes('--ltb-aspect-ratio'));
+	assert.ok(style.includes('350px'));
+	assert.ok(style.includes('470px'));
 });
 
 test('it merges a style attribute', async () => {
