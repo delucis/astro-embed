@@ -1,0 +1,86 @@
+---
+import { Instagram as Insta } from '@astro-community/astro-embed-instagram';
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Instagram component examples">
+	<h2>Post with a custom poster image</h2>
+	<p>
+		<code
+			>&lt;Instagram id="https://www.instagram.com/nasa/p/DXcEDIrkr6y/"
+			poster="https://images-assets.nasa.gov/image/0302063/0302063~medium.jpg"
+			/&gt;</code
+		>
+	</p>
+	<Insta
+		id="https://www.instagram.com/nasa/p/DXcEDIrkr6y/"
+		poster="https://images-assets.nasa.gov/image/0302063/0302063~medium.jpg"
+	/>
+
+	<h2>Reel (default 9:16 aspect ratio)</h2>
+	<p>
+		<code
+			>&lt;Instagram id="https://www.instagram.com/nasa/reel/DW-toGVj4I4/" /&gt;</code
+		>
+	</p>
+	<Insta id="https://www.instagram.com/nasa/reel/DW-toGVj4I4/" />
+
+	<h2>With author and caption overlay</h2>
+	<p>
+		<code
+			>&lt;Instagram id="https://www.instagram.com/nasa/p/DXcEDIrkr6y/"
+			author="nasa" caption="To the moon!"
+			poster="https://images-assets.nasa.gov/image/0302063/0302063~medium.jpg"
+			/&gt;</code
+		>
+	</p>
+	<Insta
+		id="https://www.instagram.com/nasa/p/DXcEDIrkr6y/"
+		author="nasa"
+		caption="To the moon!"
+		poster="https://images-assets.nasa.gov/image/0302063/0302063~medium.jpg"
+	/>
+
+	<h2>Styled card fallback (no poster, no token)</h2>
+	<p>
+		<code
+			>&lt;Instagram id="https://www.instagram.com/nasa/p/DXcEDIrkr6y/"
+			author="nasa" caption="To the moon!" /&gt;</code
+		>
+	</p>
+	<Insta
+		id="https://www.instagram.com/nasa/p/DXcEDIrkr6y/"
+		author="nasa"
+		caption="To the moon!"
+	/>
+
+	<h2>Custom playLabel</h2>
+	<p>
+		<code
+			>&lt;Instagram id="https://www.instagram.com/nasa/p/DXcEDIrkr6y/"
+			playLabel="View this photo on Instagram" /&gt;</code
+		>
+	</p>
+	<Insta
+		id="https://www.instagram.com/nasa/p/DXcEDIrkr6y/"
+		playLabel="View this photo on Instagram"
+		poster="https://images-assets.nasa.gov/image/0302063/0302063~medium.jpg"
+	/>
+
+	<h2>With params (captioned)</h2>
+	<p>
+		<code
+			>&lt;Instagram id="https://www.instagram.com/nasa/p/DXcEDIrkr6y/"
+			params="captioned=true" /&gt;</code
+		>
+	</p>
+	<Insta
+		id="https://www.instagram.com/nasa/p/DXcEDIrkr6y/"
+		params="captioned=true"
+		poster="https://images-assets.nasa.gov/image/0302063/0302063~medium.jpg"
+	/>
+
+	<h2>Using type/shortcode format</h2>
+	<p><code>&lt;Instagram id="reel/DW-toGVj4I4" /&gt;</code></p>
+	<Insta id="reel/DW-toGVj4I4" />
+</Base>
