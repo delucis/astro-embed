@@ -1,0 +1,270 @@
+---
+import { safeGet } from '@astro-community/astro-embed-utils';
+import './Instagram.css';
+
+export interface Props extends astroHTML.JSX.HTMLAttributes {
+	/** Instagram post/reel/TV URL, or a type-prefixed shortcode like `reel/ABC123`. */
+	id: string;
+	/** URL to an image to use as the poster instead of the default thumbnail. */
+	poster?: string;
+	/** Label for the button that will load the embed. */
+	playLabel?: string;
+	/** See https://developers.facebook.com/docs/instagram/oembed */
+	params?: string;
+	/** CSS aspect-ratio value, e.g. `'4 / 5'`. Defaults to `'1 / 1'` for posts and `'9 / 16'` for reels and TV. */
+	aspectRatio?: string;
+	/** Author username to show on the placeholder. Auto-fetched via oEmbed if INSTAGRAM_ACCESS_TOKEN is set. */
+	author?: string;
+	/** Post caption to show on the placeholder. Auto-fetched via oEmbed if INSTAGRAM_ACCESS_TOKEN is set. */
+	caption?: string;
+}
+
+type ContentType = 'post' | 'reel' | 'tv';
+
+function decodeEntities(str: string): string {
+	return str
+		.replace(/&#x([0-9a-fA-F]+);/gi, (_, h) =>
+			String.fromCodePoint(parseInt(h, 16))
+		)
+		.replace(/&#([0-9]+);/g, (_, d) => String.fromCodePoint(parseInt(d, 10)))
+		.replace(/&quot;/g, '"')
+		.replace(/&amp;/g, '&')
+		.replace(/&lt;/g, '<')
+		.replace(/&gt;/g, '>');
+}
+
+function extractMetaContent(
+	html: string,
+	attrValue: string
+): string | undefined {
+	const m =
+		html.match(
+			new RegExp(
+				`<meta[^>]+(?:property|name)="${attrValue}"[^>]+content="([^"]*)"`,
+				'i'
+			)
+		) ??
+		html.match(
+			new RegExp(
+				`<meta[^>]+content="([^"]*)"[^>]+(?:property|name)="${attrValue}"`,
+				'i'
+			)
+		);
+	return m?.[1] ? decodeEntities(m[1]) : undefined;
+}
+
+async function fetchInstagramMeta(url: string): Promise<
+	| {
+			posterURL?: string | undefined;
+			authorName?: string | undefined;
+			postCaption?: string | undefined;
+	  }
+	| undefined
+> {
+	try {
+		const res = await fetch(url, {
+			headers: {
+				'User-Agent': 'Googlebot/2.1 (+http://www.google.com/bot.html)',
+				Accept: 'text/html',
+			},
+		});
+		if (!res.ok) return;
+		const html = await res.text();
+
+		const ogImage = extractMetaContent(html, 'og:image');
+		const twitterTitle = extractMetaContent(html, 'twitter:title');
+		const ogTitle = extractMetaContent(html, 'og:title');
+
+		// "Rick Astley (@officialrickastley) • Instagram reel" → "officialrickastley"
+		const authorName = twitterTitle?.match(/\(@([A-Za-z0-9_.]+)\)/)?.[1];
+		// "Rick Astley on Instagram: "Caption text"" → "Caption text"
+		const postCaption = ogTitle?.match(/on Instagram:\s+"(.*)"$/s)?.[1]?.trim();
+
+		return { posterURL: ogImage, authorName, postCaption };
+	} catch {
+		return;
+	}
+}
+
+function parseId(idOrUrl: string): { shortcode: string; type: ContentType } {
+	// Full URL: instagram.com/[username/]p|reel|tv/{shortcode}
+	const urlMatch = idOrUrl.match(
+		/(?:https?:\/\/)?(?:www\.)?instagram\.com\/(?:[A-Za-z0-9_.]+\/)?(p|reel|tv)\/([A-Za-z0-9_-]+)/
+	);
+	if (urlMatch) {
+		const typeMap: Record<string, ContentType> = {
+			p: 'post',
+			reel: 'reel',
+			tv: 'tv',
+		};
+		return { type: typeMap[urlMatch[1]!]!, shortcode: urlMatch[2]! };
+	}
+	// type/shortcode format
+	const typeMatch = idOrUrl.match(/^(post|reel|tv)\/([A-Za-z0-9_-]+)$/);
+	if (typeMatch) {
+		return { type: typeMatch[1] as ContentType, shortcode: typeMatch[2]! };
+	}
+	// Bare shortcode — default to post
+	return { type: 'post', shortcode: idOrUrl };
+}
+
+const {
+	id,
+	poster,
+	playLabel,
+	params = '',
+	aspectRatio,
+	author,
+	caption,
+	style,
+	class: classList,
+	...attrs
+} = Astro.props as Props;
+
+const { shortcode, type } = parseId(id);
+
+const defaultLabels: Record<ContentType, string> = {
+	post: 'Load Instagram post',
+	reel: 'Load Instagram reel',
+	tv: 'Load Instagram video',
+};
+const label = playLabel ?? defaultLabels[type];
+
+const defaultAspectRatios: Record<ContentType, string> = {
+	post: '1 / 1',
+	reel: '9 / 16',
+	tv: '9 / 16',
+};
+const resolvedAspectRatio = aspectRatio ?? defaultAspectRatios[type];
+
+const typePath: Record<ContentType, string> = {
+	post: 'p',
+	reel: 'reel',
+	tv: 'tv',
+};
+const canonicalUrl = `https://www.instagram.com/${typePath[type]}/${shortcode}/`;
+
+let posterURL = poster;
+let authorName = author;
+let postCaption = caption;
+if (!posterURL || !authorName || !postCaption) {
+	const token = import.meta.env.INSTAGRAM_ACCESS_TOKEN;
+	if (token) {
+		const oembedUrl = new URL(
+			'https://graph.facebook.com/v22.0/instagram_oembed'
+		);
+		oembedUrl.searchParams.set('url', canonicalUrl);
+		oembedUrl.searchParams.set('access_token', String(token));
+		const data = await safeGet(oembedUrl.href);
+		if (data?.thumbnail_url && !posterURL)
+			posterURL = data.thumbnail_url as string;
+		if (data?.author_name && !authorName)
+			authorName = data.author_name as string;
+		if (data?.title && !postCaption) postCaption = data.title as string;
+	} else {
+		const meta = await fetchInstagramMeta(canonicalUrl);
+		if (meta && meta.posterURL && !posterURL) posterURL = meta.posterURL;
+		if (meta && meta.authorName && !authorName) authorName = meta.authorName;
+		if (meta && meta.postCaption && !postCaption)
+			postCaption = meta.postCaption;
+	}
+}
+
+const styles: string[] = [];
+if (style) styles.push(style as string);
+styles.push(`--lti-aspect-ratio: ${resolvedAspectRatio}`);
+if (posterURL) styles.push(`background-image: url('${posterURL}')`);
+---
+
+<lite-instagram
+	data-shortcode={shortcode}
+	data-type={type}
+	data-params={params || undefined}
+	class:list={[{ 'lti-no-poster': !posterURL }, classList]}
+	style={styles.join('; ')}
+	{...attrs}
+>
+	<a class="lti-playbtn" href={canonicalUrl} aria-label={label}>
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 24 24"
+			aria-hidden="true"
+		>
+			<path
+				d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+			></path>
+		</svg>
+	</a>
+	{
+		(authorName || postCaption) && (
+			<div class="lti-caption" aria-hidden="true">
+				{authorName && <span class="lti-author">@{authorName}</span>}
+				{postCaption && <span class="lti-title">{postCaption}</span>}
+			</div>
+		)
+	}
+</lite-instagram>
+
+<script>
+	class LiteInstagram extends HTMLElement {
+		shortcode = encodeURIComponent(this.dataset.shortcode!);
+		type = this.dataset.type as 'post' | 'reel' | 'tv';
+		static preconnected = false;
+
+		connectedCallback() {
+			this.addEventListener('pointerover', LiteInstagram.warmConnections, {
+				once: true,
+			});
+
+			this.addEventListener('click', (e) => this.addIframe(e));
+
+			// Progressively enhance the link to Instagram as a load button.
+			const playLink = this.querySelector('a');
+			if (playLink) {
+				const playBtn = document.createElement('button');
+				playBtn.classList.add(...playLink.classList.values());
+				playBtn.setAttribute(
+					'aria-label',
+					playLink.getAttribute('aria-label')!
+				);
+				playBtn.append(...Array.from(playLink.childNodes));
+				playLink.replaceWith(playBtn);
+			}
+		}
+
+		static addPrefetch(rel: string, url: string): void {
+			const linkEl = document.createElement('link');
+			linkEl.rel = rel;
+			linkEl.href = url;
+			document.head.append(linkEl);
+		}
+
+		static warmConnections(): void {
+			if (LiteInstagram.preconnected) return;
+			LiteInstagram.addPrefetch('preconnect', 'https://www.instagram.com');
+			LiteInstagram.preconnected = true;
+		}
+
+		addIframe(e: MouseEvent): void {
+			if (this.classList.contains('lti-activated')) return;
+			e.preventDefault();
+			this.classList.add('lti-activated');
+
+			const typePath = { post: 'p', reel: 'reel', tv: 'tv' }[this.type] ?? 'p';
+			const params = this.dataset.params ? `?${this.dataset.params}` : '';
+
+			const iframeEl = document.createElement('iframe');
+			iframeEl.width = '400';
+			iframeEl.height = '480';
+			iframeEl.allow =
+				'autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share';
+			iframeEl.allowFullscreen = true;
+			iframeEl.src = `https://www.instagram.com/${typePath}/${this.shortcode}/embed/${params}`;
+			this.append(iframeEl);
+		}
+	}
+
+	if (!customElements.get('lite-instagram')) {
+		customElements.define('lite-instagram', LiteInstagram);
+	}
+</script>
