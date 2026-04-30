@@ -99,16 +99,16 @@ lite-tiktok > .ltt-info {
 			font-weight: 600;
 			font-size: 1.1em;
 		}
+	}
 
-		& > .ltt-title {
-			font-size: 0.875em;
-		}
+	& > .ltt-title {
+		font-size: 0.875em;
 	}
 }
 
 /* post-click styles */
 lite-tiktok.ltt-activated > .ltt-playbtn,
-lite-tiktok.ltt-activated > .ltt-title {
+lite-tiktok.ltt-activated > .ltt-info {
 	cursor: unset;
 	opacity: 0;
 	pointer-events: none;

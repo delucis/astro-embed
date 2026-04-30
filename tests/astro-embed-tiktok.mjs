@@ -15,6 +15,31 @@ test('it should render a lite-tiktok element', async () => {
 	assert.is(embed.getAttribute('data-id'), videoid);
 });
 
+test('it renders a play button linking to the video', async () => {
+	const { window } = await renderDOM(
+		'./packages/astro-embed-tiktok/TikTok.astro',
+		{ id: videoid, poster }
+	);
+	const embed = window.document.querySelector('lite-tiktok');
+	assert.ok(embed);
+	const playBtn = embed.querySelector('.ltt-playbtn');
+	assert.ok(playBtn);
+	assert.is(playBtn.getAttribute('href'), `https://www.tiktok.com/video/${videoid}`);
+});
+
+test('it renders a play button linking to the URL when video ID is a full URL', async () => {
+	const url = `https://www.tiktok.com/@tiktok/video/${videoid}`;
+	const { window } = await renderDOM(
+		'./packages/astro-embed-tiktok/TikTok.astro',
+		{ id: url, poster }
+	);
+	const embed = window.document.querySelector('lite-tiktok');
+	assert.ok(embed);
+	const playBtn = embed.querySelector('.ltt-playbtn');
+	assert.ok(playBtn);
+	assert.is(playBtn.getAttribute('href'), `https://www.tiktok.com/video/${videoid}`);
+});
+
 test('it parses a tiktok.com/@user/video/ URL', async () => {
 	const { window } = await renderDOM(
 		'./packages/astro-embed-tiktok/TikTok.astro',

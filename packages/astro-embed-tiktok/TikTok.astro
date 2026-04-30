@@ -13,14 +13,12 @@ export interface Props extends astroHTML.JSX.HTMLAttributes {
 	maxWidth?: string;
 	/** Orientation of the embed. Default: `'portrait'` */
 	orientation?: 'landscape' | 'portrait';
-	/** See https://developers.tiktok.com/doc/embed-creator-marketplace-products */
+	/** See https://developers.tiktok.com/doc/embed-player */
 	params?: string;
 	/** Label for the button that will play the video. Default label: `'Play'` */
 	playLabel?: string;
 	/** URL to an image to use as the poster instead of the default thumbnail. */
 	poster?: string;
-	/** Resolution to use for the TikTok poster image. Has no effect on automatically fetched thumbnails. */
-	posterQuality?: 'max' | 'high' | 'default' | 'low';
 	/** Title to display over the poster image. Defaults to the title from TikTok's oEmbed API. */
 	title?: string;
 }
@@ -28,7 +26,6 @@ export interface Props extends astroHTML.JSX.HTMLAttributes {
 const {
 	id,
 	poster,
-	posterQuality = 'default',
 	params = '',
 	playLabel = 'Play',
 	title: titleProp,
@@ -94,13 +91,21 @@ if (data) {
 }
 
 const searchParams = new URLSearchParams(params);
-!searchParams.has('autoplay') &&
+if (!searchParams.has('autoplay')) {
 	searchParams.set('autoplay', autoplay ? '1' : '0');
+}
+
+const fallbackHref = videoid
+	? `https://www.tiktok.com/video/${videoid}`
+	: id.startsWith('http')
+		? id
+		: 'https://www.tiktok.com';
 
 const styles: string[] = [];
 if (style) styles.push(style as string);
-styles.push(`--max-width: ${maxWidth}`);
-if (posterURL) styles.push(`background-image: url('${posterURL}')`);
+styles.push(`--max-width: ${maxWidth.replace(/;/g, '')}`);
+if (posterURL)
+	styles.push(`background-image: url('${posterURL.replace(/'/g, '%27')}')`);
 ---
 
 <lite-tiktok
@@ -126,7 +131,7 @@ if (posterURL) styles.push(`background-image: url('${posterURL}')`);
 	}
 	<a
 		class="ltt-playbtn"
-		href={`https://www.tiktok.com/video/${videoid || ''}`}
+		href={fallbackHref}
 		aria-label={playLabel}></a>
 </lite-tiktok>
 
@@ -177,8 +182,6 @@ if (posterURL) styles.push(`background-image: url('${posterURL}')`);
 			e.preventDefault();
 			this.classList.add('ltt-activated');
 
-			const params = new URLSearchParams(this.dataset.params || '');
-
 			const iframeEl = document.createElement('iframe');
 			iframeEl.allow =
 				'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
@@ -186,6 +189,7 @@ if (posterURL) styles.push(`background-image: url('${posterURL}')`);
 			if (this.dataset.embedType === 'video') {
 				iframeEl.src = `https://www.tiktok.com/embed/v2/${this.videoId}`;
 			} else {
+				const params = new URLSearchParams(this.dataset.params || '');
 				iframeEl.src = `https://www.tiktok.com/player/v1/${this.videoId}?${params.toString()}`;
 			}
 			this.append(iframeEl);

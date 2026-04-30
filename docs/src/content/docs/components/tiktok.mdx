@@ -66,7 +66,7 @@ The `embedType` prop controls the type of TikTok embed to generate. The default 
 <TikTok id="7512867562258992406" embedType="video" maxWidth="418px" />
 
 :::note
-Since the component displays with a `9:16` aspect ratio by default, setting a `maxWidth` will also adjust the height proportionally to maintain the aspect ratio. If you are the `'video'` `embedType` and need a slightly shorter/taller player to avoid scrolling that added content, simply set the `maxWidth` to decrease/increase the overall size of the embed.
+Since the component displays with a `9:16` aspect ratio by default, setting a `maxWidth` will also adjust the height proportionally to maintain the aspect ratio. If you are using the `'video'` `embedType` and need a slightly shorter/taller player to avoid scrolling that added content, simply set the `maxWidth` to decrease/increase the overall size of the embed.
 :::
 
 ### `id`
@@ -137,17 +137,16 @@ If you want to customise this, for example to match the language of your website
 You can provide an alternative poster image by passing in a URL to the `poster` prop. If not provided, the component will automatically fetch the thumbnail from TikTok's oEmbed API.
 
 ```astro
-<TikTok id="7512867562258992406" poster="/rick-rolled.png" />
+<TikTok
+	id="7512867562258992406"
+	poster="https://picsum.photos/id/158/1280/853"
+/>
 ```
 
-<TikTok id="7512867562258992406" poster="/rick-rolled.png" />
-
-### `posterQuality`
-
-**Type:** `'max' | 'high' | 'default' | 'low'`  
-**Default:** `'default'`
-
-This prop is included for API consistency with other astro-embed components. Note that quality adjustment has no effect on automatically fetched TikTok thumbnails due to TikTok's opaque CDN URL format. It can be used in combination with a custom `poster` URL that you control.
+<TikTok
+	id="7512867562258992406"
+	poster="https://picsum.photos/id/158/1280/853"
+/>
 
 ### `title`
 
