@@ -1,6 +1,6 @@
 const contentTypes = 'track|album|playlist|episode|show|artist';
 const urlPattern = new RegExp(
-	`open\\.spotify\\.com(?:/embed)?/(${contentTypes})/([A-Za-z0-9]+)`
+	`open\\.spotify\\.com(?:/intl-[a-z]+)?(?:/embed)?/(${contentTypes})/([A-Za-z0-9]+)`
 );
 
 /**

@@ -33,12 +33,13 @@ import Base from '../layouts/Base.astro';
 	<p>
 		<code
 			>&lt;Spotify id="https://open.spotify.com/playlist/37i9dQZF1DZ06evO05tE88"
-			size="full" /&gt;</code
+			size="full" theme="#005e3e" /&gt;</code
 		>
 	</p>
 	<Spot
 		id="https://open.spotify.com/playlist/37i9dQZF1DZ06evO05tE88"
 		size="full"
+		theme="#005e3e"
 	/>
 
 	<h2>Podcast episode</h2>
@@ -56,22 +57,30 @@ import Base from '../layouts/Base.astro';
 	</p>
 	<Spot id="track/4cOdK2wGLETKBW3PvgPWqT" size="full" />
 
-	<h2>Light theme</h2>
+	<h2>Custom colour theme</h2>
 	<p>
 		<code
-			>&lt;Spotify id="track/4cOdK2wGLETKBW3PvgPWqT" theme="light" /&gt;</code
+			>&lt;Spotify id="track/4cOdK2wGLETKBW3PvgPWqT" theme="#005977"
+			artist="Rick Astley" /&gt;</code
 		>
 	</p>
-	<Spot id="track/4cOdK2wGLETKBW3PvgPWqT" theme="light" />
+	<Spot
+		id="track/4cOdK2wGLETKBW3PvgPWqT"
+		theme="#005977"
+		artist="Rick Astley"
+	/>
 
 	<h2>Custom poster image</h2>
 	<p>
 		<code
 			>&lt;Spotify id="track/4cOdK2wGLETKBW3PvgPWqT"
-			poster="../../rick-rolled.png" /&gt;</code
+			poster="https://picsum.photos/id/158/1280/853" /&gt;</code
 		>
 	</p>
-	<Spot id="track/4cOdK2wGLETKBW3PvgPWqT" poster="../../rick-rolled.png" />
+	<Spot
+		id="track/4cOdK2wGLETKBW3PvgPWqT"
+		poster="https://picsum.photos/id/158/1280/853"
+	/>
 
 	<h2>Custom play label</h2>
 	<p>

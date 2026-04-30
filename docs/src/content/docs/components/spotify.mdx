@@ -41,7 +41,9 @@ You can also pass in the full Spotify URL:
 
 The above code produces the following result:
 
-<Spotify id="track/4cOdK2wGLETKBW3PvgPWqT" />
+<div class="not-content">
+	<Spotify id="track/4cOdK2wGLETKBW3PvgPWqT" />
+</div>
 
 ### Embedding different content types
 
@@ -64,10 +66,18 @@ In addition to the required `id` prop, the following props are available to cust
 You can provide an alternative poster image by passing in a URL to the `poster` prop.
 
 ```astro
-<Spotify id="track/4cOdK2wGLETKBW3PvgPWqT" poster="/rick-rolled.png" />
+<Spotify
+	id="track/4cOdK2wGLETKBW3PvgPWqT"
+	poster="https://picsum.photos/id/158/1280/853"
+/>
 ```
 
-<Spotify id="track/4cOdK2wGLETKBW3PvgPWqT" poster="/rick-rolled.png" />
+<div class="not-content">
+	<Spotify
+		id="track/4cOdK2wGLETKBW3PvgPWqT"
+		poster="https://picsum.photos/id/158/1280/853"
+	/>
+</div>
 
 ### `size`
 
@@ -80,20 +90,46 @@ Controls the height of the player. `'compact'` renders at 152px (suitable for a 
 <Spotify id="playlist/37i9dQZF1DZ06evO05tE88" size="full" />
 ```
 
-<Spotify id="playlist/37i9dQZF1DZ06evO05tE88" size="full" />
+<div class="not-content">
+	<Spotify id="playlist/37i9dQZF1DZ06evO05tE88" size="full" />
+</div>
+
+### `artist`
+
+**Type:** `string`
+
+The artist or show name to display in the placeholder. When omitted, no artist line is shown.
+
+```astro
+<Spotify
+	id="track/4cOdK2wGLETKBW3PvgPWqT"
+	title="Never Gonna Give You Up"
+	artist="Rick Astley"
+/>
+```
+
+<div class="not-content">
+	<Spotify
+		id="track/4cOdK2wGLETKBW3PvgPWqT"
+		title="Never Gonna Give You Up"
+		artist="Rick Astley"
+	/>
+</div>
 
 ### `theme`
 
-**Type:** `'dark' | 'light'`  
+**Type:** `'dark' | string`  
 **Default:** `'dark'`
 
-Sets the colour theme of the Spotify player.
+Controls the colour theme of the placeholder. `'dark'` (the default) uses Spotify's dark theme and adds `theme=0` to the embed URL. Pass any CSS colour string (e.g. `'#005977'`) to set a custom placeholder background — this also omits the `theme` parameter from the embed URL so the iframe uses the artist's chosen colour.
 
 ```astro
-<Spotify id="track/4cOdK2wGLETKBW3PvgPWqT" theme="light" />
+<Spotify id="track/4cOdK2wGLETKBW3PvgPWqT" theme="#005977" />
 ```
 
-<Spotify id="track/4cOdK2wGLETKBW3PvgPWqT" theme="light" />
+<div class="not-content">
+	<Spotify id="track/4cOdK2wGLETKBW3PvgPWqT" theme="#005977" />
+</div>
 
 ### `params`
 

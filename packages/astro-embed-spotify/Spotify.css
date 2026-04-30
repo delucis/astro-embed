@@ -2,7 +2,6 @@ lite-spotify {
 	font-size: 10px;
 	--lts-bg: #121212;
 	--lts-text: #ffffff;
-	--lts-subtext: #a7a7a7;
 	--lts-height: 152px;
 	--lts-padding: 12px;
 	--lts-gap: 12px;
@@ -63,13 +62,17 @@ lite-spotify {
 			overflow: hidden;
 			text-overflow: ellipsis;
 		}
-	}
-}
 
-lite-spotify[data-theme='light'] {
-	--lts-bg: #005977;
-	--lts-text: #ffffff;
-	--lts-subtext: #ffffff;
+		& > .lts-artist {
+			display: block;
+			color: hsl(from var(--lts-bg) h s 90);
+			font-size: 1.3em;
+			font-weight: 400;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+	}
 }
 
 /* Visual play button (green circle with triangle) */

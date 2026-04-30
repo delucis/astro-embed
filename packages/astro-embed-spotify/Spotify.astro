@@ -10,10 +10,16 @@ export interface Props extends astroHTML.JSX.HTMLAttributes {
 	poster?: string;
 	/** Track/album/playlist/episode title shown in the placeholder. Falls back to oEmbed title. */
 	title?: string;
-	/** Artist or show name shown in the placeholder. Falls back to oEmbed author_name. */
+	/** Artist or show name shown in the placeholder. */
 	artist?: string;
-	/** Player colour theme. Default: `'dark'` */
-	theme?: 'dark' | 'light';
+	/**
+	 * Player colour theme. `'dark'` (default) uses Spotify's dark theme.
+	 * Pass any CSS colour string (e.g. `'#1e3a5f'`) to use a custom background
+	 * that matches the embed's artist-chosen colour — no `theme` parameter is
+	 * sent to Spotify in that case, preserving the artist's custom colour in the
+	 * iframe as well.
+	 */
+	theme?: 'dark' | (string & {});
 	/** Player height preset. Default: `'compact'` */
 	size?: 'compact' | 'full';
 	/** Additional Spotify embed query parameters. */
@@ -53,7 +59,7 @@ if (!typeAndId) {
 const [contentType, contentId] = typeAndId?.split('/') ?? [];
 
 let posterURL = poster;
-let trackTitle = title as string | undefined;
+let trackTitle = title;
 
 if (typeAndId && (!posterURL || !trackTitle)) {
 	const data = await safeGet(
@@ -65,8 +71,9 @@ if (typeAndId && (!posterURL || !trackTitle)) {
 	}
 }
 
+const isDark = theme === 'dark';
 const searchParams = new URLSearchParams(params);
-searchParams.set('theme', theme === 'dark' ? '0' : '1');
+if (isDark) searchParams.set('theme', '0');
 ---
 
 {
@@ -76,7 +83,8 @@ searchParams.set('theme', theme === 'dark' ? '0' : '1');
 			data-id={contentId}
 			data-params={searchParams.toString()}
 			data-size={size}
-			data-theme={theme}
+			data-theme={isDark ? 'dark' : 'custom'}
+			style={isDark ? undefined : `--lts-bg: ${theme}`}
 			{...attrs}
 		>
 			{posterURL && (
@@ -86,6 +94,7 @@ searchParams.set('theme', theme === 'dark' ? '0' : '1');
 			)}
 			<div class="lts-info">
 				{trackTitle && <span class="lts-title">{trackTitle}</span>}
+				{artist && <span class="lts-artist">{artist}</span>}
 			</div>
 			<div class="lts-play-icon" aria-hidden="true" />
 			<a
@@ -101,9 +110,6 @@ searchParams.set('theme', theme === 'dark' ? '0' : '1');
 
 <script>
 	class LiteSpotify extends HTMLElement {
-		// Encode to prevent XSS when interpolating into the iframe src.
-		contentType = encodeURIComponent(this.dataset.type!);
-		contentId = encodeURIComponent(this.dataset.id!);
 		static preconnected = false;
 
 		connectedCallback() {
@@ -144,11 +150,14 @@ searchParams.set('theme', theme === 'dark' ? '0' : '1');
 			e.preventDefault();
 			this.classList.add('lts-activated');
 
+			// Encode to prevent XSS when interpolating into the iframe src.
+			const contentType = encodeURIComponent(this.dataset.type!);
+			const contentId = encodeURIComponent(this.dataset.id!);
 			const params = new URLSearchParams(this.dataset.params || '');
 			params.set('autoplay', '1');
 
 			const iframeEl = document.createElement('iframe');
-			iframeEl.src = `https://open.spotify.com/embed/${this.contentType}/${this.contentId}?${params.toString()}`;
+			iframeEl.src = `https://open.spotify.com/embed/${contentType}/${contentId}?${params.toString()}`;
 			iframeEl.allow =
 				'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
 			iframeEl.loading = 'lazy';

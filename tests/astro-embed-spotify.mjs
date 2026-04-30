@@ -43,6 +43,17 @@ test('it parses a Spotify embed URL', async () => {
 	assert.is(embed.getAttribute('data-id'), trackId);
 });
 
+test('it parses a locale-prefixed Spotify URL', async () => {
+	const { window } = await renderDOM(
+		'./packages/astro-embed-spotify/Spotify.astro',
+		{ ...baseProps, id: `https://open.spotify.com/intl-fr/${trackTypeAndId}` }
+	);
+	const embed = window.document.querySelector('lite-spotify');
+	assert.ok(embed);
+	assert.is(embed.getAttribute('data-type'), 'track');
+	assert.is(embed.getAttribute('data-id'), trackId);
+});
+
 test('it renders a thumbnail image', async () => {
 	const { window } = await renderDOM(
 		'./packages/astro-embed-spotify/Spotify.astro',
@@ -62,6 +73,36 @@ test('it renders the track title', async () => {
 	const titleEl = window.document.querySelector('lite-spotify .lts-title');
 	assert.ok(titleEl);
 	assert.is(titleEl.textContent, title);
+});
+
+test('it renders the artist name when provided', async () => {
+	const { window } = await renderDOM(
+		'./packages/astro-embed-spotify/Spotify.astro',
+		{ ...baseProps, artist: 'Rick Astley' }
+	);
+	const artistEl = window.document.querySelector('lite-spotify .lts-artist');
+	assert.ok(artistEl);
+	assert.is(artistEl.textContent, 'Rick Astley');
+});
+
+test('it does not render an artist element when artist is not provided', async () => {
+	const { window } = await renderDOM(
+		'./packages/astro-embed-spotify/Spotify.astro',
+		baseProps
+	);
+	const artistEl = window.document.querySelector('lite-spotify .lts-artist');
+	assert.not.ok(artistEl);
+});
+
+test('it passes additional params to the embed', async () => {
+	const { window } = await renderDOM(
+		'./packages/astro-embed-spotify/Spotify.astro',
+		{ ...baseProps, params: 'utm_source=test' }
+	);
+	const embed = window.document.querySelector('lite-spotify');
+	assert.ok(embed);
+	const params = new URLSearchParams(embed.getAttribute('data-params'));
+	assert.is(params.get('utm_source'), 'test');
 });
 
 test('it renders compact size by default', async () => {
@@ -96,16 +137,17 @@ test('it uses dark theme by default', async () => {
 	assert.is(embed.getAttribute('data-theme'), 'dark');
 });
 
-test('it uses light theme when theme is "light"', async () => {
+test('it uses a custom colour when theme is a CSS colour string', async () => {
 	const { window } = await renderDOM(
 		'./packages/astro-embed-spotify/Spotify.astro',
-		{ ...baseProps, theme: 'light' }
+		{ ...baseProps, theme: '#1e3a5f' }
 	);
 	const embed = window.document.querySelector('lite-spotify');
 	assert.ok(embed);
 	const params = new URLSearchParams(embed.getAttribute('data-params'));
-	assert.is(params.get('theme'), '1');
-	assert.is(embed.getAttribute('data-theme'), 'light');
+	assert.is(params.get('theme'), null);
+	assert.is(embed.getAttribute('data-theme'), 'custom');
+	assert.ok(embed.getAttribute('style')?.includes('--lts-bg: #1e3a5f'));
 });
 
 test('it renders a fallback link to Spotify', async () => {
