@@ -44,7 +44,7 @@ const {
 } = Astro.props as Props;
 
 const iframeSrcParams: string[] = [];
-let iframeStyleParam: string;
+let iframeStyleParam = '';
 let ltbStyleParam: string;
 
 /** Bandcamp player params as slash-delimited key=value segments.
@@ -59,7 +59,7 @@ switch (layout) {
 
 		break;
 
-	case 'artwork-only':
+	case 'artwork-only': {
 		iframeSrcParams.push('size=large');
 		iframeSrcParams.push('minimal=true');
 
@@ -74,6 +74,7 @@ switch (layout) {
 		ltbStyleParam = `width: ${iframeWidth}px; height: ${iframeHeight}px; min-width: 170px; max-width: 700px;`;
 
 		break;
+	}
 
 	case 'standard':
 		iframeSrcParams.push('size=large');
@@ -139,7 +140,7 @@ if (isEmbedId) {
 	embedId = id;
 	const url = `https://bandcamp.com/EmbeddedPlayer/${embedId}/`;
 	try {
-		const response = await fetch(url);
+		const response = await fetch(url, { signal: AbortSignal.timeout(5000) });
 		if (response.ok) {
 			const html = await response.text();
 
@@ -173,7 +174,7 @@ if (isEmbedId) {
 } else {
 	const url = id.startsWith('http') ? id : `https://${id}`;
 	try {
-		const response = await fetch(url);
+		const response = await fetch(url, { signal: AbortSignal.timeout(5000) });
 		if (response.ok) {
 			const html = await response.text();
 
@@ -233,7 +234,7 @@ if (
 	layout !== 'slim' &&
 	!(layout === 'standard' && artworkSize === 'small')
 )
-	styles.push(`background-image: url('${posterURL}')`);
+	styles.push(`background-image: url('${posterURL.replace(/'/g, '%27')}')`);
 if (style) styles.push(String(style));
 ---
 
@@ -247,7 +248,7 @@ if (style) styles.push(String(style));
 		? posterURL
 		: undefined}
 	data-theme={theme}
-	style={ltbStyleParam + styles.join('; ')}
+	style={styles.length ? `${ltbStyleParam} ${styles.join('; ')}` : ltbStyleParam}
 	{...attrs}
 >
 	<div class="ltb-info">

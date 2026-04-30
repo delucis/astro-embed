@@ -111,6 +111,55 @@ test('it merges a style attribute', async () => {
 	assert.ok((embed.getAttribute('style') ?? '').includes('max-width: 400px'));
 });
 
+// URL-based ID resolution tests
+
+const albumUrl = 'https://rickastley.bandcamp.com/album/beautiful-life';
+const trackUrl = 'https://rickastley.bandcamp.com/track/she-makes-me';
+
+test('URL: it renders a lite-bandcamp element for an album URL', async () => {
+	const { window } = await renderDOM(
+		'./packages/astro-embed-bandcamp/Bandcamp.astro',
+		{ id: albumUrl }
+	);
+	const embed = window.document.querySelector('lite-bandcamp');
+	assert.ok(embed);
+});
+
+test('URL: data-src contains a resolved numeric album embed ID', async () => {
+	const { window } = await renderDOM(
+		'./packages/astro-embed-bandcamp/Bandcamp.astro',
+		{ id: albumUrl }
+	);
+	const embed = window.document.querySelector('lite-bandcamp');
+	assert.ok(embed);
+	const src = embed.getAttribute('data-src') ?? '';
+	assert.ok(/album=\d+/.test(src), `expected album=NNN in data-src, got: ${src}`);
+});
+
+test('URL: data-src contains a resolved numeric track embed ID', async () => {
+	const { window } = await renderDOM(
+		'./packages/astro-embed-bandcamp/Bandcamp.astro',
+		{ id: trackUrl }
+	);
+	const embed = window.document.querySelector('lite-bandcamp');
+	assert.ok(embed);
+	const src = embed.getAttribute('data-src') ?? '';
+	assert.ok(/track=\d+/.test(src), `expected track=NNN in data-src, got: ${src}`);
+});
+
+test('URL: it uses a poster image when no poster prop is given', async () => {
+	const { window } = await renderDOM(
+		'./packages/astro-embed-bandcamp/Bandcamp.astro',
+		{ id: albumUrl }
+	);
+	const embed = window.document.querySelector('lite-bandcamp');
+	assert.ok(embed);
+	assert.ok(
+		(embed.getAttribute('style') ?? '').includes('background-image'),
+		'expected a poster image to be set from the og:image'
+	);
+});
+
 // Matcher tests — no network calls required
 
 test('matcher: accepts an album URL', () => {
