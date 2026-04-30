@@ -72,7 +72,7 @@ To obtain a token, create a Facebook app, add the Instagram product, and generat
 
 **Type:** `string`
 
-You can provide a poster image manually by passing a URL to the `poster` prop. This takes precedence over the access token.
+You can provide a poster image manually by passing a URL to the `poster` prop. This takes precedence over both auto-fetch paths (page metadata scraping and the oEmbed API).
 
 ```astro
 <Instagram
@@ -85,7 +85,7 @@ You can provide a poster image manually by passing a URL to the `poster` prop. T
 
 **Type:** `string`
 
-Displays a `@username` label on the placeholder overlay. Auto-populated from the oEmbed API when `INSTAGRAM_ACCESS_TOKEN` is set, or pass it manually:
+Displays a `@username` label on the placeholder overlay. Auto-populated at build time from public page metadata, or via the oEmbed API when `INSTAGRAM_ACCESS_TOKEN` is set. Pass it manually to override:
 
 ```astro
 <Instagram
@@ -98,7 +98,7 @@ Displays a `@username` label on the placeholder overlay. Auto-populated from the
 
 **Type:** `string`
 
-Displays a caption snippet on the placeholder overlay. Auto-populated from the oEmbed API when `INSTAGRAM_ACCESS_TOKEN` is set, or pass it manually:
+Displays a caption snippet on the placeholder overlay. Auto-populated at build time from public page metadata, or via the oEmbed API when `INSTAGRAM_ACCESS_TOKEN` is set. Pass it manually to override:
 
 ```astro
 <Instagram

@@ -5,7 +5,7 @@ lite-instagram {
 	contain: content;
 	background-position: center center;
 	background-size: cover;
-	aspect-ratio: var(--li-aspect-ratio, 1 / 1);
+	aspect-ratio: var(--lti-aspect-ratio, 1 / 1);
 	max-width: 540px;
 	margin-inline: auto;
 	cursor: pointer;

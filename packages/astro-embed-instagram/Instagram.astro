@@ -13,9 +13,9 @@ export interface Props extends astroHTML.JSX.HTMLAttributes {
 	params?: string;
 	/** CSS aspect-ratio value, e.g. `'4 / 5'`. Defaults to `'1 / 1'` for posts and `'9 / 16'` for reels and TV. */
 	aspectRatio?: string;
-	/** Author username to show on the placeholder. Auto-fetched via oEmbed if INSTAGRAM_ACCESS_TOKEN is set. */
+	/** Author username to show on the placeholder. Auto-fetched from page metadata, or via oEmbed if INSTAGRAM_ACCESS_TOKEN is set. */
 	author?: string;
-	/** Post caption to show on the placeholder. Auto-fetched via oEmbed if INSTAGRAM_ACCESS_TOKEN is set. */
+	/** Post caption to show on the placeholder. Auto-fetched from page metadata, or via oEmbed if INSTAGRAM_ACCESS_TOKEN is set. */
 	caption?: string;
 }
 
@@ -64,7 +64,8 @@ async function fetchInstagramMeta(url: string): Promise<
 	try {
 		const res = await fetch(url, {
 			headers: {
-				'User-Agent': 'Googlebot/2.1 (+http://www.google.com/bot.html)',
+				// facebookexternalhit is Meta's own Open Graph crawler, used to read og: tags on Meta-hosted pages
+				'User-Agent': 'facebookexternalhit/1.1',
 				Accept: 'text/html',
 			},
 		});
@@ -171,9 +172,9 @@ if (!posterURL || !authorName || !postCaption) {
 }
 
 const styles: string[] = [];
-if (style) styles.push(style as string);
+if (typeof style === 'string' && style) styles.push(style);
 styles.push(`--lti-aspect-ratio: ${resolvedAspectRatio}`);
-if (posterURL) styles.push(`background-image: url('${posterURL}')`);
+if (posterURL) styles.push(`background-image: url('${posterURL.replace(/'/g, '%27')}')`);
 ---
 
 <lite-instagram
@@ -223,10 +224,9 @@ if (posterURL) styles.push(`background-image: url('${posterURL}')`);
 			if (playLink) {
 				const playBtn = document.createElement('button');
 				playBtn.classList.add(...playLink.classList.values());
-				playBtn.setAttribute(
-					'aria-label',
-					playLink.getAttribute('aria-label')!
-				);
+				const label =
+					playLink.getAttribute('aria-label') ?? 'Load Instagram embed';
+				playBtn.setAttribute('aria-label', label);
 				playBtn.append(...Array.from(playLink.childNodes));
 				playLink.replaceWith(playBtn);
 			}
