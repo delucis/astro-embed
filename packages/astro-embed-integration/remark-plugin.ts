@@ -1,4 +1,5 @@
 import { type Node, select, selectAll } from 'unist-util-select';
+import bandcampMatcher from '@astro-community/astro-embed-bandcamp/matcher';
 import blueskyMatcher from '@astro-community/astro-embed-bluesky/matcher';
 import gistMatcher from '@astro-community/astro-embed-gist/matcher';
 import twitterMatcher from '@astro-community/astro-embed-twitter/matcher';
@@ -8,6 +9,7 @@ import linkPreviewMatcher from '@astro-community/astro-embed-link-preview/matche
 import mastodonMatcher from '@astro-community/astro-embed-mastodon/matcher';
 
 const matchers = [
+	[bandcampMatcher, 'Bandcamp'],
 	[blueskyMatcher, 'BlueskyPost'],
 	[gistMatcher, 'Gist'],
 	[twitterMatcher, 'Tweet'],
