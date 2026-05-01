@@ -6,3 +6,4 @@ export { LinkPreview } from '@astro-community/astro-embed-link-preview';
 export { MastodonPost } from '@astro-community/astro-embed-mastodon';
 export { BaselineStatus } from '@astro-community/astro-embed-baseline-status';
 export { BlueskyPost } from '@astro-community/astro-embed-bluesky';
+export { Spotify } from '@astro-community/astro-embed-spotify';

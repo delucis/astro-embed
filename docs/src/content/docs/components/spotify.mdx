@@ -1,0 +1,164 @@
+---
+title: Spotify
+description: Learn how to use the Astro Embed Spotify component to embed Spotify content in your website
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { Spotify } from '@astro-community/astro-embed-spotify';
+
+The `<Spotify>` component generates an embed using a lightweight custom element that will load Spotify's `<iframe>` only when a user clicks play.
+
+Spotify embeds will always require some JavaScript, but this is one of the most minimal and performant ways to embed Spotify content.
+
+The component supports tracks, albums, playlists, podcast episodes, podcast shows, and artist profiles.
+
+## Usage
+
+<Tabs>
+<TabItem label="Astro" icon="astro">
+```astro
+---
+import { Spotify } from 'astro-embed';
+---
+
+<Spotify id="track/4cOdK2wGLETKBW3PvgPWqT" />
+```
+</TabItem>
+<TabItem label="MDX" icon="seti:markdown">
+```astro
+import { Spotify } from 'astro-embed';
+
+<Spotify id="track/4cOdK2wGLETKBW3PvgPWqT" />
+```
+</TabItem>
+</Tabs>
+
+You can also pass in the full Spotify URL:
+
+```astro
+<Spotify id="https://open.spotify.com/track/4cOdK2wGLETKBW3PvgPWqT" />
+```
+
+The above code produces the following result:
+
+<div class="not-content">
+	<Spotify id="track/4cOdK2wGLETKBW3PvgPWqT" />
+</div>
+
+### Embedding different content types
+
+Pass any supported Spotify URL or `"{type}/{id}"` string to embed tracks, albums, playlists, episodes, shows, or artists:
+
+```astro
+<Spotify id="https://open.spotify.com/album/1DFixLWuPkv3KT3TnV35m3" />
+<Spotify id="https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M" />
+<Spotify id="https://open.spotify.com/episode/7makk4oTQel546B0PZlDM5" />
+```
+
+## Optional props
+
+In addition to the required `id` prop, the following props are available to customise how the `<Spotify>` component renders:
+
+### `poster`
+
+**Type:** `string`
+
+You can provide an alternative poster image by passing in a URL to the `poster` prop.
+
+```astro
+<Spotify
+	id="track/4cOdK2wGLETKBW3PvgPWqT"
+	poster="https://picsum.photos/id/158/1280/853"
+/>
+```
+
+<div class="not-content">
+	<Spotify
+		id="track/4cOdK2wGLETKBW3PvgPWqT"
+		poster="https://picsum.photos/id/158/1280/853"
+	/>
+</div>
+
+### `size`
+
+**Type:** `'compact' | 'full'`  
+**Default:** `'compact'`
+
+Controls the height of the player. `'compact'` renders at 152px (suitable for a single track or episode), while `'full'` renders at 352px (better for albums and playlists).
+
+```astro
+<Spotify id="playlist/37i9dQZF1DZ06evO05tE88" size="full" />
+```
+
+<div class="not-content">
+	<Spotify id="playlist/37i9dQZF1DZ06evO05tE88" size="full" />
+</div>
+
+### `artist`
+
+**Type:** `string`
+
+The artist or show name to display in the placeholder. When omitted, no artist line is shown.
+
+```astro
+<Spotify
+	id="track/4cOdK2wGLETKBW3PvgPWqT"
+	title="Never Gonna Give You Up"
+	artist="Rick Astley"
+/>
+```
+
+<div class="not-content">
+	<Spotify
+		id="track/4cOdK2wGLETKBW3PvgPWqT"
+		title="Never Gonna Give You Up"
+		artist="Rick Astley"
+	/>
+</div>
+
+### `theme`
+
+**Type:** `'dark' | string`  
+**Default:** `'dark'`
+
+Controls the colour theme of the placeholder. `'dark'` (the default) uses Spotify's dark theme and adds `theme=0` to the embed URL. Pass any CSS colour string (e.g. `'#005977'`) to set a custom placeholder background — this also omits the `theme` parameter from the embed URL so the iframe uses the artist's chosen colour.
+
+```astro
+<Spotify id="track/4cOdK2wGLETKBW3PvgPWqT" theme="#005977" />
+```
+
+<div class="not-content">
+	<Spotify id="track/4cOdK2wGLETKBW3PvgPWqT" theme="#005977" />
+</div>
+
+### `params`
+
+**Type:** `string`
+
+You can pass a `params` prop to set additional Spotify embed query parameters. This looks like a series of URL search params.
+
+### `playLabel`
+
+**Type:** `string`  
+**Default:** `'Play'`
+
+By default, the play button in the embed has an accessible label set to "Play".
+If you want to customise this, for example to match the language of your website, you can set the `playLabel` prop:
+
+```astro
+<Spotify id="track/4cOdK2wGLETKBW3PvgPWqT" playLabel="Play on Spotify" />
+```
+
+## Standalone installation
+
+If you only need the `<Spotify>` component, you can install the package directly instead of the main `astro-embed` package:
+
+import { PackageManagers } from 'starlight-package-managers';
+
+<PackageManagers pkg="@astro-community/astro-embed-spotify" />
+
+The `<Spotify>` component can then be imported as:
+
+```js
+import { Spotify } from '@astro-community/astro-embed-spotify';
+```

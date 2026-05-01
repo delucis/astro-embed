@@ -1,0 +1,171 @@
+---
+import { safeGet } from '@astro-community/astro-embed-utils';
+import urlMatcher from './matcher';
+import './Spotify.css';
+
+export interface Props extends astroHTML.JSX.HTMLAttributes {
+	/** Spotify content URL or `"{type}/{id}"` string (e.g. `"track/4cOdK2wGLETKBW3PvgPWqT"`). */
+	id: string;
+	/** URL to an image to use as the thumbnail instead of the oEmbed thumbnail. */
+	poster?: string;
+	/** Track/album/playlist/episode title shown in the placeholder. Falls back to oEmbed title. */
+	title?: string;
+	/** Artist or show name shown in the placeholder. */
+	artist?: string;
+	/**
+	 * Player colour theme. `'dark'` (default) uses Spotify's dark theme.
+	 * Pass any CSS colour string (e.g. `'#1e3a5f'`) to use a custom background
+	 * that matches the embed's artist-chosen colour — no `theme` parameter is
+	 * sent to Spotify in that case, preserving the artist's custom colour in the
+	 * iframe as well.
+	 */
+	theme?: 'dark' | (string & {});
+	/** Player height preset. Default: `'compact'` */
+	size?: 'compact' | 'full';
+	/** Additional Spotify embed query parameters. */
+	params?: string;
+	/** Label for the button that will load the player. Default: `'Play'` */
+	playLabel?: string;
+}
+
+const {
+	id,
+	poster,
+	title,
+	artist,
+	theme = 'dark',
+	size = 'compact',
+	params = '',
+	playLabel = 'Play',
+	...attrs
+} = Astro.props as Props;
+
+const barePattern =
+	/^(track|album|playlist|episode|show|artist)\/[A-Za-z0-9]+$/;
+
+function extractTypeAndId(idOrUrl: string): string | undefined {
+	if (barePattern.test(idOrUrl)) return idOrUrl;
+	return urlMatcher(idOrUrl);
+}
+
+const typeAndId = extractTypeAndId(id);
+
+if (!typeAndId) {
+	console.warn(
+		`[Spotify] Invalid or unrecognised Spotify ID or URL: ${JSON.stringify(id)}`
+	);
+}
+
+const [contentType, contentId] = typeAndId?.split('/') ?? [];
+
+let posterURL = poster;
+let trackTitle = title;
+
+if (typeAndId && (!posterURL || !trackTitle)) {
+	const data = await safeGet(
+		`https://open.spotify.com/oembed?url=https://open.spotify.com/${typeAndId}`
+	);
+	if (data) {
+		posterURL ??= data.thumbnail_url as string | undefined;
+		trackTitle ??= data.title as string | undefined;
+	}
+}
+
+const isDark = theme === 'dark';
+const searchParams = new URLSearchParams(params);
+if (isDark) searchParams.set('theme', '0');
+---
+
+{
+	typeAndId ? (
+		<lite-spotify
+			data-type={contentType}
+			data-id={contentId}
+			data-params={searchParams.toString()}
+			data-size={size}
+			data-theme={isDark ? 'dark' : 'custom'}
+			style={isDark ? undefined : `--lts-bg: ${theme}`}
+			{...attrs}
+		>
+			{posterURL && (
+				<div class="lts-cover">
+					<img src={posterURL} alt={trackTitle ?? ''} loading="lazy" />
+				</div>
+			)}
+			<div class="lts-info">
+				{trackTitle && <span class="lts-title">{trackTitle}</span>}
+				{artist && <span class="lts-artist">{artist}</span>}
+			</div>
+			<div class="lts-play-icon" aria-hidden="true" />
+			<a
+				class="lts-playbtn"
+				href={`https://open.spotify.com/${typeAndId}`}
+				aria-label={playLabel}
+			/>
+		</lite-spotify>
+	) : (
+		<a href={id}>{id}</a>
+	)
+}
+
+<script>
+	class LiteSpotify extends HTMLElement {
+		static preconnected = false;
+
+		connectedCallback() {
+			this.addEventListener('pointerover', LiteSpotify.warmConnections, {
+				once: true,
+			});
+
+			this.addEventListener('click', (e) => this.addIframe(e));
+
+			// Progressively enhance the fallback link into a button.
+			const playLink = this.querySelector('a');
+			if (playLink) {
+				const playBtn = document.createElement('button');
+				playBtn.classList.add(...playLink.classList.values());
+				playBtn.setAttribute(
+					'aria-label',
+					playLink.getAttribute('aria-label')!
+				);
+				playLink.replaceWith(playBtn);
+			}
+		}
+
+		static addPrefetch(rel: string, url: string): void {
+			const linkEl = document.createElement('link');
+			linkEl.rel = rel;
+			linkEl.href = url;
+			document.head.append(linkEl);
+		}
+
+		static warmConnections(): void {
+			if (LiteSpotify.preconnected) return;
+			LiteSpotify.addPrefetch('preconnect', 'https://open.spotify.com');
+			LiteSpotify.preconnected = true;
+		}
+
+		addIframe(e: MouseEvent): void {
+			if (this.classList.contains('lts-activated')) return;
+			e.preventDefault();
+			this.classList.add('lts-activated');
+
+			// Encode to prevent XSS when interpolating into the iframe src.
+			const contentType = encodeURIComponent(this.dataset.type!);
+			const contentId = encodeURIComponent(this.dataset.id!);
+			const params = new URLSearchParams(this.dataset.params || '');
+			params.set('autoplay', '1');
+
+			const iframeEl = document.createElement('iframe');
+			iframeEl.src = `https://open.spotify.com/embed/${contentType}/${contentId}?${params.toString()}`;
+			iframeEl.allow =
+				'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
+			iframeEl.loading = 'lazy';
+			this.append(iframeEl);
+		}
+	}
+
+	if (!customElements.get('lite-spotify')) {
+		customElements.define('lite-spotify', LiteSpotify);
+	}
+</script>
