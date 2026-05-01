@@ -17,8 +17,8 @@
     "@astro-community/astro-embed-tiktok": "workspace:*",
     "@astro-community/astro-embed-vimeo": "workspace:*",
     "@astro-community/astro-embed-youtube": "workspace:*",
-    "@astrojs/mdx": "^5.0.3",
-    "astro": "^6.1.5",
+    "@astrojs/mdx": "^5.0.4",
+    "astro": "^6.1.9",
     "astro-embed": "workspace:*"
   }
 }
