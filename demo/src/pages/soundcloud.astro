@@ -8,12 +8,12 @@ import Base from '../layouts/Base.astro';
 	<p>
 		<code
 			>&lt;SoundCloud
-			id="https://soundcloud.com/rick-astley-official/never-gonna-give-you-up-2022"
+			id="https://soundcloud.com/rick-astley-official/never-gonna-give-you-up"
 			/&gt;</code
 		>
 	</p>
 	<SoundCloud
-		id="https://soundcloud.com/rick-astley-official/never-gonna-give-you-up-2022"
+		id="https://soundcloud.com/rick-astley-official/never-gonna-give-you-up"
 	/>
 
 	<h2>Playlist</h2>
@@ -21,35 +21,44 @@ import Base from '../layouts/Base.astro';
 		<code
 			>&lt;SoundCloud
 			id="https://soundcloud.com/rick-astley-official/sets/the-greatest-hits-44"
-			playLabel="Play the greatest hits!" params="auto_play=true&start_track=1"
-			/&gt;</code
+			playLabel="Play the greatest hits!" params="auto_play=false&start_track=1"
+			height="450px" embedType="visual" /&gt;</code
 		>
 	</p>
 	<SoundCloud
 		id="https://soundcloud.com/rick-astley-official/sets/the-greatest-hits-44"
 		playLabel="Play the greatest hits!"
-		params="auto_play=true&start_track=1"
+		params="auto_play=false&start_track=1"
+		height="600px"
+		embedType="visual"
 	/>
 
 	<h2>Artist page</h2>
 	<p>
 		<code
-			>&lt;SoundCloud id="https://soundcloud.com/rick-astley-official" /&gt;</code
+			>&lt;SoundCloud id="https://soundcloud.com/rick-astley-official"
+			height="450px" embedType="visual" posterQuality="max" /&gt;</code
 		>
 	</p>
-	<SoundCloud id="https://soundcloud.com/rick-astley-official" />
+	<SoundCloud
+		id="https://soundcloud.com/rick-astley-official"
+		height="450px"
+		embedType="visual"
+		posterQuality="max"
+	/>
 
 	<h2>With a custom poster and play label</h2>
 	<p>
 		<code
 			>&lt;SoundCloud
 			id="https://soundcloud.com/rick-astley-official/never-gonna-give-you-up-2022"
-			playLabel="Get Rick Rolled!" poster="/rick-rolled.png" /&gt;</code
+			playLabel="Get Rick Rolled!"
+			poster="https://picsum.photos/id/158/1280/853" /&gt;</code
 		>
 	</p>
 	<SoundCloud
 		id="https://soundcloud.com/rick-astley-official/never-gonna-give-you-up-2022"
 		playLabel="Get Rick Rolled!"
-		poster="/rick-rolled.png"
+		poster="https://picsum.photos/id/158/1280/853"
 	/>
 </Base>

@@ -33,7 +33,9 @@ import { SoundCloud } from 'astro-embed';
 
 The above code produces the following result:
 
-<SoundCloud id="https://soundcloud.com/rick-astley-official/never-gonna-give-you-up-2022" />
+<div class="not-content">
+	<SoundCloud id="https://soundcloud.com/rick-astley-official/never-gonna-give-you-up-2022" />
+</div>
 
 :::tip
 The SoundCloud URL format for a track is `https://soundcloud.com/[ARTIST]/[TRACK]`
@@ -49,7 +51,9 @@ Alternatively, you can pass in a playlist URL:
 
 The above code produces the following result:
 
-<SoundCloud id="https://soundcloud.com/rick-astley-official/sets/the-greatest-hits-44" />
+<div class="not-content">
+	<SoundCloud id="https://soundcloud.com/rick-astley-official/sets/the-greatest-hits-44" />
+</div>
 
 :::tip
 The SoundCloud URL format for a playlist is `https://soundcloud.com/[ARTIST]/sets/[PLAYLIST]`
@@ -63,7 +67,9 @@ Lastly, you can pass in an artist URL:
 
 The above code produces the following result:
 
-<SoundCloud id="https://soundcloud.com/rick-astley-official" />
+<div class="not-content">
+	<SoundCloud id="https://soundcloud.com/rick-astley-official" />
+</div>
 
 :::tip
 The SoundCloud URL format for an artist is `https://soundcloud.com/[ARTIST]`
@@ -72,6 +78,50 @@ The SoundCloud URL format for an artist is `https://soundcloud.com/[ARTIST]`
 ## Optional props
 
 In addition to the required `id` prop, the following props are available to customise how the `<SoundCloud>` component renders:
+
+### `embedType`
+
+**Type:** `'classic' | 'visual'`  
+**Default:** `'classic'`
+
+Controls the SoundCloud player style. The `'classic'` mode renders a compact player at a fixed 166px height with the track artwork shown as an inline image. The `'visual'` mode renders a taller player with the track artwork displayed as a full background.
+
+```astro
+<SoundCloud
+	id="https://soundcloud.com/rick-astley-official/never-gonna-give-you-up-2022"
+	embedType="visual"
+/>
+```
+
+<div class="not-content">
+	<SoundCloud
+		id="https://soundcloud.com/rick-astley-official/never-gonna-give-you-up-2022"
+		embedType="visual"
+	/>
+</div>
+
+### `height`
+
+**Type:** `'300px' | '450px' | '600px'`  
+**Default:** `'300px'`
+
+Sets the height of the embed. This prop only applies when `embedType="visual"` — the classic player always renders at `166px` regardless of this value.
+
+```astro
+<SoundCloud
+	id="https://soundcloud.com/rick-astley-official/never-gonna-give-you-up-2022"
+	embedType="visual"
+	height="450px"
+/>
+```
+
+<div class="not-content">
+	<SoundCloud
+		id="https://soundcloud.com/rick-astley-official/never-gonna-give-you-up-2022"
+		embedType="visual"
+		height="450px"
+	/>
+</div>
 
 ### `params`
 
@@ -86,10 +136,12 @@ For example, the following `params` value sets the widget to auto-play track 2 (
 />
 ```
 
-<SoundCloud
-	id="https://soundcloud.com/rick-astley-official/sets/the-greatest-hits-44"
-	params="auto_play=true&start_track=1"
-/>
+<div class="not-content">
+	<SoundCloud
+		id="https://soundcloud.com/rick-astley-official/sets/the-greatest-hits-44"
+		params="auto_play=true&start_track=1"
+	/>
+</div>
 
 :::caution
 Using the `auto_play` parameter on a playlist will only work on the first few tracks in the playlist. This is because the remaining tracks are loaded lazily as the user interacts with the widget (scrolling them into view), and the SoundCloud Widget API only supports auto-playing tracks that have been loaded.
@@ -98,9 +150,9 @@ Using the `auto_play` parameter on a playlist will only work on the first few tr
 ### `playLabel`
 
 **Type:** `string`  
-**Default:** `'Play'`
+**Default:** Track title and artist name from SoundCloud (e.g. `Play “Never Gonna Give You Up” by Rick Astley Official`), falling back to `'Play'` if unavailable.
 
-By default, the play button in the embed has an accessible label set to “Play”.
+By default, the play button in the embed has an accessible label derived from the track metadata.
 If you want to customise this, for example to match the language of your website, you can set the `playLabel` prop:
 
 ```astro
@@ -122,15 +174,17 @@ For example, this is the same track as the first example, but with a custom post
 <SoundCloud
 	id="https://soundcloud.com/rick-astley-official/never-gonna-give-you-up-2022"
 	playLabel="Get Rick Rolled!"
-	poster="/rick-rolled.png"
+	poster="https://picsum.photos/id/158/1280/853"
 />
 ```
 
-<SoundCloud
-	id="https://soundcloud.com/rick-astley-official/never-gonna-give-you-up-2022"
-	playLabel="Get Rick Rolled!"
-	poster="/rick-rolled.png"
-/>
+<div class="not-content">
+	<SoundCloud
+		id="https://soundcloud.com/rick-astley-official/never-gonna-give-you-up-2022"
+		playLabel="Get Rick Rolled!"
+		poster="https://picsum.photos/id/158/1280/853"
+	/>
+</div>
 
 ### `posterQuality`
 
@@ -154,10 +208,12 @@ This can be useful if displaying the embed at large or very small sizes.
 />
 ```
 
-<SoundCloud
-	id="https://soundcloud.com/rick-astley-official"
-	posterQuality="low"
-/>
+<div class="not-content">
+	<SoundCloud
+		id="https://soundcloud.com/rick-astley-official"
+		posterQuality="low"
+	/>
+</div>
 
 ```astro
 <SoundCloud
@@ -166,10 +222,12 @@ This can be useful if displaying the embed at large or very small sizes.
 />
 ```
 
-<SoundCloud
-	id="https://soundcloud.com/rick-astley-official"
-	posterQuality="max"
-/>
+<div class="not-content">
+	<SoundCloud
+		id="https://soundcloud.com/rick-astley-official"
+		posterQuality="max"
+	/>
+</div>
 
 ## Standalone installation
 

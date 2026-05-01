@@ -151,7 +151,7 @@ if (posterURL) styles.push(`background-image: url('${posterURL}')`);
 			iframeEl.height = '360';
 			iframeEl.allow =
 				'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
-			iframeEl.allowFullscreen = true;
+			iframeEl.allowFulltscreen = true;
 			iframeEl.src = `https://player.vimeo.com/video/${
 				this.videoId
 			}?${params.toString()}#t=${t}`;
