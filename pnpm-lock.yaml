@@ -262,10 +262,10 @@ importers:
         version: link:../astro-embed-utils
       '@parse5/tools':
         specifier: ^0.7.0
-        version: 0.7.0(parse5@8.0.0)
+        version: 0.7.0(parse5@8.0.1)
       parse5:
-        specifier: ^8.0.0
-        version: 8.0.0
+        specifier: ^8.0.1
+        version: 8.0.1
 
   packages/astro-embed-mastodon:
     dependencies:
@@ -2510,8 +2510,8 @@ packages:
   parse5@7.1.2:
     resolution: {integrity: sha512-Czj1WaSVpaoj0wbhMzLmWD69anp2WH7FXMB9n1Sy8/ZFF9jolSQVMu1Ij5WIyGmcBmhk7EOndpO4mIpihVqAXw==}
 
-  parse5@8.0.0:
-    resolution: {integrity: sha512-9m4m5GSgXjL4AjumKzq1Fgfp3Z8rsvjRNbnkVwfu2ImRqE5D0LnY2QfDen18FSY9C573YU5XxSapdHZTZ2WolA==}
+  parse5@8.0.1:
+    resolution: {integrity: sha512-z1e/HMG90obSGeidlli3hj7cbocou0/wa5HacvI3ASx34PecNjNQeaHNo5WIZpWofN9kgkqV1q5YvXe3F0FoPw==}
 
   path-browserify@1.0.1:
     resolution: {integrity: sha512-b7uo2UCUOYZcnF/3ID0lulOJi/bafxa1xPe7ZPsammBSpjSWQkjNxlt635YGS2MiR9GjvuXCtz2emr3jbsz98g==}
@@ -4049,9 +4049,9 @@ snapshots:
   '@pagefind/windows-x64@1.4.0':
     optional: true
 
-  '@parse5/tools@0.7.0(parse5@8.0.0)':
+  '@parse5/tools@0.7.0(parse5@8.0.1)':
     dependencies:
-      parse5: 8.0.0
+      parse5: 8.0.1
 
   '@pkgr/core@0.2.9': {}
 
@@ -6176,9 +6176,9 @@ snapshots:
     dependencies:
       entities: 4.5.0
 
-  parse5@8.0.0:
+  parse5@8.0.1:
     dependencies:
-      entities: 6.0.1
+      entities: 8.0.0
 
   path-browserify@1.0.1: {}
 

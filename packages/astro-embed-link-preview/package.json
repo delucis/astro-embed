@@ -34,6 +34,6 @@
   "dependencies": {
     "@astro-community/astro-embed-utils": "^0.2.0",
     "@parse5/tools": "^0.7.0",
-    "parse5": "^8.0.0"
+    "parse5": "^8.0.1"
   }
 }
