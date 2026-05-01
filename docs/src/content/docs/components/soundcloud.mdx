@@ -1,0 +1,244 @@
+---
+title: SoundCloud
+description: Learn how to use the Astro Embed SoundCloud component to embed SoundCloud tracks, playlists, and artist pages in your website
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { SoundCloud } from 'astro-embed';
+
+The `<SoundCloud>` component generates an embed using a lightweight custom element that will load SoundCloud’s `<iframe>` only when a user clicks play.
+
+SoundCloud embeds will always require some JavaScript, but this is one of the most minimal and performant ways to embed the SoundCloud widget in your pages.
+
+## Usage
+
+<Tabs>
+<TabItem label="Astro" icon="astro">
+```astro
+---
+import { SoundCloud } from 'astro-embed';
+---
+
+<SoundCloud id="https://soundcloud.com/rick-astley-official/never-gonna-give-you-up-2022" />
+```
+</TabItem>
+<TabItem label="MDX" icon="seti:markdown">
+```astro
+import { SoundCloud } from 'astro-embed';
+
+<SoundCloud id="https://soundcloud.com/rick-astley-official/never-gonna-give-you-up-2022" />
+```
+</TabItem>
+</Tabs>
+
+The above code produces the following result:
+
+<div class="not-content">
+	<SoundCloud id="https://soundcloud.com/rick-astley-official/never-gonna-give-you-up-2022" />
+</div>
+
+:::tip
+The SoundCloud URL format for a track is `https://soundcloud.com/[ARTIST]/[TRACK]`
+:::
+
+Alternatively, you can pass in a playlist URL:
+
+```astro
+<SoundCloud
+	id="https://soundcloud.com/rick-astley-official/sets/the-greatest-hits-44"
+/>
+```
+
+The above code produces the following result:
+
+<div class="not-content">
+	<SoundCloud id="https://soundcloud.com/rick-astley-official/sets/the-greatest-hits-44" />
+</div>
+
+:::tip
+The SoundCloud URL format for a playlist is `https://soundcloud.com/[ARTIST]/sets/[PLAYLIST]`
+:::
+
+Lastly, you can pass in an artist URL:
+
+```astro
+<SoundCloud id="https://soundcloud.com/rick-astley-official" />
+```
+
+The above code produces the following result:
+
+<div class="not-content">
+	<SoundCloud id="https://soundcloud.com/rick-astley-official" />
+</div>
+
+:::tip
+The SoundCloud URL format for an artist is `https://soundcloud.com/[ARTIST]`
+:::
+
+## Optional props
+
+In addition to the required `id` prop, the following props are available to customise how the `<SoundCloud>` component renders:
+
+### `embedType`
+
+**Type:** `'classic' | 'visual'`  
+**Default:** `'classic'`
+
+Controls the SoundCloud player style. The `'classic'` mode renders a compact player at a fixed 166px height with the track artwork shown as an inline image. The `'visual'` mode renders a taller player with the track artwork displayed as a full background.
+
+```astro
+<SoundCloud
+	id="https://soundcloud.com/rick-astley-official/never-gonna-give-you-up-2022"
+	embedType="visual"
+/>
+```
+
+<div class="not-content">
+	<SoundCloud
+		id="https://soundcloud.com/rick-astley-official/never-gonna-give-you-up-2022"
+		embedType="visual"
+	/>
+</div>
+
+### `height`
+
+**Type:** `'300px' | '450px' | '600px'`  
+**Default:** `'300px'`
+
+Sets the height of the embed. This prop only applies when `embedType="visual"` — the classic player always renders at `166px` regardless of this value.
+
+```astro
+<SoundCloud
+	id="https://soundcloud.com/rick-astley-official/never-gonna-give-you-up-2022"
+	embedType="visual"
+	height="450px"
+/>
+```
+
+<div class="not-content">
+	<SoundCloud
+		id="https://soundcloud.com/rick-astley-official/never-gonna-give-you-up-2022"
+		embedType="visual"
+		height="450px"
+	/>
+</div>
+
+### `params`
+
+You can pass a `params` prop to set the [player parameters supported by the SoundCloud Widget](https://developers.soundcloud.com/docs/api/html5-widget). This looks like a series of URL search params.
+
+For example, the following `params` value sets the widget to auto-play track 2 (zero based) in the playlist:
+
+```astro
+<SoundCloud
+	id="https://soundcloud.com/rick-astley-official/sets/the-greatest-hits-44"
+	params="auto_play=true&start_track=1"
+/>
+```
+
+<div class="not-content">
+	<SoundCloud
+		id="https://soundcloud.com/rick-astley-official/sets/the-greatest-hits-44"
+		params="auto_play=true&start_track=1"
+	/>
+</div>
+
+:::caution
+Using the `auto_play` parameter on a playlist will only work on the first few tracks in the playlist. This is because the remaining tracks are loaded lazily as the user interacts with the widget (scrolling them into view), and the SoundCloud Widget API only supports auto-playing tracks that have been loaded.
+:::
+
+### `playLabel`
+
+**Type:** `string`  
+**Default:** Track title and artist name from SoundCloud (e.g. `Play “Never Gonna Give You Up” by Rick Astley Official`), falling back to `'Play'` if unavailable.
+
+By default, the play button in the embed has an accessible label derived from the track metadata.
+If you want to customise this, for example to match the language of your website, you can set the `playLabel` prop:
+
+```astro
+<SoundCloud
+	id="https://soundcloud.com/rick-astley-official/never-gonna-give-you-up-2022"
+	playLabel="Get Rick Rolled!"
+/>
+```
+
+### `poster`
+
+**Type:** `string`
+
+You can provide an alternative poster image by passing in a URL to the `poster` prop.
+
+For example, this is the same track as the first example, but with a custom poster image:
+
+```astro
+<SoundCloud
+	id="https://soundcloud.com/rick-astley-official/never-gonna-give-you-up-2022"
+	playLabel="Get Rick Rolled!"
+	poster="https://picsum.photos/id/158/1280/853"
+/>
+```
+
+<div class="not-content">
+	<SoundCloud
+		id="https://soundcloud.com/rick-astley-official/never-gonna-give-you-up-2022"
+		playLabel="Get Rick Rolled!"
+		poster="https://picsum.photos/id/158/1280/853"
+	/>
+</div>
+
+### `posterQuality`
+
+**Type:** `'max' | 'high' | 'default' | 'low'`  
+**Default:** `'default'`
+
+When using the default SoundCloud poster image, set the `posterQuality` to change the size of the placeholder image.
+This can be useful if displaying the embed at large or very small sizes.
+
+| `posterQuality` | resolution |
+| --------------- | ---------- |
+| `'low'`         | 67px       |
+| `'default'`     | 200px      |
+| `'high'`        | 300px      |
+| `'max'`         | 500px      |
+
+```astro
+<SoundCloud
+	id="https://soundcloud.com/rick-astley-official"
+	posterQuality="low"
+/>
+```
+
+<div class="not-content">
+	<SoundCloud
+		id="https://soundcloud.com/rick-astley-official"
+		posterQuality="low"
+	/>
+</div>
+
+```astro
+<SoundCloud
+	id="https://soundcloud.com/rick-astley-official"
+	posterQuality="max"
+/>
+```
+
+<div class="not-content">
+	<SoundCloud
+		id="https://soundcloud.com/rick-astley-official"
+		posterQuality="max"
+	/>
+</div>
+
+## Standalone installation
+
+If you only need the `<SoundCloud>` component, you can install the package directly instead of the main `astro-embed` package:
+
+import { PackageManagers } from 'starlight-package-managers';
+
+<PackageManagers pkg="@astro-community/astro-embed-soundcloud" />
+
+The `<SoundCloud>` component can then be imported as:
+
+```js
+import { SoundCloud } from '@astro-community/astro-embed-soundcloud';
+```
