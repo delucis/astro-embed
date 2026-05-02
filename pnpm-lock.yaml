@@ -162,7 +162,7 @@ importers:
         specifier: ^0.2.2
         version: link:../astro-embed-baseline-status
       '@astro-community/astro-embed-bluesky':
-        specifier: ^0.2.0
+        specifier: ^0.2.1
         version: link:../astro-embed-bluesky
       '@astro-community/astro-embed-gist':
         specifier: ^0.1.0
@@ -222,7 +222,7 @@ importers:
   packages/astro-embed-integration:
     dependencies:
       '@astro-community/astro-embed-bluesky':
-        specifier: ^0.2.0
+        specifier: ^0.2.1
         version: link:../astro-embed-bluesky
       '@astro-community/astro-embed-gist':
         specifier: ^0.1.0
