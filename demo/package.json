@@ -14,6 +14,8 @@
     "@astro-community/astro-embed-gist": "workspace:*",
     "@astro-community/astro-embed-link-preview": "workspace:*",
     "@astro-community/astro-embed-mastodon": "workspace:*",
+    "@astro-community/astro-embed-soundcloud": "workspace:*",
+    "@astro-community/astro-embed-twitter": "workspace:*",
     "@astro-community/astro-embed-vimeo": "workspace:*",
     "@astro-community/astro-embed-youtube": "workspace:*",
     "@astrojs/mdx": "^5.0.4",
