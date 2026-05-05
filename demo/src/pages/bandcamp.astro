@@ -1,0 +1,108 @@
+---
+import { Bandcamp as BC } from '@astro-community/astro-embed-bandcamp';
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Bandcamp component examples">
+	<h2>Album embed via URL</h2>
+	<p>
+		<code
+			>&lt;Bandcamp id="https://rickastley.bandcamp.com/album/beautiful-life"
+			/&gt;</code
+		>
+	</p>
+	<BC id="https://rickastley.bandcamp.com/album/beautiful-life" />
+
+	<h2>Album with Small Artwork</h2>
+	<p>
+		<code
+			>&lt;Bandcamp id="https://rickastley.bandcamp.com/album/beautiful-life"
+			artworkSize="small" /&gt;</code
+		>
+	</p>
+	<BC
+		id="https://rickastley.bandcamp.com/album/beautiful-life"
+		artworkSize="small"
+	/>
+
+	<h2>Showing Artwork Only</h2>
+	<p>
+		<code
+			>&lt;Bandcamp id="https://rickastley.bandcamp.com/album/beautiful-life"
+			layout="artwork-only" /&gt;</code
+		>
+	</p>
+	<BC
+		id="https://rickastley.bandcamp.com/album/beautiful-life"
+		layout="artwork-only"
+	/>
+
+	<h2>Slim Version</h2>
+	<p>
+		<code
+			>&lt;Bandcamp id="https://rickastley.bandcamp.com/album/beautiful-life"
+			layout="slim" /&gt;</code
+		>
+	</p>
+	<BC id="https://rickastley.bandcamp.com/album/beautiful-life" layout="slim" />
+
+	<h2>Track embed via URL</h2>
+	<p>
+		<code
+			>&lt;Bandcamp id="https://rickastley.bandcamp.com/track/she-makes-me"
+			/&gt;</code
+		>
+	</p>
+	<BC id="https://rickastley.bandcamp.com/track/she-makes-me" />
+
+	<h2>With a raw album embed ID</h2>
+	<p>
+		<code>&lt;Bandcamp id="album=50768103" /&gt;</code>
+	</p>
+	<BC id="album=50768103" />
+
+	<h2>With a raw track embed ID</h2>
+	<p>
+		<code>&lt;Bandcamp id="track=3123405292" /&gt;</code>
+	</p>
+	<BC id="track=3123405292" />
+
+	<h2>With dark theme</h2>
+	<p>
+		<code>&lt;Bandcamp id="track=3123405292" theme="dark" /&gt;</code>
+	</p>
+	<BC id="track=3123405292" theme="dark" />
+
+	<h2>With a custom poster image</h2>
+	<p>
+		<code
+			>&lt;Bandcamp id="album=50768103"
+			poster="https://picsum.photos/id/158/700/700" /&gt;</code
+		>
+	</p>
+	<BC id="album=50768103" poster="https://picsum.photos/id/158/700/700" />
+
+	<h2>With a custom play label</h2>
+	<p>
+		<code
+			>&lt;Bandcamp id="album=50768103" playLabel="Play the album" /&gt;</code
+		>
+	</p>
+	<BC id="album=50768103" playLabel="Play the album" />
+
+	<h2>Artwork Only Custom Width</h2>
+	<p>
+		<code
+			>&lt;Bandcamp id="album=50768103" layout="artwork-only" width={500} /&gt;</code
+		>
+	</p>
+	<BC id="album=50768103" layout="artwork-only" width={500} />
+
+	<h2>Artist discography embed via URL with tracklist</h2>
+	<p>
+		<code
+			>&lt;Bandcamp id="https://rickastley.bandcamp.com" showTracklist={true} /&gt;</code
+		>
+	</p>
+	<BC id="https://rickastley.bandcamp.com" showTracklist={true} />
+</Base>

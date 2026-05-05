@@ -1,0 +1,211 @@
+---
+title: Bandcamp
+description: Learn how to use the Astro Embed Bandcamp component to embed Bandcamp players in your website
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { Bandcamp } from '@astro-community/astro-embed-bandcamp';
+
+The `<Bandcamp>` component generates a lazy-loading Bandcamp player embed. No `<iframe>` or third-party JavaScript is loaded until the user clicks the play button.
+
+## Usage
+
+<Tabs>
+<TabItem label="Astro" icon="astro">
+```astro
+---
+import { Bandcamp } from 'astro-embed';
+---
+
+<Bandcamp id="https://rickastley.bandcamp.com/album/beautiful-life" />
+```
+</TabItem>
+<TabItem label="MDX" icon="seti:markdown">
+```astro
+import { Bandcamp } from 'astro-embed';
+
+<Bandcamp id="https://rickastley.bandcamp.com/album/beautiful-life" />
+```
+</TabItem>
+</Tabs>
+
+You can also pass a raw embed ID copied from Bandcamp's own embed code generator:
+
+```astro
+<Bandcamp id="album=50768103" />
+```
+
+The above code produces the following result:
+
+<Bandcamp id="album=50768103" />
+
+## ID formats
+
+The `id` prop accepts two forms:
+
+### Full Bandcamp URL
+
+Pass an album, track, or artist URL directly. The component fetches the Bandcamp page at build time to resolve the numeric embed ID and album art.
+
+```astro "artist" "album" "album-slug" "track" "track-slug"
+<!-- Album -->
+<Bandcamp id="https://artist.bandcamp.com/album/album-slug" />
+
+<!-- Track -->
+<Bandcamp id="https://artist.bandcamp.com/track/track-slug" />
+
+<!-- Artist discography -->
+<Bandcamp id="https://artist.bandcamp.com" />
+```
+
+### Raw embed ID
+
+Pass the numeric embed ID directly using Bandcamp's `album=NNN` or `track=NNN` format.
+The component fetches the embedded player page at build time to resolve the album art and title. Supply a `poster` prop to skip that fetch and use your own artwork.
+
+```astro "album" "track"
+<Bandcamp id="album=50768103" poster="https://example.com/cover.jpg" />
+
+<Bandcamp id="track=3123405292" poster="https://example.com/cover.jpg" />
+```
+
+## Optional props
+
+In addition to the required `id` prop, the following props are available to customise how the `<Bandcamp>` component renders:
+
+### `artworkSize`
+
+**Type:** `'small' | 'large'`  
+**Default:** `'large'`
+
+Controls the size of the artwork shown in the `standard` layout. A `'small'` artwork produces a shorter player height. Has no effect on `slim` or `artwork-only` layouts.
+
+```astro
+<Bandcamp id="album=50768103" artworkSize="small" />
+```
+
+### `height`
+
+**Type:** `number`
+
+Override the pixel height of the player in the `standard` layout. Ignored for `slim` and `artwork-only` layouts (which have fixed heights). Must meet the minimum height for the chosen combination of `showArtwork`, `artworkSize`, and `showTracklist`.
+
+```astro
+<Bandcamp id="album=50768103" height={600} />
+```
+
+### `layout`
+
+**Type:** `'standard' | 'artwork-only' | 'slim'`  
+**Default:** `'standard'`
+
+Controls the visual layout of the player:
+
+- `'standard'` — the default Bandcamp player with controls and optional artwork/tracklist
+- `'artwork-only'` — a square artwork-only player with minimal controls
+- `'slim'` — a compact single-row player strip (42 px tall)
+
+```astro
+<Bandcamp id="album=50768103" layout="slim" />
+```
+
+```astro
+<Bandcamp id="album=50768103" layout="artwork-only" />
+```
+
+### `linkColor`
+
+**Type:** `string`  
+**Default:** `'0f91ff'`
+
+A six-digit (or three-digit) hex colour code (without the `#`) for the player's link and control colours.
+
+```astro
+<Bandcamp id="album=50768103" linkColor="cc5500" />
+```
+
+### `playLabel`
+
+**Type:** `string`  
+**Default:** `'Play'`
+
+By default, the play button has an accessible label set to "Play".
+Set `playLabel` to customise it, for example to match the language of your website:
+
+```astro
+<Bandcamp id="album=50768103" playLabel="Play the album" />
+```
+
+### `poster`
+
+**Type:** `string`
+
+You can provide an alternative poster image by passing in a URL to the `poster` prop.
+When using a full Bandcamp URL or a raw embed ID as `id`, the component fetches the album art automatically.
+Use this prop to override it or to supply artwork when the automatic fetch is not available.
+
+```astro
+<Bandcamp id="album=50768103" poster="https://picsum.photos/id/158/700/700" />
+```
+
+### `showArtwork`
+
+**Type:** `boolean`  
+**Default:** `true`
+
+Whether to show album artwork in the `standard` layout. Has no effect on `slim` or `artwork-only` layouts.
+
+```astro
+<Bandcamp id="album=50768103" showArtwork={false} />
+```
+
+### `showTracklist`
+
+**Type:** `boolean`  
+**Default:** `false`
+
+Whether to show the tracklist in the `standard` layout. Has no effect on `slim` or `artwork-only` layouts.
+
+```astro
+<Bandcamp id="album=50768103" showTracklist={true} />
+```
+
+### `theme`
+
+**Type:** `'light' | 'dark'`  
+**Default:** `'light'`
+
+Sets the background colour of the player. `'light'` uses a white background; `'dark'` uses a dark grey background.
+
+```astro
+<Bandcamp id="album=50768103" theme="dark" />
+```
+
+### `width`
+
+**Type:** `number`
+
+Override the pixel width of the player. The valid range depends on the layout:
+
+- `standard` with `artworkSize="large"` or `artwork-only`: 170–700 px
+- `standard` with no artwork or `artworkSize="small"`: 250–700 px
+
+Values outside the valid range are ignored and the default width is used.
+
+```astro
+<Bandcamp id="album=50768103" width={500} />
+```
+
+## Standalone installation
+
+If you only need the `<Bandcamp>` component, you can install the package directly instead of the main `astro-embed` package:
+
+import { PackageManagers } from 'starlight-package-managers';
+
+<PackageManagers pkg="@astro-community/astro-embed-bandcamp" />
+
+The `<Bandcamp>` component can then be imported as:
+
+```js
+import { Bandcamp } from '@astro-community/astro-embed-bandcamp';
+```

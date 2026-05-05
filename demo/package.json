@@ -9,6 +9,7 @@
     "preview": "astro preview"
   },
   "devDependencies": {
+    "@astro-community/astro-embed-bandcamp": "workspace:*",
     "@astro-community/astro-embed-baseline-status": "workspace:*",
     "@astro-community/astro-embed-bluesky": "workspace:*",
     "@astro-community/astro-embed-gist": "workspace:*",
