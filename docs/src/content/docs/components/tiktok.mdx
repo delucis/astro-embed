@@ -1,0 +1,173 @@
+---
+title: TikTok
+description: Learn how to use the Astro Embed TikTok component to embed TikTok videos in your website
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { TikTok } from '@astro-community/astro-embed-tiktok';
+
+The `<TikTok>` component generates an embed using a lightweight custom element that will load TikTok's `<iframe>` only when a user clicks play.
+
+TikTok embeds will always require some JavaScript, but this is one of the most minimal and performant ways to embed a TikTok video while protecting your visitors' privacy until they choose to interact.
+
+## Usage
+
+<Tabs>
+<TabItem label="Astro" icon="astro">
+```astro
+---
+import { TikTok } from 'astro-embed';
+---
+
+<TikTok id="7512867562258992406" />
+```
+</TabItem>
+<TabItem label="MDX" icon="seti:markdown">
+```astro
+import { TikTok } from 'astro-embed';
+
+<TikTok id="7512867562258992406" />
+```
+</TabItem>
+</Tabs>
+
+## Optional props
+
+In addition to the required `id` prop, the following props are available to customise how the `<TikTok>` component renders:
+
+### `autoplay`
+
+**Type:** `boolean`  
+**Default:** `true`
+
+If `autoplay` is set to `true`, the video will automatically start when the `<iframe>` is loaded. However, since the `<iframe>` is only loaded when a user clicks play, this prop can safely be set to `true` without worrying about unwanted autoplay behavior on page load.
+
+```astro
+<TikTok id="7512867562258992406" autoplay="false" />
+```
+
+### `embedType`
+
+**Type:** `'post' | 'video'`  
+**Default:** `'post'`
+
+The `embedType` prop controls the type of TikTok embed to generate. The default `'post'` type includes the full video player with caption and user info and more control via the optional `params` prop. The `'video'` type generates a self-contained video player with no additional controls.
+
+```astro
+<TikTok id="7512867562258992406" />
+```
+
+<TikTok id="7512867562258992406" />
+
+```astro
+<TikTok id="7512867562258992406" embedType="video" maxWidth="418px" />
+```
+
+<TikTok id="7512867562258992406" embedType="video" maxWidth="418px" />
+
+:::note
+Since the component displays with a `9:16` aspect ratio by default, setting a `maxWidth` will also adjust the height proportionally to maintain the aspect ratio. If you are using the `'video'` `embedType` and need a slightly shorter/taller player to avoid scrolling that added content, simply set the `maxWidth` to decrease/increase the overall size of the embed.
+:::
+
+### `id`
+
+**Type:** `string`
+
+The `<TikTok>` component requires a `id` prop to identify the video to embed. The `id` prop accepts any of the following formats:
+
+| Format                    | Example                                                                |
+| ------------------------- | ---------------------------------------------------------------------- |
+| Numeric video ID          | `7512867562258992406`                                                  |
+| Full video URL            | `https://www.tiktok.com/@rickastleyofficial/video/7512867562258992406` |
+| `vm.tiktok.com` short URL | `https://vm.tiktok.com/ZMkABCDEF/`                                     |
+| `tiktok.com/t/` short URL | `https://www.tiktok.com/t/ZMkABCDEF/`                                  |
+
+### `orientation`
+
+**Type:** `'portrait' | 'landscape'`  
+**Default:** `'portrait'`
+
+TikTok content is predominantly vertical, so the component defaults to a `'portrait'` orientation with an aspect ratio of 9:16. You can override this by passing in the `orientation` prop with the `'landscape'` value:
+
+```astro
+<TikTok id="7512867562258992406" orientation="landscape" />
+```
+
+### `maxWidth`
+
+**Type:** `string`  
+**Default:** `'425px'`
+
+The `maxWidth` prop allows you to set a maximum width for the embed. This can be useful for ensuring that the embed fits well within your page layout. The value should be a valid CSS length unit, such as `px`, `rem`, `vw`, or `%`.
+
+```astro
+<TikTok id="7512867562258992406" maxWidth="400px" />
+```
+
+### `params`
+
+You can pass a `params` prop to set [TikTok embed player parameters](https://developers.tiktok.com/doc/embed-player#customize_the_player_). This looks like a series of URL search params.
+
+For example, the following `params` value enables looping as well as showing the music info and description overlays:
+
+```astro
+<TikTok id="7512867562258992406" params="music_info=1&description=1&loop=1" />
+```
+
+:::note
+The `params` prop is only compatible with the default `'post'` `embedType`, which includes the full TikTok player. The `'video'` `embedType` generates a simplified player that does not support these parameters.
+:::
+
+### `playLabel`
+
+**Type:** `string`  
+**Default:** `'Play'`
+
+By default, the play button in the embed has an accessible label set to "Play".
+If you want to customise this, for example to match the language of your website, you can set the `playLabel` prop:
+
+```astro
+<TikTok id="7512867562258992406" playLabel="Play the TikTok video" />
+```
+
+### `poster`
+
+**Type:** `string`
+
+You can provide an alternative poster image by passing in a URL to the `poster` prop. If not provided, the component will automatically fetch the thumbnail from TikTok's oEmbed API.
+
+```astro
+<TikTok
+	id="7512867562258992406"
+	poster="https://picsum.photos/id/158/1280/853"
+/>
+```
+
+<TikTok
+	id="7512867562258992406"
+	poster="https://picsum.photos/id/158/1280/853"
+/>
+
+### `title`
+
+**Type:** `string`
+
+The video title is automatically fetched from TikTok's oEmbed API and displayed as an overlay on the poster image. You can override this with a custom title:
+
+```astro
+<TikTok id="7512867562258992406" title="My custom title" />
+```
+
+## Standalone installation
+
+If you only need the `<TikTok>` component, you can install the package directly instead of the main `astro-embed` package:
+
+import { PackageManagers } from 'starlight-package-managers';
+
+<PackageManagers pkg="@astro-community/astro-embed-tiktok" />
+
+The `<TikTok>` component can then be imported as:
+
+```js
+import { TikTok } from '@astro-community/astro-embed-tiktok';
+```
