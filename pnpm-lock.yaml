@@ -37,7 +37,7 @@ importers:
         version: 8.59.1(eslint@10.3.0)(typescript@6.0.3)
       astro:
         specifier: ^6.1.10
-        version: 6.2.1(@types/node@24.12.2)(rollup@4.53.3)(typescript@6.0.3)(yaml@2.8.2)
+        version: 6.2.1(@types/node@24.12.2)(rollup@4.60.2)(typescript@6.0.3)(yaml@2.8.3)
       astro-component-tester:
         specifier: ^0.8.0
         version: 0.8.0(astro@6.2.1(@types/node@24.12.2)(rollup@4.60.2)(typescript@6.0.3)(yaml@2.8.3))
@@ -49,7 +49,7 @@ importers:
         version: 10.1.8(eslint@10.3.0)
       eslint-plugin-prettier:
         specifier: ^5.5.5
-        version: 5.5.5(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.3.0))(eslint@10.3.0)(prettier@3.8.3)
+        version: 5.5.5(eslint-config-prettier@10.1.8(eslint@10.3.0))(eslint@10.3.0)(prettier@3.8.3)
       globals:
         specifier: ^17.5.0
         version: 17.5.0
@@ -106,7 +106,7 @@ importers:
         version: 5.0.4(astro@6.2.1(@types/node@24.12.2)(rollup@4.60.2)(typescript@5.9.3)(yaml@2.8.3))
       astro:
         specifier: ^6.1.10
-        version: 6.2.1(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)
+        version: 6.2.1(@types/node@24.12.2)(rollup@4.60.2)(typescript@5.9.3)(yaml@2.8.3)
       astro-embed:
         specifier: workspace:*
         version: link:../packages/astro-embed
@@ -145,13 +145,13 @@ importers:
         version: 0.38.4(astro@6.2.1(@types/node@24.12.2)(rollup@4.60.2)(typescript@5.9.3)(yaml@2.8.3))
       astro:
         specifier: ^6.1.10
-        version: 6.2.1(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)
+        version: 6.2.1(@types/node@24.12.2)(rollup@4.60.2)(typescript@5.9.3)(yaml@2.8.3)
       astro-embed:
         specifier: workspace:*
         version: link:../packages/astro-embed
       astro-og-canvas:
         specifier: ^0.11.1
-        version: 0.11.1(astro@6.2.1(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2))
+        version: 0.11.1(astro@6.2.1(@types/node@24.12.2)(rollup@4.60.2)(typescript@5.9.3)(yaml@2.8.3))
       canvaskit-wasm:
         specifier: ^0.41.1
         version: 0.41.1
@@ -315,10 +315,6 @@ importers:
         version: 0.3.4
 
 packages:
-
-  '@aashutoshrathi/word-wrap@1.2.6':
-    resolution: {integrity: sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==}
-    engines: {node: '>=0.10.0'}
 
   '@astrojs/check@0.9.9':
     resolution: {integrity: sha512-A5UW8uIuErLWEoRQvzgXpO1gTjUFtK8r7nU2Z7GewAMxUb7bPvpk11qaKKgxqXlHJWlAvaaxy+Xg28A6bmQ1Tg==}
@@ -3329,8 +3325,6 @@ packages:
 
 snapshots:
 
-  '@aashutoshrathi/word-wrap@1.2.6': {}
-
   '@astrojs/check@0.9.9(prettier-plugin-astro@0.14.1)(prettier@3.8.3)(typescript@6.0.3)':
     dependencies:
       '@astrojs/language-server': 2.16.7(prettier-plugin-astro@0.14.1)(prettier@3.8.3)(typescript@6.0.3)
@@ -4533,7 +4527,7 @@ snapshots:
       astro: 6.2.1(@types/node@24.12.2)(rollup@4.60.2)(typescript@5.9.3)(yaml@2.8.3)
       rehype-expressive-code: 0.41.7
 
-  astro-og-canvas@0.11.1(astro@6.2.1(@types/node@24.12.2)(rollup@4.53.3)(typescript@5.9.3)(yaml@2.8.2)):
+  astro-og-canvas@0.11.1(astro@6.2.1(@types/node@24.12.2)(rollup@4.60.2)(typescript@5.9.3)(yaml@2.8.3)):
     dependencies:
       astro: 6.2.1(@types/node@24.12.2)(rollup@4.60.2)(typescript@5.9.3)(yaml@2.8.3)
       canvaskit-wasm: 0.41.1
@@ -4583,7 +4577,7 @@ snapshots:
       smol-toml: 1.6.1
       svgo: 4.0.1
       tinyclip: 0.1.12
-      tinyexec: 1.0.4
+      tinyexec: 1.1.1
       tinyglobby: 0.2.16
       tsconfck: 3.1.6(typescript@5.9.3)
       ultrahtml: 1.6.0
@@ -4676,7 +4670,7 @@ snapshots:
       smol-toml: 1.6.1
       svgo: 4.0.1
       tinyclip: 0.1.12
-      tinyexec: 1.0.4
+      tinyexec: 1.1.1
       tinyglobby: 0.2.16
       tsconfck: 3.1.6(typescript@6.0.3)
       ultrahtml: 1.6.0
@@ -5002,14 +4996,13 @@ snapshots:
     dependencies:
       eslint: 10.3.0
 
-  eslint-plugin-prettier@5.5.5(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@10.3.0))(eslint@10.3.0)(prettier@3.8.3):
+  eslint-plugin-prettier@5.5.5(eslint-config-prettier@10.1.8(eslint@10.3.0))(eslint@10.3.0)(prettier@3.8.3):
     dependencies:
       eslint: 10.3.0
       prettier: 3.8.3
       prettier-linter-helpers: 1.0.1
       synckit: 0.11.12
     optionalDependencies:
-      '@types/eslint': 9.6.1
       eslint-config-prettier: 10.1.8(eslint@10.3.0)
 
   eslint-scope@9.1.2:
@@ -6864,8 +6857,8 @@ snapshots:
       esbuild: 0.27.7
       fdir: 6.5.0(picomatch@4.0.4)
       picomatch: 4.0.4
-      postcss: 8.5.6
-      rollup: 4.53.3
+      postcss: 8.5.10
+      rollup: 4.60.2
       tinyglobby: 0.2.16
     optionalDependencies:
       '@types/node': 24.12.2
