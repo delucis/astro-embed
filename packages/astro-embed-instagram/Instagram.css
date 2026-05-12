@@ -1,0 +1,109 @@
+lite-instagram {
+	background-color: #1a1a1a;
+	position: relative;
+	display: block;
+	contain: content;
+	background-position: center center;
+	background-size: cover;
+	aspect-ratio: var(--lti-aspect-ratio, 1 / 1);
+	max-width: 540px;
+	margin-inline: auto;
+	cursor: pointer;
+}
+
+lite-instagram.lti-no-poster {
+	background: linear-gradient(
+		45deg,
+		#f09433,
+		#e6683c,
+		#dc2743,
+		#cc2366,
+		#bc1888
+	);
+}
+
+lite-instagram > iframe {
+	all: unset !important;
+	width: 100% !important;
+	height: 100% !important;
+	position: absolute !important;
+	inset: 0 !important;
+	border: 0 !important;
+}
+
+lite-instagram > .lti-playbtn {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	background: transparent;
+	outline: 0;
+	border: 0;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-decoration: none;
+}
+
+lite-instagram > .lti-playbtn > svg {
+	width: 4rem;
+	height: 4rem;
+	fill: white;
+	opacity: 0.85;
+	filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
+	transition:
+		opacity 0.2s ease,
+		transform 0.2s ease;
+}
+
+lite-instagram:hover > .lti-playbtn > svg {
+	opacity: 1;
+	transform: scale(1.1);
+}
+
+lite-instagram:focus-within > .lti-playbtn {
+	outline: auto;
+}
+
+lite-instagram > .lti-caption {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 4rem 0.875rem 0.75rem;
+	background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+	color: white;
+	display: flex;
+	flex-direction: column;
+	gap: 0.2rem;
+	pointer-events: none;
+}
+
+lite-instagram > .lti-caption > .lti-author {
+	font-family: system-ui, sans-serif;
+	font-size: 1rem;
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+lite-instagram > .lti-caption > .lti-title {
+	font-family: system-ui, sans-serif;
+	font-size: 0.85rem;
+	line-height: 1.3;
+	opacity: 0.9;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+/* Post-click styles */
+lite-instagram.lti-activated > .lti-playbtn {
+	cursor: unset;
+	opacity: 0;
+	pointer-events: none;
+}
+
+lite-instagram.lti-activated > .lti-caption {
+	display: none;
+}

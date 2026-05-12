@@ -1,0 +1,162 @@
+---
+title: Instagram
+description: Learn how to use the Astro Embed Instagram component to embed Instagram posts, reels, and TV videos in your website
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import { Instagram } from '@astro-community/astro-embed-instagram';
+
+The `<Instagram>` component generates an embed using a lightweight custom element that will load Instagram's `<iframe>` only when a user clicks the placeholder.
+
+No JavaScript or iframe is loaded until the user interacts, making this one of the most performant ways to embed Instagram content.
+
+## Usage
+
+<Tabs>
+<TabItem label="Astro" icon="astro">
+```astro
+---
+import { Instagram } from 'astro-embed';
+---
+
+<Instagram id="https://www.instagram.com/p/C0testPost1_/" />
+```
+</TabItem>
+<TabItem label="MDX" icon="seti:markdown">
+```astro
+import { Instagram } from 'astro-embed';
+
+<Instagram id="https://www.instagram.com/p/C0testPost1_/" />
+```
+</TabItem>
+</Tabs>
+
+Supported URL types:
+
+```astro
+<!-- Post -->
+<Instagram id="https://www.instagram.com/p/ABC123/" />
+
+<!-- Reel -->
+<Instagram id="https://www.instagram.com/reel/ABC123/" />
+
+<!-- TV (long-form video) -->
+<Instagram id="https://www.instagram.com/tv/ABC123/" />
+```
+
+You can also use a type-prefixed shortcode instead of a full URL:
+
+```astro
+<Instagram id="reel/ABC123" />
+```
+
+## Poster image
+
+By default the component automatically fetches the post thumbnail, author name, and caption at build time by reading the page's metadata. If that fails (e.g. network issues), it falls back to a styled Instagram-branded placeholder (gradient background + logo).
+
+There are two additional ways to control the thumbnail source.
+
+### Using an access token
+
+If you configure an `INSTAGRAM_ACCESS_TOKEN` environment variable, the component will use Instagram's oEmbed API instead of public page scraping. This is more reliable and returns higher-quality data.
+
+Add the token to your `.env` file (never commit this to source control):
+
+```sh
+INSTAGRAM_ACCESS_TOKEN=your_token_here
+```
+
+To obtain a token, create a Facebook app, add the Instagram product, and generate a long-lived user access token in the [Meta Developer Dashboard](https://developers.facebook.com/apps/).
+
+### `poster`
+
+**Type:** `string`
+
+You can provide a poster image manually by passing a URL to the `poster` prop. This takes precedence over both auto-fetch paths (page metadata scraping and the oEmbed API).
+
+```astro
+<Instagram
+  id="https://www.instagram.com/p/ABC123/"
+  poster="https://example.com/my-photo.jpg"
+/>
+```
+
+### `author`
+
+**Type:** `string`
+
+Displays a `@username` label on the placeholder overlay. Auto-populated at build time from public page metadata, or via the oEmbed API when `INSTAGRAM_ACCESS_TOKEN` is set. Pass it manually to override:
+
+```astro
+<Instagram
+  id="https://www.instagram.com/p/ABC123/"
+  author="username"
+/>
+```
+
+### `caption`
+
+**Type:** `string`
+
+Displays a caption snippet on the placeholder overlay. Auto-populated at build time from public page metadata, or via the oEmbed API when `INSTAGRAM_ACCESS_TOKEN` is set. Pass it manually to override:
+
+```astro
+<Instagram
+  id="https://www.instagram.com/p/ABC123/"
+  author="username"
+  caption="Check out this amazing photo!"
+/>
+```
+
+## Optional props
+
+### `aspectRatio`
+
+**Type:** `string`  
+**Default:** `'1 / 1'` for posts, `'9 / 16'` for reels and TV
+
+Controls the CSS `aspect-ratio` of the placeholder. Pass any valid CSS aspect-ratio value:
+
+```astro
+<!-- Portrait post -->
+<Instagram id="https://www.instagram.com/p/ABC123/" aspectRatio="4 / 5" />
+
+<!-- Landscape post -->
+<Instagram id="https://www.instagram.com/p/ABC123/" aspectRatio="16 / 9" />
+```
+
+### `params`
+
+Pass a `params` prop to append query parameters to the Instagram embed URL. This is a raw query string without a leading `?`.
+
+```astro
+<Instagram id="https://www.instagram.com/p/ABC123/" params="captioned=true" />
+```
+
+### `playLabel`
+
+**Type:** `string`  
+**Default:** `'Load Instagram post'` / `'Load Instagram reel'` / `'Load Instagram video'`
+
+Customise the accessible label on the load button to match your content or language:
+
+```astro
+<Instagram
+  id="https://www.instagram.com/p/ABC123/"
+  playLabel="View this photo on Instagram"
+/>
+```
+
+## Standalone installation
+
+If you only need the `<Instagram>` component, you can install the package directly instead of the main `astro-embed` package:
+
+import { PackageManagers } from 'starlight-package-managers';
+
+<PackageManagers pkg="@astro-community/astro-embed-instagram" />
+
+The `<Instagram>` component can then be imported as:
+
+```js
+import { Instagram } from '@astro-community/astro-embed-instagram';
+```
