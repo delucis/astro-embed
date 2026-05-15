@@ -198,8 +198,8 @@ importers:
   packages/astro-embed-bluesky:
     dependencies:
       '@atcute/atproto':
-        specifier: ^3.1.11
-        version: 3.1.11
+        specifier: ^3.1.12
+        version: 3.1.12(@atcute/lexicons@1.3.0)
       '@atcute/bluesky':
         specifier: ^3.3.3
         version: 3.3.3
@@ -354,8 +354,10 @@ packages:
   '@astrojs/yaml2ts@0.2.3':
     resolution: {integrity: sha512-PJzRmgQzUxI2uwpdX2lXSHtP4G8ocp24/t+bZyf5Fy0SZLSF9f9KXZoMlFM/XCGue+B0nH/2IZ7FpBYQATBsCg==}
 
-  '@atcute/atproto@3.1.11':
-    resolution: {integrity: sha512-yh+ASvA+iHHQij6UeHEKp2+rwvFvQR8A6/5Dk/xvqDslIikWEFx9VlprNwm/clQIPl2bLuQg+LHS8uY9o5nFTA==}
+  '@atcute/atproto@3.1.12':
+    resolution: {integrity: sha512-SaHY0vV5+VfS2ViOcbYtxPmmh82vbxoK5ccHTGn5+ciHNY2arEVcBUFbIQKtsQP4PPZ+lNAVooH+Wh62flvCzg==}
+    peerDependencies:
+      '@atcute/lexicons': ^1.0.0
 
   '@atcute/bluesky-richtext-segmenter@3.0.0':
     resolution: {integrity: sha512-NhZTUKtFpeBBbILwAcxj5u4RobIoHOmGw3CAaaEFNebKYSvmTecrXJ7XufHw5DFOUdr8SiKXQVRQxGAxulMNWg==}
@@ -3441,7 +3443,7 @@ snapshots:
     dependencies:
       yaml: 2.8.2
 
-  '@atcute/atproto@3.1.11':
+  '@atcute/atproto@3.1.12(@atcute/lexicons@1.3.0)':
     dependencies:
       '@atcute/lexicons': 1.3.0
 
@@ -3449,7 +3451,7 @@ snapshots:
 
   '@atcute/bluesky@3.3.3':
     dependencies:
-      '@atcute/atproto': 3.1.11
+      '@atcute/atproto': 3.1.12(@atcute/lexicons@1.3.0)
       '@atcute/lexicons': 1.3.0
 
   '@atcute/client@4.2.1':
