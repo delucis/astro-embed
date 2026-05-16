@@ -1,0 +1,93 @@
+---
+import { Spotify as Spot } from '@astro-community/astro-embed-spotify';
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Spotify component examples">
+	<h2>Track — bare type/id string</h2>
+	<p><code>&lt;Spotify id="track/4cOdK2wGLETKBW3PvgPWqT" /&gt;</code></p>
+	<Spot id="track/4cOdK2wGLETKBW3PvgPWqT" />
+
+	<h2>Track — full URL</h2>
+	<p>
+		<code
+			>&lt;Spotify id="https://open.spotify.com/track/4cOdK2wGLETKBW3PvgPWqT"
+			/&gt;</code
+		>
+	</p>
+	<Spot id="https://open.spotify.com/track/4cOdK2wGLETKBW3PvgPWqT" />
+
+	<h2>Album</h2>
+	<p>
+		<code
+			>&lt;Spotify id="https://open.spotify.com/album/6eUW0wxWtzkFdaEFsTJto6"
+			size="full" /&gt;</code
+		>
+	</p>
+	<Spot
+		id="https://open.spotify.com/album/6eUW0wxWtzkFdaEFsTJto6"
+		size="full"
+	/>
+
+	<h2>Playlist</h2>
+	<p>
+		<code
+			>&lt;Spotify id="https://open.spotify.com/playlist/37i9dQZF1DZ06evO05tE88"
+			size="full" theme="#005e3e" /&gt;</code
+		>
+	</p>
+	<Spot
+		id="https://open.spotify.com/playlist/37i9dQZF1DZ06evO05tE88"
+		size="full"
+		theme="#005e3e"
+	/>
+
+	<h2>Podcast episode</h2>
+	<p>
+		<code
+			>&lt;Spotify id="https://open.spotify.com/episode/7makk4oTQel546B0PZlDM5"
+			/&gt;</code
+		>
+	</p>
+	<Spot id="https://open.spotify.com/episode/7makk4oTQel546B0PZlDM5" />
+
+	<h2>Full size player</h2>
+	<p>
+		<code>&lt;Spotify id="track/4cOdK2wGLETKBW3PvgPWqT" size="full" /&gt;</code>
+	</p>
+	<Spot id="track/4cOdK2wGLETKBW3PvgPWqT" size="full" />
+
+	<h2>Custom colour theme</h2>
+	<p>
+		<code
+			>&lt;Spotify id="track/4cOdK2wGLETKBW3PvgPWqT" theme="#005977"
+			artist="Rick Astley" /&gt;</code
+		>
+	</p>
+	<Spot
+		id="track/4cOdK2wGLETKBW3PvgPWqT"
+		theme="#005977"
+		artist="Rick Astley"
+	/>
+
+	<h2>Custom poster image</h2>
+	<p>
+		<code
+			>&lt;Spotify id="track/4cOdK2wGLETKBW3PvgPWqT"
+			poster="https://picsum.photos/id/158/1280/853" /&gt;</code
+		>
+	</p>
+	<Spot
+		id="track/4cOdK2wGLETKBW3PvgPWqT"
+		poster="https://picsum.photos/id/158/1280/853"
+	/>
+
+	<h2>Custom play label</h2>
+	<p>
+		<code
+			>&lt;Spotify id="track/4cOdK2wGLETKBW3PvgPWqT" playLabel="Get Rick
+			Rolled!" /&gt;</code
+		>
+	</p>
+	<Spot id="track/4cOdK2wGLETKBW3PvgPWqT" playLabel="Get Rick Rolled!" />
+</Base>

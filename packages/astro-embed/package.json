@@ -24,7 +24,10 @@
     "twitter",
     "vimeo",
     "youtube",
-    "mastodon"
+    "mastodon",
+    "bluesky",
+    "gist",
+    "spotify"
   ],
   "author": "delucis",
   "license": "MIT",
@@ -39,6 +42,7 @@
     "@astro-community/astro-embed-integration": "^0.12.0",
     "@astro-community/astro-embed-link-preview": "^0.3.1",
     "@astro-community/astro-embed-mastodon": "^0.1.1",
+    "@astro-community/astro-embed-spotify": "^0.0.1",
     "@astro-community/astro-embed-twitter": "^0.5.11",
     "@astro-community/astro-embed-vimeo": "^0.3.12",
     "@astro-community/astro-embed-youtube": "^0.5.10"
