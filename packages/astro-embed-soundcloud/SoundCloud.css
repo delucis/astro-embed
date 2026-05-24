@@ -1,0 +1,163 @@
+lite-soundcloud {
+	--ltsc-button-color: #ff5500;
+	--ltsc-padding: 12px;
+	display: grid;
+	grid-template-rows: calc(var(--ltsc-height) - var(--ltsc-padding) * 2);
+	align-items: start;
+	gap: var(--ltsc-padding);
+	padding: var(--ltsc-padding);
+	contain: content;
+	background-color: #f5f5f5;
+	background-position: center;
+	background-size: cover;
+	border-radius: 3px;
+	position: relative;
+
+	& > .ltsc-link {
+		content: '';
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		background: transparent;
+		outline: 0;
+		border: 0;
+		cursor: pointer;
+	}
+}
+
+lite-soundcloud[data-embed-height='166px'] {
+	--ltsc-height: 166px;
+	grid-template-columns: auto minmax(0, 1fr);
+	gap: calc(var(--ltsc-padding) * 2);
+}
+
+lite-soundcloud[data-embed-height='300px'] {
+	--ltsc-height: 300px;
+}
+
+lite-soundcloud[data-embed-height='450px'] {
+	--ltsc-height: 450px;
+}
+
+lite-soundcloud[data-embed-height='600px'] {
+	--ltsc-height: 600px;
+}
+
+lite-soundcloud > iframe {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
+
+lite-soundcloud > .ltsc-cover {
+	& > img {
+		aspect-ratio: 1 / 1;
+		height: calc(var(--ltsc-height) - (var(--ltsc-padding) * 2));
+		object-fit: cover;
+	}
+}
+
+lite-soundcloud > .ltsc-info-container {
+	position: relative;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	align-items: center;
+	gap: 0.5rem;
+
+	& > .ltsc-info {
+		color: #ffffff;
+		display: grid;
+		gap: 0.25rem;
+		font-family: sans-serif;
+
+		& .ltsc-title {
+			background-color: rgb(0 0 0 / 80%);
+			font-size: 15px;
+			font-weight: 600;
+			text-wrap: nowrap;
+			text-overflow: ellipsis;
+			overflow-x: hidden;
+			padding: 3px 6px;
+			max-width: fit-content;
+		}
+
+		& .ltsc-author {
+			background-color: rgb(0 0 0 / 80%);
+			font-size: 12px;
+			text-wrap: nowrap;
+			text-overflow: ellipsis;
+			overflow-x: hidden;
+			padding: 2px 6px;
+			max-width: fit-content;
+		}
+	}
+}
+
+lite-soundcloud[data-embed-height='166px'] > .ltsc-info-container {
+	gap: 0;
+
+	& > .ltsc-info {
+		color: #333;
+		gap: 0;
+
+		& .ltsc-title {
+			background-color: transparent;
+			font-size: 15px;
+			font-weight: 500;
+		}
+
+		& .ltsc-author {
+			background-color: transparent;
+			font-size: 12px;
+		}
+	}
+}
+
+/* play button — rendered as <a> for no-JS fallback, upgraded to <button> by JS */
+lite-soundcloud > .ltsc-info-container > .ltsc-playbtn {
+	position: relative;
+	height: 44px;
+	width: 44px;
+	border: 0;
+	cursor: pointer;
+	padding: 0;
+	text-decoration: none;
+	filter: grayscale(100%);
+	transition: filter 0.1s cubic-bezier(0, 0, 0.2, 1);
+	background-color: transparent;
+}
+
+lite-soundcloud:hover > .ltsc-info-container > .ltsc-playbtn {
+	filter: none;
+}
+
+lite-soundcloud > .ltsc-info-container > .ltsc-playbtn::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background-color: var(--ltsc-button-color);
+	border: 0.1em solid hsl(from var(--ltsc-button-color) h s 50);
+	border-radius: 50%;
+}
+
+lite-soundcloud > .ltsc-info-container > .ltsc-playbtn::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 43 43'%3E%3Cpath d='M31,21.5L17,33l2.5-11.5L17,10L31,21.5z' fill='white'/%3E%3C/svg%3E");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+/* post-click: hide poster chrome once iframe is loading */
+lite-soundcloud.ltsc-activated {
+	cursor: unset;
+}
+
+lite-soundcloud.ltsc-activated > :not(iframe) {
+	display: none;
+	pointer-events: none;
+}
