@@ -198,20 +198,20 @@ importers:
   packages/astro-embed-bluesky:
     dependencies:
       '@atcute/atproto':
-        specifier: ^3.1.11
-        version: 3.1.11
+        specifier: ^3.1.12
+        version: 3.1.12(@atcute/lexicons@1.3.1)
       '@atcute/bluesky':
-        specifier: ^3.3.3
-        version: 3.3.3
+        specifier: ^3.3.5
+        version: 3.3.5(@atcute/lexicons@1.3.1)
       '@atcute/bluesky-richtext-segmenter':
         specifier: ^3.0.0
         version: 3.0.0
       '@atcute/client':
-        specifier: ^4.2.1
-        version: 4.2.1
+        specifier: ^4.2.2
+        version: 4.2.2(@atcute/lexicons@1.3.1)
       '@atcute/lexicons':
-        specifier: ^1.3.0
-        version: 1.3.0
+        specifier: ^1.3.1
+        version: 1.3.1
 
   packages/astro-embed-gist:
     dependencies:
@@ -354,23 +354,31 @@ packages:
   '@astrojs/yaml2ts@0.2.3':
     resolution: {integrity: sha512-PJzRmgQzUxI2uwpdX2lXSHtP4G8ocp24/t+bZyf5Fy0SZLSF9f9KXZoMlFM/XCGue+B0nH/2IZ7FpBYQATBsCg==}
 
-  '@atcute/atproto@3.1.11':
-    resolution: {integrity: sha512-yh+ASvA+iHHQij6UeHEKp2+rwvFvQR8A6/5Dk/xvqDslIikWEFx9VlprNwm/clQIPl2bLuQg+LHS8uY9o5nFTA==}
+  '@atcute/atproto@3.1.12':
+    resolution: {integrity: sha512-SaHY0vV5+VfS2ViOcbYtxPmmh82vbxoK5ccHTGn5+ciHNY2arEVcBUFbIQKtsQP4PPZ+lNAVooH+Wh62flvCzg==}
+    peerDependencies:
+      '@atcute/lexicons': ^1.0.0
 
   '@atcute/bluesky-richtext-segmenter@3.0.0':
     resolution: {integrity: sha512-NhZTUKtFpeBBbILwAcxj5u4RobIoHOmGw3CAaaEFNebKYSvmTecrXJ7XufHw5DFOUdr8SiKXQVRQxGAxulMNWg==}
 
-  '@atcute/bluesky@3.3.3':
-    resolution: {integrity: sha512-R1VyEmbvIUhub6ONnt7sm6FcRoKJISWf+I0qraXtk59KLmNCsJYMX8fLdIcdv5o1i9XtDg8/Um/wqLrl84IuFg==}
+  '@atcute/bluesky@3.3.5':
+    resolution: {integrity: sha512-DmzdCQ1VkPRBsIMr79EDxLWLpg0UNWVahFjMelfzau717r+I3ceJm9SxfOK/of+biLOUj4rlr00tNZT+BRe6Ww==}
+    peerDependencies:
+      '@atcute/lexicons': ^1.0.0
 
-  '@atcute/client@4.2.1':
-    resolution: {integrity: sha512-ZBFM2pW075JtgGFu5g7HHZBecrClhlcNH8GVP9Zz1aViWR+cjjBsTpeE63rJs+FCOHFYlirUyo5L8SGZ4kMINw==}
+  '@atcute/client@4.2.2':
+    resolution: {integrity: sha512-z16BaGgdO6WIkDCxqeI+zhnh2KmW9jsjd312PJ6YYsoDBpPPqL+WkBmxQ7eO9C6CMFxXsZpYcM81RzZEETA4PQ==}
+    peerDependencies:
+      '@atcute/lexicons': ^1.0.0
 
-  '@atcute/identity@1.1.3':
-    resolution: {integrity: sha512-oIqPoI8TwWeQxvcLmFEZLdN2XdWcaLVtlm8pNk0E72As9HNzzD9pwKPrLr3rmTLRIoULPPFmq9iFNsTeCIU9ng==}
+  '@atcute/identity@1.1.5':
+    resolution: {integrity: sha512-5i9nl1UVnBDPCumUwrLNl4BZpGvQ/XABEXbjhiw3PQwRUfpQA8FqByDGxXy2gWpFDrNvQ9yVuOoNsjzxJgjjVA==}
+    peerDependencies:
+      '@atcute/lexicons': ^1.0.0
 
-  '@atcute/lexicons@1.3.0':
-    resolution: {integrity: sha512-Eq5y+9onnCXNVUlNiMf31beSXHKqptB7lUo/68YbhlmxdaR7ooywHmahya9goP5AsmlYEA1z+dRPXIDAa9O7cg==}
+  '@atcute/lexicons@1.3.1':
+    resolution: {integrity: sha512-2JVxDmHt+QwsUoPyVYWIN7ZLRLfLx4GeJxKFjA9ofStuby9hCMv7Q4GAPIXuJD8wPv8vrnhr1yRNQhiJX+bthw==}
 
   '@atcute/uint8array@1.1.1':
     resolution: {integrity: sha512-3LsC8XB8TKe9q/5hOA5sFuzGaIFdJZJNewC5OKa3o/eU6+K7JR6see9Zy2JbQERNVnRl11EzbNov1efgLMAs4g==}
@@ -3441,28 +3449,28 @@ snapshots:
     dependencies:
       yaml: 2.8.2
 
-  '@atcute/atproto@3.1.11':
+  '@atcute/atproto@3.1.12(@atcute/lexicons@1.3.1)':
     dependencies:
-      '@atcute/lexicons': 1.3.0
+      '@atcute/lexicons': 1.3.1
 
   '@atcute/bluesky-richtext-segmenter@3.0.0': {}
 
-  '@atcute/bluesky@3.3.3':
+  '@atcute/bluesky@3.3.5(@atcute/lexicons@1.3.1)':
     dependencies:
-      '@atcute/atproto': 3.1.11
-      '@atcute/lexicons': 1.3.0
+      '@atcute/atproto': 3.1.12(@atcute/lexicons@1.3.1)
+      '@atcute/lexicons': 1.3.1
 
-  '@atcute/client@4.2.1':
+  '@atcute/client@4.2.2(@atcute/lexicons@1.3.1)':
     dependencies:
-      '@atcute/identity': 1.1.3
-      '@atcute/lexicons': 1.3.0
+      '@atcute/identity': 1.1.5(@atcute/lexicons@1.3.1)
+      '@atcute/lexicons': 1.3.1
 
-  '@atcute/identity@1.1.3':
+  '@atcute/identity@1.1.5(@atcute/lexicons@1.3.1)':
     dependencies:
-      '@atcute/lexicons': 1.3.0
+      '@atcute/lexicons': 1.3.1
       '@badrap/valita': 0.4.6
 
-  '@atcute/lexicons@1.3.0':
+  '@atcute/lexicons@1.3.1':
     dependencies:
       '@atcute/uint8array': 1.1.1
       '@atcute/util-text': 1.3.1
