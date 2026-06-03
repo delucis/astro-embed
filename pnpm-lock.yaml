@@ -36,7 +36,7 @@ importers:
         specifier: ^8.60.0
         version: 8.60.1(eslint@10.4.1)(typescript@6.0.3)
       astro:
-        specifier: ^6.3.8
+        specifier: ^6.4.2
         version: 6.4.2(@types/node@24.12.4)(rollup@4.53.3)(yaml@2.8.2)
       astro-component-tester:
         specifier: ^0.8.0
@@ -99,7 +99,7 @@ importers:
         specifier: ^5.0.6
         version: 5.0.6(astro@6.4.2(@types/node@24.12.4)(rollup@4.53.3)(yaml@2.8.2))
       astro:
-        specifier: ^6.3.8
+        specifier: ^6.4.2
         version: 6.4.2(@types/node@24.12.4)(rollup@4.53.3)(yaml@2.8.2)
       astro-embed:
         specifier: workspace:*
@@ -135,7 +135,7 @@ importers:
         specifier: ^0.38.4
         version: 0.38.4(astro@6.4.2(@types/node@24.12.4)(rollup@4.53.3)(yaml@2.8.2))
       astro:
-        specifier: ^6.3.8
+        specifier: ^6.4.2
         version: 6.4.2(@types/node@24.12.4)(rollup@4.53.3)(yaml@2.8.2)
       astro-embed:
         specifier: workspace:*
