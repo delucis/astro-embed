@@ -1,5 +1,5 @@
 import type { AstroConfig, AstroIntegration } from 'astro';
-import createEmbedPlugin, { componentNames } from './remark-plugin';
+import createEmbedPlugin, { componentNames } from './remark-plugin.js';
 import AutoImport from 'astro-auto-import';
 const importNamespace = 'AuToImPoRtEdAstroEmbed';
 

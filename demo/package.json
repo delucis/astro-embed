@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
+    "prebuild": "corepack pnpm --filter @astro-community/astro-embed-integration --filter @astro-community/astro-embed-bluesky --filter @astro-community/astro-embed-gist --filter @astro-community/astro-embed-link-preview --filter @astro-community/astro-embed-mastodon --filter @astro-community/astro-embed-twitter --filter @astro-community/astro-embed-vimeo --filter @astro-community/astro-embed-youtube prepack",
     "build": "astro build",
     "preview": "astro preview"
   },

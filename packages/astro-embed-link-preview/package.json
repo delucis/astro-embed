@@ -3,15 +3,22 @@
   "version": "0.3.1",
   "description": "Component to embed a website’s OpenGraph image and metadata on your Astro site",
   "type": "module",
+  "scripts": {
+    "prepack": "tsc -p tsconfig.build.json"
+  },
   "exports": {
     ".": "./index.ts",
-    "./matcher": "./matcher.ts"
+    "./matcher": {
+      "types": "./dist/matcher.d.ts",
+      "default": "./dist/matcher.js"
+    }
   },
   "files": [
     "dom.ts",
     "lib.ts",
     "index.ts",
     "matcher.ts",
+    "dist",
     "LinkPreview.astro"
   ],
   "repository": {

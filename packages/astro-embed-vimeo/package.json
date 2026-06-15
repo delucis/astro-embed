@@ -3,13 +3,20 @@
   "version": "0.3.12",
   "description": "Component to easily embed Vimeo videos on your Astro site",
   "type": "module",
+  "scripts": {
+    "prepack": "tsc -p tsconfig.build.json"
+  },
   "exports": {
     ".": "./index.ts",
-    "./matcher": "./matcher.ts"
+    "./matcher": {
+      "types": "./dist/matcher.d.ts",
+      "default": "./dist/matcher.js"
+    }
   },
   "files": [
     "index.ts",
     "matcher.ts",
+    "dist",
     "Vimeo.astro",
     "Vimeo.css"
   ],

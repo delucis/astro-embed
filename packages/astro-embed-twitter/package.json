@@ -3,13 +3,20 @@
   "version": "0.5.11",
   "description": "Component to easily embed Tweets on your Astro site",
   "type": "module",
+  "scripts": {
+    "prepack": "tsc -p tsconfig.build.json"
+  },
   "exports": {
     ".": "./index.ts",
-    "./matcher": "./matcher.ts"
+    "./matcher": {
+      "types": "./dist/matcher.d.ts",
+      "default": "./dist/matcher.js"
+    }
   },
   "files": [
     "index.ts",
     "matcher.ts",
+    "dist",
     "Tweet.astro",
     "Tweet.css"
   ],

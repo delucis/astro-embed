@@ -3,12 +3,17 @@
   "version": "0.12.0",
   "description": "Astro integration to automatically convert URLs in Markdown files to embeds",
   "type": "module",
+  "scripts": {
+    "prepack": "tsc -p tsconfig.build.json"
+  },
   "exports": {
-    ".": "./index.ts"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
   },
   "files": [
-    "index.ts",
-    "remark-plugin.ts"
+    "dist"
   ],
   "repository": {
     "type": "git",
