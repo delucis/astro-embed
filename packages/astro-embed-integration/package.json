@@ -4,7 +4,11 @@
   "description": "Astro integration to automatically convert URLs in Markdown files to embeds",
   "type": "module",
   "exports": {
-    ".": "./index.ts"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
   },
   "files": [
     "index.ts",
