@@ -33,5 +33,13 @@
     "typescript": "^6.0.3",
     "uvu": "^0.5.6"
   },
-  "packageManager": "pnpm@10.34.1"
+  "packageManager": "pnpm@10.34.1",
+  "homepage": "https://github.com/delucis/astro-embed",
+  "bugs": {
+    "url": "https://github.com/delucis/astro-embed/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/delucis/astro-embed.git"
+  }
 }
