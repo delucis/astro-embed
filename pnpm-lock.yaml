@@ -160,31 +160,31 @@ importers:
     dependencies:
       '@astro-community/astro-embed-baseline-status':
         specifier: ^0.2.2
-        version: link:../astro-embed-baseline-status
+        version: 0.2.2
       '@astro-community/astro-embed-bluesky':
         specifier: ^0.2.1
-        version: link:../astro-embed-bluesky
+        version: 0.2.1
       '@astro-community/astro-embed-gist':
         specifier: ^0.1.0
-        version: link:../astro-embed-gist
+        version: 0.1.0
       '@astro-community/astro-embed-integration':
         specifier: ^0.12.0
-        version: link:../astro-embed-integration
+        version: 0.12.0(astro@6.4.6(@types/node@24.13.2)(rollup@4.53.3)(yaml@2.8.2))
       '@astro-community/astro-embed-link-preview':
         specifier: ^0.3.1
-        version: link:../astro-embed-link-preview
+        version: 0.3.1
       '@astro-community/astro-embed-mastodon':
         specifier: ^0.1.1
-        version: link:../astro-embed-mastodon
+        version: 0.1.1
       '@astro-community/astro-embed-twitter':
         specifier: ^0.5.11
-        version: link:../astro-embed-twitter
+        version: 0.5.11
       '@astro-community/astro-embed-vimeo':
         specifier: ^0.3.12
-        version: link:../astro-embed-vimeo
+        version: 0.3.12
       '@astro-community/astro-embed-youtube':
         specifier: ^0.5.10
-        version: link:../astro-embed-youtube
+        version: 0.5.10
       astro:
         specifier: ^5.0.0 || ^6.0.0-alpha
         version: 6.4.6(@types/node@24.13.2)(rollup@4.53.3)(yaml@2.8.2)
@@ -193,7 +193,7 @@ importers:
     dependencies:
       '@astro-community/astro-embed-utils':
         specifier: ^0.2.0
-        version: link:../astro-embed-utils
+        version: 0.2.0
 
   packages/astro-embed-bluesky:
     dependencies:
@@ -217,31 +217,31 @@ importers:
     dependencies:
       '@astro-community/astro-embed-utils':
         specifier: ^0.2.0
-        version: link:../astro-embed-utils
+        version: 0.2.0
 
   packages/astro-embed-integration:
     dependencies:
       '@astro-community/astro-embed-bluesky':
         specifier: ^0.2.1
-        version: link:../astro-embed-bluesky
+        version: 0.2.1
       '@astro-community/astro-embed-gist':
         specifier: ^0.1.0
-        version: link:../astro-embed-gist
+        version: 0.1.0
       '@astro-community/astro-embed-link-preview':
         specifier: ^0.3.1
-        version: link:../astro-embed-link-preview
+        version: 0.3.1
       '@astro-community/astro-embed-mastodon':
         specifier: ^0.1.1
-        version: link:../astro-embed-mastodon
+        version: 0.1.1
       '@astro-community/astro-embed-twitter':
         specifier: ^0.5.11
-        version: link:../astro-embed-twitter
+        version: 0.5.11
       '@astro-community/astro-embed-vimeo':
         specifier: ^0.3.12
-        version: link:../astro-embed-vimeo
+        version: 0.3.12
       '@astro-community/astro-embed-youtube':
         specifier: ^0.5.10
-        version: link:../astro-embed-youtube
+        version: 0.5.10
       '@types/unist':
         specifier: ^3.0.3
         version: 3.0.3
@@ -259,7 +259,7 @@ importers:
     dependencies:
       '@astro-community/astro-embed-utils':
         specifier: ^0.2.0
-        version: link:../astro-embed-utils
+        version: 0.2.0
       '@parse5/tools':
         specifier: ^0.7.0
         version: 0.7.0(parse5@8.0.1)
@@ -271,13 +271,13 @@ importers:
     dependencies:
       '@astro-community/astro-embed-utils':
         specifier: ^0.2.0
-        version: link:../astro-embed-utils
+        version: 0.2.0
 
   packages/astro-embed-twitter:
     dependencies:
       '@astro-community/astro-embed-utils':
         specifier: ^0.2.0
-        version: link:../astro-embed-utils
+        version: 0.2.0
 
   packages/astro-embed-utils: {}
 
@@ -285,7 +285,7 @@ importers:
     dependencies:
       '@astro-community/astro-embed-utils':
         specifier: ^0.2.0
-        version: link:../astro-embed-utils
+        version: 0.2.0
 
   packages/astro-embed-youtube:
     dependencies:
@@ -298,6 +298,38 @@ packages:
   '@aashutoshrathi/word-wrap@1.2.6':
     resolution: {integrity: sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==}
     engines: {node: '>=0.10.0'}
+
+  '@astro-community/astro-embed-baseline-status@0.2.2':
+    resolution: {integrity: sha512-07TBEb+xQWWZfMuoHohcZv/r2VSB80/1xN5iLhzSqavLmdsMyebEnbc6tvw3yMkxvX9IBLduNA5SxvVkpmowNQ==}
+
+  '@astro-community/astro-embed-bluesky@0.2.1':
+    resolution: {integrity: sha512-rp6pgyEviUH+ysVCVi6bGcHycFSBTc7q3u5IDNyZOiGtCL4BCurDyDvanbKRVlgn50TWKBziomXxvHSLzQPTQQ==}
+
+  '@astro-community/astro-embed-gist@0.1.0':
+    resolution: {integrity: sha512-wP3EoBZZjDoPLH6TZzem8jDJxOuweDoK5zWmSra0QBKz3Lry1tZGCwKII5mlnOL2AmTKLrfqrBXTxSGwb7AimQ==}
+
+  '@astro-community/astro-embed-integration@0.12.0':
+    resolution: {integrity: sha512-ozw6ObA5/6tEEynitxKJAtiuSeAaXQmlD1SWbvlCz1vaYyDW9So7xHFVaHtqFYVhonAW3k/9scTJC98cu6xI8Q==}
+    peerDependencies:
+      astro: ^5.0.0 || ^6.0.0-alpha
+
+  '@astro-community/astro-embed-link-preview@0.3.1':
+    resolution: {integrity: sha512-TI++efm08+kJqxqA7bvxBr7+Zt4yCceA6s3wvAQJ87eiaxbLqAFUSQ+paQD66ET9dIC+IuKzHOMwsoDfqBidYw==}
+
+  '@astro-community/astro-embed-mastodon@0.1.1':
+    resolution: {integrity: sha512-g5Mt1H6GxjkIvXC0HcKqLanZgXHu1e0vNqiQJ8ckryPKmbijYPfhGJYJLPHxE6PaFEA5tmwcmJouVcMPMjf2Kg==}
+
+  '@astro-community/astro-embed-twitter@0.5.11':
+    resolution: {integrity: sha512-6cmyQY4LVVJj6x7qC6XrhWcxNffLvR+QGE/iw5HTOtAn60AStr6u+IX2Txpy6N6bta0DLjGqhTBhkC3NxmVKJg==}
+
+  '@astro-community/astro-embed-utils@0.2.0':
+    resolution: {integrity: sha512-Ia70AMCFOUOSoaMfMaK7Ovk7VyIY4opwzBJoA6GeL+omkvpFwDbSWmA8MOiMF4gJC0j/1dgrEir+txIb+WvsCA==}
+
+  '@astro-community/astro-embed-vimeo@0.3.12':
+    resolution: {integrity: sha512-VLNcsniT5qZ/7GaSGFWnX4ar0qcGyAYB1HQnAH362Zjqs0QI2he9u1nWv1kEx4xr3fZVxl6D2QuNN4xKtd8/ig==}
+
+  '@astro-community/astro-embed-youtube@0.5.10':
+    resolution: {integrity: sha512-hVlx77KQLjKzElVQnrU5znQ5/E60keVSAPrhuWvQQHuqva5auJtt8YBpOThkwDMuEKXjQybEF1/3C07RZ8MAOQ==}
 
   '@astrojs/check@0.9.9':
     resolution: {integrity: sha512-A5UW8uIuErLWEoRQvzgXpO1gTjUFtK8r7nU2Z7GewAMxUb7bPvpk11qaKKgxqXlHJWlAvaaxy+Xg28A6bmQ1Tg==}
@@ -3458,6 +3490,60 @@ packages:
 snapshots:
 
   '@aashutoshrathi/word-wrap@1.2.6': {}
+
+  '@astro-community/astro-embed-baseline-status@0.2.2':
+    dependencies:
+      '@astro-community/astro-embed-utils': 0.2.0
+
+  '@astro-community/astro-embed-bluesky@0.2.1':
+    dependencies:
+      '@atcute/atproto': 3.1.12(@atcute/lexicons@1.3.1)
+      '@atcute/bluesky': 3.3.5(@atcute/lexicons@1.3.1)
+      '@atcute/bluesky-richtext-segmenter': 3.0.0
+      '@atcute/client': 4.2.2(@atcute/lexicons@1.3.1)
+      '@atcute/lexicons': 1.3.1
+
+  '@astro-community/astro-embed-gist@0.1.0':
+    dependencies:
+      '@astro-community/astro-embed-utils': 0.2.0
+
+  '@astro-community/astro-embed-integration@0.12.0(astro@6.4.6(@types/node@24.13.2)(rollup@4.53.3)(yaml@2.8.2))':
+    dependencies:
+      '@astro-community/astro-embed-bluesky': 0.2.1
+      '@astro-community/astro-embed-gist': 0.1.0
+      '@astro-community/astro-embed-link-preview': 0.3.1
+      '@astro-community/astro-embed-mastodon': 0.1.1
+      '@astro-community/astro-embed-twitter': 0.5.11
+      '@astro-community/astro-embed-vimeo': 0.3.12
+      '@astro-community/astro-embed-youtube': 0.5.10
+      '@types/unist': 3.0.3
+      astro: 6.4.6(@types/node@24.13.2)(rollup@4.53.3)(yaml@2.8.2)
+      astro-auto-import: 0.5.1(astro@6.4.6(@types/node@24.13.2)(rollup@4.53.3)(yaml@2.8.2))
+      unist-util-select: 5.1.0
+
+  '@astro-community/astro-embed-link-preview@0.3.1':
+    dependencies:
+      '@astro-community/astro-embed-utils': 0.2.0
+      '@parse5/tools': 0.7.0(parse5@8.0.1)
+      parse5: 8.0.1
+
+  '@astro-community/astro-embed-mastodon@0.1.1':
+    dependencies:
+      '@astro-community/astro-embed-utils': 0.2.0
+
+  '@astro-community/astro-embed-twitter@0.5.11':
+    dependencies:
+      '@astro-community/astro-embed-utils': 0.2.0
+
+  '@astro-community/astro-embed-utils@0.2.0': {}
+
+  '@astro-community/astro-embed-vimeo@0.3.12':
+    dependencies:
+      '@astro-community/astro-embed-utils': 0.2.0
+
+  '@astro-community/astro-embed-youtube@0.5.10':
+    dependencies:
+      lite-youtube-embed: 0.3.4
 
   '@astrojs/check@0.9.9(prettier-plugin-astro@0.14.1)(prettier@3.8.4)(typescript@6.0.3)':
     dependencies:
