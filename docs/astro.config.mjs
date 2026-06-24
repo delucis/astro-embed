@@ -26,7 +26,7 @@ export default defineConfig({
 				'getting-started',
 				{
 					label: 'Components',
-					autogenerate: { directory: 'components' },
+					items: [{ autogenerate: { directory: 'components' } }],
 				},
 				{ label: 'Auto-embed URLs', slug: 'integration' },
 			],
