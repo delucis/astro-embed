@@ -3,3 +3,6 @@ packages:
   - 'demo'
   - 'docs'
 preferWorkspacePackages: true
+allowBuilds:
+  esbuild: false
+  sharp: false
