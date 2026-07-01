@@ -198,20 +198,20 @@ importers:
   packages/astro-embed-bluesky:
     dependencies:
       '@atcute/atproto':
-        specifier: ^3.1.12
-        version: 3.1.12(@atcute/lexicons@1.3.1)
+        specifier: ^4.0.2
+        version: 4.0.3(@atcute/lexicons@2.0.2)
       '@atcute/bluesky':
-        specifier: ^3.3.5
-        version: 3.3.5(@atcute/lexicons@1.3.1)
+        specifier: ^4.0.11
+        version: 4.0.12(@atcute/lexicons@2.0.2)
       '@atcute/bluesky-richtext-segmenter':
         specifier: ^3.0.0
         version: 3.0.0
       '@atcute/client':
-        specifier: ^4.2.2
-        version: 4.2.2(@atcute/lexicons@1.3.1)
+        specifier: ^5.1.0
+        version: 5.1.1(@atcute/lexicons@2.0.2)(typescript@6.0.3)
       '@atcute/lexicons':
-        specifier: ^1.3.1
-        version: 1.3.1
+        specifier: ^2.0.1
+        version: 2.0.2
 
   packages/astro-embed-gist:
     dependencies:
@@ -399,6 +399,11 @@ packages:
     peerDependencies:
       '@atcute/lexicons': ^1.0.0
 
+  '@atcute/atproto@4.0.3':
+    resolution: {integrity: sha512-BNylfO7nK0yYBpSpnGhOYgrJTeZWrXHPrb6tOQmp9A3Am0epctIWm6/5lPC4ZNPHpUbwr5w/LzH/v7kjAoKEDg==}
+    peerDependencies:
+      '@atcute/lexicons': ^2.0.0
+
   '@atcute/bluesky-richtext-segmenter@3.0.0':
     resolution: {integrity: sha512-NhZTUKtFpeBBbILwAcxj5u4RobIoHOmGw3CAaaEFNebKYSvmTecrXJ7XufHw5DFOUdr8SiKXQVRQxGAxulMNWg==}
 
@@ -407,24 +412,42 @@ packages:
     peerDependencies:
       '@atcute/lexicons': ^1.0.0
 
+  '@atcute/bluesky@4.0.12':
+    resolution: {integrity: sha512-tJEYlv0dvmQE2KfWf0hZLsc3ViGrcBmGPz/bp2u0cXomW7fx/YhseeNJ1a4lywIUBcQS+XzDfbNqIjmEwaGqpg==}
+    peerDependencies:
+      '@atcute/lexicons': ^2.0.0
+
   '@atcute/client@4.2.2':
     resolution: {integrity: sha512-z16BaGgdO6WIkDCxqeI+zhnh2KmW9jsjd312PJ6YYsoDBpPPqL+WkBmxQ7eO9C6CMFxXsZpYcM81RzZEETA4PQ==}
     peerDependencies:
       '@atcute/lexicons': ^1.0.0
+
+  '@atcute/client@5.1.1':
+    resolution: {integrity: sha512-cn5/Zi/qo37WtQG6gzIC7JPs0RDzX9Z4eaceX45SpKgLZoc3fCFDJcE7C8xsbxBNfjry2T6PmUxWA8obebZsEQ==}
+    peerDependencies:
+      '@atcute/lexicons': ^2.0.0
 
   '@atcute/identity@1.1.5':
     resolution: {integrity: sha512-5i9nl1UVnBDPCumUwrLNl4BZpGvQ/XABEXbjhiw3PQwRUfpQA8FqByDGxXy2gWpFDrNvQ9yVuOoNsjzxJgjjVA==}
     peerDependencies:
       '@atcute/lexicons': ^1.0.0
 
+  '@atcute/identity@2.0.1':
+    resolution: {integrity: sha512-FEURUvl30SyyWWikkvm+MLz0Snuf0OF10L/qxRhWjj6qDB5Ib+XWhiBuwidjvhCkrCepTUNLbj4TlUm/gHaUig==}
+    peerDependencies:
+      '@atcute/lexicons': ^2.0.0
+
   '@atcute/lexicons@1.3.1':
     resolution: {integrity: sha512-2JVxDmHt+QwsUoPyVYWIN7ZLRLfLx4GeJxKFjA9ofStuby9hCMv7Q4GAPIXuJD8wPv8vrnhr1yRNQhiJX+bthw==}
 
-  '@atcute/uint8array@1.1.1':
-    resolution: {integrity: sha512-3LsC8XB8TKe9q/5hOA5sFuzGaIFdJZJNewC5OKa3o/eU6+K7JR6see9Zy2JbQERNVnRl11EzbNov1efgLMAs4g==}
+  '@atcute/lexicons@2.0.2':
+    resolution: {integrity: sha512-ATBADJAy4KQ76NB86BjgYKrRdbDRUo76Cbqna4WIfQAgN105Rcy972MiNKs+BSmcOOM3WakilgTm0CXD4RC0iA==}
 
-  '@atcute/util-text@1.3.1':
-    resolution: {integrity: sha512-MRgJXkx67znuBXuoAYCJkBZyd3OApL7zZlNf5kXhuoCXcdiu1nblRDycYTADSkym4epBSQWxh26kmI9sewaq6A==}
+  '@atcute/uint8array@1.1.3':
+    resolution: {integrity: sha512-2KLcMQHUFtntY3tEjdyqqq1tR9hvPFndluWFCa637QY0cMyvq0fHSnhmZeWaSRIXMCwVDY3TLLWHNOHEWFb11g==}
+
+  '@atcute/util-text@1.3.3':
+    resolution: {integrity: sha512-WhedTmg/msFhrdwXw9RjnNcDl8Vmisxl4+Vzyf5k3+8Gj5TKQg72dLSDtBNmNLd61RbHjgfQRBgE0ez6q/jciw==}
 
   '@babel/code-frame@7.27.1':
     resolution: {integrity: sha512-cjQ7ZlQ0Mv3b47hABuTevyTuYN4i+loJKGeV9flcCgIK37cCXRh+L1bd3iBHlynerhQ7BhCkn2BPbQUL+rGqFg==}
@@ -3260,6 +3283,14 @@ packages:
     engines: {node: '>=8'}
     hasBin: true
 
+  valibot@1.4.2:
+    resolution: {integrity: sha512-gjdCvJ6d3RyHAneqxMYMW9QMCwYMb3jpOO0IyHZV1bnRHFBHrX3VkIILt5XYR0WhwHiH7Mty8ovuPZ/O3gamrg==}
+    peerDependencies:
+      typescript: '>=5'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+
   vfile-location@5.0.2:
     resolution: {integrity: sha512-NXPYyxyBSH7zB5U6+3uDdd6Nybz6o6/od9rk8bp9H8GR3L+cm/fC0uUTbqBmUTnMCUDslAGBOIKNfvvb+gGlDg==}
 
@@ -3691,6 +3722,10 @@ snapshots:
     dependencies:
       '@atcute/lexicons': 1.3.1
 
+  '@atcute/atproto@4.0.3(@atcute/lexicons@2.0.2)':
+    dependencies:
+      '@atcute/lexicons': 2.0.2
+
   '@atcute/bluesky-richtext-segmenter@3.0.0': {}
 
   '@atcute/bluesky@3.3.5(@atcute/lexicons@1.3.1)':
@@ -3698,26 +3733,52 @@ snapshots:
       '@atcute/atproto': 3.1.12(@atcute/lexicons@1.3.1)
       '@atcute/lexicons': 1.3.1
 
+  '@atcute/bluesky@4.0.12(@atcute/lexicons@2.0.2)':
+    dependencies:
+      '@atcute/atproto': 4.0.3(@atcute/lexicons@2.0.2)
+      '@atcute/lexicons': 2.0.2
+
   '@atcute/client@4.2.2(@atcute/lexicons@1.3.1)':
     dependencies:
       '@atcute/identity': 1.1.5(@atcute/lexicons@1.3.1)
       '@atcute/lexicons': 1.3.1
+
+  '@atcute/client@5.1.1(@atcute/lexicons@2.0.2)(typescript@6.0.3)':
+    dependencies:
+      '@atcute/identity': 2.0.1(@atcute/lexicons@2.0.2)(typescript@6.0.3)
+      '@atcute/lexicons': 2.0.2
+    transitivePeerDependencies:
+      - typescript
 
   '@atcute/identity@1.1.5(@atcute/lexicons@1.3.1)':
     dependencies:
       '@atcute/lexicons': 1.3.1
       '@badrap/valita': 0.4.6
 
+  '@atcute/identity@2.0.1(@atcute/lexicons@2.0.2)(typescript@6.0.3)':
+    dependencies:
+      '@atcute/lexicons': 2.0.2
+      valibot: 1.4.2(typescript@6.0.3)
+    transitivePeerDependencies:
+      - typescript
+
   '@atcute/lexicons@1.3.1':
     dependencies:
-      '@atcute/uint8array': 1.1.1
-      '@atcute/util-text': 1.3.1
+      '@atcute/uint8array': 1.1.3
+      '@atcute/util-text': 1.3.3
       '@standard-schema/spec': 1.1.0
       esm-env: 1.2.2
 
-  '@atcute/uint8array@1.1.1': {}
+  '@atcute/lexicons@2.0.2':
+    dependencies:
+      '@atcute/uint8array': 1.1.3
+      '@atcute/util-text': 1.3.3
+      '@standard-schema/spec': 1.1.0
+      esm-env: 1.2.2
 
-  '@atcute/util-text@1.3.1':
+  '@atcute/uint8array@1.1.3': {}
+
+  '@atcute/util-text@1.3.3':
     dependencies:
       unicode-segmenter: 0.14.5
 
@@ -7051,6 +7112,10 @@ snapshots:
       diff: 5.2.0
       kleur: 4.1.5
       sade: 1.8.1
+
+  valibot@1.4.2(typescript@6.0.3):
+    optionalDependencies:
+      typescript: 6.0.3
 
   vfile-location@5.0.2:
     dependencies:
