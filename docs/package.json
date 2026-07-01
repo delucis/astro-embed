@@ -25,7 +25,7 @@
     "astro-og-canvas": "^0.11.1",
     "canvaskit-wasm": "^0.41.1",
     "expressive-code-color-chips": "^0.1.4",
-    "sharp": "^0.35.1",
+    "sharp": "^0.35.2",
     "starlight-package-managers": "^0.12.0"
   }
 }
