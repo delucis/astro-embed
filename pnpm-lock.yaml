@@ -147,8 +147,8 @@ importers:
         specifier: ^0.41.1
         version: 0.41.1
       expressive-code-color-chips:
-        specifier: ^0.1.4
-        version: 0.1.4(@expressive-code/core@0.43.1)
+        specifier: ^0.2.0
+        version: 0.2.0(@expressive-code/core@0.43.1)
       sharp:
         specifier: ^0.35.2
         version: 0.35.2
@@ -2009,8 +2009,8 @@ packages:
   eventemitter3@5.0.1:
     resolution: {integrity: sha512-GWkBvjiSZK87ELrYOSESUYeVIc9mvLLf/nXalMOS5dYrgZq9o5OVkbZAVM06CVxYsCwH9BDZFPlQTlPA1j4ahA==}
 
-  expressive-code-color-chips@0.1.4:
-    resolution: {integrity: sha512-PlPrVtlf3hD/O2SaWzYBRk9Gy2Z0gjIl4uYrGH89zZJyj8BGoWMh08XuQZ6lDWy3dvpuQ5R2oYLb3yhhRo+Aqg==}
+  expressive-code-color-chips@0.2.0:
+    resolution: {integrity: sha512-NapCF8b3fAd7q5JZxCWfllGFRGEiTwiEx49/kfFTEqdZjpzGl39sK9PXNGOYasLrSvftcvOfAf8mlsPkce0i8A==}
     peerDependencies:
       '@expressive-code/core': '>=0.37.1'
 
@@ -5370,7 +5370,7 @@ snapshots:
 
   eventemitter3@5.0.1: {}
 
-  expressive-code-color-chips@0.1.4(@expressive-code/core@0.43.1):
+  expressive-code-color-chips@0.2.0(@expressive-code/core@0.43.1):
     dependencies:
       '@expressive-code/core': 0.43.1
 
