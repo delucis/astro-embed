@@ -3,6 +3,7 @@ packages:
   - 'demo'
   - 'docs'
 preferWorkspacePackages: true
+linkWorkspacePackages: true
 allowBuilds:
   esbuild: false
   sharp: false
