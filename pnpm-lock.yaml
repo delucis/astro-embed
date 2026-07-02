@@ -168,7 +168,7 @@ importers:
         specifier: ^0.1.0
         version: link:../astro-embed-gist
       '@astro-community/astro-embed-integration':
-        specifier: ^0.12.0
+        specifier: ^0.12.1
         version: link:../astro-embed-integration
       '@astro-community/astro-embed-link-preview':
         specifier: ^0.3.1

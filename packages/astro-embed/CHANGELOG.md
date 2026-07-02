@@ -1,5 +1,14 @@
 # astro-embed
 
+## 0.13.1
+
+### Patch Changes
+
+- [#423](https://github.com/delucis/astro-embed/pull/423) [`9940e77`](https://github.com/delucis/astro-embed/commit/9940e77c3f1eb2c13401307a621fa5e744d7d39b) Thanks [@renovate](https://github.com/apps/renovate)! - Adds support for Astro 7
+
+- Updated dependencies [[`9940e77`](https://github.com/delucis/astro-embed/commit/9940e77c3f1eb2c13401307a621fa5e744d7d39b)]:
+  - @astro-community/astro-embed-integration@0.12.1
+
 ## 0.13.0
 
 ### Minor Changes
