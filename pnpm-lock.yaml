@@ -141,8 +141,8 @@ importers:
         specifier: workspace:*
         version: link:../packages/astro-embed
       astro-og-canvas:
-        specifier: ^0.12.0
-        version: 0.12.0(astro@7.0.4(@astrojs/markdown-remark@7.2.0)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@24.13.3)(rollup@4.53.3)(yaml@2.8.2))
+        specifier: ^0.13.0
+        version: 0.13.0(astro@7.0.4(@astrojs/markdown-remark@7.2.0)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@24.13.3)(rollup@4.53.3)(yaml@2.8.2))
       canvaskit-wasm:
         specifier: ^0.41.1
         version: 0.41.1
@@ -1632,8 +1632,8 @@ packages:
     peerDependencies:
       astro: ^4.0.0-beta || ^5.0.0-beta || ^3.3.0 || ^6.0.0-beta || ^7.0.0
 
-  astro-og-canvas@0.12.0:
-    resolution: {integrity: sha512-XqbChMkPZvBV0jxu3i9hapgYK3gSjO1+MFBq060w+NT9k1XL+BYjdcQ80ZZs45r6+EASgIYmlqjEL7zfLD9T7A==}
+  astro-og-canvas@0.13.0:
+    resolution: {integrity: sha512-jcIDhE9OGIbd7LstZQ4CyzOpbbEKAlxJqEgdkVu6r26m7yJKlQjKysszfDxlox717cnCLPXKivyFjsufcq8sYA==}
     peerDependencies:
       astro: ^5.0.0 || ^6.0.0 || ^7.0.0
 
@@ -5025,7 +5025,7 @@ snapshots:
       rehype-expressive-code: 0.44.0
       url-extras: 0.1.0
 
-  astro-og-canvas@0.12.0(astro@7.0.4(@astrojs/markdown-remark@7.2.0)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@24.13.3)(rollup@4.53.3)(yaml@2.8.2)):
+  astro-og-canvas@0.13.0(astro@7.0.4(@astrojs/markdown-remark@7.2.0)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@24.13.3)(rollup@4.53.3)(yaml@2.8.2)):
     dependencies:
       astro: 7.0.4(@astrojs/markdown-remark@7.2.0)(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@24.13.3)(rollup@4.53.3)(yaml@2.8.2)
       canvaskit-wasm: 0.41.1
