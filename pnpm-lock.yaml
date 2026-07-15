@@ -198,19 +198,19 @@ importers:
   packages/astro-embed-bluesky:
     dependencies:
       '@atcute/atproto':
-        specifier: ^4.0.2
+        specifier: ^4.0.3
         version: 4.0.3(@atcute/lexicons@2.0.2)
       '@atcute/bluesky':
-        specifier: ^4.0.11
-        version: 4.0.12(@atcute/lexicons@2.0.2)
+        specifier: ^4.0.14
+        version: 4.0.14(@atcute/lexicons@2.0.2)
       '@atcute/bluesky-richtext-segmenter':
-        specifier: ^3.0.0
-        version: 3.0.0
+        specifier: ^3.0.1
+        version: 3.0.1
       '@atcute/client':
-        specifier: ^5.1.0
+        specifier: ^5.1.1
         version: 5.1.1(@atcute/lexicons@2.0.2)(typescript@6.0.3)
       '@atcute/lexicons':
-        specifier: ^2.0.1
+        specifier: ^2.0.2
         version: 2.0.2
 
   packages/astro-embed-gist:
@@ -432,11 +432,11 @@ packages:
     peerDependencies:
       '@atcute/lexicons': ^2.0.0
 
-  '@atcute/bluesky-richtext-segmenter@3.0.0':
-    resolution: {integrity: sha512-NhZTUKtFpeBBbILwAcxj5u4RobIoHOmGw3CAaaEFNebKYSvmTecrXJ7XufHw5DFOUdr8SiKXQVRQxGAxulMNWg==}
+  '@atcute/bluesky-richtext-segmenter@3.0.1':
+    resolution: {integrity: sha512-5TrzZTpPkVchiNG+YAW8MmBVnN/gLPN/V3nJgpQcnLrQOebqTV+lR+yZ0d4T70NsBD32vJHyxoX5PY+6hY2KlA==}
 
-  '@atcute/bluesky@4.0.12':
-    resolution: {integrity: sha512-tJEYlv0dvmQE2KfWf0hZLsc3ViGrcBmGPz/bp2u0cXomW7fx/YhseeNJ1a4lywIUBcQS+XzDfbNqIjmEwaGqpg==}
+  '@atcute/bluesky@4.0.14':
+    resolution: {integrity: sha512-XttxcMS81Ld089FFqSF8c1bBZutlNkTWMxCL150IuQeoC/aKNK1M9jd0RrMtVVsaxiWUFSX5yetfEfOCwIZm7A==}
     peerDependencies:
       '@atcute/lexicons': ^2.0.0
 
@@ -3852,9 +3852,9 @@ snapshots:
     dependencies:
       '@atcute/lexicons': 2.0.2
 
-  '@atcute/bluesky-richtext-segmenter@3.0.0': {}
+  '@atcute/bluesky-richtext-segmenter@3.0.1': {}
 
-  '@atcute/bluesky@4.0.12(@atcute/lexicons@2.0.2)':
+  '@atcute/bluesky@4.0.14(@atcute/lexicons@2.0.2)':
     dependencies:
       '@atcute/atproto': 4.0.3(@atcute/lexicons@2.0.2)
       '@atcute/lexicons': 2.0.2
