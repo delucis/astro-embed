@@ -1,5 +1,11 @@
 # @astro-community/astro-embed-bluesky
 
+## 0.2.3
+
+### Patch Changes
+
+- [#429](https://github.com/delucis/astro-embed/pull/429) [`3b47719`](https://github.com/delucis/astro-embed/commit/3b47719851c974749a5a8688e3cadef5fb1a2488) Thanks [@renovate](https://github.com/apps/renovate)! - Update @atcute/* dependencies to latest
+
 ## 0.2.2
 
 ### Patch Changes
