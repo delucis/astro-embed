@@ -1,5 +1,13 @@
 # @astro-community/astro-embed-integration
 
+## 0.13.0
+
+### Minor Changes
+
+- [#461](https://github.com/delucis/astro-embed/pull/461) [`a307a83`](https://github.com/delucis/astro-embed/commit/a307a83b66129e2b7111ecaf180239660eeff24f) Thanks [@delucis](https://github.com/delucis)! - Adds support for automatic embeds in MDX when using Astro’s Sätteri processor
+
+  **⚠️ BREAKING CHANGE:** `astro-embed` now requires v7.2.4 or higher of Astro
+
 ## 0.12.1
 
 ### Patch Changes
