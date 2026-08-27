@@ -36,7 +36,7 @@ importers:
         specifier: ^8.67.0
         version: 8.67.0(eslint@10.8.1(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)
       astro:
-        specifier: ^7.2.2
+        specifier: ^7.2.4
         version: 7.2.7(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@24.13.3)(yaml@2.9.0)
       astro-component-tester:
         specifier: ^0.8.0
@@ -99,7 +99,7 @@ importers:
         specifier: ^7.0.5
         version: 7.0.5(@astrojs/markdown-satteri@0.3.8)(astro@7.2.7(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@24.13.3)(yaml@2.9.0))(supports-color@7.2.0)
       astro:
-        specifier: ^7.2.2
+        specifier: ^7.2.4
         version: 7.2.7(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@24.13.3)(yaml@2.9.0)
       astro-embed:
         specifier: workspace:*
@@ -135,7 +135,7 @@ importers:
         specifier: ^0.41.7
         version: 0.41.7(astro@7.2.7(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@24.13.3)(yaml@2.9.0))(supports-color@7.2.0)(typescript@6.0.3)
       astro:
-        specifier: ^7.2.2
+        specifier: ^7.2.4
         version: 7.2.7(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)(@types/node@24.13.3)(yaml@2.9.0)
       astro-embed:
         specifier: workspace:*
