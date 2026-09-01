@@ -132,7 +132,7 @@ importers:
         specifier: workspace:*
         version: link:../packages/astro-embed-youtube
       '@astrojs/starlight':
-        specifier: ^0.41.9
+        specifier: ^0.41.10
         version: 0.41.10(@astrojs/markdown-remark@7.2.4(supports-color@7.2.0))(astro@7.2.9(@astrojs/markdown-remark@7.2.4(supports-color@7.2.0))(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.3)(@types/node@24.13.3)(yaml@2.9.0))(supports-color@7.2.0)(typescript@6.0.3)
       astro:
         specifier: ^7.2.9
