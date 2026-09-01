@@ -23,7 +23,7 @@
     "astro": "^7.2.9",
     "astro-embed": "workspace:*",
     "astro-og-canvas": "^0.13.0",
-    "canvaskit-wasm": "^0.41.1",
+    "canvaskit-wasm": "^0.42.0",
     "expressive-code-color-chips": "^0.2.0",
     "sharp": "^0.35.4",
     "starlight-package-managers": "^0.12.0"
