@@ -201,14 +201,14 @@ importers:
         specifier: ^4.0.4
         version: 4.0.4(@atcute/lexicons@2.1.0)
       '@atcute/bluesky':
-        specifier: ^4.0.20
-        version: 4.0.20(@atcute/lexicons@2.1.0)
+        specifier: ^4.0.21
+        version: 4.0.21(@atcute/lexicons@2.1.0)
       '@atcute/bluesky-richtext-segmenter':
         specifier: ^3.0.2
         version: 3.0.2
       '@atcute/client':
-        specifier: ^5.1.1
-        version: 5.1.1(@atcute/lexicons@2.1.0)(typescript@6.0.3)
+        specifier: ^5.1.2
+        version: 5.1.2(@atcute/lexicons@2.1.0)(typescript@6.0.3)
       '@atcute/lexicons':
         specifier: ^2.1.0
         version: 2.1.0
@@ -435,18 +435,18 @@ packages:
   '@atcute/bluesky-richtext-segmenter@3.0.2':
     resolution: {integrity: sha512-LXsUuElLQ/gQe2g04SzgTeEbSwhcnmswioGdneve8e3vE+FU353EjuEVIsnA/H5rnGeLswLdrua7Io1twezynA==}
 
-  '@atcute/bluesky@4.0.20':
-    resolution: {integrity: sha512-rboI/y7QQ9HJjW2yhkzwoBLWBgv0qbqi7uDVSS6HCZi5ZddAusIXOTTG6AALroDPbU6WNg+511HRTl+BnM6VXA==}
+  '@atcute/bluesky@4.0.21':
+    resolution: {integrity: sha512-6PgLoO9fQ33PwhF4LzQ7wkewiheixgms+V895cKhJ2IbrkZA74VtiqpRet/hL+dmr7Zk9lv+xmGNZYEUPO9kuw==}
     peerDependencies:
       '@atcute/lexicons': ^2.0.0
 
-  '@atcute/client@5.1.1':
-    resolution: {integrity: sha512-cn5/Zi/qo37WtQG6gzIC7JPs0RDzX9Z4eaceX45SpKgLZoc3fCFDJcE7C8xsbxBNfjry2T6PmUxWA8obebZsEQ==}
+  '@atcute/client@5.1.2':
+    resolution: {integrity: sha512-V3MOJudmmbuiFfrmLR3/ZGA+PKcI4E4ZNEDGKMX/YrvFrHyElD1/gb8NxLesrlIcHefiulqfX9dAl6hOkIt7CA==}
     peerDependencies:
       '@atcute/lexicons': ^2.0.0
 
-  '@atcute/identity@2.0.1':
-    resolution: {integrity: sha512-FEURUvl30SyyWWikkvm+MLz0Snuf0OF10L/qxRhWjj6qDB5Ib+XWhiBuwidjvhCkrCepTUNLbj4TlUm/gHaUig==}
+  '@atcute/identity@2.0.2':
+    resolution: {integrity: sha512-amr/EQceqVtBVmjBK4uUF7nKKYuRttadigpvOcAn4dnO6SNSwSjQi8KDH9LnukEotPsSP4UDsQvNfHWEoUcslw==}
     peerDependencies:
       '@atcute/lexicons': ^2.0.0
 
@@ -3619,19 +3619,19 @@ snapshots:
 
   '@atcute/bluesky-richtext-segmenter@3.0.2': {}
 
-  '@atcute/bluesky@4.0.20(@atcute/lexicons@2.1.0)':
+  '@atcute/bluesky@4.0.21(@atcute/lexicons@2.1.0)':
     dependencies:
       '@atcute/atproto': 4.0.4(@atcute/lexicons@2.1.0)
       '@atcute/lexicons': 2.1.0
 
-  '@atcute/client@5.1.1(@atcute/lexicons@2.1.0)(typescript@6.0.3)':
+  '@atcute/client@5.1.2(@atcute/lexicons@2.1.0)(typescript@6.0.3)':
     dependencies:
-      '@atcute/identity': 2.0.1(@atcute/lexicons@2.1.0)(typescript@6.0.3)
+      '@atcute/identity': 2.0.2(@atcute/lexicons@2.1.0)(typescript@6.0.3)
       '@atcute/lexicons': 2.1.0
     transitivePeerDependencies:
       - typescript
 
-  '@atcute/identity@2.0.1(@atcute/lexicons@2.1.0)(typescript@6.0.3)':
+  '@atcute/identity@2.0.2(@atcute/lexicons@2.1.0)(typescript@6.0.3)':
     dependencies:
       '@atcute/lexicons': 2.1.0
       valibot: 1.4.2(typescript@6.0.3)
