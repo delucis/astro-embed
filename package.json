@@ -29,7 +29,7 @@
     "linkedom": "^0.18.13",
     "lz-string": "^1.5.0",
     "prettier": "^3.9.6",
-    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-astro": "^1.0.1",
     "typescript": "^6.0.3",
     "uvu": "^0.5.6"
   },
