@@ -141,8 +141,8 @@ importers:
         specifier: workspace:*
         version: link:../packages/astro-embed
       astro-og-canvas:
-        specifier: ^0.13.1
-        version: 0.13.1(astro@7.3.5(@types/node@24.19.0)(yaml@2.9.0))
+        specifier: ^0.13.2
+        version: 0.13.2(astro@7.3.5(@types/node@24.19.0)(yaml@2.9.0))
       canvaskit-wasm:
         specifier: ^0.42.0
         version: 0.42.0
@@ -1594,8 +1594,8 @@ packages:
     peerDependencies:
       astro: ^4.0.0-beta || ^5.0.0-beta || ^3.3.0 || ^6.0.0-beta || ^7.0.0
 
-  astro-og-canvas@0.13.1:
-    resolution: {integrity: sha512-YrsWTht6TwNWpP/GHZeQS9sUtxsyf5XeycFEekX0NMyljOVr93MfWcTkNw7GnFD862j4JdekiVGdn/xJ6+8C/g==}
+  astro-og-canvas@0.13.2:
+    resolution: {integrity: sha512-nD3KIXR2L27tJMYquxDzGuAwaR4DwK1XjvaEWMJXtcakWcHWahOyMAfOuPMET5qJaHc1wETxOeRQGq5KnPVH7w==}
     peerDependencies:
       astro: ^5.0.0 || ^6.0.0 || ^7.0.0
 
@@ -1868,8 +1868,8 @@ packages:
     resolution: {integrity: sha512-TWrgLOFUQTH994YUyl1yT4uyavY5nNB5muff+RtWaqNVCAK408b5ZnnbNAUEWLTCpum9w6arT70i1XdQ4UeOPA==}
     engines: {node: '>=0.12'}
 
-  entities@8.0.0:
-    resolution: {integrity: sha512-zwfzJecQ/Uej6tusMqwAqU/6KL2XaB2VZ2Jg54Je6ahNBGNH6Ek6g3jjNCF0fG9EWQKGZNddNjU5F1ZQn/sBnA==}
+  entities@8.1.0:
+    resolution: {integrity: sha512-kxL7msIffSuh9aaFAMD7rxAIuTRMAHMeBtgHW2yUdWw732ZNh4MehkF2gdjvtdmikkaIP9bFDDJOPlsvm7avrA==}
     engines: {node: '>=20.19.0'}
 
   es-module-lexer@2.3.1:
@@ -4759,12 +4759,12 @@ snapshots:
       rehype-expressive-code: 0.44.0
       url-extras: 0.1.0
 
-  astro-og-canvas@0.13.1(astro@7.3.5(@types/node@24.19.0)(yaml@2.9.0)):
+  astro-og-canvas@0.13.2(astro@7.3.5(@types/node@24.19.0)(yaml@2.9.0)):
     dependencies:
       astro: 7.3.5(@types/node@24.19.0)(yaml@2.9.0)
       canvaskit-wasm: 0.42.0
       deterministic-object-hash: 2.0.2
-      entities: 8.0.0
+      entities: 8.1.0
 
   astro@7.3.5(@types/node@24.19.0)(yaml@2.9.0):
     dependencies:
@@ -5046,7 +5046,7 @@ snapshots:
     dependencies:
       domelementtype: 3.0.0
       domhandler: 6.0.1
-      entities: 8.0.0
+      entities: 8.1.0
 
   domelementtype@2.3.0: {}
 
@@ -5085,7 +5085,7 @@ snapshots:
 
   entities@7.0.1: {}
 
-  entities@8.0.0: {}
+  entities@8.1.0: {}
 
   es-module-lexer@2.3.1: {}
 
@@ -6348,7 +6348,7 @@ snapshots:
 
   parse5@8.0.1:
     dependencies:
-      entities: 8.0.0
+      entities: 8.1.0
 
   path-browserify@1.0.1: {}
 
