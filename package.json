@@ -13,7 +13,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
     "@changesets/changelog-github": "^1.0.1",
-    "@changesets/cli": "^3.0.2",
+    "@changesets/cli": "^3.0.3",
     "@eslint/eslintrc": "^3.3.7",
     "@eslint/js": "^10.0.1",
     "@testing-library/dom": "^10.4.2",
