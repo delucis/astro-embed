@@ -201,8 +201,8 @@ importers:
         specifier: ^4.0.4
         version: 4.0.4(@atcute/lexicons@2.1.1)
       '@atcute/bluesky':
-        specifier: ^4.0.22
-        version: 4.0.22(@atcute/lexicons@2.1.1)
+        specifier: ^4.0.24
+        version: 4.0.24(@atcute/lexicons@2.1.1)
       '@atcute/bluesky-richtext-segmenter':
         specifier: ^3.0.2
         version: 3.0.2
@@ -447,8 +447,8 @@ packages:
   '@atcute/bluesky-richtext-segmenter@3.0.2':
     resolution: {integrity: sha512-LXsUuElLQ/gQe2g04SzgTeEbSwhcnmswioGdneve8e3vE+FU353EjuEVIsnA/H5rnGeLswLdrua7Io1twezynA==}
 
-  '@atcute/bluesky@4.0.22':
-    resolution: {integrity: sha512-GU2ApjUgfEcoQ96DrOOjUaDfvNw1lFKryhFRhavefEEYuN3R5VxYIifmj6OCmH48aLMf5gYEfLpVGdEjgACwTQ==}
+  '@atcute/bluesky@4.0.24':
+    resolution: {integrity: sha512-MdtvtvTx4BKj74i/9jRmWpNz9n3Rst87OkSTKPstbjm/Oj5Bnbc0bRqBRSn/v4KE1UOdHwlRkzQe+KND9z+S2w==}
     peerDependencies:
       '@atcute/lexicons': ^2.0.0
 
@@ -3689,7 +3689,7 @@ snapshots:
 
   '@atcute/bluesky-richtext-segmenter@3.0.2': {}
 
-  '@atcute/bluesky@4.0.22(@atcute/lexicons@2.1.1)':
+  '@atcute/bluesky@4.0.24(@atcute/lexicons@2.1.1)':
     dependencies:
       '@atcute/atproto': 4.0.4(@atcute/lexicons@2.1.1)
       '@atcute/lexicons': 2.1.1

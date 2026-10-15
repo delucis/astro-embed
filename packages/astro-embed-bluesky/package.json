@@ -31,7 +31,7 @@
   "license": "MIT",
   "dependencies": {
     "@atcute/atproto": "^4.0.4",
-    "@atcute/bluesky": "^4.0.22",
+    "@atcute/bluesky": "^4.0.24",
     "@atcute/bluesky-richtext-segmenter": "^3.0.2",
     "@atcute/client": "^5.1.2",
     "@atcute/lexicons": "^2.1.1"
