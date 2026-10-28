@@ -58,33 +58,42 @@ export default function createPlugin({
 		children?: Node[];
 	};
 
+	/**
+	 * Get the embed component for a paragraph that only contains a bare URL
+	 * @param paragraph Paragraph node to test
+	 * @returns Component node for this paragraph or undefined if none matched
+	 */
+	function getParagraphComponent(paragraph: Node) {
+		const link: Link | undefined = select(
+			':scope > link:only-child',
+			paragraph
+		);
+		if (!link) return;
+
+		const { url, children } = link;
+		// We’re only interested in HTTP links
+		if (!url || !url.startsWith('http')) return;
+		// URLs should have a single child
+		if (!children || children.length !== 1) return;
+
+		// The child should be a text node with a value matching the URL
+		const child = children[0];
+		if (
+			!child ||
+			child.type !== 'text' ||
+			!('value' in child) ||
+			child.value !== url
+		) {
+			return;
+		}
+
+		return getComponent(url);
+	}
+
 	function transformer(tree: Node) {
 		const paragraphs = selectAll('paragraph', tree);
 		paragraphs.forEach((paragraph) => {
-			const link: Link | undefined = select(
-				':scope > link:only-child',
-				paragraph
-			);
-			if (!link) return;
-
-			const { url, children } = link;
-			// We’re only interested in HTTP links
-			if (!url || !url.startsWith('http')) return;
-			// URLs should have a single child
-			if (!children || children.length !== 1) return;
-
-			// The child should be a text node with a value matching the URL
-			const child = children[0];
-			if (
-				!child ||
-				child.type !== 'text' ||
-				!('value' in child) ||
-				child.value !== url
-			) {
-				return;
-			}
-
-			const component = getComponent(url);
+			const component = getParagraphComponent(paragraph);
 			if (component) {
 				// @ts-expect-error We’re overriding the initial node type with arbitrary data.
 				for (const key in component) paragraph[key] = component[key];
@@ -94,7 +103,19 @@ export default function createPlugin({
 		return tree;
 	}
 
-	return function attacher() {
-		return transformer;
+	return {
+		/** Plugin for Astro’s unified (remark) Markdown processor. */
+		remark: function attacher() {
+			return transformer;
+		},
+		/** Plugin for Astro’s Sätteri Markdown processor. */
+		satteri: {
+			name: 'astro-embed',
+			paragraph(paragraph: Node, ctx: { sourceFormat: string }) {
+				// Embed components can only be used in MDX.
+				if (ctx.sourceFormat !== 'mdx') return;
+				return getParagraphComponent(paragraph);
+			},
+		},
 	};
 }
