@@ -11,7 +11,7 @@
     "ci:version": "changeset version && pnpm install --no-frozen-lockfile"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.10",
+    "@astrojs/check": "^0.9.12",
     "@changesets/changelog-github": "^1.0.1",
     "@changesets/cli": "^3.0.3",
     "@eslint/eslintrc": "^3.3.7",
@@ -20,7 +20,7 @@
     "@types/node": "^24.19.2",
     "@typescript-eslint/eslint-plugin": "^8.71.1",
     "@typescript-eslint/parser": "^8.71.1",
-    "astro": "^7.3.8",
+    "astro": "^7.4.4",
     "astro-component-tester": "^0.8.0",
     "eslint": "^10.12.0",
     "eslint-config-prettier": "^10.1.8",
