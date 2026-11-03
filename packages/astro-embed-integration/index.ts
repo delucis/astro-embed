@@ -4,6 +4,16 @@ import AutoImport from 'astro-auto-import';
 const importNamespace = 'AuToImPoRtEdAstroEmbed';
 
 /**
+ * The parts of Astro’s `markdown.processor` config used here. Astro types
+ * `options` loosely because its shape depends on the configured processor.
+ */
+interface MarkdownConfig {
+	processor?:
+		| { name: 'satteri'; options: { mdastPlugins: unknown[] } }
+		| { name: 'unified'; options: { remarkPlugins: unknown[] } };
+}
+
+/**
  * Astro embed MDX integration.
  */
 export default function embed({
@@ -18,16 +28,21 @@ export default function embed({
 	const AstroEmbed: AstroIntegration = {
 		name: 'astro-embed',
 		hooks: {
-			'astro:config:setup': ({ config, updateConfig }) => {
+			'astro:config:setup': ({ config }) => {
 				checkIntegrationsOrder(config);
-				updateConfig({
-					markdown: {
-						// TODO: support customising props for each service
-						remarkPlugins: [
-							createEmbedPlugin({ importNamespace, enabledComponents }),
-						],
-					},
+				// TODO: support customising props for each service
+				const plugins = createEmbedPlugin({
+					importNamespace,
+					enabledComponents,
 				});
+				// Add the plugin directly to the configured Markdown processor. The old
+				// `markdown.remarkPlugins` option is deprecated and Sätteri ignores it.
+				const processor = (config.markdown as MarkdownConfig).processor;
+				if (processor?.name === 'satteri') {
+					processor.options.mdastPlugins.push(plugins.satteri);
+				} else if (processor?.name === 'unified') {
+					processor.options.remarkPlugins.push(plugins.remark);
+				}
 			},
 		},
 	};
