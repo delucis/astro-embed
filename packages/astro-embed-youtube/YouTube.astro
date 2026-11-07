@@ -1,19 +1,26 @@
 ---
-import 'lite-youtube-embed/src/lite-yt-embed.css';
 import urlMatcher from './matcher';
 
 export interface Props extends astroHTML.JSX.HTMLAttributes {
 	id: string;
+	playlistId?: string;
 	poster?: string;
 	posterQuality?: 'max' | 'high' | 'default' | 'low';
 	params?: string;
 	playlabel?: string;
+	showTitle?: boolean;
+	staticFallback?: boolean;
 }
 
 const {
 	id,
+	playlistId,
 	poster,
 	posterQuality = 'default',
+	params,
+	playlabel = 'Play',
+	showTitle = true,
+	staticFallback = true,
 	title,
 	style,
 	...attrs
@@ -36,34 +43,99 @@ const posterFile =
 	}[posterQuality] || 'hqdefault';
 const posterURL =
 	poster || `https://i.ytimg.com/vi/${videoid}/${posterFile}.jpg`;
-const href = `https://youtube.com/watch?v=${videoid}`;
+const href = `https://youtube.com/watch?v=${videoid}${playlistId ? `&list=${playlistId}` : ''}`;
+
+// lite-youtube always prefixes `params` with `start=<videoStartAt>`, so a
+// `start` left in `params` would be sent twice.
+const searchParams = new URLSearchParams(params);
+const videoStartAt = searchParams.get('start') ?? undefined;
+searchParams.delete('start');
 
 const styles = [];
 if (style) styles.push(style);
-if (posterURL) styles.push(`background-image: url('${posterURL}')`);
+if (staticFallback) styles.push(`background-image: url('${posterURL}')`);
 ---
 
 <lite-youtube
 	{videoid}
-	{title}
-	data-title={title}
+	playlistid={playlistId}
+	videotitle={title}
+	videoplay={playlabel}
+	videostartat={videoStartAt}
+	params={searchParams.toString()}
+	posterquality={posterFile}
+	nocookie
+	data-title={showTitle ? title : undefined}
 	{...attrs}
-	style={styles.join(';')}
+	style={styles.join(';') || undefined}
 >
-	<a {href} class="lyt-playbtn">
-		<span class="lyt-visually-hidden">{attrs.playlabel || 'Play'}</span>
-	</a>
+	{poster && <img slot="image" src={poster} alt="" />}
+	{
+		staticFallback && (
+			<a {href} class="lyt-playbtn">
+				<span class="lyt-visually-hidden">{playlabel}</span>
+			</a>
+		)
+	}
 </lite-youtube>
 
-<script src="lite-youtube-embed"></script>
+<script>
+	import '@justinribeiro/lite-youtube';
+
+	// The player lives in a shadow root, so the host needs a class to hide the
+	// title overlay once the iframe loads.
+	document.addEventListener('liteYoutubeIframeLoaded', (event) => {
+		(event.target as HTMLElement).classList.add('lyt-activated');
+	});
+</script>
 
 <style is:global>
-	lite-youtube > iframe {
-		all: unset !important;
-		width: 100% !important;
-		height: 100% !important;
-		position: absolute !important;
-		inset: 0 !important;
-		border: 0 !important;
+	lite-youtube:not(:defined) {
+		display: block;
+		position: relative;
+		aspect-ratio: 16 / 9;
+		background: #000 no-repeat center / cover;
+	}
+
+	lite-youtube:not(:defined) > img[slot='image'] {
+		display: none;
+	}
+
+	lite-youtube:not(:defined) > .lyt-playbtn {
+		position: absolute;
+		inset: 0;
+		background: no-repeat center / 68px 48px;
+		background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68 48"><path d="M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z" fill="red"/><path d="M45 24 27 14v20" fill="white"/></svg>');
+	}
+
+	.lyt-visually-hidden {
+		clip: rect(0 0 0 0);
+		clip-path: inset(50%);
+		height: 1px;
+		overflow: hidden;
+		position: absolute;
+		white-space: nowrap;
+		width: 1px;
+	}
+
+	lite-youtube:defined[data-title]::before {
+		content: attr(data-title);
+		position: absolute;
+		inset: 0 0 auto;
+		z-index: 2;
+		pointer-events: none;
+		padding: 25px 20px;
+		box-sizing: border-box;
+		font-family: 'YouTube Noto', Roboto, Arial, Helvetica, sans-serif;
+		font-size: 18px;
+		color: hsl(0deg 0% 93.33%);
+		text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
+	lite-youtube.lyt-activated::before {
+		display: none;
 	}
 </style>

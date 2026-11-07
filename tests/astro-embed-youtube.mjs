@@ -74,6 +74,10 @@ test('it can set a custom poster image', async () => {
 	const embed = window.document.querySelector('lite-youtube');
 	assert.ok(embed);
 	assert.is(embed.style['background-image'], `url('${poster}')`);
+	assert.is(
+		embed.querySelector('img[slot="image"]')?.getAttribute('src'),
+		poster
+	);
 });
 
 test('it can render a lower resolution poster image', async () => {
@@ -112,6 +116,53 @@ test('title attribute also sets `data-title`', async () => {
 	const embed = window.document.querySelector('lite-youtube');
 	assert.ok(embed);
 	assert.is(embed.dataset.title, 'Example title');
+});
+
+test('it moves `start` from `params` to `videoStartAt`', async () => {
+	const { window } = await renderDOM(
+		'./packages/astro-embed-youtube/YouTube.astro',
+		{ id: videoid, params: 'start=57&end=75' }
+	);
+	const embed = window.document.querySelector('lite-youtube');
+	assert.ok(embed);
+	assert.is(embed.getAttribute('videostartat'), '57');
+	assert.is(embed.getAttribute('params'), 'end=75');
+});
+
+test('it can embed a playlist', async () => {
+	const playlistId = 'PL-G5r6j4GptH5JTveoLTVqpp7w2oc27Q9';
+	const { window } = await renderDOM(
+		'./packages/astro-embed-youtube/YouTube.astro',
+		{ id: videoid, playlistId }
+	);
+	const embed = window.document.querySelector('lite-youtube');
+	assert.ok(embed);
+	assert.is(embed.getAttribute('playlistid'), playlistId);
+	const playButton = /** @type {HTMLAnchorElement} */ (
+		embed.querySelector('a.lyt-playbtn')
+	);
+	assert.is(
+		playButton.href,
+		`https://youtube.com/watch?v=${videoid}&list=${playlistId}`
+	);
+});
+
+test('it can disable the title overlay and static fallback', async () => {
+	const { window } = await renderDOM(
+		'./packages/astro-embed-youtube/YouTube.astro',
+		{
+			id: videoid,
+			title: 'Example title',
+			showTitle: false,
+			staticFallback: false,
+		}
+	);
+	const embed = window.document.querySelector('lite-youtube');
+	assert.ok(embed);
+	assert.is(embed.getAttribute('videotitle'), 'Example title');
+	assert.not.ok(embed.hasAttribute('data-title'));
+	assert.not.ok(embed.hasAttribute('style'));
+	assert.not.ok(embed.querySelector('a.lyt-playbtn'));
 });
 
 test.run();

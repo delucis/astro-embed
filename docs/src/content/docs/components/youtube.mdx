@@ -6,7 +6,7 @@ description: Learn how to use the Astro Embed YouTube component to embed YouTube
 import { Tabs, TabItem } from '@astrojs/starlight/components';
 import { YouTube } from '@astro-community/astro-embed-youtube';
 
-The `<YouTube>` component generates an embed using the [`lite-youtube-embed`](https://github.com/paulirish/lite-youtube-embed) custom element that will load YouTube’s `<iframe>` only when a user clicks play.
+The `<YouTube>` component generates an embed using the [`lite-youtube`](https://github.com/justinribeiro/lite-youtube) custom element that will load YouTube’s `<iframe>` only when a user clicks play.
 
 YouTube embeds will always require some JavaScript, but this is one of the most minimal and performant ways to embed a YouTube video.
 
@@ -44,6 +44,17 @@ The above code produces the following result:
 ## Optional props
 
 In addition to the required `id` prop, the following props are available to customise how the `<YouTube>` component renders:
+
+### `playlistId`
+
+**Type:** `string`
+
+Set a YouTube playlist ID to load the playlist player when the embed is played.
+The `id` prop is still required and sets the video used for the poster image.
+
+```astro
+<YouTube id="TtRtkTzHVBU" playlistId="PL-G5r6j4GptH5JTveoLTVqpp7w2oc27Q9" />
+```
 
 ### `poster`
 
@@ -127,6 +138,30 @@ Set a visible title to overlay on the video.
 	id="TtRtkTzHVBU"
 	title="The Astro Community: where contributors find a home"
 />
+
+### `showTitle`
+
+**Type:** `boolean`  
+**Default:** `true`
+
+Set to `false` to hide the visible title overlay.
+The `title` is still used as the accessible label for the embed.
+
+```astro
+<YouTube id="TtRtkTzHVBU" title="The Astro Community" showTitle={false} />
+```
+
+### `staticFallback`
+
+**Type:** `boolean`  
+**Default:** `true`
+
+Before JavaScript loads, the embed shows the poster image and a link to the video on YouTube.
+Set to `false` to render nothing until JavaScript loads.
+
+```astro
+<YouTube id="TtRtkTzHVBU" staticFallback={false} />
+```
 
 ## Standalone installation
 
