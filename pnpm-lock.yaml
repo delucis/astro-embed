@@ -141,8 +141,8 @@ importers:
         specifier: workspace:*
         version: link:../packages/astro-embed
       astro-og-canvas:
-        specifier: ^0.13.2
-        version: 0.13.2(astro@7.4.4(@types/node@26.6.6)(esbuild@0.28.1)(yaml@2.9.1))
+        specifier: ^0.13.3
+        version: 0.13.3(astro@7.4.4(@types/node@26.6.6)(esbuild@0.28.1)(yaml@2.9.1))
       canvaskit-wasm:
         specifier: ^0.42.0
         version: 0.42.0
@@ -1621,8 +1621,8 @@ packages:
     peerDependencies:
       astro: ^4.0.0-beta || ^5.0.0-beta || ^3.3.0 || ^6.0.0-beta || ^7.0.0
 
-  astro-og-canvas@0.13.2:
-    resolution: {integrity: sha512-nD3KIXR2L27tJMYquxDzGuAwaR4DwK1XjvaEWMJXtcakWcHWahOyMAfOuPMET5qJaHc1wETxOeRQGq5KnPVH7w==}
+  astro-og-canvas@0.13.3:
+    resolution: {integrity: sha512-OenE+M/rrSnrCtniqg5vhq9+047UIjdqgEqbZgk+F3oU6JZ7V1Icmc9DzPN2XHGc/i1m4FH+S4zPotHd3NmB3A==}
     peerDependencies:
       astro: ^5.0.0 || ^6.0.0 || ^7.0.0
 
@@ -1891,6 +1891,10 @@ packages:
 
   entities@8.1.0:
     resolution: {integrity: sha512-kxL7msIffSuh9aaFAMD7rxAIuTRMAHMeBtgHW2yUdWw732ZNh4MehkF2gdjvtdmikkaIP9bFDDJOPlsvm7avrA==}
+    engines: {node: '>=20.19.0'}
+
+  entities@9.0.0:
+    resolution: {integrity: sha512-oJFNDJg3kTPwAD1cNn2+WmUq4wFoo09npc3Ydf1D7ED4smRiWrsKnaLxykrTWgyGEcusc87P5dxlAleol9kpkg==}
     engines: {node: '>=20.19.0'}
 
   es-module-lexer@2.3.1:
@@ -4803,12 +4807,12 @@ snapshots:
       rehype-expressive-code: 0.44.0
       url-extras: 0.1.0
 
-  astro-og-canvas@0.13.2(astro@7.4.4(@types/node@26.6.6)(esbuild@0.28.1)(yaml@2.9.1)):
+  astro-og-canvas@0.13.3(astro@7.4.4(@types/node@26.6.6)(esbuild@0.28.1)(yaml@2.9.1)):
     dependencies:
       astro: 7.4.4(@types/node@26.6.6)(esbuild@0.28.1)(yaml@2.9.1)
       canvaskit-wasm: 0.42.0
       deterministic-object-hash: 2.0.2
-      entities: 8.1.0
+      entities: 9.0.0
 
   astro@7.4.4(@types/node@26.6.6)(esbuild@0.28.1)(yaml@2.9.1):
     dependencies:
@@ -5124,6 +5128,8 @@ snapshots:
   entities@7.0.1: {}
 
   entities@8.1.0: {}
+
+  entities@9.0.0: {}
 
   es-module-lexer@2.3.1: {}
 
