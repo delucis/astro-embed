@@ -26,7 +26,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.7",
     "globals": "^17.14.0",
-    "linkedom": "^0.18.14",
+    "linkedom": "^0.18.15",
     "lz-string": "^1.5.0",
     "prettier": "^3.9.10",
     "prettier-plugin-astro": "^0.14.1",
