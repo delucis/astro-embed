@@ -153,8 +153,8 @@ importers:
         specifier: ^0.35.5
         version: 0.35.5(@types/node@26.6.6)
       starlight-package-managers:
-        specifier: ^0.13.0
-        version: 0.13.0(@astrojs/starlight@0.41.10(astro@7.4.4(@types/node@26.6.6)(esbuild@0.28.1)(yaml@2.9.1))(supports-color@7.2.0)(typescript@6.0.3))
+        specifier: ^0.13.1
+        version: 0.13.1(@astrojs/starlight@0.41.10(astro@7.4.4(@types/node@26.6.6)(esbuild@0.28.1)(yaml@2.9.1))(supports-color@7.2.0)(typescript@6.0.3))
 
   packages/astro-embed:
     dependencies:
@@ -3007,8 +3007,8 @@ packages:
   space-separated-tokens@2.0.2:
     resolution: {integrity: sha512-PEGlAwrG8yXGXRjW32fGbg66JAlOAwbObuqVoJpv/mRgoWDQfgH1wDPvtzWyUSNAXBGSk8h755YDbbcEy3SH2Q==}
 
-  starlight-package-managers@0.13.0:
-    resolution: {integrity: sha512-Jcvx7oLA2hWlNMsYI42Ny5vZ0lZov18M/0+aiXmY59Wo+GmhTjJPRpGEbIN0yJsGLoJPFTegcMArjNVU0SvROQ==}
+  starlight-package-managers@0.13.1:
+    resolution: {integrity: sha512-lD3hp+RBetHDWtOLa/rgG2cyLY4qV0GAWMl59hn++HkagcnFIkWT0oHsws2pMwBZHCO+iJ86jWRtSD4kfU6N3g==}
     peerDependencies:
       '@astrojs/starlight': '>=0.32.0'
 
@@ -6779,7 +6779,7 @@ snapshots:
 
   space-separated-tokens@2.0.2: {}
 
-  starlight-package-managers@0.13.0(@astrojs/starlight@0.41.10(astro@7.4.4(@types/node@26.6.6)(esbuild@0.28.1)(yaml@2.9.1))(supports-color@7.2.0)(typescript@6.0.3)):
+  starlight-package-managers@0.13.1(@astrojs/starlight@0.41.10(astro@7.4.4(@types/node@26.6.6)(esbuild@0.28.1)(yaml@2.9.1))(supports-color@7.2.0)(typescript@6.0.3)):
     dependencies:
       '@astrojs/starlight': 0.41.10(astro@7.4.4(@types/node@26.6.6)(esbuild@0.28.1)(yaml@2.9.1))(supports-color@7.2.0)(typescript@6.0.3)
 
