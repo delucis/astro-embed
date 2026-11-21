@@ -8,6 +8,7 @@ export interface Props extends astroHTML.JSX.HTMLAttributes {
 	posterQuality?: 'max' | 'high' | 'default' | 'low';
 	params?: string;
 	playlabel?: string;
+	fetchpriority?: 'high' | 'low' | 'auto';
 }
 
 const {
@@ -16,6 +17,7 @@ const {
 	posterQuality = 'default',
 	title,
 	style,
+	fetchpriority = 'auto',
 	...attrs
 } = Astro.props as Props;
 
@@ -43,10 +45,18 @@ if (style) styles.push(style);
 if (posterURL) styles.push(`background-image: url('${posterURL}')`);
 ---
 
+<link
+  rel="preload"
+  as="image"
+  href={posterURL}
+  fetchpriority={fetchpriority}
+/>
+
 <lite-youtube
 	{videoid}
 	{title}
 	data-title={title}
+	fetchpriority={fetchpriority}
 	{...attrs}
 	style={styles.join(';')}
 >
