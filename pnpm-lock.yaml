@@ -2226,10 +2226,10 @@ packages:
     resolution: {integrity: sha512-K3GbkIWqyvvlpfhBPlbEvD97TtqBpAYA4kt+cn2lD2x2HuohzZCibcA2nOlnJT6exqvJLggoB5nv2dNf192nEA==}
     hasBin: true
 
-  i18next@26.3.1:
-    resolution: {integrity: sha512-txQqd5EULsqEh9OJqRH15aCaOuy/nLJyhw5EHCSKLKJE1aBbb3Zve2+uQIxgWhPm1QqUQoWyQBm2kfmmIrzkcQ==}
+  i18next@26.7.2:
+    resolution: {integrity: sha512-RsOY3BeaCDdkk52NeJSFAXELQ2rQXBO/tOub6L8ue2ICPfR/FRDWDOfEDg4xMPd1SqO5goVYQ6i72qWEUB/PPw==}
     peerDependencies:
-      typescript: ^5 || ^6
+      typescript: ^5 || ^6 || ^7
     peerDependenciesMeta:
       typescript:
         optional: true
@@ -3685,7 +3685,7 @@ snapshots:
       hast-util-select: 6.0.4
       hast-util-to-string: 3.0.1
       hastscript: 9.0.1
-      i18next: 26.3.1(typescript@6.0.3)
+      i18next: 26.7.2(typescript@6.0.3)
       js-yaml: 4.3.2
       klona: 2.0.6
       magic-string: 0.30.21
@@ -5633,7 +5633,7 @@ snapshots:
 
   human-id@4.2.0: {}
 
-  i18next@26.3.1(typescript@6.0.3):
+  i18next@26.7.2(typescript@6.0.3):
     optionalDependencies:
       typescript: 6.0.3
 
